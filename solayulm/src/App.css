@@ -3,16 +3,37 @@
   margin: 0;
   padding: 0;
   width: 100%;
+  color: beige;
 }
-body {
-  display: inline-block;
+
+
+.App {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  }
+
+  html, body, #root {
+    display: block;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
   
-  /* min-width: 320px;
-  min-height: 100vh; */
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
-  color: #213547;
-  background-color: #ffffff;
-}
+  .App {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-image: url('../src/assets/images/background1.JPG');
+    background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  }
+  
+  .page-content {
+    flex: 1;
+  }  
 
 .logo {
   height: 6em;
