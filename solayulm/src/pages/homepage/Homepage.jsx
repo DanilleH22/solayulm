@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css'; 
-
+import SpaceCard from '../../components/SpaceCard.jsx';
 import Typewriter from 'typewriter-effect';
 
 
@@ -23,7 +23,7 @@ const Homepage = () => {
  
         </Col>
       </Row>
-      <Row className="justify-content-end p-4" Style = {{display: "flex", flexWrap: "wrap" }}>
+      <Row className="justify-content-end p-4" style = {{display: "flex", flexWrap: "wrap" }}>
         <Col className="text-right">
           <h4>A peaceful digital space for you to rest and reflect or just float around for a while.</h4>
           <p>Solayulm is your serene pocket of the universe. A digitl escape where calm meets the cosmos. Whether you are here to unwind, write a quiet though or simply float for a while, you've arrived to the perfect place. The queiet edge of the galaxy. No noise. No pressure. Just a gentle space to breathe.</p>
@@ -33,6 +33,44 @@ const Homepage = () => {
         </Col>
       </Row>
       <Row>
+      <div style={{ display: "flex", gap: "20px", padding: "40px"}}>
+      <SpaceCard
+        title="Observation Deck"
+        description="Panoramic view of the cosmos with holographic star maps."
+        
+      />
+      <SpaceCard
+        title="Engineering Bay"
+        description="Core maintenance hub with zero-gravity tools."
+       
+      />
+      <SpaceCard
+        title="Observation Deck"
+        description="Panoramic view of the cosmos with holographic star maps."
+        
+      />
+      <SpaceCard
+        title="Engineering Bay"
+        description="Core maintenance hub with zero-gravity tools."
+       
+      />
+      <SpaceCard
+        title="Observation Deck"
+        description="Panoramic view of the cosmos with holographic star maps."
+        
+      />
+      <SpaceCard
+        title="Engineering Bay"
+        description="Core maintenance hub with zero-gravity tools."
+       
+      />
+      <SpaceCard
+        title="Observation Deck"
+        description="Panoramic view of the cosmos with holographic star maps."
+        
+      />
+      
+    </div>
         <Col>Rm1</Col>
         <Col>Rm2</Col>
         <Col>Rm3</Col>
