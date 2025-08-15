@@ -2,6 +2,8 @@ import React from 'react';
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css'; 
 
+import Typewriter from 'typewriter-effect';
+
 
 
 const Homepage = () => {
@@ -9,7 +11,16 @@ const Homepage = () => {
     <Container fluid className="d-flex flex-column">
       <Row className="justify-content-start p-3">
         <Col className="text-center">
-          <h2>You've arrived! Welcome to the quiet edge of the galaxy.</h2>
+          <h2>
+          <Typewriter
+  options={{
+    strings: ['You have arrived! Welcome to the quiet edge of the galaxy.'],
+    autoStart: true,
+    loop: true,
+  }}
+/>
+</h2>
+ 
         </Col>
       </Row>
       <Row className="justify-content-end p-4" Style = {{display: "flex", flexWrap: "wrap" }}>
