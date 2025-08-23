@@ -12,7 +12,8 @@ const NavBar = () => {
         </Navbar.Brand>
 
         {/* Right side */}
-        <div className="d-flex justify-content-end">
+        <div >
+          <strong>
           <TypeAnimation
             preRenderFirstString={true}
             sequence={[
@@ -29,7 +30,9 @@ const NavBar = () => {
             speed={50}
             style={{ fontSize: "1.5rem"}}
             repeat={Infinity}
+            className="d-flex justify-content-end"
           />
+          </strong>
         </div>
       </Container>
     </Navbar>
