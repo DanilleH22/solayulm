@@ -21,7 +21,7 @@ const SpaceCard = ({ title, description }) => {
       >
         <div className="light-sweep"></div>
         <div className="space-card-content">
-          <h5>{title}</h5>
+          <h6>{title}</h6>
           <p>{description}</p>
         </div>
       </Card>
