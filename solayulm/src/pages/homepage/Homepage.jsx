@@ -35,49 +35,42 @@ const Homepage = () => {
       <Row>
       <div style={{ display: "flex", gap: "20px", padding: "40px"}}>
       <SpaceCard
-        title="Observation Deck"
-        description="Panoramic view of the cosmos with holographic star maps."
+        title="Decompression Bay"
+        description="A calming chamber where crew unwind and adjust to the station’s gravity."
         
       />
       <SpaceCard
-        title="Engineering Bay"
-        description="Core maintenance hub with zero-gravity tools."
+        title="Airlock Journal"
+        description="A reflective space for logging thoughts before stepping into the void."
        
       />
       <SpaceCard
         title="Observation Deck"
-        description="Panoramic view of the cosmos with holographic star maps."
+        description="Panoramic starlit views framed by holographic star charts."
         
       />
       <SpaceCard
-        title="Engineering Bay"
-        description="Core maintenance hub with zero-gravity tools."
+        title="Comm Center (Audio Room)"
+        description="Secure hub for interstellar transmissions and voice archives."
        
       />
       <SpaceCard
-        title="Observation Deck"
-        description="Panoramic view of the cosmos with holographic star maps."
+        title="Void Chat"
+        description="An ethereal channel for unfiltered conversations across the cosmos."
         
       />
       <SpaceCard
-        title="Engineering Bay"
-        description="Core maintenance hub with zero-gravity tools."
+        title="Holo Room (Creative Release)"
+        description="Immersive holo-space for art, ideas, and unbound imagination."
        
       />
       <SpaceCard
-        title="Observation Deck"
-        description="Panoramic view of the cosmos with holographic star maps."
+        title="Cosmic Companion AI Bot"
+        description="An ever-present guide offering wisdom, data, and conversation."
         
       />
       
     </div>
-        <Col>Rm1</Col>
-        <Col>Rm2</Col>
-        <Col>Rm3</Col>
-        <Col>Rm4</Col>
-        <Col>Rm5</Col>
-        <Col>Rm6</Col>
-        <Col>Rm7</Col>
       </Row>
     </Container>
   );
