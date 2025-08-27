@@ -6,6 +6,9 @@ import Typewriter from 'typewriter-effect';
 import styles from '../../styles/Homepage.module.css'
 import s1 from '../../assets/images/s1.jpg';
 import s2 from '../../assets/images/s2.PNG';
+import s6 from '../../assets/images/s6.PNG';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faRocket } from '@fortawesome/free-solid-svg-icons'
 
 
 const Homepage = () => {
@@ -44,6 +47,25 @@ const Homepage = () => {
       <Button>Explore</Button>
     </div>
   </div>
+  <Row className={styles.servicesTextWrapper}>
+  <Col className={styles.servicesText}>
+    <h3>Who Are You ?</h3>
+    <ul>
+      <li><FontAwesomeIcon icon={faRocket} /> You’re someone carrying the weight of the world, searching for a place to set it down.</li>
+      <li><FontAwesomeIcon icon={faRocket} /> You’re a dreamer craving stillness, a moment where your thoughts finally quiet.</li>
+      <li><FontAwesomeIcon icon={faRocket} /> You’re an explorer at heart, looking for a space that feels endless yet safe.</li>
+      <li><FontAwesomeIcon icon={faRocket} /> You’re tired of noise and chaos, longing for a breath of calm.</li>
+      <li><FontAwesomeIcon icon={faRocket} /> You’re seeking release — from stress, from overthinking, from everything that holds you back.</li>
+      <li><FontAwesomeIcon icon={faRocket} /> You’re ready to step outside of reality for a while, to float in something softer, lighter, freer.</li>
+      <li><FontAwesomeIcon icon={faRocket} /> You are the reason Solayulm exists — the heart of everything we create.</li>
+    </ul>
+  </Col>
+
+  <Col md={3} className={styles.servicesImg}>
+    <img src={s6} alt="space" />
+  </Col>
+</Row>
+
 </Container>
 
   );
