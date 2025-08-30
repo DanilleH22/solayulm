@@ -24,11 +24,11 @@ const Homepage = () => {
   return (
     <Container fluid>
   <div className={styles.imgTextWrapper}>
-    <img 
+    {/* <img 
       src={s1}
       alt="space" 
       className={styles.bgImage}
-    />
+    /> */}
     <div className={styles.overlayText}>
       <h1>What do we do?</h1>
       <p>Solayulm is your serene pocket of the universe. A digital escape where calm meets the cosmos. Whether you are here to unwind, write a quiet though or simply float for a while, you've arrived to the perfect place. The queiet edge of the galaxy. No noise. No pressure. Just a gentle space to breathe.</p>
@@ -90,6 +90,8 @@ const Homepage = () => {
       
       <h4>Decompression Bay</h4>
       <p>A calming chamber where crew unwind and adjust to the station’s gravity.</p>
+      <p>Here, the hum of machinery softens into silence. Gravity stabilizers hum low beneath your feet as the station welcomes you back from the chaos outside. This chamber is a sanctuary for weary travelers—a place to let the tension bleed away, to breathe, and to remember that you are safe within these walls.</p>
+      <p>Step inside and let the hum of the station fade. This is where tension dissolves and your body finds balance again, weightlessly adjusting to calm. It’s the reset point — a place to let go of earthbound heaviness before drifting into new worlds.</p>
       </Col>
       <Col>
       <img src={s7} alt="space" style={{ width: '100%', height: 'auto', borderRadius: '10px' }} />
@@ -99,35 +101,35 @@ const Homepage = () => {
         <div style={{ paddingTop: '25px', display: 'grid', justifyContent: 'center', alignItems: 'center', textAlign: 'center' }}>
       <div className={styles.inlineText}>
         
-      <h4>Area:</h4> 
+      <h3>Area:</h3> 
       <p>area2</p>
       </div>
       <div className={styles.inlineText}>
-      <h4>Temp:</h4>
+      <h3>Temp:</h3>
       <p>72°F</p><br/>
       </div>
       <div className={styles.inlineText}>
-      <h4>Weight:</h4>
+      <h3>Weight:</h3>
       <p>0.8g</p>
       </div>
       <div className={styles.inlineText}>
-      <h4>Light:</h4>
+      <h3>Light:</h3>
       <p>Soft Blue</p>
       </div>
       <div className={styles.inlineText}>
-      <h4>Sound:</h4>
+      <h3>Sound:</h3>
       <p>Calm Waves</p>
       </div>
       <div className={styles.inlineText}>
-      <h4>Purpose:</h4>
+      <h3>Purpose:</h3>
       <p>Relaxation</p>
       </div>
       <div className={styles.inlineText}>
-      <h4>Use:</h4>
+      <h3>Use:</h3>
       <p>Meditation</p>
       </div>
       <div className={styles.inlineText}>
-      <h4>Access:</h4>
+      <h3>Access:</h3>
       <p>Open</p>
       </div>
       </div>
