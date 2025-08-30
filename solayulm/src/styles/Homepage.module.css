@@ -202,6 +202,7 @@ body, html {
     flex-wrap: nowrap;
     overflow-x: auto;
     scrollbar-width: thin;
+    color: black;
   }
   
   .tabs::-webkit-scrollbar {
@@ -253,7 +254,7 @@ body, html {
     background-color: rgb(96 96 96);
     border-radius:  30% 5% 5% 5%;;
     padding: 5px;
-    height: 65%;
+    height: 55%;
     margin: 10px;
     opacity: 0.8;
   }
