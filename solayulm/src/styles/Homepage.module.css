@@ -180,3 +180,80 @@ body, html {
     border-radius: 10px;
   }
   
+
+
+  /* Homepage.module.css */
+/* .tabs :global(.nav-tabs) {
+    display: flex;
+    flex-wrap: wrap; allows wrapping if too many
+    justify-content: center; or space-around / space-between
+    gap: 1rem; spacing between tabs
+  }
+   */
+  /* .tabs :global(.nav-item) {
+    flex: 1 1 auto; makes each tab flexible
+    max-width: 200px; optional cap
+    text-align: center;
+  } */
+  
+
+  .tabs {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: thin;
+  }
+  
+  .tabs::-webkit-scrollbar {
+    height: 6px;
+  }
+  
+
+
+  .tabTextLeft {
+    text-align: center;
+    padding-left: 10px;
+    margin: 10px;
+    width: 20%;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    top: 80%;
+
+  }
+
+  .tabTextRight {
+    text-align: center;
+    padding-top: 10px;
+    margin: 10px;
+    width: 20%;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+  
+
+  }
+
+  .inlineText {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .inlineText h4,
+  .inlineText p {
+    margin: 0;
+  }
+
+  .tabTextRightBackground {
+    background-color: rgb(96 96 96);
+    border-radius:  30% 5% 5% 5%;;
+    padding: 5px;
+    height: 65%;
+    margin: 10px;
+    opacity: 0.8;
+  }
