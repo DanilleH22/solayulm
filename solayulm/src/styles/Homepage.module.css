@@ -56,55 +56,37 @@ body, html {
 
 .bgImage2 {
     position: absolute;
-    top: 65%;            /* 75% down the parent */
-    left: 50%;           /* 30% across the parent */
-    width: 40%;          /* width relative to parent */
-    height: auto;        /* keep aspect ratio */
-    transform: translate(-50%, -50%); /* truly center the image at that point */
-}
+    top: 60%;
+    left: 50%;
+    width: 40%;     /* parent size controls scaling */
+    transform: translate(-50%, -50%);
+  }
+  
 
 .exploreButton {
     position: absolute;
     top: 85%;
     left: 50%;
     transform: translate(-50%, -50%);
-    padding: 15px 30px;
+    
     font-size: 18px;
     color: white;
     
-    border: none;
+   
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    width: 15%;
+    width: 10%;
 }
 
-/*.servicesText {
-    background-color: rgba(0, 0, 0, 0.6);  semi-transparent background
-    padding: 20px;
-    margin: 20px auto;
-    border-radius: 10px;
-    width: 60%;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content:left
- } */
+.exploreButton Button {
+    background-color: #6a626e;
+    border: none;
+}
 
-/*.servicesText li {
-   
-    text-align: left;
-    color: white;
-    width: 60%;
-    height: auto;
-    list-style: inside;
-    list-style-type:circle;
-    font-size: 18px;
-    line-height: 1.6; 
-    border: 10px solid white;  
-
-} */
+.exploreButton Button:hover {
+    background-color: #555151;
+}
 
 .servicesText {
     
