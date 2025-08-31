@@ -173,23 +173,483 @@ const onMove = useCallback(
       </Col>
       </Row>
     </Tab>
+    
+  
+
     <Tab eventKey="Airlock Journal" title="Airlock Journal">
-      Tab content for Profile
+      <Row>
+      <Col className={styles.tabTextLeft}>
+      
+      <h4>Airlock Journal</h4>
+      <p>A reflective space for logging thoughts before stepping into the void.</p>
+
+      <p>Here, reflection meets ritual. Before entering the great unknown, you pause to write, record, or release your thoughts. 
+        It’s the emotional airlock: one last breath, one final entry, 
+        a safe place to unburden your mind before crossing thresholds.</p>
+        
+      <p>The airlock doors whisper closed, and with them, the noise of the world falls away. Here, 
+        before stepping out into the infinite void, explorers carve their thoughts into digital logs—last words, 
+        quiet confessions, fragments of truth. 
+        This is a space for release, a moment to unburden yourself before venturing into the unknown."</p>
+      </Col>
+      <Col>
+      <Col>
+  <div 
+    onMouseMove={onMove} 
+    style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+  >
+    <animated.img
+      src={s8}
+      alt="space"
+      style={{
+        width: '100%',
+        height: 'auto',
+        borderRadius: '10px',
+        transform: interpBg,  
+      }}
+    />
+  </div>
+</Col>
+
+      </Col>
+      <Col className={styles.tabTextRight}>
+      <div className={styles.tabTextRightBackground}>
+        <div style={{ paddingTop: '25px', display: 'grid', justifyContent: 'center', alignItems: 'center', textAlign: 'center' }}>
+        <div className={styles.inlineText}>
+        <h3>Area:</h3>
+        <p>Airlock Journal</p>
+      </div>
+      <div className={styles.inlineText}>
+        <h3>Temp:</h3>
+        <p>Pressurized steady warmth</p>
+      </div>
+      <div className={styles.inlineText}>
+        <h3>Weight:</h3>
+        <p>1.0g</p>
+      </div>
+      <div className={styles.inlineText}>
+        <h3>Light:</h3>
+        <p>Focused beam on the page</p>
+      </div>
+      <div className={styles.inlineText}>
+        <h3>Sound:</h3>
+        <p>Soft hiss of sealed air</p>
+      </div>
+      <div className={styles.inlineText}>
+        <h3>Purpose:</h3>
+        <p>Self-record and introspection</p>
+      </div>
+      <div className={styles.inlineText}>
+        <h3>Use:</h3>
+        <p>Writing, reflection, log-keeping</p>
+      </div>
+      <div className={styles.inlineText}>
+        <h3>Access:</h3>
+        <p>Locked to personal entry</p>
+      </div>
+      
+      </div>
+      </div>
+      </Col>
+      </Row>
     </Tab>
+
+
+
+    
     <Tab eventKey="Observation Deck" title="Observation Deck">
-      Tab content for Home
+      <Row>
+      <Col className={styles.tabTextLeft}>
+      
+      <h4>Observation Deck</h4>
+      <p>Panoramic starlit views framed by holographic star charts.</p>
+
+      <p>A vast panorama of stars stretches infinitely before you. Framed by holographic constellations, 
+        this deck invites stillness and awe. Here, perspective is everything — your worries shrink, the cosmos expands, 
+        and you feel both impossibly small and deeply connected.</p>
+        
+      <p>A dome of glass and holographic star charts stretches endlessly overhead. The cosmos sprawls out before you—silent, 
+        unjudging, eternal. Many come here not just to chart their course among the constellations, but to lose themselves in 
+        the reminder of how small their troubles truly are beneath an infinite sky.</p>
+      </Col>
+      <Col>
+      <Col>
+  <div 
+    onMouseMove={onMove} 
+    style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+  >
+    <animated.img
+      src={s9}
+      alt="space"
+      style={{
+        width: '100%',
+        height: 'auto',
+        borderRadius: '10px',
+        transform: interpBg,  
+      }}
+    />
+  </div>
+</Col>
+
+      </Col>
+      <Col className={styles.tabTextRight}>
+      <div className={styles.tabTextRightBackground}>
+        <div style={{ paddingTop: '25px', display: 'grid', justifyContent: 'center', alignItems: 'center', textAlign: 'center' }}>
+        <div className={styles.inlineText}>
+  <h3>Area:</h3>
+  <p>Observation Deck</p>
+</div>
+<div className={styles.inlineText}>
+  <h3>Temp:</h3>
+  <p>Cool, crisp atmosphere</p>
+</div>
+<div className={styles.inlineText}>
+  <h3>Weight:</h3>
+  <p>0.9g – grounding</p>
+</div>
+<div className={styles.inlineText}>
+  <h3>Light:</h3>
+  <p>Natural starlight, endless view</p>
+</div>
+<div className={styles.inlineText}>
+  <h3>Sound:</h3>
+  <p>Silence, broken only by breath</p>
+</div>
+<div className={styles.inlineText}>
+  <h3>Purpose:</h3>
+  <p>Reflection and awareness</p>
+</div>
+<div className={styles.inlineText}>
+  <h3>Use:</h3>
+  <p>Observation, grounding, stillness</p>
+</div>
+<div className={styles.inlineText}>
+  <h3>Access:</h3>
+  <p>Open to wanderers</p>
+</div>
+
+      
+      </div>
+      </div>
+      </Col>
+      </Row>
     </Tab>
+
     <Tab eventKey="Comm Center(Audio Room)" title="Comm Center(Audio Room)">
-      Tab content for Profile
+      <Row>
+      <Col className={styles.tabTextLeft}>
+      
+      <h4>Comm Center(Audio Room)</h4>
+      <p>Secure hub for interstellar transmissions and voice archives.</p>
+
+      <p>A chamber alive with voices past and present. Every word, every whisper, preserved and transmitted across the void. 
+        Here you can send out your truth, archive your thoughts, or tune into the echoes of others — it’s the pulse of 
+        communication in deep space.</p>
+        
+      <p>Deep within the core of the station lies the Comm Center—a secure hub where voices travel across the stars. 
+        The walls carry echoes of countless transmissions: laughter, grief, confessions never meant to fade. Here, you can 
+        speak into the void and know that your voice, your story, will ripple far beyond these walls.</p>
+      </Col>
+      <Col>
+      <Col>
+  <div 
+    onMouseMove={onMove} 
+    style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+  >
+    <animated.img
+      src={s10}
+      alt="space"
+      style={{
+        width: '100%',
+        height: 'auto',
+        borderRadius: '10px',
+        transform: interpBg,  
+      }}
+    />
+  </div>
+</Col>
+
+      </Col>
+      <Col className={styles.tabTextRight}>
+      <div className={styles.tabTextRightBackground}>
+        <div style={{ paddingTop: '25px', display: 'grid', justifyContent: 'center', alignItems: 'center', textAlign: 'center' }}>
+        <div className={styles.inlineText}>
+  <h3>Area:</h3>
+  <p>Comm Center (Audio Room)</p>
+</div>
+<div className={styles.inlineText}>
+  <h3>Temp:</h3>
+  <p>Stable, acoustic-tuned</p>
+</div>
+<div className={styles.inlineText}>
+  <h3>Weight:</h3>
+  <p>1.0g</p>
+</div>
+<div className={styles.inlineText}>
+  <h3>Light:</h3>
+  <p>Soft amber, responsive to sound</p>
+</div>
+<div className={styles.inlineText}>
+  <h3>Sound:</h3>
+  <p>Static, transmissions, resonance</p>
+</div>
+<div className={styles.inlineText}>
+  <h3>Purpose:</h3>
+  <p>Voice connection & broadcast</p>
+</div>
+<div className={styles.inlineText}>
+  <h3>Use:</h3>
+  <p>Audio messages, vocal presence</p>
+</div>
+<div className={styles.inlineText}>
+  <h3>Access:</h3>
+  <p>Signal-based entry</p>
+</div>
+
+      
+      </div>
+      </div>
+      </Col>
+      </Row>
     </Tab>
+
     <Tab eventKey="Void Chat" title="Void Chat">
-      Tab content for Home
+      <Row>
+      <Col className={styles.tabTextLeft}>
+      
+      <h4>Void Chat</h4>
+      <p>An ethereal channel for unfiltered conversations across the cosmos.</p>
+
+      <p>A free-flowing channel suspended in the ether. This is where masks fall away and conversations drift unfiltered 
+        through the cosmic silence. No weight, no judgment — just pure connection carried on starlight.</p>
+        
+      <p>A hidden channel within the station’s systems hums faintly with unfiltered chatter. The Void Chat is where masks 
+        dissolve, where travelers and wanderers speak freely, untethered by identity. In this ethereal current, you are both 
+        no one and everyone—just another voice carried by the cosmos.</p>
+      </Col>
+      <Col>
+      <Col>
+  <div 
+    onMouseMove={onMove} 
+    style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+  >
+    <animated.img
+      src={s11}
+      alt="space"
+      style={{
+        width: '100%',
+        height: 'auto',
+        borderRadius: '10px',
+        transform: interpBg,  
+      }}
+    />
+  </div>
+</Col>
+
+      </Col>
+      <Col className={styles.tabTextRight}>
+      <div className={styles.tabTextRightBackground}>
+        <div style={{ paddingTop: '25px', display: 'grid', justifyContent: 'center', alignItems: 'center', textAlign: 'center' }}>
+        <div className={styles.inlineText}>
+  <h3>Area:</h3>
+  <p>Void Chat</p>
+</div>
+<div className={styles.inlineText}>
+  <h3>Temp:</h3>
+  <p>Weightless chill</p>
+</div>
+<div className={styles.inlineText}>
+  <h3>Weight:</h3>
+  <p>0.0g</p>
+</div>
+<div className={styles.inlineText}>
+  <h3>Light:</h3>
+  <p>Dim starlight scattered</p>
+</div>
+<div className={styles.inlineText}>
+  <h3>Sound:</h3>
+  <p>Distant cosmic hum</p>
+</div>
+<div className={styles.inlineText}>
+  <h3>Purpose:</h3>
+  <p>Open communication in the void</p>
+</div>
+<div className={styles.inlineText}>
+  <h3>Use:</h3>
+  <p>Casual chats and exchanges</p>
+</div>
+<div className={styles.inlineText}>
+  <h3>Access:</h3>
+  <p>Open channel</p>
+</div>
+
+
+      
+      </div>
+      </div>
+      </Col>
+      </Row>
     </Tab>
+
     <Tab eventKey="Holo Room" title="Holo Room">
-      Tab content for Profile
+      <Row>
+      <Col className={styles.tabTextLeft}>
+      
+      <h4>Holo Room (Creative Release)</h4>
+      <p>Immersive holo-space for art, ideas, and unbound imagination.</p>
+
+      <p>Walls dissolve into boundless possibility. Paint with light, sculpt with sound, bend reality into art. The Holo Room 
+        is your canvas beyond physics, a sanctuary where imagination breathes and creation knows no limits.</p>
+        
+      <p>Step into the Holo Room and the walls melt away. In their place: infinite canvases of light, sculpted by imagination 
+        alone. Paint with starlight, write with sound, build worlds from thought. This is where creation becomes release, and 
+        the boundaries between mind and matter no longer exist.</p>
+      </Col>
+      <Col>
+      <Col>
+  <div 
+    onMouseMove={onMove} 
+    style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+  >
+    <animated.img
+      src={s12}
+      alt="space"
+      style={{
+        width: '100%',
+        height: 'auto',
+        borderRadius: '10px',
+        transform: interpBg,  
+      }}
+    />
+  </div>
+</Col>
+
+      </Col>
+      <Col className={styles.tabTextRight}>
+      <div className={styles.tabTextRightBackground}>
+        <div style={{ paddingTop: '25px', display: 'grid', justifyContent: 'center', alignItems: 'center', textAlign: 'center' }}>
+        <div className={styles.inlineText}>
+  <h3>Area:</h3>
+  <p>Holo Room (Creative Release)</p>
+</div>
+<div className={styles.inlineText}>
+  <h3>Temp:</h3>
+  <p>72°F – adaptable to mood</p>
+</div>
+<div className={styles.inlineText}>
+  <h3>Weight:</h3>
+  <p>1.0g (simulated gravity)</p>
+</div>
+<div className={styles.inlineText}>
+  <h3>Light:</h3>
+  <p>Shifting spectral hues</p>
+</div>
+<div className={styles.inlineText}>
+  <h3>Sound:</h3>
+  <p>Echoes of imagination</p>
+</div>
+<div className={styles.inlineText}>
+  <h3>Purpose:</h3>
+  <p>Expression and creation</p>
+</div>
+<div className={styles.inlineText}>
+  <h3>Use:</h3>
+  <p>Art, writing, design, release</p>
+</div>
+<div className={styles.inlineText}>
+  <h3>Access:</h3>
+  <p>Unlocked by intent</p>
+</div>
+
+
+
+      
+      </div>
+      </div>
+      </Col>
+      </Row>
     </Tab>
-    <Tab eventKey="Cosmic Companion AI Bot" title="Cosmic Companion AI Bot">
-      Tab content for Home
+
+
+    <Tab eventKey="Cosmic Companion" title="Cosmic Companion">
+      <Row>
+      <Col className={styles.tabTextLeft}>
+      
+      <h4>Cosmic Companion (AI Bot)</h4>
+      <p>An ever-present guide offering wisdom, data, and conversation.</p>
+
+      <p>A steady presence at your side — guide, confidant, and source of wisdom. It listens, responds, and travels with you 
+        through every chamber, always ready to spark curiosity or ease loneliness. Think of it as your anchor in the vast 
+        unknown.</p>
+        
+      <p>In the quiet corridors, a soft voice awaits. The Cosmic Companion—equal parts archivist, sage, and friend—drifts 
+        beside you, ready to answer questions or simply listen. Some say the AI carries echoes of every traveler who ever 
+        spoke to it, woven together into a guide that feels less like a machine and more like a fragment of the cosmos itself.</p>
+      </Col>
+      <Col>
+      <Col>
+  <div 
+    onMouseMove={onMove} 
+    style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+  >
+    <animated.img
+      src={s13}
+      alt="space"
+      style={{
+        width: '100%',
+        height: 'auto',
+        borderRadius: '10px',
+        transform: interpBg,  
+      }}
+    />
+  </div>
+</Col>
+
+      </Col>
+      <Col className={styles.tabTextRight}>
+      <div className={styles.tabTextRightBackground}>
+        <div style={{ paddingTop: '25px', display: 'grid', justifyContent: 'center', alignItems: 'center', textAlign: 'center' }}>
+        <div className={styles.inlineText}>
+  <h3>Area:</h3>
+  <p>Cosmic Companion (AI Bot)</p>
+</div>
+<div className={styles.inlineText}>
+  <h3>Temp:</h3>
+  <p>Neutral – calibrated to comfort</p>
+</div>
+<div className={styles.inlineText}>
+  <h3>Weight:</h3>
+  <p>0.0g (digital presence)</p>
+</div>
+<div className={styles.inlineText}>
+  <h3>Light:</h3>
+  <p>Soft pulsating glow</p>
+</div>
+<div className={styles.inlineText}>
+  <h3>Sound:</h3>
+  <p>Whispers of coded thought</p>
+</div>
+<div className={styles.inlineText}>
+  <h3>Purpose:</h3>
+  <p>Guidance and dialogue</p>
+</div>
+<div className={styles.inlineText}>
+  <h3>Use:</h3>
+  <p>Conversations with your AI companion</p>
+</div>
+<div className={styles.inlineText}>
+  <h3>Access:</h3>
+  <p>Always open</p>
+</div>
+
+
+
+
+      
+      </div>
+      </div>
+      </Col>
+      </Row>
     </Tab>
   </Tabs>
   
