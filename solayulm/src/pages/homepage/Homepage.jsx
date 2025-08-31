@@ -5,7 +5,7 @@ import SpaceCard from '../../components/SpaceCard.jsx';
 import Typewriter from 'typewriter-effect';
 import styles from '../../styles/Homepage.module.css'
 import s1 from '../../assets/images/s1.jpg';
-import s2 from '../../assets/images/s2.PNG';
+import s3 from '../../assets/images/s3.PNG';
 import s6 from '../../assets/images/s6.PNG';
 import s7 from '../../assets/images/s7.PNG';
 import s8 from '../../assets/images/s8.PNG';
@@ -58,7 +58,7 @@ const onMove = useCallback(
     </div>
     
     <img 
-      src={s2}
+      src={s3}
       alt="space" 
       className={styles.bgImage2}
     />
