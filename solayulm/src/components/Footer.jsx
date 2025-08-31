@@ -119,7 +119,7 @@ function Footer() {
 </div>
 <div>
   {/* this will open a modal about donating/showing support to keep the page going not mandatory though */}
-  <button>Donate</button>
+  <button style={{backgroundColor: '#6a626e', marginTop: '20px', width: '30%', borderRadius: '5px'}} >Donate</button>
 </div>
 
             
