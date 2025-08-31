@@ -1,5 +1,6 @@
 import React, { useCallback }  from 'react';
-import { Container, Row, Col, Button, Tab, Tabs, Carousel, Nav } from 'react-bootstrap';
+import { Link } from "react-router";
+import { Container, Row, Col, Button, Tab, Tabs, Carousel, Nav} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css'; 
 import SpaceCard from '../../components/SpaceCard.jsx';
 import Typewriter from 'typewriter-effect';
@@ -43,15 +44,13 @@ const onMove = useCallback(
   return (
     <Container fluid>
   <div className={styles.imgTextWrapper}>
-    
     {/* <img 
       src={s1}
       alt="space" 
       className={styles.bgImage}
     /> */}
     <div className={styles.overlayText}>
-    <motion.div
-          
+    <motion.div  
           initial={{ y: 0 }}
           animate={{ y: [0, -5, 0], rotate: [0, 0.5, 0] }} // floating effect
           transition={{
@@ -84,8 +83,7 @@ const onMove = useCallback(
     loop: true,
   }}
 /></h3> */}
-<motion.div
-          
+<motion.div   
           initial={{ y: 0 }}
           animate={{ y: [0, -5, 0], rotate: [0, 0.5, 0] }} // floating effect
           transition={{
@@ -99,9 +97,10 @@ const onMove = useCallback(
 </motion.div>
     </div>
     <div className={styles.exploreButton}>
-      <Button>Explore</Button>
+    <Link to="/Rooms">
+      <Button >Explore</Button>
+      </Link>
     </div>
-    
   </div>
   <Row className={styles.servicesTextWrapper}>
   <Col className={styles.servicesText}>
@@ -118,8 +117,7 @@ const onMove = useCallback(
   </Col>
 
   <Col md={3} className={styles.servicesImg}>
-  <motion.div
-          
+  <motion.div  
           initial={{ y: 0 }}
           animate={{ y: [0, -5, 0], rotate: [0, 0.5, 0] }} // floating effect
           transition={{
@@ -141,6 +139,7 @@ const onMove = useCallback(
     id="fill-tab-example"
     className={styles.tabs}
     fill
+    style={{ color: 'white' }}
   >
     <Tab eventKey="Decompression Bay" title="Decompression Bay">
       <Row>
