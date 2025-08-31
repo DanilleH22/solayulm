@@ -18,7 +18,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faRocket } from '@fortawesome/free-solid-svg-icons'
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { useSpring, animated } from '@react-spring/web';
-
+import { motion } from "framer-motion";
 
 
 const Homepage = () => {
@@ -43,18 +43,32 @@ const onMove = useCallback(
   return (
     <Container fluid>
   <div className={styles.imgTextWrapper}>
+    
     {/* <img 
       src={s1}
       alt="space" 
       className={styles.bgImage}
     /> */}
     <div className={styles.overlayText}>
+    <motion.div
+          
+          initial={{ y: 0 }}
+          animate={{ y: [0, -5, 0], rotate: [0, 0.5, 0] }} // floating effect
+          transition={{
+            duration: 6,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        >
       <h1>What do we do?</h1>
       <p>Solayulm is your serene pocket of the universe. A digital escape where calm meets the cosmos. Whether you are here to unwind, write a quiet though or simply float for a while, you've arrived to the perfect place. The queiet edge of the galaxy. No noise. No pressure. Just a gentle space to breathe.</p>
-              
+      </motion.div>
     </div>
+    
     <div className={styles.TextTop}>
-      <h1 style={{fontSize: '150px'}}>SOLAYULM</h1>
+      <h1 style={{fontSize: '170px', 
+  fontFamily: "Saira Stencil One", fontWeight: '400', letterSpacing: '10px', color: 'white', textShadow: '2px 2px 4px #000000', opacity: '0.8'
+}}>SOLAYULM</h1>
     </div>
     
     <img 
@@ -63,17 +77,31 @@ const onMove = useCallback(
       className={styles.bgImage2}
     />
     <div className={styles.TextBottom}>
-      <h3><Typewriter
+      {/* <h3><Typewriter
   options={{
     strings: ['Welcome to the quiet edge of the galaxy.'],
     autoStart: true,
     loop: true,
   }}
-/></h3>
+/></h3> */}
+<motion.div
+          
+          initial={{ y: 0 }}
+          animate={{ y: [0, -5, 0], rotate: [0, 0.5, 0] }} // floating effect
+          transition={{
+            duration: 6,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        >
+<h3>You have arrived!</h3>
+<h3>Welcome to the quiet edge of the galaxy.</h3>
+</motion.div>
     </div>
     <div className={styles.exploreButton}>
       <Button>Explore</Button>
     </div>
+    
   </div>
   <Row className={styles.servicesTextWrapper}>
   <Col className={styles.servicesText}>
@@ -90,7 +118,18 @@ const onMove = useCallback(
   </Col>
 
   <Col md={3} className={styles.servicesImg}>
+  <motion.div
+          
+          initial={{ y: 0 }}
+          animate={{ y: [0, -5, 0], rotate: [0, 0.5, 0] }} // floating effect
+          transition={{
+            duration: 6,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        >
     <img src={s6} alt="space" />
+    </motion.div>
   </Col>
 </Row>
 
