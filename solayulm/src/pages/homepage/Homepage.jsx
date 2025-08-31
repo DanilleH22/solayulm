@@ -1,4 +1,4 @@
-import React, { useRef }  from 'react';
+import React, { useCallback }  from 'react';
 import { Container, Row, Col, Button, Tab, Tabs, Carousel, Nav } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css'; 
 import SpaceCard from '../../components/SpaceCard.jsx';
@@ -17,10 +17,29 @@ import s13 from '../../assets/images/s13.PNG';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faRocket } from '@fortawesome/free-solid-svg-icons'
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { useSpring, animated } from '@react-spring/web';
+
 
 
 const Homepage = () => {
-  
+
+  const [{ xy }, set] = useSpring(() => ({ xy: [0, 0] }));
+
+
+const interpBg = xy.to((x, y) =>
+  `perspective(1000px) rotateY(${x / 100}deg) rotateX(${-y / 100}deg)`
+);
+
+const onMove = useCallback(
+  ({ clientX: x, clientY: y }) => {
+    set({
+      xy: [x - window.innerWidth / 2, y - window.innerHeight / 2],
+    });
+  },
+  [set]
+);
+
+
   return (
     <Container fluid>
   <div className={styles.imgTextWrapper}>
@@ -94,7 +113,24 @@ const Homepage = () => {
       <p>Step inside and let the hum of the station fade. This is where tension dissolves and your body finds balance again, weightlessly adjusting to calm. It’s the reset point — a place to let go of earthbound heaviness before drifting into new worlds.</p>
       </Col>
       <Col>
-      <img src={s7} alt="space" style={{ width: '100%', height: 'auto', borderRadius: '10px' }} />
+      <Col>
+  <div 
+    onMouseMove={onMove} 
+    style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+  >
+    <animated.img
+      src={s7}
+      alt="space"
+      style={{
+        width: '100%',
+        height: 'auto',
+        borderRadius: '10px',
+        transform: interpBg,  
+      }}
+    />
+  </div>
+</Col>
+
       </Col>
       <Col className={styles.tabTextRight}>
       <div className={styles.tabTextRightBackground}>
