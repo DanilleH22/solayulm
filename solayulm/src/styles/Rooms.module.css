@@ -1,0 +1,28 @@
+.servicesTextWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* adds spacing between text & image */
+    gap: 20px; /* optional spacing */
+  }
+  
+  .servicesText {
+    flex: 1; /* take equal flexible space */
+    padding: 20px;
+    margin: 20px;
+    text-align: left; 
+  }
+  
+  .servicesImg {
+    flex: 1; /* take equal flexible space */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .servicesImg img {
+    max-width: 100%;  /* make image scale responsively */
+    height: auto;     /* keep proportions */
+    transform: rotate(40deg);
+    border-radius: 10px;
+  }
+  
