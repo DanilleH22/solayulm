@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback }  from 'react'
 import { Link } from "react-router-dom";
 import { Container, Row, Col, Button,  Tabs, Carousel, Nav} from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -12,11 +12,32 @@ import s11 from '../../assets/images/s11.PNG';
 import s12 from '../../assets/images/s12.PNG';
 import s13 from '../../assets/images/s13.PNG';
 import img_3212 from '../../assets/images/IMG_3212.jpeg';
+import ScrollAnimation from '../../components/ScrollAnimation.jsx';
+import { useSpring, animated } from '@react-spring/web';
 
 const Rooms = () => {
+  const [{ xy }, set] = useSpring(() => ({ xy: [0, 0] }));
+
+
+const interpBg = xy.to((x, y) =>
+  `perspective(1000px) rotateY(${x / 100}deg) rotateX(${-y / 100}deg)`
+);
+
+const onMove = useCallback(
+  ({ clientX: x, clientY: y }) => {
+    set({
+      xy: [x - window.innerWidth / 2, y - window.innerHeight / 2],
+    });
+  },
+  [set]
+);
+
   return (
     <Container fluid>
-    
+    <ScrollAnimation animationVariants={{
+    hidden: { opacity: 0, x: -100 },
+    visible: { opacity: 1, x: 0, transition: { duration: 1 } }
+  }}>
     <Row className={styles.servicesTextWrapper}>
   <Col className={styles.servicesText} md={6}>
     <h3>Decompression Bay</h3>
@@ -41,15 +62,47 @@ const Rooms = () => {
 
   </Col>
   <Col md={6} className={styles.servicesImg}>
-    <img src={img_3212} alt="space" />
+   <div 
+    onMouseMove={onMove} 
+    style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+  >
+    <animated.img
+      src={img_3212}
+      alt="space"
+      style={{
+        width: '100%',
+        height: 'auto',
+        borderRadius: '10px',
+        transform: interpBg,  
+      }}
+    />
+  </div>
+    {/* <img src={img_3212} alt="space" /> */}
   </Col>
   
 </Row>
+</ScrollAnimation>
 
+<ScrollAnimation >
 <Row className={styles.servicesTextWrapper}>
   
 <Col md={3} className={styles.servicesImg}>
-    <img src={s8} alt="space" />
+    {/* <img src={s8} alt="space" /> */}
+    <div 
+    onMouseMove={onMove} 
+    style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+  >
+    <animated.img
+      src={s8}
+      alt="space"
+      style={{
+        width: '100%',
+        height: 'auto',
+        borderRadius: '10px',
+        transform: interpBg,  
+      }}
+    />
+  </div>
   </Col>
   <Col className={styles.servicesText}>
     <h3>Airlock Journal</h3>
@@ -72,8 +125,13 @@ const Rooms = () => {
   </Link>
 </div>
   </Col>
- 
 </Row>
+</ScrollAnimation>
+
+<ScrollAnimation animationVariants={{
+    hidden: { opacity: 0, x: -100 },
+    visible: { opacity: 1, x: 0, transition: { duration: 1 } }
+  }}>
 <Row className={styles.servicesTextWrapper}>
   <Col className={styles.servicesText}>
     <h3>Obsrvation Deck</h3>
@@ -97,14 +155,45 @@ const Rooms = () => {
 </div>
   </Col>
   <Col md={3} className={styles.servicesImg}>
-    <img src={s9} alt="space" />
+    {/* <img src={s9} alt="space" /> */}
+    <div 
+    onMouseMove={onMove} 
+    style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+  >
+    <animated.img
+      src={s9}
+      alt="space"
+      style={{
+        width: '100%',
+        height: 'auto',
+        borderRadius: '10px',
+        transform: interpBg,  
+      }}
+    />
+  </div>
   </Col>
-  
 </Row>
+</ScrollAnimation>
 
+<ScrollAnimation >
 <Row className={styles.servicesTextWrapper}>
 <Col md={3} className={styles.servicesImg}>
-    <img src={s10} alt="space" />
+    {/* <img src={s10} alt="space" /> */}
+    <div 
+    onMouseMove={onMove} 
+    style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+  >
+    <animated.img
+      src={s10}
+      alt="space"
+      style={{
+        width: '100%',
+        height: 'auto',
+        borderRadius: '10px',
+        transform: interpBg,  
+      }}
+    />
+  </div>
   </Col>
   <Col className={styles.servicesText}>
     <h3>Comm Center (Audio Room)</h3>
@@ -128,8 +217,13 @@ const Rooms = () => {
   </Link>
 </div>
   </Col>
-  
 </Row>
+</ScrollAnimation>
+
+<ScrollAnimation animationVariants={{
+    hidden: { opacity: 0, x: -100 },
+    visible: { opacity: 1, x: 0, transition: { duration: 1 } }
+  }}>
 <Row className={styles.servicesTextWrapper}>
   <Col className={styles.servicesText}>
     <h3>Void Chat</h3>
@@ -153,13 +247,45 @@ const Rooms = () => {
 </div>
   </Col>
   <Col md={3} className={styles.servicesImg}>
-    <img src={s11} alt="space" />
+    {/* <img src={s11} alt="space" /> */}
+    <div 
+    onMouseMove={onMove} 
+    style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+  >
+    <animated.img
+      src={s11}
+      alt="space"
+      style={{
+        width: '100%',
+        height: 'auto',
+        borderRadius: '10px',
+        transform: interpBg,  
+      }}
+    />
+  </div>
   </Col>
 </Row>
+</ScrollAnimation>
 
+<ScrollAnimation >
 <Row className={styles.servicesTextWrapper}>
 <Col md={3} className={styles.servicesImg}>
-    <img src={s12} alt="space" />
+    {/* <img src={s12} alt="space" /> */}
+    <div 
+    onMouseMove={onMove} 
+    style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+  >
+    <animated.img
+      src={s12}
+      alt="space"
+      style={{
+        width: '100%',
+        height: 'auto',
+        borderRadius: '10px',
+        transform: interpBg,  
+      }}
+    />
+  </div>
   </Col>
   <Col className={styles.servicesText}>
     <h3>Holo Room (Creative Release)</h3>
@@ -182,9 +308,13 @@ const Rooms = () => {
   </Link>
 </div>
   </Col>
-  
 </Row>
+</ScrollAnimation>
 
+<ScrollAnimation animationVariants={{
+    hidden: { opacity: 0, x: -100 },
+    visible: { opacity: 1, x: 0, transition: { duration: 1 } }
+  }}>
 <Row className={styles.servicesTextWrapper}>
   <Col className={styles.servicesText}>
     <h3>Cosmic Companion AI Bot</h3>
@@ -210,10 +340,25 @@ const Rooms = () => {
 </div>
   </Col>
   <Col md={3} className={styles.servicesImg}>
-    <img src={s13} alt="space" />
+    {/* <img src={s13} alt="space" /> */}
+    <div 
+    onMouseMove={onMove} 
+    style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+  >
+    <animated.img
+      src={s13}
+      alt="space"
+      style={{
+        width: '100%',
+        height: 'auto',
+        borderRadius: '10px',
+        transform: interpBg,  
+      }}
+    />
+  </div>
   </Col>
 </Row>
-
+</ScrollAnimation>
 
     </Container>
   )
