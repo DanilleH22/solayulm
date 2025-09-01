@@ -1,8 +1,9 @@
 import React from 'react'
-import { Container, Row, Col, Button, Tab, Tabs, Carousel, Nav} from 'react-bootstrap';
+import { Link } from "react-router-dom";
+import { Container, Row, Col, Button,  Tabs, Carousel, Nav} from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faRocket } from '@fortawesome/free-solid-svg-icons'
-import styles from '../../styles/Homepage.module.css'
+import styles from '../../styles/Rooms.module.css'
 import s7 from '../../assets/images/s7.PNG';
 import s8 from '../../assets/images/s8.PNG';
 import s9 from '../../assets/images/s9.PNG';
@@ -15,7 +16,8 @@ const Rooms = () => {
   return (
     <Container fluid>
     
-    <Row className={styles.servicesTextWrapper}>
+    <Row >
+        <div className={styles.servicesTextWrapper}>
   <Col className={styles.servicesText}>
     <h3>Decompression Bay</h3>
     <h3>Description : </h3>
@@ -31,10 +33,17 @@ const Rooms = () => {
 
    <h3>When to use it?</h3>
    <p>After a long day, during heightened anxiety, or when you need to center yourself before continuing your journey.</p>
+   <div className={styles.exploringButton}>
+  <Link to="/decompression">
+    <Button className={styles.exploreBtn}>Explore</Button>
+  </Link>
+</div>
+
   </Col>
   <Col md={3} className={styles.servicesImg}>
     <img src={s7} alt="space" />
   </Col>
+  </div>
 </Row>
 
 <Row className={styles.servicesTextWrapper}>

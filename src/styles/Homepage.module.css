@@ -58,7 +58,7 @@ body, html {
     position: absolute;
     top: 60%;
     left: 50%;
-    width: 40%;     /* parent size controls scaling */
+    width: 40%;     
     transform: translate(-50%, -50%);
   }
   
@@ -68,11 +68,8 @@ body, html {
     top: 85%;
     left: 50%;
     transform: translate(-50%, -50%);
-    
     font-size: 18px;
     color: white;
-    
-   
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
@@ -133,21 +130,6 @@ body, html {
   
 }
 
-/*
-
-.servicesImg {
-    display: flex;
-    align-items: center;  
-    justify-content: center; 
-  }
-  
-  .servicesImg img {
-    max-width: 80%;   
-    max-height: 100%;
-    height: auto;      
-    border-radius: 10px; 
-  }
-   */
   .servicesTextWrapper {
     display: flex;
     align-items: center; 
@@ -162,21 +144,6 @@ body, html {
     border-radius: 10px;
   }
   
-
-
-  /* Homepage.module.css */
-/* .tabs :global(.nav-tabs) {
-    display: flex;
-    flex-wrap: wrap; allows wrapping if too many
-    justify-content: center; or space-around / space-between
-    gap: 1rem; spacing between tabs
-  }
-   */
-  /* .tabs :global(.nav-item) {
-    flex: 1 1 auto; makes each tab flexible
-    max-width: 200px; optional cap
-    text-align: center;
-  } */
   
 
   .tabs {

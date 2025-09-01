@@ -1,0 +1,31 @@
+.wrapper {
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
+  
+  .tabContainer {
+    display: flex;
+    overflow-x: auto;
+    scrollbar-width: none; /* hide scrollbar for Firefox */
+    -ms-overflow-style: none; /* hide scrollbar for IE/Edge */
+    flex: 1;
+  }
+  
+  .tabContainer::-webkit-scrollbar {
+    display: none; /* hide scrollbar for Chrome/Safari */
+  }
+  
+  .tabs {
+    display: flex;
+    flex-wrap: nowrap !important; /* prevent wrapping */
+  }
+  
+  .scrollBtn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    padding: 5px;
+  }
+  

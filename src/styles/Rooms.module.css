@@ -1,0 +1,72 @@
+.servicesTextWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* adds spacing between text & image */
+    gap: 20px; /* optional spacing */
+  }
+  
+  .servicesText {
+    flex: 1; /* take equal flexible space */
+    padding: 20px;
+    margin: 20px;
+    text-align: left; 
+  }
+  
+  .servicesImg {
+    flex: 1; /* take equal flexible space */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .servicesImg img {
+    max-width: 100%;  /* make image scale responsively */
+    height: auto;     /* keep proportions */
+    transform: rotate(40deg);
+    border-radius: 10px;
+  }
+  
+
+  .exploringButton {
+    font-size: 18px;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 15%;
+    justify-self: center;
+    background-color: #6a626e !important;
+}
+
+.exploringButton button {
+    background-color: #6a626e;
+    border: none;
+}
+
+.exploringButton button:hover {
+    background-color: #555151;
+}
+
+
+@keyframes swipeIn {
+    from {
+      transform: translateX(100px);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  
+  .swipeIn {
+    animation: swipeIn 0.6s ease-in-out forwards;
+  }
+
+  
+  a button.btn.btn-primary {
+    background-color: #222 !important;
+    border-radius: 12px !important;
+    animation: swipeIn 0.6s ease-in-out forwards;
+  }
+  
