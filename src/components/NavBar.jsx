@@ -7,8 +7,8 @@ const NavBar = () => {
     <Navbar className="py-3">
       <Container className="d-flex justify-content-between align-items-center">
         {/* Left side */}
-        <Navbar.Brand href="#home">
-          <strong style={{ fontSize: "1.5rem" }}>Solayulm</strong>
+        <Navbar.Brand href="/#home">
+          <strong style={{ fontSize: "1.5rem", fontFamily: "Saira Stencil One" }}>Solayulm</strong>
         </Navbar.Brand>
 
         {/* Right side */}
@@ -28,7 +28,7 @@ const NavBar = () => {
               500,
             ]}
             speed={50}
-            style={{ fontSize: "1.5rem"}}
+            style={{ fontSize: "1.5rem", fontFamily: "Saira Stencil One",}}
             repeat={Infinity}
             className="d-flex justify-content-end"
           />
