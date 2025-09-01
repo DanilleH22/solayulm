@@ -1,29 +1,26 @@
 .servicesTextWrapper {
     display: flex;
-    align-items: center;
-    justify-content: space-between; /* adds spacing between text & image */
+    align-items: start;
+    
     gap: 20px; /* optional spacing */
+    
+  
+
+
   }
   
   .servicesText {
-    flex: 1; /* take equal flexible space */
+    flex: 1;
     padding: 20px;
     margin: 20px;
-    text-align: left; 
+    text-align: center; 
   }
   
-  .servicesImg {
-    flex: 1; /* take equal flexible space */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
   
   .servicesImg img {
-    max-width: 100%;  /* make image scale responsively */
-    height: auto;     /* keep proportions */
-    transform: rotate(40deg);
-    border-radius: 10px;
+    max-width: 100%;  
+    
+    
   }
   
 

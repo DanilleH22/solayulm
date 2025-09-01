@@ -11,14 +11,14 @@ import s10 from '../../assets/images/s10.PNG';
 import s11 from '../../assets/images/s11.PNG';
 import s12 from '../../assets/images/s12.PNG';
 import s13 from '../../assets/images/s13.PNG';
+import img_3212 from '../../assets/images/IMG_3212.jpeg';
 
 const Rooms = () => {
   return (
     <Container fluid>
     
-    <Row >
-        <div className={styles.servicesTextWrapper}>
-  <Col className={styles.servicesText}>
+    <Row className={styles.servicesTextWrapper}>
+  <Col className={styles.servicesText} md={6}>
     <h3>Decompression Bay</h3>
     <h3>Description : </h3>
     <p>Here, the hum of machinery softens into silence. Gravity stabilizers hum low beneath your feet as the station 
@@ -40,13 +40,14 @@ const Rooms = () => {
 </div>
 
   </Col>
-  <Col md={3} className={styles.servicesImg}>
-    <img src={s7} alt="space" />
+  <Col md={6} className={styles.servicesImg}>
+    <img src={img_3212} alt="space" />
   </Col>
-  </div>
+  
 </Row>
 
 <Row className={styles.servicesTextWrapper}>
+  
 <Col md={3} className={styles.servicesImg}>
     <img src={s8} alt="space" />
   </Col>
@@ -66,7 +67,7 @@ const Rooms = () => {
    <h3>When to use it?</h3>
    <p>When you feel burdened, before transitions, or whenever you need to let go of thoughts that weigh you down.</p>
   </Col>
-  
+ 
 </Row>
 <Row className={styles.servicesTextWrapper}>
   <Col className={styles.servicesText}>
@@ -88,7 +89,9 @@ const Rooms = () => {
   <Col md={3} className={styles.servicesImg}>
     <img src={s9} alt="space" />
   </Col>
+  
 </Row>
+
 <Row className={styles.servicesTextWrapper}>
 <Col md={3} className={styles.servicesImg}>
     <img src={s10} alt="space" />
