@@ -34,7 +34,7 @@ const Rooms = () => {
    <h3>When to use it?</h3>
    <p>After a long day, during heightened anxiety, or when you need to center yourself before continuing your journey.</p>
    <div className={styles.exploringButton}>
-  <Link to="/decompression">
+  <Link to="/decompression-bay">
     <Button className={styles.exploreBtn}>Explore</Button>
   </Link>
 </div>
@@ -66,6 +66,11 @@ const Rooms = () => {
 
    <h3>When to use it?</h3>
    <p>When you feel burdened, before transitions, or whenever you need to let go of thoughts that weigh you down.</p>
+   <div className={styles.exploringButton}>
+  <Link to="/airlock-journal">
+    <Button className={styles.exploreBtn}>Explore</Button>
+  </Link>
+</div>
   </Col>
  
 </Row>
@@ -85,6 +90,11 @@ const Rooms = () => {
 
    <h3>When to use it?</h3>
    <p>When you need clarity, grounding, or simply to be reminded of the beauty beyond your worries.</p>
+   <div className={styles.exploringButton}>
+  <Link to="/observation-deck">
+    <Button className={styles.exploreBtn}>Explore</Button>
+  </Link>
+</div>
   </Col>
   <Col md={3} className={styles.servicesImg}>
     <img src={s9} alt="space" />
@@ -112,6 +122,11 @@ const Rooms = () => {
 
    <h3>When to use it?</h3>
    <p>When you feel the need to speak openly, reach out, or preserve your words for someone—or something—beyond yourself.</p>
+   <div className={styles.exploringButton}>
+  <Link to="/comm-center">
+    <Button className={styles.exploreBtn}>Explore</Button>
+  </Link>
+</div>
   </Col>
   
 </Row>
@@ -131,6 +146,11 @@ const Rooms = () => {
 
    <h3>When to use it?</h3>
    <p>When you crave connection without expectation, or when you want to share truths without leaving a trace.</p>
+   <div className={styles.exploringButton}>
+  <Link to="/void-chat">
+    <Button className={styles.exploreBtn}>Explore</Button>
+  </Link>
+</div>
   </Col>
   <Col md={3} className={styles.servicesImg}>
     <img src={s11} alt="space" />
@@ -156,6 +176,11 @@ const Rooms = () => {
 
    <h3>When to use it?</h3>
    <p>When emotions overflow, when ideas spark, or when you long to make something uniquely yours.</p>
+   <div className={styles.exploringButton}>
+  <Link to="/holo-room">
+    <Button className={styles.exploreBtn}>Explore</Button>
+  </Link>
+</div>
   </Col>
   
 </Row>
@@ -178,6 +203,11 @@ const Rooms = () => {
    <h3>When to use it?</h3>
    <p>When you feel lost, curious, or simply in need of a voice to remind you that you’re not drifting through the void alone.
    </p>
+   <div className={styles.exploringButton}>
+  <Link to="/cosmic-companion">
+    <Button className={styles.exploreBtn}>Explore</Button>
+  </Link>
+</div>
   </Col>
   <Col md={3} className={styles.servicesImg}>
     <img src={s13} alt="space" />
