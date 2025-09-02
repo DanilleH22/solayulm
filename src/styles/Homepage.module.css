@@ -151,7 +151,7 @@ body, html {
     flex-wrap: nowrap;
     overflow-x: auto;
     scrollbar-width: thin;
-    color: black;
+    color: black !important;
   }
   
   .tabs::-webkit-scrollbar {
@@ -210,3 +210,23 @@ body, html {
     margin: 10px;
     
   }
+
+.tabs :global(.nav-link) {
+  color: white !important;         
+  background-color: transparent !important;
+  border: none !important;
+}
+
+/* On hover (optional highlight) */
+.tabs :global(.nav-link:hover) {
+  color: #ddd !important;
+  background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Active tab */
+.tabs :global(.nav-link.active) {
+  color: black !important;          
+  background-color: white !important;
+  border: none !important;
+  border-radius: 6px 6px 0 0;    
+}
