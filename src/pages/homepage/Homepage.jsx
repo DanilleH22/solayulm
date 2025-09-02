@@ -135,13 +135,12 @@ const onMove = useCallback(
 
        
   <Tabs
-    defaultActiveKey="profile"
+     defaultActiveKey="Decompression Bay"
     id="fill-tab-example"
     className={styles.tabs}
     fill
-    style={{ color: 'white' }}
   >
-    <Tab eventKey="Decompression Bay" title="Decompression Bay">
+    <Tab eventKey="Decompression Bay" title="Decompression Bay" >
       <Row>
       <Col className={styles.tabTextLeft}>
       
@@ -373,7 +372,7 @@ const onMove = useCallback(
       </Row>
     </Tab>
 
-    <Tab eventKey="Comm Center(Audio Room)" title="Comm Center(Audio Room)">
+    <Tab eventKey="Comm Center" title="Comm Center">
       <Row>
       <Col className={styles.tabTextLeft}>
       
