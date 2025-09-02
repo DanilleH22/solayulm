@@ -55,7 +55,7 @@ const onMove = useCallback(
    <h3>When to use it?</h3>
    <p>After a long day, during heightened anxiety, or when you need to center yourself before continuing your journey.</p>
    <div className={styles.exploringButton}>
-  <Link to="/decompression-bay">
+  <Link to="/DecompressionBay">
     <Button className={styles.exploreBtn}>Explore</Button>
   </Link>
 </div>
