@@ -1,17 +1,21 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Button } from "react-bootstrap";
 import styles from "../styles/CountdownTimer.module.css"; 
+import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
+import "react-circular-progressbar/dist/styles.css";
 
 export default function CountdownTimer({ duration = 300 }) { // default 5 minutes
   const [num, setNum] = useState(duration);
   const [isRunning, setIsRunning] = useState(false);
   const intervalRef = useRef(null);
 
+
   // Reset timer if duration changes
   useEffect(() => {
     setNum(duration);
     clearInterval(intervalRef.current);
     setIsRunning(false);
+    resetTimer();
   }, [duration]);
 
   const startTimer = () => {
@@ -41,17 +45,35 @@ export default function CountdownTimer({ duration = 300 }) { // default 5 minute
     return `${m}:${s.toString().padStart(2, "0")}`;
   };
 
+   const percentage = (num / duration) * 100;
+
+
   return (
     <div>
-      <h2 className={styles.timerButton}>{formatTime(num)}</h2>
+      <CircularProgressbar
+        value={percentage}
+        text={formatTime(num)} 
+        className="mb-5"
+        styles={buildStyles({
+          textColor: "white",
+          pathColor: "#945ebaff",
+          trailColor: "#222",
+          boxShadow: '0px 5px 10px 0px rgba(0, 0, 0, 0.5)'
+        })}
+      />
+      
       {!isRunning ? (
-        <Button onClick={startTimer}>Start</Button>
+        <Button onClick={startTimer} className="m-5 w-25">Start</Button>
       ) : (
-        <Button onClick={pauseTimer}>Pause</Button>
+        <Button onClick={pauseTimer} className="m-5 w-25">Pause</Button>
       )}
-      <Button onClick={resetTimer} className="ms-2">
+      <Button onClick={resetTimer} className="m-5 w-25">
         Reset
       </Button>
     </div>
   );
 }
+
+
+
+
