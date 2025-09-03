@@ -5,12 +5,14 @@ import CountdownTimer from "../../components/CountdownTimer.jsx";
 import Slider from '@mui/material/Slider';
 import Stack from '@mui/material/Stack';
 import DecompressionLoop from "../../components/DecompressionLoop.jsx"; 
-
+import  FlowerOfLifeLoop  from "../../components/FlowerofLifeLoop.jsx";
+import { SpiralLoop } from "../../components/SpiralLoop.jsx";
+import { NebulaFlow } from "../../components/NebulaFlow.jsx";
+import  { OrbitingDots } from "../../components/OrbitingDots.jsx";
+import { RotatingRings } from "../../components/RotatingRings.jsx";
 
 const DecompressionBay = () => {
   const [duration, setDuration] = useState(300); 
-
-
 
 function getAriaValueText(value) {
   return `${value}°C`;
@@ -29,30 +31,31 @@ function getAriaValueText(value) {
       </Row>
 
       <div className="text-center">
-        <h3>Choose your session length</h3>
-        <p>Select a duration that fits your schedule and needs.</p>
+        <h3>Choose your session length:</h3>
       </div>
 
-      <Row md={6} className="text-center my-5">
-        <Button onClick={() => setDuration(5 * 60)} className="m-3">
+      <Row md={6} className="text-center justify-content-center d-flex ">
+        
+        <Button onClick={() => setDuration(5 * 60)} className={styles.MinutesButton}>
           5 minutes
         </Button>
-        <Button onClick={() => setDuration(10 * 60)} className="m-3">
+        
+        <Button onClick={() => setDuration(10 * 60)} className={styles.MinutesButton}>
           10 minutes
         </Button>
-        <Button onClick={() => setDuration(15 * 60)} className="m-3">
+        <Button onClick={() => setDuration(15 * 60)} className={styles.MinutesButton}>
           15 minutes
         </Button>
-        <Button onClick={() => setDuration(20 * 60)} className="m-3">
+        <Button onClick={() => setDuration(20 * 60)} className={styles.MinutesButton}>
           20 minutes
         </Button>
-        <Button onClick={() => setDuration(30 * 60)} className="m-3">
+        <Button onClick={() => setDuration(30 * 60)} className={styles.MinutesButton}>
           30 minutes
         </Button>
-        <Button onClick={() => setDuration(45 * 60)} className="m-3">
+        <Button onClick={() => setDuration(45 * 60)} className={styles.MinutesButton}>
           45 minutes
         </Button>
-        <Button onClick={() => setDuration(60 * 60)} className="m-3">
+        <Button onClick={() => setDuration(60 * 60)} className={styles.MinutesButton}>
           60 minutes
         </Button>
       </Row>
@@ -99,12 +102,17 @@ function getAriaValueText(value) {
         <h3>right row</h3>
         <p>Ambient sound controls</p>
         <p>Lighting controls</p>
+        <NebulaFlow />
         <DecompressionLoop />
+        <FlowerOfLifeLoop />
+        <  SpiralLoop />
+        <OrbitingDots />
+        <RotatingRings />
+        
         <Button variant="success" className={styles.controlButton}>Adjust</Button>
         </div>
         </Col>
       </Row>
-
 
     </Container>
   );
