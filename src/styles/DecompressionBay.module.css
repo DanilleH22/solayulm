@@ -1,0 +1,49 @@
+.systemChecksLeft {
+    align-items: center;
+    text-align: center;
+    min-width: auto;    
+  max-width: fit-content; 
+}
+
+.controlButton {
+    max-width: 70%;
+    margin-bottom: 10px;
+}
+
+.systemChecksCenter {
+    text-align: center;
+    padding: 20px;
+   min-width: auto;    
+  max-width: fit-content; 
+}
+
+.systemChecksRight {
+  padding: 20px;
+  text-align: center;   
+  min-width: auto;    
+  max-width: 100%; 
+}
+
+
+.MinutesButton {
+    font-size: 18px;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 13%;
+    justify-self: center;
+    background-color: #6a626e ;
+    margin: 8px;
+   border: none;
+    
+   
+}
+
+
+
+.MinutesButton:hover {
+    background-color: #555151;
+  
+}
+    
