@@ -8,7 +8,7 @@ import DecompressionLoop from "../../components/DecompressionLoop.jsx";
 import  FlowerOfLifeLoop  from "../../components/FlowerofLifeLoop.jsx";
 import { SpiralLoop } from "../../components/SpiralLoop.jsx";
 import { NebulaFlow } from "../../components/NebulaFlow.jsx";
-import  { OrbitingDots } from "../../components/OrbitingDots.jsx";
+import   JumpingDots  from "../../components/JumpingDots.jsx";
 import { RotatingRings } from "../../components/RotatingRings.jsx";
 
 const DecompressionBay = () => {
@@ -58,6 +58,7 @@ function getAriaValueText(value) {
         <Button onClick={() => setDuration(60 * 60)} className={styles.MinutesButton}>
           60 minutes
         </Button>
+        
       </Row>
       <Row className="w-100 d-flex justify-content-center align-items-center">
         <Col xs="auto" className="text-center my-5">
@@ -73,7 +74,7 @@ function getAriaValueText(value) {
             <div >
           <h3>middle row</h3>
           <p>Stress levels bar</p>
-          <p>Timer</p>
+          
            <Stack sx={{ height: 300, width: 300 }} spacing={1} direction="row">
       <Slider
         aria-label="Temperature"
@@ -105,8 +106,8 @@ function getAriaValueText(value) {
         <NebulaFlow />
         <DecompressionLoop />
         <FlowerOfLifeLoop />
-        <  SpiralLoop />
-        <OrbitingDots />
+        <SpiralLoop />
+        <JumpingDots />
         <RotatingRings />
         
         <Button variant="success" className={styles.controlButton}>Adjust</Button>
