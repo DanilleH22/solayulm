@@ -37,10 +37,10 @@ const MoodBar = () => {
     if (!audioRef.current) return;
     const audio = audioRef.current;
 
-    audio.pause();
+   
     audio.src = moodSounds[currentSection];
     audio.load();
-    audio.play();
+   
   }, [currentSection]);
 
 
