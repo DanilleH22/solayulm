@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import styles from "../../styles/DecompressionBay.module.css";
-import CountdownTimer from "../../components/CountdownTimer.jsx";
+import CountdownTimer from "../../components/CustomCountdownTimer.jsx";
 import Slider from '@mui/material/Slider';
 import Stack from '@mui/material/Stack';
 import DecompressionLoop from "../../components/DecompressionLoop.jsx"; 
@@ -33,7 +33,7 @@ function getAriaValueText(value) {
     
     <Row className="text-center my-5">
     {/* Left - Timer */}
-    <Col md={5}>
+    <Col md={12}>
     <h3>Choose your session length:</h3>
     <div className="text-center justify-content-center d-flex ">
         
@@ -62,21 +62,34 @@ function getAriaValueText(value) {
         
       </div>
       
-      <CountdownTimer duration={duration} />
+      
+       
+        <Button
+        className="mt-3"
+        onClick={() => setShowVisuals((prev) => !prev)} 
+        style={{ backgroundColor: 'transparent', color: 'transparent', border: 'none', textDecoration: 'underline', cursor: 'pointer' }}
+      >
+        <CountdownTimer duration={duration} /> 
+       
+      </Button>
     </Col>
 
     
 
-    {/* Right - I/mmersion Visuals */}
-    <Col md={6} gap={3}>
+    {/* Right - Immersion Visuals */}
+    {/* <Col md={6} gap={3}>
       <h3>Immersion Visuals</h3>
-       
-        <FlowerOfLifeLoop />
-        <SpiralLoop />
-        <JumpingDots />
-        <RotatingRings />
-      <NebulaFlow />
-    </Col>
+      {showVisuals ? (  <>
+        <p>Visuals are ON</p> : <p>Visuals are OFF</p> 
+        <FlowerOfLifeLoop /> 
+        <SpiralLoop /> 
+        <JumpingDots /> 
+        <RotatingRings /> 
+      <NebulaFlow /> 
+      </>) : (
+        <p>Visuals are OFF</p>
+      )}
+    </Col> */}
   </Row>
 
 
