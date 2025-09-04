@@ -5,7 +5,7 @@ import CustomCountdownTimer from "../../components/CustomCountdownTimer.jsx";
 import Slider from '@mui/material/Slider';
 import Stack from '@mui/material/Stack';
 import DecompressionLoop from "../../components/DecompressionLoop.jsx"; 
-import  FlowerOfLifeLoop  from "../../components/FlowerofLifeLoop.jsx";
+import  FlowerOfLifeLoop  from "../../components/FlowerLifeLoop.jsx";
 import { SpiralLoop } from "../../components/SpiralLoop.jsx";
 import { NebulaFlow } from "../../components/NebulaFlow.jsx";
 import   JumpingDots  from "../../components/JumpingDots.jsx";
