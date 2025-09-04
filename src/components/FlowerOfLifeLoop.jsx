@@ -14,8 +14,11 @@ export default function FlowerOfLifeLoop() {
   ];
 
   return (
-    <div className="relative flex items-center justify-center h-screen w-full bg-gradient-to-br from-black via-indigo-950 to-purple-900 overflow-hidden">
-      <svg width="300" height="300" viewBox="-150 -150 300 300">
+    <div className="relative flex items-center justify-center h-screen 
+    w-full bg-gradient-to-br from-black via-indigo-950 to-purple-900 overflow-hidden"
+        style={{   transform: 'translate( 10%, -20px)'  }}
+    >
+      <svg width="500" height="500" viewBox="-150 -150 300 300">
         {positions.map(([x, y], i) => (
           <motion.circle
             key={i}
@@ -31,7 +34,7 @@ export default function FlowerOfLifeLoop() {
               duration: 6,
               repeat: Infinity,
               ease: "easeInOut",
-              delay: i * 0.5, // staggered for flow effect
+              delay: i * 0.5, 
             }}
           />
           
@@ -40,13 +43,13 @@ export default function FlowerOfLifeLoop() {
 
       
 
-      <motion.p
-        className="absolute bottom-20 text-xl text-white/70"
+      <motion.h1
+        className="absolute  text-xl text-white/70"
         animate={{ opacity: [0, 1, 0] }}
         transition={{ duration: 6, repeat: Infinity }}
       >
         Flow...
-      </motion.p>
+      </motion.h1>
     </div>
 
 
