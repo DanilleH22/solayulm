@@ -9,6 +9,7 @@ import { SpiralLoop } from "./SpiralLoop.jsx";
 import { NebulaFlow } from "./NebulaFlow.jsx";
 import   JumpingDots  from "./JumpingDots.jsx";
 import { RotatingRings } from "./RotatingRings.jsx";
+import VisualSequence  from "./VisualSequence.jsx";
 
 
 export default function CustomCountdownTimer({ duration = 300 }) { // default 5 minutes
@@ -24,7 +25,15 @@ export default function CustomCountdownTimer({ duration = 300 }) { // default 5 
     clearInterval(intervalRef.current);
     setIsRunning(false);
     resetTimer();
+    
   }, [duration]);
+
+  useEffect(() => {
+  if (num === 0) {
+    EndSequence();
+  }
+}, [num]);
+
 
   const startTimer = () => {
     if (!isRunning) {
@@ -32,8 +41,14 @@ export default function CustomCountdownTimer({ duration = 300 }) { // default 5 
         setNum((prev) => (prev > 0 ? prev - 1 : 0));
       }, 1000);
       setIsRunning(true);
-    }
+    } 
   };
+
+const EndSequence = () => {
+  clearInterval(intervalRef.current); // stop the countdown
+  setIsRunning(false);
+  setShowVisuals(false); // hide visuals
+};
 
   const pauseTimer = () => {
     clearInterval(intervalRef.current);
@@ -45,6 +60,7 @@ export default function CustomCountdownTimer({ duration = 300 }) { // default 5 
     clearInterval(intervalRef.current);
     setNum(duration);
     setIsRunning(false);
+    EndSequence()
   };
 
   // Convert seconds → MM:SS
@@ -58,7 +74,7 @@ export default function CustomCountdownTimer({ duration = 300 }) { // default 5 
 
 
   return (
-  <Row className="d-flex justify-content-center align-items-center">
+  <Row className="d-flex justify-content-center align-items-center mt-5">
     <Col md={5} className="text-center">
     <CircularProgressbar
       value={percentage}
@@ -75,9 +91,11 @@ export default function CustomCountdownTimer({ duration = 300 }) { // default 5 
   onClick={() => {
     if (isRunning) {
       pauseTimer();
+      
     } else {
       startTimer();
       setShowVisuals(true); 
+      
     }
   }}
   className={styles.MinutesButton}
@@ -98,10 +116,11 @@ export default function CustomCountdownTimer({ duration = 300 }) { // default 5 
   <Col md={5} className="text-center">
     {showVisuals ? (
       <>
-        <p>Visuals are ON</p>
+        <h5 style={{   transform: 'translate( 10%, -30px)'  }}>Visuals are ON</h5>
         {/* <FlowerOfLifeLoop /> 
         <SpiralLoop />  */}
-        <DecompressionLoop /> 
+        {/* <DecompressionLoop />  */}
+        <VisualSequence />
         {/* <NebulaFlow />  */}
       </>
     ) : (
