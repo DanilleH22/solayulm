@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import styles from "../../styles/DecompressionBay.module.css";
-import CountdownTimer from "../../components/CustomCountdownTimer.jsx";
+import CustomCountdownTimer from "../../components/CustomCountdownTimer.jsx";
 import Slider from '@mui/material/Slider';
 import Stack from '@mui/material/Stack';
 import DecompressionLoop from "../../components/DecompressionLoop.jsx"; 
@@ -14,6 +14,7 @@ import { RotatingRings } from "../../components/RotatingRings.jsx";
 
 const DecompressionBay = () => {
   const [duration, setDuration] = useState(300); 
+  const [showVisuals, setShowVisuals] = useState(false);
 
 function getAriaValueText(value) {
   return `${value}°C`;
@@ -62,34 +63,18 @@ function getAriaValueText(value) {
         
       </div>
       
-      
-       
-        <Button
-        className="mt-3"
+        <a
+        className="mt-3 pt-6"
         onClick={() => setShowVisuals((prev) => !prev)} 
         style={{ backgroundColor: 'transparent', color: 'transparent', border: 'none', textDecoration: 'underline', cursor: 'pointer' }}
       >
-        <CountdownTimer duration={duration} /> 
+        <CustomCountdownTimer duration={duration} /> 
        
-      </Button>
+      </a>
     </Col>
 
     
 
-    {/* Right - Immersion Visuals */}
-    {/* <Col md={6} gap={3}>
-      <h3>Immersion Visuals</h3>
-      {showVisuals ? (  <>
-        <p>Visuals are ON</p> : <p>Visuals are OFF</p> 
-        <FlowerOfLifeLoop /> 
-        <SpiralLoop /> 
-        <JumpingDots /> 
-        <RotatingRings /> 
-      <NebulaFlow /> 
-      </>) : (
-        <p>Visuals are OFF</p>
-      )}
-    </Col> */}
   </Row>
 
 
@@ -129,7 +114,7 @@ function getAriaValueText(value) {
       </Stack>
         </Col>
         <Col className="ml-5">
-        <DecompressionLoop />
+        < RotatingRings />
         </Col>
 
         <Col>
@@ -184,25 +169,30 @@ function getAriaValueText(value) {
         <h3 className="mt-4 pt-5 text center">Mood Spectrum Bar</h3>
         <Col className="pt-2 d-flex justify-content-center">
         
-            <Stack sx={{  width: 300 }} spacing={1} direction="row">
-      <Slider
-        aria-label="Stress levels"
-        orientation="horizontal"
-        getAriaValueText={getAriaValueText}
-        valueLabelDisplay="auto"
-        defaultValue={30}
-        sx={{
-    '& .MuiSlider-valueLabel': {
-      minWidth: 45,     
-      height: 32,
-      fontSize: 14,
-      justifyContent: 'center',
-        alignItems: 'center',
-        display: 'flex',
+         <Slider
+  defaultValue={30}
+  aria-label="Mood Spectrum"
+  valueLabelDisplay="auto"
+  sx={{
+    height: 18,
+    '& .MuiSlider-rail': {
+      opacity: 1, 
+      backgroundImage: 'linear-gradient(90deg, #FF0000, #FFFF00, #00FF00, #00FFFF, #0000FF, #FF00FF)',
+      borderRadius: 6,
+    },
+    '& .MuiSlider-track': {
+      backgroundColor: 'transparent', 
+    },
+    '& .MuiSlider-thumb': {
+      width: 40,
+      height: 40,
+      backgroundColor: '#fff',
+      border: '2px solid #000',
     },
   }}
-      />
-      </Stack>
+/>
+
+
             </Col>
       </Row>
 
