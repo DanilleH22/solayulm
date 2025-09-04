@@ -27,7 +27,9 @@ export function SpiralLoop() {
                 repeat: Infinity,
                 delay: i * 0.2,
                 ease: "easeInOut",
+                
               }}
+              style={{   transform: 'translate( 15%, -20px)'  }}
             />
           );
         })}
