@@ -1,0 +1,33 @@
+.textArea {
+  opacity: 0.5;
+  background-color: rgba(113, 112, 112, 0.6); /* semi see-through */
+  border-radius: 30px;
+  color: white;
+  padding: 20px;
+ box-shadow: 0 0 20px #b5acd9;;
+  border: 2px solid white; 
+  margin-bottom: 30px;
+ 
+}
+
+
+.sendBtn {
+background: linear-gradient(90deg, #3b3b6a 0%, #52528f 50%, #9f9ff9 100%);
+  /* #1a1a2e;  */
+  color: #ffffff;
+  border: 2px solid #5d3fd3; 
+  border-radius: 20px;
+  padding: 10px 20px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+   box-shadow: 0 0 20px #b5acd9;;
+}
+
+.sendBtn:hover {
+  background-color:  #9f9ff9;
+outline: none ;
+  color: #fff;
+  box-shadow: 0 0 20px #b5acd9;
+}
+
+

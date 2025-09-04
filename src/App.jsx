@@ -8,6 +8,7 @@ import NavBar from "./components/NavBar.jsx";
 import Footer from "./components/Footer.jsx";
 import DecompressionBay from "./pages/homepage/DecompressionBay.jsx";
 import "./App.css";
+import AirlockJournal from "./pages/homepage/AirlockJournal.jsx";
 
 
 
@@ -22,6 +23,7 @@ const App = () => {
           <Route path="/" element={<Homepage />} />
           <Route path="/Rooms" element={<Rooms />} />
           <Route path="/DecompressionBay" element={<DecompressionBay />} />
+          <Route path="/AirlockJournal" element={<AirlockJournal />} />
             <Route path="*" element={<h1>Page not found!</h1>} />
           </Routes>
         </div>
