@@ -4,7 +4,7 @@ import styles from "../styles/DecompressionBay.module.css";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import DecompressionLoop from "./DecompressionLoop.jsx"; 
-import  FlowerOfLifeLoop  from "./FlowerofLifeLoop.jsx";
+import  FlowerOfLifeLoop  from "./FlowerLifeLoop.jsx";
 import { SpiralLoop } from "./SpiralLoop.jsx";
 import { NebulaFlow } from "./NebulaFlow.jsx";
 import   JumpingDots  from "./JumpingDots.jsx";
