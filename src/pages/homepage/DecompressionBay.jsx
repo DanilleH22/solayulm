@@ -29,12 +29,12 @@ function getAriaValueText(value) {
           help you unwind and relax.
         </p>
       </Row>
-
-      <div className="text-center">
-        <h3>Choose your session length:</h3>
-      </div>
-
-      <Row md={6} className="text-center justify-content-center d-flex ">
+    
+    <Row className="text-center my-5">
+    {/* Left - Timer */}
+    <Col md={5}>
+    <h3>Choose your session length:</h3>
+    <div className="text-center justify-content-center d-flex ">
         
         <Button onClick={() => setDuration(5 * 60)} className={styles.MinutesButton}>
           5 minutes
@@ -59,26 +59,48 @@ function getAriaValueText(value) {
           60 minutes
         </Button>
         
-      </Row>
-      <Row className="w-100 d-flex justify-content-center align-items-center">
-        <Col xs="auto" className="text-center my-5">
-        <div className={styles.systemChecksLeft}>
-          <CountdownTimer duration={duration}  />
-          </div>
-        </Col>
-        </Row>
+      </div>
+      
+      <CountdownTimer duration={duration} />
+    </Col>
 
-      <Row className="w-100 d-flex justify-content-center align-items-center">
-        <Col xs="auto" className="text-center my-5">
-        {/* <div className={styles.systemChecksCenter}  > */}
-            <div >
-          <h3>middle row</h3>
-          <p>Stress levels bar</p>
-          
-           <Stack sx={{ height: 300, width: 300 }} spacing={1} direction="row">
+    
+
+    {/* Right - I/mmersion Visuals */}
+    <Col md={6}>
+      <h3>Immersion Visuals</h3>
+      
+        <FlowerOfLifeLoop />
+        <SpiralLoop />
+        <JumpingDots />
+        <RotatingRings />
+      <NebulaFlow />
+    </Col>
+  </Row>
+
+
+     <Row className="text-center my-5 pb-5 h-75">
+    
+        {/* Left - Environment */}
+    <Col md={4}>
+      <h3>Environment Controls</h3>
+      <Button>Ambient Sound</Button>
+      <Button>Lighting</Button>
+      <NebulaFlow />
+    </Col>
+
+    {/* Right - Stress Bar */}
+    <Col md={8}>
+    <h2 className="mb-3">Well-being Huddle</h2>
+      
+      <Row className="mb-4 pb-5">
+        <Col>
+        <h3>Stress Levels</h3>
+        <p>Adjust your current stress levels</p>
+       <Stack sx={{  width: 300 }} spacing={1} direction="row">
       <Slider
-        aria-label="Temperature"
-        orientation="vertical"
+        aria-label="Stress levels"
+        orientation="horizontal"
         getAriaValueText={getAriaValueText}
         valueLabelDisplay="auto"
         defaultValue={30}
@@ -91,29 +113,93 @@ function getAriaValueText(value) {
   }}
       />
       </Stack>
-
-          {/* Pass duration prop */}
-          
-          </div>
         </Col>
-        </Row>
-      <Row >
-        <Col xs="auto" >
-        <div className={styles.systemChecksRight}>
-        <h3>right row</h3>
-        <p>Ambient sound controls</p>
-        <p>Lighting controls</p>
-        <NebulaFlow />
+        <Col>
+        <h3>Breathing Loop</h3>
         <DecompressionLoop />
-        <FlowerOfLifeLoop />
-        <SpiralLoop />
-        <JumpingDots />
-        <RotatingRings />
-        
-        <Button variant="success" className={styles.controlButton}>Adjust</Button>
-        </div>
+        </Col>
+        <Col>
+        <h3>Calm 'O' meter</h3>
+        <p>Adjust your current calm levels</p>
+       <Stack sx={{width: 300 }} spacing={1} direction="row">
+      <Slider
+        aria-label="Calm 'O' meter"
+        orientation="horizontal"
+        getAriaValueText={getAriaValueText}
+        valueLabelDisplay="auto"
+        defaultValue={30}
+        sx={{
+    '& .MuiSlider-valueLabel': {
+      minWidth: 45,     
+      height: 32,
+      fontSize: 14,
+    },
+  }}
+      />
+      </Stack>
         </Col>
       </Row>
+
+      <Row >
+        <Col md={4}>
+        <h3>Energy Guage</h3>
+        <Stack sx={{  width: 300 }} spacing={1} direction="row">
+      <Slider
+        aria-label="Stress levels"
+        orientation="horizontal"
+        getAriaValueText={getAriaValueText}
+        valueLabelDisplay="auto"
+        defaultValue={30}
+        sx={{
+    '& .MuiSlider-valueLabel': {
+      minWidth: 45,     
+      height: 32,
+      fontSize: 14,
+    },
+  }}
+      />
+      </Stack>
+        </Col>
+
+        <Col md={6}>
+        <h3>Focus Dials</h3>
+        </Col>
+      </Row>
+{/* mood spectrum section  */}
+      <Row>
+        <h3 className="mt-4 pt-5 text center">Mood Spectrum Bar</h3>
+        <Col className="pt-2 d-flex justify-content-center">
+        
+            <Stack sx={{  width: 300 }} spacing={1} direction="row">
+      <Slider
+        aria-label="Stress levels"
+        orientation="horizontal"
+        getAriaValueText={getAriaValueText}
+        valueLabelDisplay="auto"
+        defaultValue={30}
+        sx={{
+    '& .MuiSlider-valueLabel': {
+      minWidth: 45,     
+      height: 32,
+      fontSize: 14,
+      justifyContent: 'center',
+        alignItems: 'center',
+        display: 'flex',
+    },
+  }}
+      />
+      </Stack>
+            </Col>
+      </Row>
+
+    </Col>
+
+    
+  </Row>
+
+
+
+      
 
     </Container>
   );
