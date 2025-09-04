@@ -11,6 +11,7 @@ import { NebulaFlow } from "../../components/NebulaFlow.jsx";
 import   JumpingDots  from "../../components/JumpingDots.jsx";
 import { RotatingRings } from "../../components/RotatingRings.jsx";
 
+
 const DecompressionBay = () => {
   const [duration, setDuration] = useState(300); 
 
@@ -67,9 +68,9 @@ function getAriaValueText(value) {
     
 
     {/* Right - I/mmersion Visuals */}
-    <Col md={6}>
+    <Col md={6} gap={3}>
       <h3>Immersion Visuals</h3>
-      
+       
         <FlowerOfLifeLoop />
         <SpiralLoop />
         <JumpingDots />
@@ -91,10 +92,10 @@ function getAriaValueText(value) {
 
     {/* Right - Stress Bar */}
     <Col md={8}>
-    <h2 className="mb-3">Well-being Huddle</h2>
+    <h2 className="mb-3 mx-5">Well-being Huddle</h2>
       
-      <Row className="mb-4 pb-5">
-        <Col>
+      <Row className="mb-4 pb-5 ">
+        <Col className="pr-5">
         <h3>Stress Levels</h3>
         <p>Adjust your current stress levels</p>
        <Stack sx={{  width: 300 }} spacing={1} direction="row">
@@ -114,10 +115,10 @@ function getAriaValueText(value) {
       />
       </Stack>
         </Col>
-        <Col>
-        <h3>Breathing Loop</h3>
+        <Col className="ml-5">
         <DecompressionLoop />
         </Col>
+
         <Col>
         <h3>Calm 'O' meter</h3>
         <p>Adjust your current calm levels</p>
