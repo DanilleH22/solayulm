@@ -16,8 +16,8 @@ export default function DecompressionLoop() {
       {/* Circle */}
       <motion.div
         style={{
-          width: "200px",
-          height: "200px",
+          width: "400px",
+          height: "400px",
           borderRadius: "50%",
           margin: "25px",
           paddingTop: "15px",
