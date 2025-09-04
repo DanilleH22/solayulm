@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { SpiralLoop } from "./SpiralLoop";
 import DecompressionLoop from "./DecompressionLoop.jsx";
-import FlowerOfLifeLoop from "./FlowerOfLifeLoop.jsx"
+import FlowerLifeLoop from "./FlowerLifeLoop.jsx"
 import { easeInOut } from "framer-motion";
 
 const visuals = [
   SpiralLoop,
   DecompressionLoop,
-  FlowerOfLifeLoop,
+  FlowerLifeLoop,
 ];
 
 export default function VisualSequence({ interval = 5000 }) {
