@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-export default function FlowerOfLifeLoop() {
+export default function FlowerLifeLoop() {
   // Positions for overlapping circles in a Flower of Life pattern
   const positions = [
     [0, 0], // center
