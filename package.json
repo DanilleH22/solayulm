@@ -18,6 +18,8 @@
     "@fortawesome/react-fontawesome": "^3.0.2",
     "@mui/material": "^7.3.2",
     "@react-spring/web": "^10.0.1",
+    "@react-three/drei": "^10.7.4",
+    "@react-three/fiber": "^9.3.0",
     "@tsparticles/react": "^3.0.0",
     "bootstrap": "^5.3.8",
     "framer-motion": "^12.23.12",
@@ -32,6 +34,7 @@
     "react-snow-effect": "^1.2.0",
     "react-snowfall": "^2.3.0",
     "react-type-animation": "^3.2.0",
+    "three": "^0.180.0",
     "typewrite": "^1.0.0",
     "typewriter-effect": "^2.22.0",
     "use-sound": "^5.0.0"
