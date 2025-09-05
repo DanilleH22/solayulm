@@ -1,0 +1,56 @@
+.videoContainer {
+  position: relative;
+  width: 100%;
+  height: 100vh; /* Full viewport height */
+  overflow: hidden;
+}
+
+.deckVideo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Makes video cover container without stretching */
+}
+
+.orbitDot {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: #e8e8ff;
+  cursor: pointer;
+
+  /* Simple orbit animation */
+  animation: orbit 5s linear infinite;
+}
+
+@keyframes orbit {
+  0%   { transform: translate(0, 0); }
+  25%  { transform: translate(20px, -10px); }
+  50%  { transform: translate(0, -20px); }
+  75%  { transform: translate(-20px, -10px); }
+  100% { transform: translate(0, 0); }
+}
+
+
+.MinutesButton {
+    font-size: 18px;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 13%;
+    justify-self: center;
+    background-color: #6a626e ;
+    margin: 8px;
+   border: none;
+    
+   
+}
+
+
+
+.MinutesButton:hover {
+    background-color: #555151;
+  
+}
+    
