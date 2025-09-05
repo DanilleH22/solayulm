@@ -21,6 +21,7 @@
     "@tsparticles/react": "^3.0.0",
     "bootstrap": "^5.3.8",
     "framer-motion": "^12.23.12",
+    "gsap": "^3.13.0",
     "react": "^19.1.0",
     "react-bootstrap": "^2.10.10",
     "react-circular-progressbar": "^2.2.0",
