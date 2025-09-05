@@ -120,7 +120,7 @@ const onMove = useCallback(
    <h3>When to use it?</h3>
    <p>When you feel burdened, before transitions, or whenever you need to let go of thoughts that weigh you down.</p>
    <div className={styles.exploringButton}>
-  <Link to="/airlock-journal">
+  <Link to="/AirlockJournal">
     <Button className={styles.exploreBtn}>Explore</Button>
   </Link>
 </div>
