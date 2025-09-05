@@ -149,7 +149,7 @@ const onMove = useCallback(
    <h3>When to use it?</h3>
    <p>When you need clarity, grounding, or simply to be reminded of the beauty beyond your worries.</p>
    <div className={styles.exploringButton}>
-  <Link to="/observation-deck">
+  <Link to="/ObservationDeck">
     <Button className={styles.exploreBtn}>Explore</Button>
   </Link>
 </div>
