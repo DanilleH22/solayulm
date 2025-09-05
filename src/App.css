@@ -24,7 +24,7 @@
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    background-image: url('../src/assets/images/background1.JPG');
+    background-image: url('../src/assets/images/airlockBG.png');
     background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
