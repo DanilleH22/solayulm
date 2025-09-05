@@ -1,25 +1,55 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Container, Row, Col, Button } from "react-bootstrap";
 import styles from "../../styles/AirlockJournal.module.css";
 import { Link } from "react-router";
 import { motion } from "framer-motion";
 import Snowfall from 'react-snowfall';
+import { gsap } from "gsap";
+
 
 const AirlockJournal = () => {
   const [text, setText] = useState("");
   const [sending, setSending] = useState(false);
+   const textRef = useRef();
+  const buttonRef = useRef();
+   const timeoutRef = useRef(null);
 
-  const handleSend = () => {
-    setSending(true);
-    setTimeout(() => {
-      setText("");       // clear after animation
-      setSending(false); // reset
-    }, 2000); // duration matches the animation
+  const resetSend = () => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
+    setText("");       
+    setSending(false);  
+    gsap.set(textRef.current, { x: 0, y: 0, scale: 1, opacity: 0.5 });
+    
   };
+
+   const handleSend = () => {
+     
+    const buttonBox = buttonRef.current.getBoundingClientRect();
+    gsap.to(textRef.current, {
+      x: buttonBox.x - textRef.current.getBoundingClientRect().x,
+      y: buttonBox.y - textRef.current.getBoundingClientRect().y,
+      scale: 0,
+      opacity: 0,
+      duration: 1.2,
+      ease: "rough",
+      onComplete: () => {
+        timeoutRef.current = setTimeout(() => {
+            resetSend()
+        }, 1000)
+      }
+    })
+    };
+
+
+
+  
 
   return (
     <Container fluid className={styles.airlockJournal}>
-      
+   
+
       {/* Snow background */}
       <Snowfall
         color="#ffffff"
@@ -49,13 +79,16 @@ const AirlockJournal = () => {
       {/* Journal Input Area */}
       <Row className="justify-content-center">
         <Col xs={12} md={8}>
+        {/* <div className={styles.crinkle}> */}
           <textarea
             className={styles.textArea}
             placeholder="Type your thoughts here..."
             rows={20}
             value={text}
             onChange={(e) => setText(e.target.value)}
+            ref={textRef}
           />
+          {/* </div> */}
         </Col>
       </Row>
 
@@ -65,7 +98,7 @@ const AirlockJournal = () => {
           <Button className="save-btn" disabled>Save</Button>
         </Col>
         <Col xs="auto">
-          <Button className={styles.sendBtn} onClick={handleSend}>Send to Black Hole</Button>
+          <Button className={styles.sendBtn} ref={buttonRef} onClick={handleSend}>Send to Black Hole</Button>
         </Col>
       </Row>
 
