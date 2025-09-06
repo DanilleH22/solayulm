@@ -11,25 +11,6 @@
   object-fit: cover; /* Makes video cover container without stretching */
 }
 
-.orbitDot {
-  position: absolute;
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background-color: #e8e8ff;
-  cursor: pointer;
-
-  /* Simple orbit animation */
-  animation: orbit 5s linear infinite;
-}
-
-@keyframes orbit {
-  0%   { transform: translate(0, 0); }
-  25%  { transform: translate(20px, -10px); }
-  50%  { transform: translate(0, -20px); }
-  75%  { transform: translate(-20px, -10px); }
-  100% { transform: translate(0, 0); }
-}
 
 
 .MinutesButton {
@@ -54,3 +35,14 @@
   
 }
     
+
+/* Only when inside galaxyPage */
+.galaxyPage :global(.navbar) {
+  background-color: transparent !important;
+  backdrop-filter: none; /* remove blur if you had it */
+}
+
+.galaxyPage :global(.footer) {
+  background-color: transparent !important;
+  backdrop-filter: none;
+}
