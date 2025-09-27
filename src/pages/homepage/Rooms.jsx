@@ -15,6 +15,14 @@ import img_3212 from '../../assets/images/IMG_3212.jpeg';
 import ScrollAnimation from '../../components/ScrollAnimation.jsx';
 import { useSpring, animated } from '@react-spring/web';
 
+import aicc from '../../assets/images/aicc.png';
+import aj from '../../assets/images/aj.png';
+import cc from '../../assets/images/cc.png';
+import db from '../../assets/images/db.png';
+import hr from '../../assets/images/hr.png';
+import od from '../../assets/images/od.png';
+import vc from '../../assets/images/vc.png';
+
 const Rooms = () => {
   const [{ xy }, set] = useSpring(() => ({ xy: [0, 0] }));
 
@@ -39,7 +47,7 @@ const onMove = useCallback(
     visible: { opacity: 1, x: 0, transition: { duration: 1 } }
   }}>
     <Row className={styles.servicesTextWrapper}>
-  <Col className={styles.servicesText} md={6}>
+  <Col className={styles.servicesText} md={7} lg={8}>
     <h3>Decompression Bay</h3>
     <h3>Description : </h3>
     <p>Here, the hum of machinery softens into silence. Gravity stabilizers hum low beneath your feet as the station 
@@ -56,22 +64,26 @@ const onMove = useCallback(
    <p>After a long day, during heightened anxiety, or when you need to center yourself before continuing your journey.</p>
    <div className={styles.exploringButton}>
   <Link to="/DecompressionBay">
-    <Button className={styles.exploreBtn}>Explore</Button>
+    <Button style={{
+        outline: 'none',
+        boxShadow: 'none',
+        backgroundColor: '#6a626e',
+        border: 'none',
+      }}>Explore</Button>
   </Link>
 </div>
 
   </Col>
-  <Col md={6} className={styles.servicesImg}>
+  <Col md={5} lg={4} className={styles.servicesImg}>
    <div 
     onMouseMove={onMove} 
     style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
   >
     <animated.img
-      src={img_3212}
+      src={db}
       alt="space"
       style={{
         width: '100%',
-        height: 'auto',
         borderRadius: '10px',
         transform: interpBg,  
       }}
@@ -86,25 +98,21 @@ const onMove = useCallback(
 <ScrollAnimation >
 <Row className={styles.servicesTextWrapper}>
   
-<Col md={3} className={styles.servicesImg}>
-    {/* <img src={s8} alt="space" /> */}
-    <div 
-    onMouseMove={onMove} 
-    style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
-  >
+<Col md={5} lg={4} className={styles.servicesImg}>
+  <div onMouseMove={onMove} style={{ overflow: "visible" }}>
     <animated.img
-      src={s8}
+      src={aj}
       alt="space"
-      style={{
+     style={{
         width: '100%',
-        height: 'auto',
         borderRadius: '10px',
         transform: interpBg,  
       }}
     />
   </div>
-  </Col>
-  <Col className={styles.servicesText}>
+</Col>
+
+  <Col className={styles.servicesText} md={7} lg={8}>
     <h3>Airlock Journal</h3>
     <h3>Description : </h3>
     <p>The airlock doors whisper closed, and with them, the noise of the world falls away. Here, before stepping out into the 
@@ -121,7 +129,12 @@ const onMove = useCallback(
    <p>When you feel burdened, before transitions, or whenever you need to let go of thoughts that weigh you down.</p>
    <div className={styles.exploringButton}>
   <Link to="/AirlockJournal">
-    <Button className={styles.exploreBtn}>Explore</Button>
+    <Button style={{
+        outline: 'none',
+        boxShadow: 'none',
+        backgroundColor: '#6a626e',
+        border: 'none',
+      }}>Explore</Button>
   </Link>
 </div>
   </Col>
@@ -133,7 +146,7 @@ const onMove = useCallback(
     visible: { opacity: 1, x: 0, transition: { duration: 1 } }
   }}>
 <Row className={styles.servicesTextWrapper}>
-  <Col className={styles.servicesText}>
+  <Col className={styles.servicesText} md={7} lg={8}>
     <h3>Obsrvation Deck</h3>
     <h3>Description : </h3>
     <p>A dome of glass and holographic star charts stretches endlessly overhead. The cosmos sprawls out before you—silent, 
@@ -150,22 +163,26 @@ const onMove = useCallback(
    <p>When you need clarity, grounding, or simply to be reminded of the beauty beyond your worries.</p>
    <div className={styles.exploringButton}>
   <Link to="/ObservationDeck">
-    <Button className={styles.exploreBtn}>Explore</Button>
+    <Button style={{
+        outline: 'none',
+        boxShadow: 'none',
+        backgroundColor: '#6a626e',
+        border: 'none',
+      }}>Explore</Button>
   </Link>
 </div>
   </Col>
-  <Col md={3} className={styles.servicesImg}>
+  <Col md={5} lg={4} className={styles.servicesImg}>
     {/* <img src={s9} alt="space" /> */}
     <div 
     onMouseMove={onMove} 
     style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
   >
     <animated.img
-      src={s9}
+      src={od}
       alt="space"
       style={{
         width: '100%',
-        height: 'auto',
         borderRadius: '10px',
         transform: interpBg,  
       }}
@@ -177,25 +194,24 @@ const onMove = useCallback(
 
 <ScrollAnimation >
 <Row className={styles.servicesTextWrapper}>
-<Col md={3} className={styles.servicesImg}>
+<Col md={5} lg={4} className={styles.servicesImg}>
     {/* <img src={s10} alt="space" /> */}
     <div 
     onMouseMove={onMove} 
     style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
   >
     <animated.img
-      src={s10}
+      src={cc}
       alt="space"
       style={{
         width: '100%',
-        height: 'auto',
         borderRadius: '10px',
         transform: interpBg,  
       }}
     />
   </div>
   </Col>
-  <Col className={styles.servicesText}>
+  <Col className={styles.servicesText} md={7} lg={8}>
     <h3>Comm Center (Audio Room)</h3>
     <h3>Description : </h3>
     <p>Deep within the core of the station lies the Comm Center—a secure hub where voices travel across the stars. The walls 
@@ -213,7 +229,12 @@ const onMove = useCallback(
    <p>When you feel the need to speak openly, reach out, or preserve your words for someone—or something—beyond yourself.</p>
    <div className={styles.exploringButton}>
   <Link to="/CommCenter">
-    <Button className={styles.exploreBtn}>Explore</Button>
+    <Button style={{
+        outline: 'none',
+        boxShadow: 'none',
+        backgroundColor: '#6a626e',
+        border: 'none',
+      }}>Explore</Button>
   </Link>
 </div>
   </Col>
@@ -225,7 +246,7 @@ const onMove = useCallback(
     visible: { opacity: 1, x: 0, transition: { duration: 1 } }
   }}>
 <Row className={styles.servicesTextWrapper}>
-  <Col className={styles.servicesText}>
+  <Col className={styles.servicesText} md={7} lg={8}>
     <h3>Void Chat</h3>
     <h3>Description : </h3>
     <p>A hidden channel within the station’s systems hums faintly with unfiltered chatter. The Void Chat is where masks 
@@ -242,22 +263,26 @@ const onMove = useCallback(
    <p>When you crave connection without expectation, or when you want to share truths without leaving a trace.</p>
    <div className={styles.exploringButton}>
   <Link to="/VoidChat">
-    <Button className={styles.exploreBtn}>Explore</Button>
+    <Button style={{
+        outline: 'none',
+        boxShadow: 'none',
+        backgroundColor: '#6a626e',
+        border: 'none',
+      }}>Explore</Button>
   </Link>
 </div>
   </Col>
-  <Col md={3} className={styles.servicesImg}>
+  <Col md={5} lg={4} className={styles.servicesImg}>
     {/* <img src={s11} alt="space" /> */}
     <div 
     onMouseMove={onMove} 
     style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
   >
     <animated.img
-      src={s11}
+      src={vc}
       alt="space"
       style={{
         width: '100%',
-        height: 'auto',
         borderRadius: '10px',
         transform: interpBg,  
       }}
@@ -269,25 +294,24 @@ const onMove = useCallback(
 
 <ScrollAnimation >
 <Row className={styles.servicesTextWrapper}>
-<Col md={3} className={styles.servicesImg}>
+<Col md={5} lg={4} className={styles.servicesImg}>
     {/* <img src={s12} alt="space" /> */}
     <div 
     onMouseMove={onMove} 
     style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
   >
     <animated.img
-      src={s12}
+      src={hr}
       alt="space"
       style={{
         width: '100%',
-        height: 'auto',
         borderRadius: '10px',
         transform: interpBg,  
       }}
     />
   </div>
   </Col>
-  <Col className={styles.servicesText}>
+  <Col className={styles.servicesText} md={7} lg={8}>
     <h3>Holo Room (Creative Release)</h3>
     <h3>Description : </h3>
     <p>Step into the Holo Room and the walls melt away. In their place: infinite canvases of light, sculpted by imagination 
@@ -304,7 +328,12 @@ const onMove = useCallback(
    <p>When emotions overflow, when ideas spark, or when you long to make something uniquely yours.</p>
    <div className={styles.exploringButton}>
   <Link to="/HoloRoom">
-    <Button className={styles.exploreBtn}>Explore</Button>
+    <Button style={{
+        outline: 'none',
+        boxShadow: 'none',
+        backgroundColor: '#6a626e',
+        border: 'none',
+      }}>Explore</Button>
   </Link>
 </div>
   </Col>
@@ -316,7 +345,7 @@ const onMove = useCallback(
     visible: { opacity: 1, x: 0, transition: { duration: 1 } }
   }}>
 <Row className={styles.servicesTextWrapper}>
-  <Col className={styles.servicesText}>
+  <Col className={styles.servicesText} md={7} lg={8}>
     <h3>Cosmic Companion AI Bot</h3>
     <h3>Description : </h3>
     <p>In the quiet corridors, a soft voice awaits. The Cosmic Companion—equal parts archivist, sage, and friend—drifts 
@@ -335,22 +364,26 @@ const onMove = useCallback(
    </p>
    <div className={styles.exploringButton}>
   <Link to="/cosmicCompanion">
-    <Button className={styles.exploreBtn}>Explore</Button>
+    <Button style={{
+        outline: 'none',
+        boxShadow: 'none',
+        backgroundColor: '#6a626e',
+        border: 'none',
+      }}>Explore</Button>
   </Link>
 </div>
   </Col>
-  <Col md={3} className={styles.servicesImg}>
+  <Col md={5} lg={4} className={styles.servicesImg}>
     {/* <img src={s13} alt="space" /> */}
     <div 
     onMouseMove={onMove} 
     style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
   >
     <animated.img
-      src={s13}
+      src={aicc}
       alt="space"
-      style={{
+     style={{
         width: '100%',
-        height: 'auto',
         borderRadius: '10px',
         transform: interpBg,  
       }}

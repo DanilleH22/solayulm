@@ -1,6 +1,6 @@
 .servicesTextWrapper {
     display: flex;
-    align-items: start;
+   
     
     gap: 20px; /* optional spacing */
     
@@ -14,36 +14,39 @@
     padding: 20px;
     margin: 20px;
     text-align: center; 
+     display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   }
   
-  
-  .servicesImg img {
-    max-width: 100%;  
-    
-    
+  .servicesImg {
+    display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   }
+  
   
 
   .exploringButton {
     font-size: 18px;
-    color: white;
+    
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    width: 25%;
+    width:50%;
     justify-self: center;
     background-color: #6a626e !important;
 }
 
-.exploringButton button {
-    background-color: #6a626e;
-    border: none;
-}
+.exploreBtn  {
+   outline: none;
+        box-shadow: none;
+        background-color: #6a626e;
+        border: none;
 
-.exploringButton button:hover {
-    background-color: #555151;
 }
-
 
 @keyframes swipeIn {
     from {
@@ -67,3 +70,37 @@
     animation: swipeIn 0.6s ease-in-out forwards;
   }
   
+
+  @media (min-width: 1200px) {
+    .exploringButton {
+   
+    width: 25%;
+    }
+  }
+
+
+
+  @media (max-width: 768px) {
+  .Container {
+    width: 95%;
+  }
+
+  .Row {
+    flex-direction: column-reverse;
+  }
+
+  .Title {
+    font-size: 1.8rem;
+    text-align: center;
+  }
+
+  .Paragraph {
+    font-size: 1rem;
+    text-align: justify;
+  }
+
+  .Headshot {
+    max-width: 250px;
+    margin-top: 1rem;
+  }
+}
