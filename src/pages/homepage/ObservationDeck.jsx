@@ -12,15 +12,6 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { Container, Row, Col, Button, Alert } from "react-bootstrap";
 import { Link } from "react-router";
-import SeasideSound from "../../assets/music/SeasideSound.mp3"
-import gentleRain from "../../assets/music/gentleRain.mp3"
-import WavesSound from "../../assets/music/WavesSound.mp3"
-import SpaceSound from "../../assets/music/SeasideSound.mp3"
-
-import FireplaceWalk from "../../assets/visualisations/FireplaceWalk.mp4"
-import forestWalk from "../../assets/visualisations/forestWalk.mp4"
-import MountainWalk from "../../assets/visualisations/MountainWalk.mp4"
-import OceanWalk from "../../assets/visualisations/OceanWalk.mp4"
 
 import GalaxyShader from '../../components/GalaxyShader.jsx';
 import RedGalaxyShader from '../../components/RedGalaxyShader.jsx';
@@ -160,11 +151,12 @@ const [show, setShow] = useState(false);
 
   
   const ambientSounds = [
-    { name: "Space Ambience", src: SpaceSound },
-    { name: "Calming Waves", src: WavesSound },
-    { name: "Gentle Rain", src: gentleRain },
-    { name: "Forest Sounds", src: SeasideSound }
+      { name: "Space Ambience", src: "music/SeasideSound.mp3"},
+    { name: "Calming Waves", src: "music/WavesSound.mp3" },
+    { name: "Gentle Rain", src: "music/gentleRain.mp3" },
+    { name: "Forest Sounds", src: "music/SeasideSound.mp3" }
   ];
+
 
   const shaders = [
     { id: 'redGalaxy', name: 'Red Galaxy', component: <RedGalaxyShader /> },
@@ -173,10 +165,10 @@ const [show, setShow] = useState(false);
   ];
 
   const visualizationEnvironments = [
-    { id: 'forest', name: 'Forest', icon: faLeaf, src: forestWalk},
-    { id: 'ocean', name: 'Ocean', icon: faWater, src: OceanWalk },
-    { id: 'mountain', name: 'Mountain', icon: faWind, src: MountainWalk },
-    { id: 'fireplace', name: 'Fireplace', icon: faFire, src: FireplaceWalk }
+    { id: 'forest', name: 'Forest', icon: faLeaf, src: "visualisations/forestWalk.mp4"},
+    { id: 'ocean', name: 'Ocean', icon: faWater, src: "visualisations/OceanWalk.mp4" },
+    { id: 'mountain', name: 'Mountain', icon: faWind, src: "visualisations/MountainWalk.mp4" },
+    { id: 'fireplace', name: 'Fireplace', icon: faFire, src: "visualisations/FireplaceWalk.mp4" }
   ];
   const selectedEnv = visualizationEnvironments.find(env => env.id === visualizationType);
 

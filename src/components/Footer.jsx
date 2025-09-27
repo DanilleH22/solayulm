@@ -13,7 +13,7 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 
 
 import useSound from 'use-sound';
-import midnight from '../assets/music/Midnight_Bliss.mp3';
+import midnight from '/music/Midnight_Bliss.mp3';
 
 
 

@@ -13,12 +13,6 @@ import { RotatingRings } from "../../components/RotatingRings.jsx";
 import  MoodBar  from "../../components/MoodBar.jsx";
 import  FocusDial  from "../../components/FocusDial.jsx";
 import { Link } from "react-router";
-import galaxy from "../../assets/videos/galaxyVideo-OB.mp4";
-import aurora from "../../assets/videos/auroraOB.mp4";
-import greeng from "../../assets/videos/green-gas.mp4";
-import purplegas from "../../assets/videos/green-purplegal.mp4";
-import bluegas from "../../assets/videos/purple-blue-illum.mp4";
-import goldSolar from "../../assets/videos/white-gold-solar.mp4";
 
 
 
@@ -31,22 +25,23 @@ function getAriaValueText(value) {
 }
 
 const [dots, setDots] = useState([]);
-  const [activeMedia, setActiveMedia] = useState({
-    src: galaxy,
-    type: "aurora",
-    label: "Nebula Drift",
-  });
+const [activeMedia, setActiveMedia] = useState({
+  src: "/videos/galaxyVideo-OB.mp4",
+  type: "video",
+  label: "Nebula Drift",
+});
 
 
   // List of all media
-  const mediaOptions = [
-    { label: "Nebula Drift", src: aurora, type: "video" },
-    { label: "Stellar Nursery", src: galaxy, type: "video" },
-    { label: "Cosmic Dance", src: bluegas, type: "video" },
-    { label: "Black Hole Horizon", src: purplegas, type: "video" },
-    { label: "Aurora Expanse", src: greeng, type: "video" },
-    { label: "Quantum Twilight", src: goldSolar, type: "video" },
-  ];
+ const mediaOptions = [
+  { label: "Nebula Drift", src: "/videos/auroraOB.mp4", type: "video" },
+  { label: "Stellar Nursery", src: "/videos/galaxyVideo-OB.mp4", type: "video" },
+  { label: "Cosmic Dance", src: "/videos/purple-blue-illum.mp4", type: "video" },
+  { label: "Black Hole Horizon", src: "/videos/green-purplegal.mp4", type: "video" },
+  { label: "Aurora Expanse", src: "/videos/green-gas.mp4", type: "video" },
+  { label: "Quantum Twilight", src: "/videos/white-gold-solar.mp4", type: "video" },
+];
+
 
 
 const [focus, setFocus] = useState(50);

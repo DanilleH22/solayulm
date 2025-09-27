@@ -1,9 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Slider, Stack } from "@mui/material";
-import aromatic from "../assets/music/aromatic.mp3";
-import ABeautifulGarden from "../assets/music/ABeautifulGarden.mp3";
-import FallingIntoYou from "../assets/music/FallingIntoYou.mp3";
-import future from "../assets/music/Face_The_Future.mp3";
+
 
 const MoodBar = () => {
   const [mood, setMood] = useState(30);
@@ -11,10 +8,10 @@ const MoodBar = () => {
   const audioRef = useRef(null);
 
   const moodSounds = {
-    calm: aromatic,
-    bright: ABeautifulGarden,
-    intense: FallingIntoYou,
-    fire: future,
+    calm: "music/aromatic.mp3",
+    bright: "music/ABeautifulGarden.mp3",
+    intense: "music/FallingIntoYou.mp3",
+    fire: "music/Face_The_Future.mp3",
   };
 
   // Update section whenever mood changes

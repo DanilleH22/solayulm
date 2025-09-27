@@ -10,46 +10,36 @@ import WavesBackground from "../../components/WavesBackground.jsx";
 import { Link } from "react-router";
 
 // --- Assets ---
-import zelda1 from "../../assets/LofiBeats/zelda1Lofi.mp4";
-import zelda2 from "../../assets/LofiBeats/zelda2Lofi.mp4";
-import lofi3 from "../../assets/LofiBeats/lofi3.mp4";
-import lofi4 from "../../assets/LofiBeats/lofi4.mp4";
-import lofi5 from "../../assets/LofiBeats/lofi5.mp4";
 
-import clarityAff from "../../assets/Affirmations/clarityAff.mp4";
-import gratAff from "../../assets/Affirmations/gratAff.mp4";
-import healingAff from "../../assets/Affirmations/healingAff.mp4";
-import posAff from "../../assets/Affirmations/posAff.mp4";
-import worthyAff from "../../assets/Affirmations/worthyAff.mp4";
 
-import dragonStory from "../../assets/SoothingStories/dragonStory.mp4";
-import lampStory from "../../assets/SoothingStories/lampStory.mp4";
-import mindStory from "../../assets/SoothingStories/mindStory.mp4";
-import pirateStory from "../../assets/SoothingStories/pirateStory.mp4";
+
+
+
 
 
 // --- Channel Lists ---
 const CHANNELS = {
   "Lofi Beats": [
-    { id: 1, name: "Lofi 1", src: zelda1 },
-    { id: 2, name: "Lofi 2", src: zelda2 },
-    { id: 3, name: "Lofi 3", src: lofi3 },
-    { id: 4, name: "Lofi 4", src: lofi4 },
-    { id: 5, name: "Lofi 5", src: lofi5 },
+    { id: 1, name: "Lofi 1", src: "LofiBeats/zelda1Lofi.mp4" },
+    { id: 2, name: "Lofi 2", src: "LofiBeats/zelda2Lofi.mp4" },
+    { id: 3, name: "Lofi 3", src: "LofiBeats/lofi3.mp4" },
+    { id: 4, name: "Lofi 4", src: "LofiBeats/lofi4.mp4" },
+    { id: 5, name: "Lofi 5", src: "LofiBeats/lofi5.mp4" },
   ],
   "Affirmations": [
-    { id: 1, name: "Clarity", src: clarityAff },
-    { id: 2, name: "Gratitude", src: gratAff },
-    { id: 3, name: "Healing", src: healingAff },
-    { id: 4, name: "Positivity", src: posAff },
-    { id: 5, name: "Worthiness", src: worthyAff },
+    { id: 1, name: "Clarity", src: "Affirmations/clarityAff.mp4" },
+    { id: 2, name: "Gratitude", src: "Affirmations/gratAff.mp4" },
+    { id: 3, name: "Healing", src: "Affirmations/healingAff.mp4" },
+    { id: 4, name: "Positivity", src: "Affirmations/posAff.mp4" },
+    { id: 5, name: "Worthiness", src: "Affirmations/worthyAff.mp4" },
   ],
   "Soothing Stories": [
-    { id: 1, name: "Dragon", src: dragonStory },
-    { id: 2, name: "Lamp", src: lampStory },
-    { id: 3, name: "Mind Journey", src: mindStory },
-    { id: 4, name: "Pirate", src: pirateStory },
+    { id: 1, name: "Dragon", src: "SoothingStories/dragonStory.mp4" },
+    { id: 2, name: "Lamp", src: "SoothingStories/lampStory.mp4" },
+    { id: 3, name: "Mind Journey", src: "SoothingStories/mindStory.mp4" },
+    { id: 4, name: "Pirate", src: "SoothingStories/pirateStory.mp4" },
   ],
+
   "Ambient Noise": [], // add later
   "Mystery Signals": [] // add later
 };
