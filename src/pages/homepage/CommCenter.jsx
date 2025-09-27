@@ -157,8 +157,8 @@ const handleVolumeToggle = () => {
               </Col>
             </Row>
 
-            <Row className="g-0" style={{ height: "300px" }}>
-              <Col md={6} className="d-flex flex-column justify-content-center">
+            <Row className="g-0 " style={{ height: "300px" }}>
+              <Col md={6} sm={4} className="d-flex flex-column justify-content-center">
                 <Row className="justify-content-center mb-3">
                   <Col xs="auto" >
                     <Button variant="outline-info" onClick={handlePlay} className="w-100">
@@ -177,7 +177,7 @@ const handleVolumeToggle = () => {
                   </Col>
                 </Row>
 
-                <Row className="justify-content-center">
+                <Row className="justify-content-center" style={{ marginBottom: window.innerWidth < 768 ? '10px' : '30px' }}>
                   <Col xs="auto">
                     <Button variant="outline-info" onClick={handlePrev} className="w-100">
                       <FontAwesomeIcon icon={faBackward} />
@@ -198,9 +198,9 @@ const handleVolumeToggle = () => {
               </Col>
             </Row>
 
-            <Row className="mt-4">
-              <Col className="d-flex justify-content-center flex-wrap gap-2">
-              <h3 className="d-flex justify-content-center">Channel's</h3>
+            <Row className="mt-4 ">
+              <Col className="d-flex justify-content-center flex-wrap gap-2 ">
+              <h3 className="d-flex justify-content-center" style={{ marginTop: window.innerWidth < 768 ? '100px' : '30px' }}>Channel's</h3>
                 {Object.keys(CHANNELS).map(channel => (
                   <Button
                     key={channel}
@@ -227,9 +227,9 @@ const handleVolumeToggle = () => {
                   <Button variant="outline-info"  style={{display: 'flex', justifyContent: 'center', fontSize: '20px',
           color: 'white',
           cursor: 'pointer',
-          width: '10%',
-          justifySelf: 'center',
           
+          justifySelf: 'center',
+          width: window.innerWidth < 768 ? '30%' : '10%',
          
           marginTop: '60px'}}>Exit</Button>
                   </Link>

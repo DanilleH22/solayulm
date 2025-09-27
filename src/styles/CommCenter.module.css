@@ -33,7 +33,7 @@
 
 
 Button {
-    width: 40%;
+    width: 30%;
 }
 
 
@@ -46,3 +46,29 @@ Button {
   overflow: hidden;   
 
 }
+
+@media (max-width: 768px) {
+  
+.CircleBorder {
+
+  width: 90%; /* Equal width and height for a perfect circle */
+  height: 90%;
+  
+
+}
+
+
+
+.borderWrapper {
+    width: 90%;
+}
+
+
+
+Button {
+    width: 50%;
+   
+}
+
+
+} 
