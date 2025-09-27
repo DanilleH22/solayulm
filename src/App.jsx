@@ -26,7 +26,7 @@ const App = () => {
           <Route path="/DecompressionBay" element={<DecompressionBay />} />
           <Route path="/AirlockJournal" element={<AirlockJournal />} />
           <Route path="/ObservationDeck" element={<ObservationDeck />} />
-            <Route path="*" element={<h1>Page not found!</h1>} />
+            <Route path="*" element={<h1>Page has not been found!</h1>} />
           </Routes>
         </div>
         <Footer />
