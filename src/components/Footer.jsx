@@ -13,7 +13,7 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 
 
 import useSound from 'use-sound';
-import midnight from '/music/Midnight_Bliss.mp3';
+
 
 
 
@@ -25,7 +25,7 @@ function Footer() {
   
 
   const [isPlaying, setIsPlaying] = useState(false);
-  const [play, { stop }] = useSound(midnight);
+  const [play, { stop }] = useSound('/music/Midnight_Bliss.mp3');
 
   const handleClick = () => {
     if (isPlaying) {
