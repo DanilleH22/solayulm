@@ -523,7 +523,7 @@ function enableLogs(debugConfig, context, id) {
     // Some browsers don't allow to use bind on console object anyway
     // fallback to default if needed
     try {
-      newLogger.log(`Debug logs enabled for "${context}" in hls.js version ${"1.6.12"}`);
+      newLogger.log(`Debug logs enabled for "${context}" in hls.js version ${"1.6.13"}`);
     } catch (e) {
       /* log fn threw an exception. All logger methods are no-ops. */
       return createLogger();
@@ -1056,23 +1056,23 @@ class Fragment extends BaseSegment {
     this._bitrate = value;
   }
   get decryptdata() {
+    var _this$_decryptdata;
     const {
       levelkeys
     } = this;
-    if (!levelkeys && !this._decryptdata) {
+    if (!levelkeys || levelkeys.NONE) {
       return null;
     }
-    if (!this._decryptdata && this.levelkeys && !this.levelkeys.NONE) {
-      const key = this.levelkeys.identity;
-      if (key) {
-        this._decryptdata = key.getDecryptData(this.sn);
-      } else {
-        const keyFormats = Object.keys(this.levelkeys);
-        if (keyFormats.length === 1) {
-          const levelKey = this._decryptdata = this.levelkeys[keyFormats[0]] || null;
-          if (levelKey) {
-            return levelKey.getDecryptData(this.sn);
-          }
+    if (levelkeys.identity) {
+      if (!this._decryptdata) {
+        this._decryptdata = levelkeys.identity.getDecryptData(this.sn);
+      }
+    } else if (!((_this$_decryptdata = this._decryptdata) != null && _this$_decryptdata.keyId)) {
+      const keyFormats = Object.keys(levelkeys);
+      if (keyFormats.length === 1) {
+        const levelKey = this._decryptdata = levelkeys[keyFormats[0]] || null;
+        if (levelKey) {
+          this._decryptdata = levelKey.getDecryptData(this.sn, levelkeys);
         }
       }
     }
@@ -1089,11 +1089,11 @@ class Fragment extends BaseSegment {
     return this.programDateTime + duration * 1000;
   }
   get encrypted() {
-    var _this$_decryptdata;
+    var _this$_decryptdata2;
     // At the m3u8-parser level we need to add support for manifest signalled keyformats
     // when we want the fragment to start reporting that it is encrypted.
     // Currently, keyFormat will only be set for identity keys
-    if ((_this$_decryptdata = this._decryptdata) != null && _this$_decryptdata.encrypted) {
+    if ((_this$_decryptdata2 = this._decryptdata) != null && _this$_decryptdata2.encrypted) {
       return true;
     } else if (this.levelkeys) {
       var _this$levelkeys$keyFo;
@@ -1149,10 +1149,12 @@ class Fragment extends BaseSegment {
     }
   }
   setKeyFormat(keyFormat) {
-    if (this.levelkeys) {
-      const key = this.levelkeys[keyFormat];
-      if (key && !this._decryptdata) {
-        this._decryptdata = key.getDecryptData(this.sn);
+    const levelkeys = this.levelkeys;
+    if (levelkeys) {
+      var _this$_decryptdata3;
+      const key = levelkeys[keyFormat];
+      if (key && !((_this$_decryptdata3 = this._decryptdata) != null && _this$_decryptdata3.keyId)) {
+        this._decryptdata = key.getDecryptData(this.sn, levelkeys);
       }
     }
   }
@@ -1668,44 +1670,55 @@ function patchEncyptionData(initSegment, decryptdata) {
   }
   const keyId = decryptdata.keyId;
   if (keyId && decryptdata.isCommonEncryption) {
-    const traks = findBox(initSegment, ['moov', 'trak']);
-    traks.forEach(trak => {
-      const stsd = findBox(trak, ['mdia', 'minf', 'stbl', 'stsd'])[0];
-
-      // skip the sample entry count
-      const sampleEntries = stsd.subarray(8);
-      let encBoxes = findBox(sampleEntries, ['enca']);
-      const isAudio = encBoxes.length > 0;
-      if (!isAudio) {
-        encBoxes = findBox(sampleEntries, ['encv']);
+    applyToTencBoxes(initSegment, (tenc, isAudio) => {
+      // Look for default key id (keyID offset is always 8 within the tenc box):
+      const tencKeyId = tenc.subarray(8, 24);
+      if (!tencKeyId.some(b => b !== 0)) {
+        logger.log(`[eme] Patching keyId in 'enc${isAudio ? 'a' : 'v'}>sinf>>tenc' box: ${arrayToHex(tencKeyId)} -> ${arrayToHex(keyId)}`);
+        tenc.set(keyId, 8);
       }
-      encBoxes.forEach(enc => {
-        const encBoxChildren = isAudio ? enc.subarray(28) : enc.subarray(78);
-        const sinfBoxes = findBox(encBoxChildren, ['sinf']);
-        sinfBoxes.forEach(sinf => {
-          const tenc = parseSinf(sinf);
-          if (tenc) {
-            // Look for default key id (keyID offset is always 8 within the tenc box):
-            const tencKeyId = tenc.subarray(8, 24);
-            if (!tencKeyId.some(b => b !== 0)) {
-              logger.log(`[eme] Patching keyId in 'enc${isAudio ? 'a' : 'v'}>sinf>>tenc' box: ${arrayToHex(tencKeyId)} -> ${arrayToHex(keyId)}`);
-              tenc.set(keyId, 8);
-            }
-          }
-        });
-      });
     });
   }
+}
+function parseKeyIdsFromTenc(initSegment) {
+  const keyIds = [];
+  applyToTencBoxes(initSegment, tenc => keyIds.push(tenc.subarray(8, 24)));
+  return keyIds;
+}
+function applyToTencBoxes(initSegment, predicate) {
+  const traks = findBox(initSegment, ['moov', 'trak']);
+  traks.forEach(trak => {
+    const stsd = findBox(trak, ['mdia', 'minf', 'stbl', 'stsd'])[0];
+    if (!stsd) return;
+    const sampleEntries = stsd.subarray(8);
+    let encBoxes = findBox(sampleEntries, ['enca']);
+    const isAudio = encBoxes.length > 0;
+    if (!isAudio) {
+      encBoxes = findBox(sampleEntries, ['encv']);
+    }
+    encBoxes.forEach(enc => {
+      const encBoxChildren = isAudio ? enc.subarray(28) : enc.subarray(78);
+      const sinfBoxes = findBox(encBoxChildren, ['sinf']);
+      sinfBoxes.forEach(sinf => {
+        const tenc = parseSinf(sinf);
+        if (tenc) {
+          predicate(tenc, isAudio);
+        }
+      });
+    });
+  });
 }
 function parseSinf(sinf) {
   const schm = findBox(sinf, ['schm'])[0];
   if (schm) {
     const scheme = bin2str(schm.subarray(4, 8));
     if (scheme === 'cbcs' || scheme === 'cenc') {
-      return findBox(sinf, ['schi', 'tenc'])[0];
+      const tenc = findBox(sinf, ['schi', 'tenc'])[0];
+      if (tenc) {
+        return tenc;
+      }
     }
   }
-  return null;
 }
 
 /*
@@ -7096,7 +7109,7 @@ class LevelKey {
     }
     return false;
   }
-  getDecryptData(sn) {
+  getDecryptData(sn, levelKeys) {
     if (!this.encrypted || !this.uri) {
       return null;
     }
@@ -7117,10 +7130,18 @@ class LevelKey {
       const decryptdata = new LevelKey(this.method, this.uri, 'identity', this.keyFormatVersions, iv);
       return decryptdata;
     }
-    if (this.pssh && this.keyId) {
-      return this;
+    if (this.keyId) {
+      // Handle case where key id is changed in KEY_LOADING event handler #7542#issuecomment-3305203929
+      const assignedKeyId = keyUriToKeyIdMap[this.uri];
+      if (assignedKeyId && !arrayValuesMatch(this.keyId, assignedKeyId)) {
+        LevelKey.setKeyIdForUri(this.uri, this.keyId);
+      }
+      if (this.pssh) {
+        return this;
+      }
     }
 
+    // Key bytes are signalled the KEYID attribute, typically only found on WideVine KEY tags
     // Initialize keyId if possible
     const keyBytes = convertDataUriToArrayBytes(this.uri);
     if (keyBytes) {
@@ -7139,8 +7160,7 @@ class LevelKey {
             }
           }
           if (!this.keyId) {
-            const offset = keyBytes.length - 22;
-            this.keyId = keyBytes.subarray(offset, offset + 16);
+            this.keyId = getKeyIdFromPlayReadyKey(levelKeys);
           }
           break;
         case KeySystemFormats.PLAYREADY:
@@ -7167,20 +7187,40 @@ class LevelKey {
       }
     }
 
-    // Default behavior: assign a new keyId for each uri
+    // Default behavior: get keyId from other KEY tag or URI lookup
     if (!this.keyId || this.keyId.byteLength !== 16) {
-      let keyId = keyUriToKeyIdMap[this.uri];
+      let keyId;
+      keyId = getKeyIdFromWidevineKey(levelKeys);
       if (!keyId) {
-        const val = Object.keys(keyUriToKeyIdMap).length % Number.MAX_SAFE_INTEGER;
-        keyId = new Uint8Array(16);
-        const dv = new DataView(keyId.buffer, 12, 4); // Just set the last 4 bytes
-        dv.setUint32(0, val);
+        keyId = getKeyIdFromPlayReadyKey(levelKeys);
+        if (!keyId) {
+          keyId = keyUriToKeyIdMap[this.uri];
+        }
+      }
+      if (keyId) {
+        this.keyId = keyId;
         LevelKey.setKeyIdForUri(this.uri, keyId);
       }
-      this.keyId = keyId;
     }
     return this;
   }
+}
+function getKeyIdFromWidevineKey(levelKeys) {
+  const widevineKey = levelKeys == null ? void 0 : levelKeys[KeySystemFormats.WIDEVINE];
+  if (widevineKey) {
+    return widevineKey.keyId;
+  }
+  return null;
+}
+function getKeyIdFromPlayReadyKey(levelKeys) {
+  const playReadyKey = levelKeys == null ? void 0 : levelKeys[KeySystemFormats.PLAYREADY];
+  if (playReadyKey) {
+    const playReadyKeyBytes = convertDataUriToArrayBytes(playReadyKey.uri);
+    if (playReadyKeyBytes) {
+      return parsePlayReadyWRM(playReadyKeyBytes);
+    }
+  }
+  return null;
 }
 function createInitializationVector(segmentNumber) {
   const uint8View = new Uint8Array(16);
@@ -10500,7 +10540,7 @@ function requireEventemitter3 () {
 var eventemitter3Exports = requireEventemitter3();
 var EventEmitter = /*@__PURE__*/getDefaultExportFromCjs(eventemitter3Exports);
 
-const version = "1.6.12";
+const version = "1.6.13";
 
 // ensure the worker ends up in the bundle
 // If the worker should not be included this gets aliased to empty.js
@@ -14857,6 +14897,14 @@ function toMsFromMpegTsClock(baseTime, round = false) {
 function toMpegTsClockFromTimescale(baseTime, srcScale = 1) {
   return toTimescaleFromBase(baseTime, MPEG_TS_CLOCK_FREQ_HZ, 1 / srcScale);
 }
+function timestampToString(timestamp) {
+  const {
+    baseTime,
+    timescale,
+    trackId
+  } = timestamp;
+  return `${baseTime / timescale} (${baseTime}/${timescale}) trackId: ${trackId}`;
+}
 
 const MAX_SILENT_FRAME_DURATION = 10 * 1000; // 10 seconds
 const AAC_SAMPLES_PER_FRAME = 1024;
@@ -14913,7 +14961,10 @@ class MP4Remuxer extends Logger {
     this.config = this.videoTrackConfig = this._initPTS = this._initDTS = null;
   }
   resetTimeStamp(defaultTimeStamp) {
-    this.log('initPTS & initDTS reset');
+    const initPTS = this._initPTS;
+    if (!initPTS || !defaultTimeStamp || defaultTimeStamp.trackId !== initPTS.trackId || defaultTimeStamp.baseTime !== initPTS.baseTime || defaultTimeStamp.timescale !== initPTS.timescale) {
+      this.log(`Reset initPTS: ${initPTS ? timestampToString(initPTS) : initPTS} > ${defaultTimeStamp ? timestampToString(defaultTimeStamp) : defaultTimeStamp}`);
+    }
     this._initPTS = this._initDTS = defaultTimeStamp;
   }
   resetNextTimestamp() {
@@ -15060,6 +15111,17 @@ class MP4Remuxer extends Logger {
       id3
     };
   }
+  computeInitPts(basetime, timescale, presentationTime, type) {
+    const offset = Math.round(presentationTime * timescale);
+    let timestamp = normalizePts(basetime, offset);
+    if (timestamp < offset + timescale) {
+      this.log(`Adjusting PTS for rollover in timeline near ${(offset - timestamp) / timescale} ${type}`);
+      while (timestamp < offset + timescale) {
+        timestamp += 8589934592;
+      }
+    }
+    return timestamp - offset;
+  }
   generateIS(audioTrack, videoTrack, timeOffset, accurateTimeOffset) {
     const audioSamples = audioTrack.samples;
     const videoSamples = videoTrack.samples;
@@ -15110,7 +15172,7 @@ class MP4Remuxer extends Logger {
         timescale = audioTrack.inputTimeScale;
         if (!_initPTS || timescale !== _initPTS.timescale) {
           // remember first PTS of this demuxing context. for audio, PTS = DTS
-          initPTS = initDTS = audioSamples[0].pts - Math.round(timescale * timeOffset);
+          initPTS = initDTS = this.computeInitPts(audioSamples[0].pts, timescale, timeOffset, 'audio');
         } else {
           computePTSDTS = false;
         }
@@ -15134,10 +15196,12 @@ class MP4Remuxer extends Logger {
         trackId = videoTrack.id;
         timescale = videoTrack.inputTimeScale;
         if (!_initPTS || timescale !== _initPTS.timescale) {
-          const startPTS = this.getVideoStartPts(videoSamples);
-          const startOffset = Math.round(timescale * timeOffset);
-          initDTS = Math.min(initDTS, normalizePts(videoSamples[0].dts, startPTS) - startOffset);
-          initPTS = Math.min(initPTS, startPTS - startOffset);
+          const basePTS = this.getVideoStartPts(videoSamples);
+          const baseDTS = normalizePts(videoSamples[0].dts, basePTS);
+          const videoInitDTS = this.computeInitPts(baseDTS, timescale, timeOffset, 'video');
+          const videoInitPTS = this.computeInitPts(basePTS, timescale, timeOffset, 'video');
+          initDTS = Math.min(initDTS, videoInitDTS);
+          initPTS = Math.min(initPTS, videoInitPTS);
         } else {
           computePTSDTS = false;
         }
@@ -15489,10 +15553,14 @@ class MP4Remuxer extends Logger {
       sample.pts = normalizePts(sample.pts, timeOffsetMpegTS);
     });
     if (!contiguous || nextAudioTs < 0) {
+      const sampleCount = inputSamples.length;
       // filter out sample with negative PTS that are not playable anyway
       // if we don't remove these negative samples, they will shift all audio samples forward.
       // leading to audio overlap between current / next fragment
       inputSamples = inputSamples.filter(sample => sample.pts >= 0);
+      if (sampleCount !== inputSamples.length) {
+        this.warn(`Removed ${inputSamples.length - sampleCount} of ${sampleCount} samples (initPTS ${initTime} / ${inputTimeScale})`);
+      }
 
       // in case all samples have negative PTS, and have been filtered out, return now
       if (!inputSamples.length) {
@@ -22744,7 +22812,7 @@ class EMEController extends Logger {
       } else {
         var _context$keyStatusTim;
         // Timeout key-status
-        const timeout = 0;
+        const timeout = 1000;
         context.keyStatusTimeouts || (context.keyStatusTimeouts = {});
         (_context$keyStatusTim = context.keyStatusTimeouts)[keyId] || (_context$keyStatusTim[keyId] = self.setTimeout(() => {
           if (!context.mediaKeysSession || !this.mediaKeys) {
@@ -34771,6 +34839,18 @@ class KeyLoader extends Logger {
       keyInfo
     };
     if (this.emeController && this.config.emeEnabled) {
+      var _frag$initSegment;
+      if (!keyInfo.decryptdata.keyId && (_frag$initSegment = frag.initSegment) != null && _frag$initSegment.data) {
+        const keyIds = parseKeyIdsFromTenc(frag.initSegment.data);
+        if (keyIds.length) {
+          const keyId = keyIds[0];
+          if (keyId.some(b => b !== 0)) {
+            this.log(`Using keyId found in init segment ${arrayToHex(keyId)}`);
+            keyInfo.decryptdata.keyId = keyId;
+            LevelKey.setKeyIdForUri(keyInfo.decryptdata.uri, keyId);
+          }
+        }
+      }
       const keySessionContextPromise = this.emeController.loadKey(keyLoadedData);
       return (keyInfo.keyLoadPromise = keySessionContextPromise.then(keySessionContext => {
         keyInfo.mediaKeySessionContext = keySessionContext;
