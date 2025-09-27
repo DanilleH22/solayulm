@@ -339,12 +339,9 @@ const [focus, setFocus] = useState(50);
         boxShadow: 'none',
        
       },
+    
     '& .MuiSlider-valueLabel': {
       minWidth: 45,     
-      height: 32,
-      fontSize: 14,
-    },
-    '& .MuiSlider-valueLabel': {
     lineHeight: 1.2,
     fontSize: 12,
     background: 'unset',

@@ -66,22 +66,22 @@ body, html {
 .exploreButton {
     position: absolute;
     top: 85%;
-    left: 50%;
+    left: 55%;
     transform: translate(-50%, -50%);
     font-size: 18px;
     color: white;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    width: 10%;
+    width: 30%;
 }
 
-.exploreButton Button {
+.exploreButton button {
     background-color: #6a626e;
     border: none;
 }
 
-.exploreButton Button:hover {
+.exploreButton button:hover {
     background-color: #555151;
 }
 

@@ -46,3 +46,20 @@
   background-color: transparent !important;
   backdrop-filter: none;
 }
+
+
+
+
+.customAlert .btn-close {
+  filter: invert(1); /* turns it white */
+  opacity: 0.9;
+}
+
+.customAlert .btn-close:hover {
+  opacity: 1;
+}
+.customAlert :global(.btn-close) {
+  filter: invert(1);
+  opacity: 0.9;
+}
+

@@ -212,7 +212,7 @@ const onMove = useCallback(
    <h3>When to use it?</h3>
    <p>When you feel the need to speak openly, reach out, or preserve your words for someone—or something—beyond yourself.</p>
    <div className={styles.exploringButton}>
-  <Link to="/comm-center">
+  <Link to="/CommCenter">
     <Button className={styles.exploreBtn}>Explore</Button>
   </Link>
 </div>
@@ -241,7 +241,7 @@ const onMove = useCallback(
    <h3>When to use it?</h3>
    <p>When you crave connection without expectation, or when you want to share truths without leaving a trace.</p>
    <div className={styles.exploringButton}>
-  <Link to="/void-chat">
+  <Link to="/VoidChat">
     <Button className={styles.exploreBtn}>Explore</Button>
   </Link>
 </div>
@@ -303,7 +303,7 @@ const onMove = useCallback(
    <h3>When to use it?</h3>
    <p>When emotions overflow, when ideas spark, or when you long to make something uniquely yours.</p>
    <div className={styles.exploringButton}>
-  <Link to="/holo-room">
+  <Link to="/HoloRoom">
     <Button className={styles.exploreBtn}>Explore</Button>
   </Link>
 </div>
@@ -334,7 +334,7 @@ const onMove = useCallback(
    <p>When you feel lost, curious, or simply in need of a voice to remind you that you’re not drifting through the void alone.
    </p>
    <div className={styles.exploringButton}>
-  <Link to="/cosmic-companion">
+  <Link to="/cosmicCompanion">
     <Button className={styles.exploreBtn}>Explore</Button>
   </Link>
 </div>

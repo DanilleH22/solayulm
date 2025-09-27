@@ -10,9 +10,11 @@ import DecompressionBay from "./pages/homepage/DecompressionBay.jsx";
 import "./App.css";
 import AirlockJournal from "./pages/homepage/AirlockJournal.jsx";
 import ObservationDeck from "./pages/homepage/ObservationDeck.jsx";
-
-
-
+import Testing from "./pages/homepage/testing.jsx";
+import CommCenter from "./pages/homepage/CommCenter.jsx";
+import VoidChat from "./pages/homepage/VoidChat.jsx";
+import HoloRoom from "./pages/homepage/HoloRoom.jsx";
+import AiCompanion from "./pages/homepage/AiCompanion.jsx";
 
 const App = () => {
   return (
@@ -26,7 +28,12 @@ const App = () => {
           <Route path="/DecompressionBay" element={<DecompressionBay />} />
           <Route path="/AirlockJournal" element={<AirlockJournal />} />
           <Route path="/ObservationDeck" element={<ObservationDeck />} />
-            <Route path="*" element={<h1>Page has not been found!</h1>} />
+          <Route path="/CommCenter" element={<CommCenter />} />
+          <Route path="/VoidChat" element={<VoidChat />} />
+          <Route path="/HoloRoom" element={<HoloRoom />} />
+          <Route path="/testing" element={<Testing />} />
+          <Route path="/cosmicCompanion" element={<AiCompanion />} />
+            <Route path="*" element={<h1>Page not found!</h1>} />
           </Routes>
         </div>
         <Footer />

@@ -1,0 +1,48 @@
+
+.wrapper {
+  display: flex;
+  justify-content: center; /* horizontal centering */
+  align-items: center;     /* vertical centering */
+       /* full viewport height */
+    
+}
+
+.borderWrapper {
+    width: 60%;
+    
+    display: inline-block; /* shrink to content width */
+    justify-self: center;
+    justify-content: center ;
+  border-radius: 30px; /* rounds the border */
+  padding: 5px;        /* thickness of the border */
+  background: linear-gradient(to right, rgb(173, 220, 244), rgb(223, 175, 237));
+  display: inline-block; /* shrink to content width */
+}
+
+.gradientBox {
+  border-radius: 25px; /* slightly smaller so it fits inside wrapper */
+   
+  background: linear-gradient(
+      90deg,
+      rgba(26, 26, 46, 0.9),
+      rgba(46, 46, 77, 0.8),
+      rgba(123, 123, 194, 0.7)
+    );
+  padding: 20px;
+}
+
+
+Button {
+    width: 40%;
+}
+
+
+.CircleBorder {
+
+  width: 90%; /* Equal width and height for a perfect circle */
+  height: 100%;
+  border: 2px solid #007bff; /* Set your desired border style and color */
+  border-radius: 50%; /* Makes the corners round to form a circle */
+  overflow: hidden;   
+
+}

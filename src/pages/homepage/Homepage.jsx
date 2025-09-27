@@ -96,11 +96,24 @@ const onMove = useCallback(
 <h3>Welcome to the quiet edge of the galaxy.</h3>
 </motion.div>
     </div>
-    <div className={styles.exploreButton}>
-    <Link to="/Rooms">
-      <Button >Explore</Button>
-      </Link>
-    </div>
+   <div className={styles.exploreButton}>
+  <Link
+    to="/Rooms"
+    style={{
+      textDecoration: "none",
+      outline: "none",
+      color: "inherit",
+      WebkitTapHighlightColor: "transparent", 
+    }}
+  >
+    <Button
+      style={{ backgroundColor: "#6a626e", }}
+    >
+      Explore
+    </Button>
+  </Link>
+</div>
+
   </div>
   <Row className={styles.servicesTextWrapper}>
   <Col className={styles.servicesText}>
@@ -209,6 +222,22 @@ const onMove = useCallback(
       </div>
       </Col>
       </Row>
+      <Row>
+                    <Col md={12}>
+                    <div className="flex justify-content-center align-items-center" >
+                    <Link to="/DecompressionBay" style={{ textDecoration: 'none'}}>
+                      <Button  style={{display: 'flex', justifyContent: 'center', fontSize: '20px',
+              color: 'white',
+              cursor: 'pointer',
+              width: '10%',
+              justifySelf: 'center',
+              backgroundColor: '#6a626e',
+              borderRadius: '20px',
+              marginTop: '60px'}}>Enter</Button>
+                      </Link>
+                    </div>
+                    </Col>
+                </Row>
     </Tab>
     
   
@@ -289,6 +318,22 @@ const onMove = useCallback(
       </div>
       </Col>
       </Row>
+      <Row>
+                    <Col md={12}>
+                    <div className="flex justify-content-center align-items-center" >
+                    <Link to="/AirlockJournal" style={{ textDecoration: 'none'}}>
+                      <Button  style={{display: 'flex', justifyContent: 'center', fontSize: '20px',
+              color: 'white',
+              cursor: 'pointer',
+              width: '10%',
+              justifySelf: 'center',
+              backgroundColor: '#6a626e',
+              borderRadius: '20px',
+              marginTop: '60px'}}>Enter</Button>
+                      </Link>
+                    </div>
+                    </Col>
+                </Row>
     </Tab>
 
 
@@ -370,6 +415,22 @@ const onMove = useCallback(
       </div>
       </Col>
       </Row>
+      <Row>
+                    <Col md={12}>
+                    <div className="flex justify-content-center align-items-center" >
+                    <Link to="/ObservationDeck" style={{ textDecoration: 'none'}}>
+                      <Button  style={{display: 'flex', justifyContent: 'center', fontSize: '20px',
+              color: 'white',
+              cursor: 'pointer',
+              width: '10%',
+              justifySelf: 'center',
+              backgroundColor: '#6a626e',
+              borderRadius: '20px',
+              marginTop: '60px'}}>Enter</Button>
+                      </Link>
+                    </div>
+                    </Col>
+                </Row>
     </Tab>
 
     <Tab eventKey="Comm Center" title="Comm Center">
@@ -448,6 +509,22 @@ const onMove = useCallback(
       </div>
       </Col>
       </Row>
+      <Row>
+                    <Col md={12}>
+                    <div className="flex justify-content-center align-items-center" >
+                    <Link to="/CommCenter" style={{ textDecoration: 'none'}}>
+                      <Button  style={{display: 'flex', justifyContent: 'center', fontSize: '20px',
+              color: 'white',
+              cursor: 'pointer',
+              width: '10%',
+              justifySelf: 'center',
+              backgroundColor: '#6a626e',
+              borderRadius: '20px',
+              marginTop: '60px'}}>Enter</Button>
+                      </Link>
+                    </div>
+                    </Col>
+                </Row>
     </Tab>
 
     <Tab eventKey="Void Chat" title="Void Chat">
@@ -526,6 +603,22 @@ const onMove = useCallback(
       </div>
       </Col>
       </Row>
+      <Row>
+                    <Col md={12}>
+                    <div className="flex justify-content-center align-items-center" >
+                    <Link to="/VoidChat" style={{ textDecoration: 'none'}}>
+                      <Button  style={{display: 'flex', justifyContent: 'center', fontSize: '20px',
+              color: 'white',
+              cursor: 'pointer',
+              width: '10%',
+              justifySelf: 'center',
+              backgroundColor: '#6a626e',
+              borderRadius: '20px',
+              marginTop: '60px'}}>Enter</Button>
+                      </Link>
+                    </div>
+                    </Col>
+                </Row>
     </Tab>
 
     <Tab eventKey="Holo Room" title="Holo Room">
@@ -605,6 +698,22 @@ const onMove = useCallback(
       </div>
       </Col>
       </Row>
+       <Row>
+                    <Col md={12}>
+                    <div className="flex justify-content-center align-items-center" >
+                    <Link to="/HoloRoom" style={{ textDecoration: 'none'}}>
+                      <Button  style={{display: 'flex', justifyContent: 'center', fontSize: '20px',
+              color: 'white',
+              cursor: 'pointer',
+              width: '10%',
+              justifySelf: 'center',
+              backgroundColor: '#6a626e',
+              borderRadius: '20px',
+              marginTop: '60px'}}>Enter</Button>
+                      </Link>
+                    </div>
+                    </Col>
+                </Row>
     </Tab>
 
 
@@ -676,7 +785,7 @@ const onMove = useCallback(
 </div>
 <div className={styles.inlineText}>
   <h3>Access:</h3>
-  <p>Always open</p>
+  <p>In Development</p>
 </div>
 
 
@@ -687,6 +796,22 @@ const onMove = useCallback(
       </div>
       </Col>
       </Row>
+      <Row>
+                    <Col md={12}>
+                    <div className="flex justify-content-center align-items-center" >
+                    <Link to="/cosmicCompanion" style={{ textDecoration: 'none'}}>
+                      <Button  style={{display: 'flex', justifyContent: 'center', fontSize: '20px',
+              color: 'white',
+              cursor: 'pointer',
+              width: '10%',
+              justifySelf: 'center',
+              backgroundColor: '#6a626e',
+              borderRadius: '20px',
+              marginTop: '60px'}}>Enter</Button>
+                      </Link>
+                    </div>
+                    </Col>
+                </Row>
     </Tab>
   </Tabs>
   

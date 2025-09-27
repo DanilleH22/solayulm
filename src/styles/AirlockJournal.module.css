@@ -20,7 +20,8 @@ background: linear-gradient(90deg, #3b3b6a 0%, #52528f 50%, #9f9ff9 100%);
   padding: 10px 20px;
   font-weight: bold;
   transition: all 0.3s ease;
-   box-shadow: 0 0 20px #b5acd9;;
+   box-shadow: 0 0 20px #b5acd9;
+   width: 100%;
 }
 
 .sendBtn:hover {
