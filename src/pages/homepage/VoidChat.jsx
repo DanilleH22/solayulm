@@ -231,7 +231,7 @@ const handleClick = () => {
           {messages.map((msg) => (
             <motion.div
               key={msg.id}
-              initial={{ opacity: 0, y: 50, scale: 0.8 }}
+              initial={{ opacity: 0, y: 0, scale: 0.8 }}
               animate={{
                 opacity: 1,
                 y: msg.y,
@@ -242,7 +242,7 @@ const handleClick = () => {
               transition={{ duration: 6, ease: "easeOut" }}
               style={{
                 position: 'absolute',
-                bottom: '100px',
+                
                 left: '50%',
                 padding: '10px 15px',
                 backgroundColor: 'rgba(110, 110, 240, 0.9)',
