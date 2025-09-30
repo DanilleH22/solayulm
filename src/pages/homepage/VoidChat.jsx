@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from "react-router";
 import  ShootingStars  from "../../components/ShootingStars.jsx"
 import  { Aurora } from "../../components/Aurora.jsx"
-
+import styles from "../../styles/VoidChat.module.css"
 
 
 const VoidChat = () => {
@@ -216,7 +216,7 @@ const handleClick = () => {
 
       <div style={{ 
         position: 'relative', 
-        minHeight: '600px', 
+        minHeight: '800px', 
         border: '2px solid #33335a', 
         borderRadius: '15px',
         overflow: 'hidden',
@@ -240,20 +240,8 @@ const handleClick = () => {
               }}
               exit={{ opacity: 0 }}
               transition={{ duration: 6, ease: "easeOut" }}
-              style={{
-                position: 'absolute',
-                
-                left: '50%',
-                padding: '10px 15px',
-                backgroundColor: 'rgba(110, 110, 240, 0.9)',
-                borderRadius: '20px',
-                color: 'white',
-                fontSize: '14px',
-                maxWidth: '200px',
-                textAlign: 'center',
-                boxShadow: '0 4px 15px rgba(0, 0, 0, 0.3)',
-                zIndex: 1000,
-              }}
+              className={styles.AnimatedText}
+              
             >
               <span style={{ fontSize: '20px', display: 'block', marginBottom: '5px' }}>{msg.icon}</span>
               <p style={{ margin: 0 }}>{msg.text}</p>

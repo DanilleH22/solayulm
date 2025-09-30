@@ -1,104 +1,27 @@
 
 
-.messageBubble {
-  position: absolute;
-  bottom: 50px;
-  left: 50%;
-  transform: translateX(-50%);
-  padding: 10px 15px;
-  border-radius: 20px;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(6px);
-  box-shadow: 0 0 10px rgba(173, 216, 230, 0.5);
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 16px;
-  width: 50vw;
-}
+.AnimatedText{
 
-.icon {
-  font-size: 20px;
-}
-
-/* .inputArea {
-  position: absolute;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 10px;
-} */
-
-
-
-.inputArea{
-    padding: 10px;
-  border-radius: 10px;
-  border: none;
-  outline: none;
-  color: white;
-  width: 100%;
-}
-
-.inputAreabtn {
-  padding: 10px 20px;
-  border: none;
-  border-radius: 10px;
-  background: #38bdf8;
-  color: white;
-  font-weight: bold;
-  cursor: pointer;
+                position: absolute;
+                height: auto;
+                left: 50%;
+                padding: 10px 15px;
+                background-color: rgba(110, 110, 240, 0.9);
+                border-radius: 20px;
+                color: white;
+                font-size: 14px;
+                width: fit-content;
+                text-align: center;
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+                z-index: 1000;
+                transform: translateX(-50%, -50%);
+          
 }
 
 
-
-
-
-
-
-
-
-
-.voidChat {
-  position: relative;
-  height: 100vh; /* or container height */
-  width: 100%;
-  background: #000; /* space background */
-  overflow: hidden;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-}
-
-.inputDock {
-  margin-top: auto; /* pushes it to the bottom of .voidChat */
-  background: rgba(15, 23, 42, 0.85);
-  padding: 1rem;
-  border-top: 1px solid #333;
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-
-.controls {
-  display: flex;
-  justify-content: center;
-  gap: 0.5rem;
-}
-
-.inputBox {
-  width: 100%;
-  padding: 0.75rem;
-  border-radius: 0.5rem;
-  border: 1px solid #444;
-  background: #0f172a;
-  color: white;
-  resize: none;
-}
-
-.sendWrapper {
-  display: flex;
-  justify-content: flex-end;
+@media (max-width: 768px) {
+  .AnimatedText {
+    max-width: 200px;
+   
+  }
 }
