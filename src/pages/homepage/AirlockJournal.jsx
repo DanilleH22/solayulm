@@ -111,8 +111,11 @@ const AirlockJournal = () => {
         <Col xs={12} md={12}>
           <Link to="/Rooms" className='d-flex justify-content-center' style={{ background: 'none', textDecoration: 'none'}}>
             <Button onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            className={styles.sendBtn} 
-            style={{display: 'flex', justifyContent: 'center', width: '10%'}}>Exit</Button>
+            className={styles.ExitBtn} 
+            style={{display: 'flex', 
+              justifyContent: 'center', 
+              
+            }}>Exit</Button>
           </Link>
         </Col>
       </Row>
