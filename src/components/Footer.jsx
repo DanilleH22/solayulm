@@ -25,7 +25,9 @@ function Footer() {
   
 
   const [isPlaying, setIsPlaying] = useState(false);
+  const [MusicIsPlaying, setMusicIsPlaying] = useState(false);
   const [play, { stop }] = useSound('/music/Midnight_Bliss.mp3');
+  const [playing, { pause }] = useSound('/AmbientNoises/alien-planet-underwater.mp3');
 
   const handleClick = () => {
     if (isPlaying) {
@@ -36,6 +38,17 @@ function Footer() {
       setIsPlaying(true);
     }
   };
+
+  const handlePlaying = () => {
+    if (MusicIsPlaying) {
+      pause();
+      setMusicIsPlaying(false);
+    } else {
+      playing();
+      setMusicIsPlaying(true);
+    }
+  };
+  
 
 
 
@@ -83,8 +96,9 @@ function Footer() {
             <h4>Ambience </h4>
               <Form.Check
                 type="switch"
-                id="check-switch"
-                
+                id="music-switch"
+        onClick={handlePlaying}
+        checked={MusicIsPlaying}
               />
             </Form>
 
