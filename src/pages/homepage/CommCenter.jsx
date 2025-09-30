@@ -25,23 +25,63 @@ const CHANNELS = {
     { id: 3, name: "Lofi 3", src: "LofiBeats/lofi3.mp4" },
     { id: 4, name: "Lofi 4", src: "LofiBeats/lofi4.mp4" },
     { id: 5, name: "Lofi 5", src: "LofiBeats/lofi5.mp4" },
+    { id: 6, name: "Lofi 6", src: "LofiBeats/lofi6.mp3" },
+    { id: 7, name: "Lofi 7", src: "LofiBeats/lofi7.mp3" },
+    { id: 8, name: "Lofi 8", src: "LofiBeats/lofi8.mp3" },
+    { id: 9, name: "Lofi 9", src: "LofiBeats/lofi9.mp3" },
+    { id: 10, name: "Lofi 10", src: "LofiBeats/lofi10.mp3" },
   ],
   "Affirmations": [
-    { id: 1, name: "Clarity", src: "Affirmations/clarityAff.mp4" },
-    { id: 2, name: "Gratitude", src: "Affirmations/gratAff.mp4" },
-    { id: 3, name: "Healing", src: "Affirmations/healingAff.mp4" },
-    { id: 4, name: "Positivity", src: "Affirmations/posAff.mp4" },
-    { id: 5, name: "Worthiness", src: "Affirmations/worthyAff.mp4" },
+    { id: 1, name: "Abundance & Success", src: "Affirmations/abu&suc.mp3" },
+    { id: 2, name: "Adventure & Expansion", src: "Affirmations/adv&exp.mp3" },
+    { id: 3, name: "Calm & Stress Relief", src: "Affirmations/calm&str.mp3" },
+    { id: 4, name: "Creativity & Inspiration", src: "Affirmations/cre&insp.mp3" },
+    { id: 5, name: "Focus & Productivity", src: "Affirmations/foc&pro.mp3" },
+    { id: 6, name: "Healing & Self-Love", src: "Affirmations/hea&sel.mp3" },
+    { id: 7, name: "Relationships & Connection", src: "Affirmations/rel&con.mp3" },
+    { id: 8, name: "Self-Confidence & Empowerment", src: "Affirmations/selfC&emp.mp3" },
+    { id: 9, name: "Sleep & Rest", src: "Affirmations/sle&res.mp3" },
+    { id: 10, name: "Spiritual Growth & Intuition", src: "Affirmations/spiG&int.mp3" },
+   
   ],
   "Soothing Stories": [
-    { id: 1, name: "Dragon", src: "SoothingStories/dragonStory.mp4" },
-    { id: 2, name: "Lamp", src: "SoothingStories/lampStory.mp4" },
-    { id: 3, name: "Mind Journey", src: "SoothingStories/mindStory.mp4" },
-    { id: 4, name: "Pirate", src: "SoothingStories/pirateStory.mp4" },
-  ],
+    { id: 1, name: "The Lighthouse on the Edge of a Nebula", src: "SoothingStories/lighthouse.mp3" },
+    { id: 2, name: "The Library of Stars", src: "SoothingStories/libraryS.mp3" },
+    { id: 3, name: "The Glass Planet", src: "SoothingStories/glassP.mp3" },
+    { id: 4, name: "The Sleeping Comet ", src: "SoothingStories/sleepingC.mp3" },
+    { id: 5, name: "The Garden on Io ", src: "SoothingStories/gardenL.mp3" },
+    { id: 6, name: "The Lighthouse of Andromeda", src: "SoothingStories/andromeda.mp3" },
+    { id: 7, name: "The Bridge of Auroras", src: "SoothingStories/bridgeAur.mp3" },
+    { id: 8, name: "The Forgotten Moon", src: "SoothingStories/forgottenM.mp3" },
+    { id: 9, name: "The Star Garden", src: "SoothingStories/starGard.mp3" },
+    { id: 10, name: "The Celestial Caravan", src: "SoothingStories/celestialCara.mp3" },
 
-  "Ambient Noise": [], // add later
-  "Mystery Signals": [] // add later
+  ],
+  
+
+  "Ambient Noise": [
+    { id: 1, name: "Ambiance 1", src: "AmbientNoises/ambient1.mp3" },
+    { id: 2, name: "Ambiance 2", src: "AmbientNoises/ambient2.mp3" },
+    { id: 3, name: "Ambiance 3", src: "AmbientNoises/ambient3.mp3" },
+    { id: 4, name: "Ambiance 4", src: "AmbientNoises/ambient4.mp3" },
+    { id: 5, name: "Ambiance 5", src: "AmbientNoises/ambient5.mp3" },
+    { id: 6, name: "Ambiance 6", src: "AmbientNoises/ambient6.mp3" },
+    { id: 7, name: "Ambiance 7", src: "AmbientNoises/ambient7.mp3" },
+    { id: 8, name: "Ambiance 8", src: "AmbientNoises/ambient8.mp3" },
+    { id: 9, name: "Ambiance 9", src: "AmbientNoises/ambient9mp3" },
+    { id: 10, name: "Ambiance 10", src: "AmbientNoises/ambient10.mp3" },
+  ], 
+  "Lost Signals": [
+    { id: 1, name: "Lost Signal 1", src: "MysterySignals/mystsignal1.mp3" },
+    { id: 2, name: "Lost Signal 2", src: "MysterySignals/mystsignal2.mp3" },
+    { id: 3, name: "Lost Signal 3", src: "MysterySignals/mystsignal3.mp3" },
+    { id: 4, name: "Lost Signal 4", src: "MysterySignals/mystsignal4.mp3" },
+    { id: 5, name: "Lost Signal 5", src: "MysterySignals/mystsignal5.mp3" },
+    { id: 6, name: "Lost Signal 6", src: "MysterySignals/mystsignal6.mp3" },
+    { id: 7, name: "Lost Signal 7", src: "MysterySignals/mystsignal7.mp3" },
+    { id: 8, name: "Lost Signal 8", src: "MysterySignals/mystsignal8.mp3" },
+
+  ] // add later
 };
 
 
