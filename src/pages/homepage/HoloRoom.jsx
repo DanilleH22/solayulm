@@ -7,12 +7,24 @@ import { Image as KonvaImage } from 'react-konva';
 import useImage from 'use-image'; 
 import { Transformer } from "react-konva";
 import { Link } from "react-router";
-import colouring1 from "../../assets/images/colouring1.PNG"
-import colouring2 from "../../assets/images/colouring2.PNG"
-import colouring3 from "../../assets/images/colouring3.PNG"
-import colouring4 from "../../assets/images/colouring4.PNG"
-import colouring5 from "../../assets/images/colouring5.PNG"
-import colouring6 from "../../assets/images/colouring6.PNG"
+
+import colouring1 from '../../assets/images/colouring/colouring1.png'
+import colouring2 from '../../assets/images/colouring/colouring2.png'
+import colouring3 from '../../assets/images/colouring/colouring3.png'
+import colouring4 from '../../assets/images/colouring/colouring4.png'
+import colouring5 from '../../assets/images/colouring/colouring5.png'
+import colouring6 from '../../assets/images/colouring/colouring6.png'
+import colouring7 from '../../assets/images/colouring/colouring7.png'
+import colouring8 from '../../assets/images/colouring/colouring8.png'
+import colouring9 from  '../../assets/images/colouring/colouring9.png'
+import colouring10 from '../../assets/images/colouring/colouring10.png'
+import colouring11 from '../../assets/images/colouring/colouring11.png'
+import colouring12 from '../../assets/images/colouring/colouring12.png'
+import colouring13 from '../../assets/images/colouring/colouring13.png'
+import colouring14 from '../../assets/images/colouring/colouring14.png'
+import colouring15 from '../../assets/images/colouring/colouring15.png'
+
+
 
 
 const constellations = {
@@ -103,7 +115,7 @@ const HoloRoom = () => {
   const [undoneLines, setUndoneLines] = useState([]);
   const [isVisible, setIsVisible] = useState(false);
   const [activeFeature, setActiveFeature] = useState('canvas');
-  const [img] = useImage(colouring1);
+  // const [img] = useImage(colouring1);
   const [currentConstellation, setCurrentConstellation] = useState("orion");
   const [moodImages, setMoodImages] = useState([]);
     const { name, dots } = constellations[currentConstellation];
@@ -191,7 +203,7 @@ const HoloRoom = () => {
         "What is a recurring challenge, and how might you approach it differently?",
         "Write about the last time you didn’t give up.",
       ],
-      'Relationships Connection' : [
+      'Connection' : [
           "Who in your life makes you feel most seen?",
         "What boundaries do you need right now?",
         "Write about a relationship that taught you an important lesson.",
@@ -235,7 +247,38 @@ const HoloRoom = () => {
   }
 };
 
+
+
+// choose random colouring page 
+
+
+     const ColouringPages = [
+      {id: 'colouring1', name: 'colouring1', src: colouring1},
+      {id: 'colouring2', name: 'colouring2', src: colouring2},
+      {id: 'colouring3', name: 'colouring3', src: colouring3},
+      {id: 'colouring4', name: 'colouring4', src: colouring4},
+      {id: 'colouring5', name: 'colouring5', src: colouring5},
+      {id: 'colouring6', name: 'colouring6', src: colouring6},
+      {id: 'colouring7', name: 'colouring7', src: colouring7},
+      {id: 'colouring8', name: 'colouring8', src: colouring8},
+      {id: 'colouring9', name: 'colouring9', src: colouring9},
+      {id: 'colouring10', name: 'colouring10', src: colouring10},
+      {id: 'colouring11', name: 'colouring11', src: colouring11},
+      {id: 'colouring12', name: 'colouring12', src: colouring12},
+      {id: 'colouring13', name: 'colouring13', src: colouring13},
+      {id: 'colouring14', name: 'colouring14', src: colouring14},
+      {id: 'colouring15', name: 'colouring15', src: colouring15},
+]
+
     
+     
+    const [currentColouringImage, setCurrentColouringImage] = useState(ColouringPages[0].src);
+    const [image] = useImage(currentColouringImage); // hook from use-image
+    const handleNextColouring = () => {
+      const randomIndex = Math.floor(Math.random() * ColouringPages.length);
+      setCurrentColouringImage(ColouringPages[randomIndex].src);
+    };
+
 
 useEffect(() => {
   if (selectedId && transformerRef.current && stageRef.current) {
@@ -318,13 +361,24 @@ const DraggableImage = ({ src, x, y }) => {
   setIsVisible(false);
 };
 
+ const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    window.addEventListener("resize", handleResize);
+
+    // cleanup on unmount
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
 
   const renderActiveFeature = () => {
     switch (activeFeature) {
       case 'canvas':
         return (
           <div>
-            <div className="d-flex justify-content-center gap-2 my-3">
+            <div className="d-flex justify-content-center gap-2 my-3"
+            style={{ marginLeft: window.innerWidth < 768 ? '10px' : '0px' }}>
               <Button onClick={() => { setTool("pen"); setIsVisible(!isVisible); }} variant='outline-info'>
                 Pen
               </Button>
@@ -347,7 +401,8 @@ const DraggableImage = ({ src, x, y }) => {
             )}
             
 
-            <Stage
+            <Stage className='bg-black'
+            style={{ marginLeft: window.innerWidth < 768 ? '10px' : '0px' }}
               width={1000}
               height={600}
               onMouseDown={handleMouseDown}
@@ -377,97 +432,112 @@ const DraggableImage = ({ src, x, y }) => {
           </div>
         );
       case 'colouring':
-        return (
-          <div>
-            <div className="d-flex justify-content-center gap-2 my-3">
-              <Button onClick={() => { setTool("pen"); setIsVisible(!isVisible); }} variant='outline-info'>
-                Pen
-              </Button>
-              <Button onClick={() => { setTool("eraser"); setIsVisible(false); }} variant='outline-info'>
-                Eraser
-              </Button>
-              <Button onClick={handleUndo} variant='outline-info'>Undo</Button>
-              <Button onClick={handleRedo} variant='outline-info'>Redo</Button>
-            </div>
+  return (
+    <div>
+      <div className="d-flex justify-content-center gap-2 my-3"
+      style={{ marginLeft: window.innerWidth < 768 ? '10px' : '0px' }}>
+        <Button onClick={() => { setTool("pen"); setIsVisible(!isVisible); }} variant='outline-info'>
+          Pen
+        </Button>
+        <Button onClick={() => { setTool("eraser"); setIsVisible(false); }} variant='outline-info'>
+          Eraser
+        </Button>
+        <Button onClick={handleUndo} variant='outline-info'>Undo</Button>
+        <Button onClick={handleRedo} variant='outline-info'>Redo</Button>
+      </div>
 
-            {isVisible && tool === "pen" && (
-              <ColorPicker
-                width={100}
-                height={120}
-                color={color}
-                onChange={setColor}
-                hideHSV
-                dark
-              />
-            )}
+      {isVisible && tool === "pen" && (
+        <ColorPicker
+          width={100}
+          height={120}
+          color={color}
+          onChange={setColor}
+          hideHSV
+          dark
+        />
+      )}
 
-            <div>
-                <Stage
-  width={window.innerWidth}
-  height={window.innerHeight}
-  onMouseDown={handleMouseDown}
-  onMouseMove={handleMouseMove}
-  onMouseUp={handleMouseUp}
->
-  <Layer>
-    {/* Background colouring image */}
-    {img && (
-      <KonvaImage 
-        image={img} 
-        width={window.innerWidth / 2} 
-        height={window.innerHeight / 2} 
-      />
-    )}
+      <div className="d-flex justify-content-center my-3">
+        <Button variant='outline-info' onClick={handleNextColouring}>
+          Generate New Image
+        </Button>
+      </div>
 
-    {/* User drawings on top */}
-    {lines.map((line, i) => (
-      <Line
-        key={i}
-        points={line.points}
-        stroke={line.tool === "eraser" ? "white" : line.color}
-        strokeWidth={5}
-        tension={0.5}
-        lineCap="round"
-        lineJoin="round"
-        globalCompositeOperation={
-          line.tool === "eraser" ? "destination-out" : "source-over"
-        }
-      />
-    ))}
-  </Layer>
-</Stage>
-             </div  >
-          </div>
-        );
+      <Stage
+        width={window.innerWidth}
+        height={window.innerHeight}
+        onMouseDown={handleMouseDown}
+        onMouseMove={handleMouseMove}
+        onMouseUp={handleMouseUp}
+      >
+        <Layer>
+          {/* Background colouring page */}
+          {image && (
+            <KonvaImage 
+              image={image} 
+              width={window.innerWidth * 0.87} 
+              height={window.innerHeight * 1} 
+              x={window.innerWidth * 0}
+              y={window.innerHeight * 0}
+            />
+          )}
+
+          {/* User drawings */}
+          {lines.map((line, i) => (
+            <Line
+              key={i}
+              points={line.points}
+              stroke={line.tool === "eraser" ? "white" : line.color}
+              strokeWidth={5}
+              tension={0.5}
+              lineCap="round"
+              lineJoin="round"
+              globalCompositeOperation={
+                line.tool === "eraser" ? "destination-out" : "source-over"
+              }
+            />
+          ))}
+        </Layer>
+      </Stage>
+    </div>
+  );
 
         
         case 'connect the dots':
         return (
          <Container>
         {/* Buttons to switch constellation + reset */}
-      <Row >
-        <Col>
-        
-      <div style={{ textAlign: "center", marginTop: "20px" }} className="d-flex justify-content-center gap-2 my-3">
-  {Object.keys(constellations).map((key) => (
-    <Button
-        variant='outline-info'
-      key={key}
-      onClick={() => {
-        setCurrentConstellation(key);
-        setProgress(0);
-      }}
-    >
-      {constellations[key].name}
-    </Button>
-  ))}
-  
-</div>
-</Col>
+     <Row>
+  <Col>
+    <div style={{ textAlign: "center", marginTop: "20px" }} className="my-3">
+      <Row className="g-2 justify-content-center">
+        {Object.keys(constellations).map((key) => (
+          <Col xs={6} md={3} key={key}>
+            <Button
+              variant="outline-info"
+              className="w-100 align-middle"
+              onClick={() => {
+                setCurrentConstellation(key);
+                setProgress(0);
+              }}
+              style={{
+                backgroundColor: currentConstellation === key ? "#17a2b8" : "",
+                color: currentConstellation === key ? "white" : "",
+                marginLeft: window.innerWidth < 768 ? '25px' : '0px',
+              }}
+            >
+              {constellations[key].name}
+            </Button>
+          </Col>
+        ))}
       </Row>
+    </div>
+  </Col>
+</Row>
+
       <Row>
         <Col className="d-flex justify-content-center gap-2 my-3">
-        <div className="text-center w-25">
+        <div className="text-center" style={{ width:  window.innerWidth < 768 ? '50%' : '40%' }}>
             <Button
         variant='outline-info' onClick={() => setProgress(0)}>Reset</Button>
             </div></Col>
@@ -681,19 +751,25 @@ const DraggableImage = ({ src, x, y }) => {
                 
                     <h3 className="text-center my-4">Journal Prompts</h3>
                     <p className="text-center mb-4">If you feel stuck and need something to think on, pick a journal prompt.</p>
-                    <div className="d-flex justify-content-center gap-3" 
-                    md={12}>
+                    <div className="d-flex justify-content-center gap-3" style = {{ 
+    
+    alignItems: 'center',
+     flexDirection: window.innerWidth < 768 ? 'column' : 'flex-row',
+ }} 
+//  window.innerWidth < 768 ? '30%' : '10%',
+                    md={12} sm={6} xs={4}>
            {Object.keys(prompts).map(channel => (
   <Button
     key={channel}
     variant={channel === currentChannel ? "info" : "outline-info"}
     onClick={() => {
       setCurrentJournalPrompt(channel);
-      setCurrentChannel(channel); // << add this
+      setCurrentChannel(channel); 
       const categoryPrompts = prompts[channel];
       const randomPrompt = categoryPrompts[Math.floor(Math.random() * categoryPrompts.length)];
       setCurrentPrompt(randomPrompt);
     }}
+    
   >
     {channel}
   </Button>
@@ -711,7 +787,7 @@ const DraggableImage = ({ src, x, y }) => {
                     <div className="d-flex justify-content-center text-center ">
                     <Button onClick={handleNext}
                     variant='outline-info'
-                    className='w-25'
+                    
                      >
                       Generate New
                      </Button>
@@ -719,24 +795,59 @@ const DraggableImage = ({ src, x, y }) => {
                 </Col>
             </Row>
     <Row>
-      <Col>
-        <h3 className="text-center my-4">Choose your creative release:</h3>
-        <div className="d-flex justify-content-center gap-2" md={12}>
-          <Button onClick={() => handleFeatureChange('canvas')} 
-            style={{ backgroundColor: activeFeature === 'canvas' ? "#17a2b8" : "" }}> Canvas </Button>
+  <Col>
+    <h3 className="text-center my-4">Choose your creative release:</h3>
 
-<Button onClick={() => handleFeatureChange('colouring')}
-  style={{ backgroundColor: activeFeature === 'colouring' ? "#17a2b8" : "" }}> Colouring </Button>
+    <Row className="g-2" style={{ marginLeft: window.innerWidth < 768 ? '10px' : '0px' }}> 
+      <Col xs={6}>
+        <Button 
+          variant="outline-info" 
+          className="w-100"
+          onClick={() => handleFeatureChange('canvas')}
+          style={{ backgroundColor: activeFeature === 'canvas' ? "#17a2b8" : "" }}
+        >
+          Canvas
+        </Button>
+      </Col>
 
-          <Button onClick={() => setActiveFeature('connect the dots')}
-            style={{ backgroundColor: activeFeature === 'connect the dots' ? "#17a2b8" : "" }}>Connect the lines</Button>
-          <Button onClick={() => setActiveFeature('moodboard')}
-            style={{ backgroundColor: activeFeature === 'moodboard' ? "#17a2b8" : "" }}>Moodboard</Button>
-        </div>
+      <Col xs={6}>
+        <Button 
+          variant="outline-info" 
+          className="w-100"
+          onClick={() => handleFeatureChange('colouring')}
+          style={{ backgroundColor: activeFeature === 'colouring' ? "#17a2b8" : "" }}
+        >
+          Colouring
+        </Button>
+      </Col>
 
-        {renderActiveFeature()}
+      <Col xs={6}>
+        <Button 
+          variant="outline-info" 
+          className="w-100"
+          onClick={() => setActiveFeature('connect the dots')}
+          style={{ backgroundColor: activeFeature === 'connect the dots' ? "#17a2b8" : "" }}
+        >
+          Connect the lines
+        </Button>
+      </Col>
+
+      <Col xs={6}>
+        <Button 
+          variant="outline-info" 
+          className="w-100"
+          onClick={() => setActiveFeature('moodboard')}
+          style={{ backgroundColor: activeFeature === 'moodboard' ? "#17a2b8" : "" }}
+        >
+          Moodboard
+        </Button>
       </Col>
     </Row>
+
+    {renderActiveFeature()}
+  </Col>
+</Row>
+
      <Row>
                 <Col md={12}>
                 <div className="flex justify-content-center align-items-center" >
@@ -744,11 +855,11 @@ const DraggableImage = ({ src, x, y }) => {
                   <Button variant="outline-info"  style={{display: 'flex', justifyContent: 'center', fontSize: '20px',
           color: 'white',
           cursor: 'pointer',
-          width: '10%',
-          justifySelf: 'center',
-          
          
-          marginTop: '60px'}}>Exit</Button>
+          width: window.innerWidth < 768 ? '30%' : '10%',
+          justifySelf: 'center',
+          marginTop: '60px',
+          marginBottom: '10px'}}>Exit</Button>
                   </Link>
                 </div>
                 </Col>
