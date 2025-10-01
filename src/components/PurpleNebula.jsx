@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -104,6 +104,16 @@ const PurpleNebula = () => {
     };
   }, []);
 
+     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    window.addEventListener("resize", handleResize);
+
+    // cleanup on unmount
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
    <div style={{ position: "relative", width: "100%", height: "80vh" }}>
   <div ref={mountRef} style={{ width: "100%", height: "100vh" }} />
@@ -112,8 +122,8 @@ const PurpleNebula = () => {
           onClick={goFullscreen}
           style={{
             position: "absolute",
-            top: "10px",
-            right: "10px",
+            top: "0%",
+            left: window.innerWidth < 768 ? '25%' : '34%',
             zIndex: 999,
             background: "transparent",
             color: "#fff",

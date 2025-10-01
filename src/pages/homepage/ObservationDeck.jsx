@@ -259,6 +259,16 @@ const [show, setShow] = useState(false);
     setCurrentSound(index);
   };
 
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    window.addEventListener("resize", handleResize);
+
+    // cleanup on unmount
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   const renderActiveFeature = () => {
     switch(activeFeature) {
       case 'gratitude':
@@ -272,7 +282,7 @@ const [show, setShow] = useState(false);
                 type="text"
                 value={gratitudeEntry}
                 onChange={(e) => setGratitudeEntry(e.target.value)}
-                style={{marginLeft: '15px'}}
+                style={{marginLeft: window. innerMargingLeft < 768 ? '30': '15' }}
                 placeholder="What are you grateful for today?"
                 className="flex-grow bg-black bg-opacity-30 border border-white border-opacity-20 rounded-l-full px-4 py-2 text-white"
                 onKeyPress={(e) => e.key === 'Enter' && addGratitudeItem()}
@@ -281,7 +291,8 @@ const [show, setShow] = useState(false);
                 onClick={addGratitudeItem}
                 className="mx-3 my-2  transition-colors "
                 style={{
-                  width: '10%',
+                 
+                  width: window.innerWidth < 768 ? '30%' : '10%',
                   height: '46px',
     backgroundColor: '#ddb0ffff', 
      padding: '0.5rem',
@@ -331,8 +342,9 @@ const [show, setShow] = useState(false);
                    style={{
     backgroundColor: visualizationType === env.id  ? '#ddb0ffff' : 'rgba(255, 255, 255, 0.1)',
     padding: '0.5rem',
-    width: '15%',
-    fontSize: '1rem',
+   
+    width: window.innerWidth < 768 ? '40%' : '15%',
+    fontSize: '1rem',  
     transition: 'all 0.2s ease-in-out',
     cursor: 'pointer',
     color: 'white',
@@ -442,9 +454,10 @@ const [show, setShow] = useState(false);
             {!isBreathingActive ? (
               <button 
                 onClick={startBreathingExercise}
-                className="py-3  mb-3  "
+                className="py-3 mb-3 "
                 style={{
-                  width: '18%',
+                  // width: '18%',
+                  width: window.innerWidth < 768 ? '65%' : '18%',
     backgroundColor: '#ddb0ffff', 
     fontSize: '1.15rem',   
     transition: 'all 0.2s ease-in-out',
@@ -506,8 +519,10 @@ const [show, setShow] = useState(false);
                 <h4 className="font-medium mb-2 text-pink-400">1 Thing You Can Taste</h4>
                 <p className="text-sm opacity-80">Notice one thing you can taste.</p>
               </div>
-<Row className="justify-content-center">
-        <Col xs={12} md={11}>
+<Row className="justify-content-center ">
+        <Col xs={12} md={11} sm={10} style={{
+          marginLeft: window.innerWidth < 768 ? '25px': '0'
+        }}>
               <textarea
                 type="text"
                 
@@ -552,7 +567,8 @@ const [show, setShow] = useState(false);
       handleSend();
     }}
     style={{
-      width: "10%",
+     
+      width: window.innerWidth < 768 ? '30%' : '10%',
       backgroundColor: "#ad7fd0ff",
       fontSize: "1.5rem",
       transition: "all 0.2s ease-in-out",
@@ -627,7 +643,8 @@ const [show, setShow] = useState(false);
                     style={{
     backgroundColor: activeShader === shader.id  ? '#ddb0ffff' : 'rgba(255, 255, 255, 0.1)',
     padding: '0.5rem',
-  width: '20%',
+  
+  width: window.innerWidth < 768 ? '35%' : '25%',
     fontSize: '1rem',
     transition: 'all 0.2s ease-in-out',
     cursor: 'pointer',
@@ -654,7 +671,10 @@ const [show, setShow] = useState(false);
           <button
             onClick={() => setIsSoundOn(!isSoundOn)}
             className="p-3 mr-3 "
-            style={{ width: '5%', border: 'none', backgroundColor: 'transparent'}}
+            style={{ width: '5%', border: 'none', 
+              backgroundColor: 'transparent',
+              marginRight: window.innerWidth < 768 ? '10px' : '10px',
+            }}
           >
             <FontAwesomeIcon icon={isSoundOn ? faVolumeUp : faVolumeMute} />
           </button>
@@ -679,15 +699,17 @@ const [show, setShow] = useState(false);
                 <span className="w-2 h-2 bg-green-500 rounded-full mr-2"></span>
                 Relaxation Tools
               </h3>
-              <div className="grid grid-cols-2 gap-2 ml-4"
+              <div className="grid grid-cols-2 gap-1 ml-4"
               style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                 <button
   onClick={() => setActiveFeature('gratitude')}
   style={{
     backgroundColor: activeFeature === 'gratitude' ? '#ddb0ffff' : 'rgba(255, 255, 255, 0.1)',
     padding: '0.5rem',
-  marginLeft: '10px',
-    fontSize: '1rem',
+  marginLeft: '10px' ,
+ 
+    
+    fontSize: window.innerWidth < 768 ? '0.8rem' : '1rem',
     transition: 'all 0.2s ease-in-out',
     cursor: 'pointer',
     color: 'white',
@@ -714,7 +736,8 @@ const [show, setShow] = useState(false);
     backgroundColor: activeFeature === 'visualization' ? '#ddb0ffff' : 'rgba(255, 255, 255, 0.1)',
     padding: '0.5rem',
   
-    fontSize: '1rem',
+   
+    fontSize: window.innerWidth < 768 ? '0.8rem' : '1rem',
     transition: 'all 0.2s ease-in-out',
     cursor: 'pointer',
     color: 'white',
@@ -740,7 +763,8 @@ const [show, setShow] = useState(false);
     backgroundColor: activeFeature === 'breathing' ? '#ddb0ffff' : 'rgba(255, 255, 255, 0.1)',
     padding: '0.5rem',
   
-    fontSize: '1rem',
+    
+    fontSize: window.innerWidth < 768 ? '0.8rem' : '1rem',
     transition: 'all 0.2s ease-in-out',
     cursor: 'pointer',
     color: 'white',
@@ -766,7 +790,8 @@ const [show, setShow] = useState(false);
     backgroundColor: activeFeature === 'senses' ? '#ddb0ffff' : 'rgba(255, 255, 255, 0.1)',
     padding: '0.5rem',
   marginRight: '10px',
-    fontSize: '1rem',
+   
+    fontSize: window.innerWidth < 768 ? '0.8rem' : '1rem',
     transition: 'all 0.2s ease-in-out',
     cursor: 'pointer',
     color: 'white',
@@ -808,7 +833,7 @@ const [show, setShow] = useState(false);
     width: '10%',
     justifySelf: 'center',
     backgroundColor: '#ffffff1a' ,
-   
+   width: window.innerWidth < 768 ? '30%' : '10%',
     margin: '8px'}}>Exit</button>
             </Link>
           </div>

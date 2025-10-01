@@ -152,6 +152,15 @@ const Testing = () => {
       renderer.dispose();
     };
   }, []);
+   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    window.addEventListener("resize", handleResize);
+
+    // cleanup on unmount
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   return (
     <div>
@@ -163,8 +172,9 @@ const Testing = () => {
           onClick={goFullscreen}
           style={{
             position: "absolute",
-            top: "10px",
-            right: "10px",
+            top: "0%",
+
+    left: window.innerWidth < 768 ? '25%' : '32%',
             zIndex: 999,
             background: "transparent",
             color: "#fff",
