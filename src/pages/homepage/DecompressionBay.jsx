@@ -47,6 +47,20 @@ const [activeMedia, setActiveMedia] = useState({
 const [focus, setFocus] = useState(50);
 
 
+  const [ShowStress, setShowStress] = useState(false);
+  const [ShowCalm, setShowCalm] = useState(false);
+  const [ShowEnergy, setShowEnergy] = useState(false);
+
+ const toggleStress = () => {
+    setShowStress((prev) => !prev); 
+  };
+   const toggleCalm = () => {
+    setShowCalm((prev) => !prev); 
+  };
+const toggleEnergy = () => {
+    setShowEnergy((prev) => !prev); 
+  };
+
 
 
   return (
@@ -59,40 +73,205 @@ const [focus, setFocus] = useState(50);
           help you unwind and relax.
         </p>
       </Row>
+
+      {/* wellbeing huddle  */}
+ <Row className="text-center my-2 pb-3 h-75">
+      <Col md={12}>
+        <h2 className="mb-3 ">Well-being Huddle</h2>
+        <h4 className="mb-1 pb-1">Feel decompressed ? Let's do some reflection...</h4>
+        <h6>Here are some questions for you to think about, whilst mediatting. </h6>
+      </Col>
+    </Row>
+
     
+  
+
+
+    <Row >
+      <Col md={4} className="text-center mb-4">
+       <Button className={styles.MinutesButton2} onClick={() => toggleStress(true)}>
+        Stressed
+      </Button>
+      </Col>
+      <Col md={4} className="text-center mb-4">
+       <Button className={styles.MinutesButton2} onClick={() => toggleCalm(true)}>
+        Calm
+      </Button>
+      </Col>
+      <Col md={4} className="text-center mb-4">
+       <Button className={styles.MinutesButton2} onClick={() => toggleEnergy(true)}>
+        Energy
+      </Button>
+      </Col>
+    </Row>
+
+   
+
+{ ShowStress && (
     <Row className="text-center my-5">
+      
+       <Col md={3}>
+        <RotatingRings />
+        </Col>
+        <Col md={9} className="align-self-center">
+    <Row>
+      
+      <Col>
+      <h6>Am I safe in this moment, and what is the very next small step I can take right now? </h6>
+      </Col>     
+    </Row>
+    <Row>
+      <Col>
+       <h6>Is the thought that’s stressing me a fact, or just a feeling — and how might I see it if I stepped back from it?</h6>
+      </Col>
+    </Row>
+    <Row>
+      <Col>
+       <h6>If my best friend were feeling this way, what would I say to them — and why don’t I deserve the same kindness?</h6>
+      </Col>
+    </Row>
+    <Row>
+      <Col>
+       <h6>What part of this situation is mine to carry, and what part can I gently release or trust time to handle?</h6>
+      </Col>
+    </Row>
+    <Row>
+      <Col>
+       <h6>Where in my body am I holding this stress — and if I breathe into that space, what shift do I feel?</h6>
+      </Col>
+      </Row>
+    </Col>
+    </Row>
+)}
+
+
+     
+
+{ ShowCalm && (
+    <Row className="text-center my-5">
+      <Col md={9} className="align-self-center">
+    <Row>
+      
+      <Col>
+      <h6>What is steady and unchanging in this moment that I can lean on, even briefly?</h6>
+      </Col>     
+    </Row>
+    <Row>
+      <Col>
+       <h6>Instead of “I can’t calm down,” could I see it as “I am learning what soothes me” — what could that be right now?</h6>
+      </Col>
+    </Row>
+    <Row>
+      <Col>
+       <h6>If it’s okay to be a work in progress, how might I treat myself more gently in this moment of restlessness?</h6>
+      </Col>
+    </Row>
+    <Row>
+      <Col>
+       <h6>Which part of this tension belongs to me, and which part is simply not mine to hold?</h6>
+      </Col>
+    </Row>
+    <Row>
+      <Col>
+       <h6>Where does calm already exist in me — perhaps in my breath, my heartbeat, or my stillness — and can I rest my awareness there?</h6>
+      </Col>
+      </Row>
+    </Col>
+    <Col md={3}>
+        <RotatingRings />
+        </Col>
+    </Row>
+)}
+
+
+
+    
+{ ShowEnergy && (
+    <Row className="text-center my-5">
+      <Col>
+      <Row>
+        <Col md={3}>
+        <RotatingRings />
+        </Col>
+        <Col md={9} className="align-self-center">
+        
+    <Row >
+      
+      <Col >
+      <h6>What is one thing in my environment right now that sparks a little sense of aliveness? </h6>
+      </Col>     
+    </Row>
+    <Row>
+      <Col>
+       <h6>Instead of “I have no energy,” could it be “My energy is waiting for the right spark” — what could that spark be?</h6>
+      </Col>
+    </Row>
+    <Row>
+      <Col>
+       <h6>If my body is asking me to rest before it rises, how can I honour that without judgment?</h6>
+      </Col>
+    </Row>
+    <Row>
+      <Col>
+       <h6>What weight am I carrying today that drains me, and which of those can I lay down for now?</h6>
+      </Col>
+    </Row>
+    <Row>
+      <Col>
+       <h6>What breath, stretch, or movement could invite a spark of energy into me right now?</h6>
+      </Col>
+      </Row>
+    </Col>
+    </Row>
+    </Col>
+      </Row>
+)}
+
+
+
+      {/* Meditation  */}
+    
+    <Row className="text-center my-5" style = {{ 
+    alignItems: 'center',
+    alignContent: window.innerWidth < 768 ? 'space-around' : 'row',}} >
     {/* Left - Timer */}
-    <Col md={12}>
+    <Col md={12}  >
     <h3>Choose your session length:</h3>
-    <div className="text-center justify-content-center d-flex ">
-        
-        <Button onClick={() => setDuration(5 * 60)} className={styles.MinutesButton}>
-          5 minutes
-        </Button>
-        
-        <Button onClick={() => setDuration(10 * 60)} className={styles.MinutesButton}>
-          10 minutes
-        </Button>
-        <Button onClick={() => setDuration(15 * 60)} className={styles.MinutesButton}>
-          15 minutes
-        </Button>
-        <Button onClick={() => setDuration(20 * 60)} className={styles.MinutesButton}>
-          20 minutes
-        </Button>
-        <Button onClick={() => setDuration(30 * 60)} className={styles.MinutesButton}>
-          30 minutes
-        </Button>
-        <Button onClick={() => setDuration(45 * 60)} className={styles.MinutesButton}>
-          45 minutes
-        </Button>
-        <Button onClick={() => setDuration(60 * 60)} className={styles.MinutesButton}>
-          60 minutes
-        </Button>
-        
+    <div className="text-center justify-content-center d-flex " 
+//     style = {{ 
+//     alignItems: 'center',
+//      flexDirection: window.innerWidth < 768 ? 'column' : 'flex-row',
+//  }}
+ >
+         <Row className="justify-content-center">
+      {[
+        { label: "5 minutes", time: 5 },
+        { label: "10 minutes", time: 10 },
+        { label: "15 minutes", time: 15 },
+        { label: "20 minutes", time: 20 },
+        { label: "30 minutes", time: 30 },
+        { label: "45 minutes", time: 45 },
+        { label: "60 minutes", time: 60 },
+      ].map((btn, i) => (
+        <Col
+          key={i}
+          xs={6}   
+          md="auto" 
+          className="d-flex justify-content-center mb-3"
+        >
+          <Button
+            onClick={() => setDuration(btn.time * 60)}
+            className={styles.MinutesButton2}
+          >
+            {btn.label}
+          </Button>
+        </Col>
+      ))}
+    </Row>
       </div>
-         <Row className="mt-4 pt-5">
+         <Row className="mt-4 pt-5" style={{ marginLeft: window.innerWidth < 768 ? '10px' : '0', }}>
   <h3 className="text-center">Mood Spectrum Bar</h3>
-  <Col xs={12} className="d-flex justify-content-center">
+  <Col xs={12} className="d-flex justify-content-center" >
     <div className="d-flex justify-content-center"> 
       <MoodBar />
     </div>
@@ -113,289 +292,12 @@ const [focus, setFocus] = useState(50);
   </Row>
 <div>
   
-    <Row className="mb-4">
-            <Col className="d-flex justify-content-center flex-wrap gap-2">
-              {mediaOptions.map((item) => (
-                <Button
-                  key={item.label}
-                  onClick={() => setActiveMedia(item)}
-                  className={styles.MinutesButton}
-                >
-                  {item.label}
-                </Button>
-              ))}
-            </Col>
-          </Row>
-    
-  <Row>
-    <Col>
-    <p>section to have animated visuals of universe - can click a button and will load next one. 
-        4 options to cover mood.
-        </p>
-        <div className={styles.videoContainer}>
-                      {activeMedia.type === "video" ? (
-                        <video
-                          src={activeMedia.src}
-                          autoPlay
-                          loop
-                          muted
-                          className={styles.deckVideo}
-                        />
-                      ) : (
-                        <img
-                          src={activeMedia.src}
-                          alt={activeMedia.label}
-                          className={styles.deckVideo}
-                        />
-                      )}
-                    </div>  
-    </Col>
-  </Row>
+   
   
   </div>
 
 
-     <Row className="text-center my-5 pb-5 h-75">
-    
-        
-
-    
-    <Col md={12}>
-    <h2 className="mb-3 mx-5">Well-being Huddle</h2>
-    <h4 className="mb-4 pb-4">Feel decompressed ? Let's do some reflection...</h4>
-      
-      <Row>
-    <Col md={4}>
-        <h3>Stress Levels</h3>
-        <p>Adjust your current stress levels</p>
-    </Col>
-    <Col md={4}>
-    <h3>Calm 'O' meter</h3>
-        <p>Adjust your current calm levels</p>
-    </Col>
-</Row>
-
-        <Row>
-  <Col className="d-flex justify-content-center pt-4 "
-  md={4}
-  style={{   transform: 'translate( 45%, -20px)'  }}>
-    {/* Stress levels */}
-    <Stack sx={{ height: 250 }}>
-      <Slider 
-      valueLabelDisplay="auto"
-      orientation="vertical" 
-      defaultValue={80}  
-      sx={{
-    
-    '& .MuiSlider-rail': {
-      opacity: 1, 
-      backgroundImage: 'linear-gradient(90deg, #FF0000)',
-      borderRadius: 6,
-      width: 10
-    },
-    '& .MuiSlider-track': {
-      backgroundColor: ' #e39f9fff', 
-       border: 'none',
-    },
-    '& .MuiSlider-thumb': {
-      width: 30,
-      height: 30,
-      backgroundColor: '#fff',
-      border: '2px solid #000',
-    },
- '& .MuiSlider-valueLabel': {
-        lineHeight: 1.2,
-        fontSize: 12,
-        background: 'unset',
-        padding: 0, 
-        width: 32,
-        height: 32,
-        borderRadius: '50% 50% 50% 0', 
-        backgroundColor: '#e39f9fff',
-        transformOrigin: 'left center',
-        transform: 'translate(120%, -80%) rotate(-145deg) scale(0)',
-
-        '&::before': { display: 'none' },
-
-        '&.MuiSlider-valueLabelOpen': {
-          transform: 'translate(60%, -50%) rotate(-120deg) scale(1)',
-        },
-
-        '& > *': {
-          transform: 'rotate(45deg)', 
-        },
-      },
-  }}/>
-    </Stack>
-  </Col>
-  <Col className="d-flex justify-content-center pt-4"
-  md={4}
-  style={{   transform: 'translate( 45%, -20px)'  }}>
-    {/* Calm o meter */}
-    <Stack sx={{ height: 250 }}>
-  <Slider
-    valueLabelDisplay="auto"
-    orientation="vertical"
-    defaultValue={50}
-    sx={{
-      '& .MuiSlider-rail': {
-        opacity: 1,
-        backgroundImage: 'linear-gradient(90deg, #475fe8ff)',
-        borderRadius: 6,
-        width: 10,
-      },
-      '& .MuiSlider-track': {
-        backgroundColor: '#a8b2ebff',
-        border: 'none',
-      },
-      '& .MuiSlider-thumb': {
-        width: 30,
-        height: 30,
-        backgroundColor: '#fff',
-        border: '2px solid #000',
-        boxShadow: 'none',
-        '&:hover, &.Mui-focusVisible, &.Mui-active': {
-          boxShadow: 'none',
-        },
-      },
-      '& .MuiSlider-valueLabel': {
-        lineHeight: 1.2,
-        fontSize: 12,
-        background: 'unset',
-        padding: 0, 
-        width: 32,
-        height: 32,
-        borderRadius: '50% 50% 50% 0', 
-        backgroundColor: '#a8b2ebff',
-        transformOrigin: 'left center',
-        transform: 'translate(120%, -80%) rotate(-145deg) scale(0)',
-
-        '&::before': { display: 'none' },
-
-        '&.MuiSlider-valueLabelOpen': {
-          transform: 'translate(60%, -50%) rotate(-120deg) scale(1)',
-        },
-
-        '& > *': {
-          transform: 'rotate(45deg)', 
-        },
-      },
-    }}
-  />
-</Stack>
-
-  </Col>
-   <Col className="ml-5"style={{   transform: 'translate( -5%, -80px)'  }}  >
-        < RotatingRings />
-        </Col>
-
-</Row>
-
-      <Row >
-        <Col md={6}>
-        <h3>Energy Guage</h3>
-        </Col>
-        <Col md={6}>
-        <h3>Focus Dials</h3>
-        </Col>
-        </Row>
-        <Row>
-        <Col md={6}
-        className="d-flex justify-content-center pt-4"
-        >
-        
-        <Stack sx={{  width: 400 }} spacing={1} direction="row">
-      <Slider
-        aria-label="Stress levels"
-        orientation="horizontal"
-        getAriaValueText={getAriaValueText}
-        valueLabelDisplay="auto"
-        defaultValue={30}
-        className=""
-        style={{top: '70%'}}
-        sx={{
-
-            '& .MuiSlider-rail': {
-        opacity: 1,
-          backgroundImage: 'linear-gradient(90deg, #dd5f5fff, #5f70ddff)',
-                
-        borderRadius: 6,
-       
-      },
-      '& .MuiSlider-track': {
-        backgroundColor: 'transparent',
-        border: 'none',
-      },
-      '& .MuiSlider-thumb': {
-        width: 30,
-        height: 30,
-        backgroundColor: '#fff',
-        border: '2px solid #000',
-        boxShadow: 'none',
-       
-      },
-    
-    '& .MuiSlider-valueLabel': {
-      minWidth: 45,     
-    lineHeight: 1.2,
-    fontSize: 12,
-    background: 'unset',
-    padding: 0,
-    width: 32,
-    height: 32,
-    borderRadius: '50% 50% 50% 0',
-    backgroundColor: '#52af77',
-    transformOrigin: 'bottom left',
-    transform: 'translate(50%, -100%) rotate(-45deg) scale(0)',
-    '&::before': { display: 'none' },
-    '&.MuiSlider-valueLabelOpen': {
-      transform: 'translate(50%, -100%) rotate(-45deg) scale(1)',
-    },
-    '& > *': {
-      transform: 'rotate(45deg)',
-    }, }
-  }}
-      />
-      </Stack>
-        </Col>
-
-
-
-
-        <Col md={6}>
-        <div>
-    <FocusDial value={focus} />
-    <Slider
-      value={focus}
-      onChange={(e, val) => setFocus(val)}
-      orientation="horizontal"
-      sx={
-        {
-             '& .MuiSlider-rail': {
-        opacity: 1,
-          backgroundImage: 'linear-gradient(90deg, #e1b6faff )',
-                
-        borderRadius: 6,
-       
-      },
-      '& .MuiSlider-track': {
-        backgroundColor: 'transparent',
-        border: 'none',
-      },
-            
-        }
-      }
-    />
-  </div>
-        </Col>
-      </Row>
-{/* mood spectrum section  */}
-     
-
-    </Col>
-
-    
-  </Row>
+   
 
 <Row>
     <Col md={12}>

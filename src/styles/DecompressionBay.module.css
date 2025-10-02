@@ -25,13 +25,13 @@
 }
 
 
-.MinutesButton {
+.MinutesButton, .MinutesButton2 {
     font-size: 18px;
     color: white;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    width: 13%;
+    width: 50%;
     justify-self: center;
     background-color: #6a626e ;
     margin: 8px;
@@ -40,10 +40,31 @@
    
 }
 
+.MinutesButton2 {
+   font-size: 18px;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    justify-self: center;
+    background-color: #6a626e ;
+    margin: 8px;
+   border: none;
+    
+}
 
 
-.MinutesButton:hover {
+
+.MinutesButton:hover, .MinutesButton2:hover {
     background-color: #555151;
   
 }
     
+
+@media screen and (max-width: 768px) {
+    .MinutesButton2 {
+      width: 100%;
+      
+    }
+  }
