@@ -75,7 +75,7 @@ const EndSequence = () => {
 
   return (
   <Row className="d-flex justify-content-center align-items-center mt-5">
-    <Col md={5} className="text-center">
+    <Col md={5} xs={12} className="text-center" style={{ marginLeft: window.innerWidth < 768 ? '50px': '0',  }}>
     <CircularProgressbar
       value={percentage}
       text={formatTime(num)}
@@ -113,14 +113,14 @@ const EndSequence = () => {
       Reset
     </Button>
     </Col>
-  <Col md={5} className="text-center">
+  <Col md={5} xs={12} className="text-center" style={{ marginTop: window.innerWidth < 768 ? '100px': '0', marginLeft: window.innerWidth < 768 ? '50px': '0',  }}>
     {showVisuals ? (
       <>
-        <h5 style={{   transform: 'translate( 10%, -30px)'  }}>Visuals are ON</h5>
+        <h5 style={{   transform: 'translate( 10%, -30px)',  }}>Visuals are ON</h5>
         {/* <FlowerOfLifeLoop /> 
         <SpiralLoop />  */}
         {/* <DecompressionLoop />  */}
-        <VisualSequence />
+        <VisualSequence style={{ marginRight: window.innerWidth < 768 ? '100px': '0'}} />
         {/* <NebulaFlow />  */}
       </>
     ) : (

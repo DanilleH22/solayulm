@@ -6,7 +6,7 @@ export default function DecompressionLoop() {
   return (
     <Container fluid className="py-3 ">
       <Row className="justify-content-center">
-        <Col xs={12} md={6} className="d-flex justify-content-center">
+        <Col xs={12} md={6} className="d-flex justify-content-center" style={{marginRight: window.innerWidth < 768 ? '20px': '0',}}>
     <div className="flex  items-center justify-center h-100 w-full  rounded-2xl">
       {/* Text */}
       <motion.h1

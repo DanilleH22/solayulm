@@ -6,7 +6,7 @@ export function SpiralLoop() {
 
   return (
     <div className="flex items-center justify-center h-screen bg-transparent overflow-hidden">
-      <svg width="400" height="400" viewBox="-200 -200 400 400">
+      <svg width="400" height="400" viewBox="-200 -200 400 400" style={{ marginRight: window.innerWidth < 768 ? '100px': '0'}}>
         {dots.map((_, i) => {
           const angle = (i / dots.length) * Math.PI * 6; // spiral angle
           const radius = i * 8; // spiral spacing
