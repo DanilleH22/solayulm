@@ -5,7 +5,7 @@ import s5 from '../assets/images/s5.PNG';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTwitter, faInstagram, faGithub, faLinkedin, faYoutube, faFacebook } from "@fortawesome/free-brands-svg-icons";
 import { faVolumeUp, faVolumeMute } from "@fortawesome/free-solid-svg-icons";
-
+import { Link } from "react-router";
 
 
 
@@ -64,14 +64,24 @@ function Footer() {
 
           {/* Centered Text */}
           <Col className="d-flex flex-column justify-content-center align-items-center">
-            <h5 className="text-uppercase">Footer Content</h5>
+            <h3 className="text-uppercase">Solayulm</h3>
             <p>
-              Here you can use rows and columns to organize your footer content.
+              More useful links:
             </p>
-            <p>About</p>
-            <p>Gallery</p>
-            <p>Rooms</p>
-            <p>Help available</p>
+             
+                <Link to="/AboutPage" style={{ textDecoration: 'none'}}>
+                  <p>About</p>
+                  </Link>
+            
+            {/* <p>Gallery</p> */}
+            
+            <Link to="/Rooms" style={{ textDecoration: 'none'}}>
+                  <p>Rooms</p>
+                  </Link>
+           
+            <Link to="/HelpPage" style={{ textDecoration: 'none'}}>
+                  <p>Help available</p>
+                  </Link>
           </Col>
 
           {/* Music Switch */}
