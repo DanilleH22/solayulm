@@ -15,6 +15,7 @@ import CommCenter from "./pages/homepage/CommCenter.jsx";
 import VoidChat from "./pages/homepage/VoidChat.jsx";
 import HoloRoom from "./pages/homepage/HoloRoom.jsx";
 import AiCompanion from "./pages/homepage/AiCompanion.jsx";
+import AboutPage from "./pages/homepage/About.jsx";
 
 const App = () => {
   return (
@@ -33,6 +34,7 @@ const App = () => {
           <Route path="/HoloRoom" element={<HoloRoom />} />
           <Route path="/testing" element={<Testing />} />
           <Route path="/cosmicCompanion" element={<AiCompanion />} />
+          <Route path="/AboutPage" element={<AboutPage />} />
             <Route path="*" element={<h1>Page not found!</h1>} />
           </Routes>
         </div>
