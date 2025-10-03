@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import Form from 'react-bootstrap/Form';
 import s5 from '../assets/images/s5.PNG';
@@ -50,8 +50,21 @@ function Footer() {
   };
   
 
-
-
+const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+    
+      useEffect(() => {
+        const handleResize = () => setWindowWidth(window.innerWidth);
+        window.addEventListener("resize", handleResize);
+    
+        // cleanup on unmount
+        return () => window.removeEventListener("resize", handleResize);
+      }, []);
+    
+      
+    
+    
+    const stageWidth = Math.min(windowWidth * 0.9, 600); // 90% of screen, max 600px
+    const stageHeight = stageWidth; // keep square
 
   return (
     <footer className="pt-4 text-center">
@@ -121,7 +134,7 @@ function Footer() {
           <Col className="d-flex flex-column justify-content-center align-items-center">
     
            
-            <div className="social-icons">
+            <div className="social-icons p-1">
   <a href="https://twitter.com/yourprofile" target="_blank" rel="noopener noreferrer">
     <FontAwesomeIcon icon={faTwitter} size="2x" />
   </a>
@@ -141,20 +154,16 @@ function Footer() {
     <FontAwesomeIcon icon={faFacebook} size="2x" />
   </a>
 </div>
-<div>
+<div className='pb-3'>
   {/* this will open a modal about donating/showing support to keep the page going not mandatory though */}
-  <button style={{backgroundColor: '#6a626e', marginTop: '20px', width: '30%', borderRadius: '5px'}} >Donate</button>
+  <button style={{backgroundColor: '#6a626e', marginTop: '20px', width: window.innerWidth < 768 ? '60%': '30%' , borderRadius: '5px'}} >Donate</button>
 </div>
 
             
           </Col>
         </Row>
 
-        {/* Bottom Bar */}
-        <div className="text-center py-3">
-          © 2025 Copyright:
-          <a href="https://mdbootstrap.com/"> MDBootstrap.com</a>
-        </div>
+      
       </Container>
     </footer>
   );
