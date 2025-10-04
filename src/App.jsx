@@ -16,7 +16,7 @@ import VoidChat from "./pages/homepage/VoidChat.jsx";
 import HoloRoom from "./pages/homepage/HoloRoom.jsx";
 import AiCompanion from "./pages/homepage/AiCompanion.jsx";
 import AboutPage from "./pages/homepage/About.jsx";
-import HelpPage from "./pages/homepage/Helpavailable.jsx";
+import HelpPage from "./pages/homepage/HelpAvailable.jsx";
 import Homepage2 from "./pages/homepage/Homepage2.jsx";
 import GoToTop from "../src/components/GoToTop.jsx";
 
