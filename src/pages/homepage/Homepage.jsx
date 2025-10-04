@@ -1,4 +1,4 @@
-import React, { useCallback }  from 'react';
+import React, { useCallback, useEffect, useState }  from 'react';
 import { Link } from "react-router";
 import { Container, Row, Col, Button, Tab, Tabs, Carousel, Nav} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css'; 
@@ -20,6 +20,23 @@ import { faRocket } from '@fortawesome/free-solid-svg-icons'
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { useSpring, animated } from '@react-spring/web';
 import { motion } from "framer-motion";
+import aicc from '../../assets/images/aicc.png';
+import aj from '../../assets/images/aj.png';
+import cc from '../../assets/images/cc.png';
+import db from '../../assets/images/db.png';
+import hr from '../../assets/images/hr.png';
+import od from '../../assets/images/od.png';
+import vc from '../../assets/images/vc.png';
+import { DotLottieReact } from '@lottiefiles/dotlottie-react';
+import Lottie from "lottie-react";
+import SpaceMan from '../../assets/Animations/Space_Man.json';
+import Astronaut from '../../assets/Animations/Astronaut.json';
+import AstronautMusic from '../../assets/Animations/AstronautMusic.json';
+import Circlepencil from '../../assets/Animations/Circlepencil.json';
+import FreeConsultation from '../../assets/Animations/FreeConsultation.json';
+import spaceDeveloper from '../../assets/Animations/spaceDeveloper.json';
+
+
 
 
 const Homepage = () => {
@@ -40,19 +57,31 @@ const onMove = useCallback(
   [set]
 );
 
+   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+    
+      useEffect(() => {
+        const handleResize = () => setWindowWidth(window.innerWidth);
+        window.addEventListener("resize", handleResize);
+    
+        // cleanup on unmount
+        return () => window.removeEventListener("resize", handleResize);
+      }, []);
+    
+      
+    
+    
+    const stageWidth = Math.min(windowWidth * 0.9, 600); // 90% of screen, max 600px
+    const stageHeight = stageWidth; // keep square
+
 
   return (
     <Container fluid>
   <div className={styles.imgTextWrapper}>
-    {/* <img 
-      src={s1}
-      alt="space" 
-      className={styles.bgImage}
-    /> */}
+   
     <div className={styles.overlayText}>
     <motion.div  
           initial={{ y: 0 }}
-          animate={{ y: [0, -5, 0], rotate: [0, 0.5, 0] }} // floating effect
+          animate={{ y: [0, -5, 0], rotate: [0, 0.5, 0] }} 
           transition={{
             duration: 6,
             repeat: Infinity,
@@ -107,7 +136,11 @@ const onMove = useCallback(
     }}
   >
     <Button
-      style={{ backgroundColor: "#6a626e", }}
+      style={{ 
+        backgroundColor: "#6a626e", 
+        outline: 'none',
+        boxShadow: 'none',
+      border: 'none', }}
     >
       Explore
     </Button>
@@ -163,24 +196,12 @@ const onMove = useCallback(
       <p>Step inside and let the hum of the station fade. This is where tension dissolves and your body finds balance again, weightlessly adjusting to calm. It’s the reset point — a place to let go of earthbound heaviness before drifting into new worlds.</p>
       </Col>
       <Col>
-      <Col>
-  <div 
-    onMouseMove={onMove} 
-    style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
-  >
-    <animated.img
-      src={s7}
-      alt="space"
-      style={{
-        width: '100%',
-        height: 'auto',
-        borderRadius: '10px',
-        transform: interpBg,  
-      }}
-    />
-  </div>
-</Col>
-
+      <DotLottieReact
+            src="https://lottie.host/28aff156-7549-4371-a253-fae6c17ba0fd/2GdD3zuhPa.json"
+            loop
+            autoplay
+            
+          />
       </Col>
       <Col className={styles.tabTextRight}>
       <div className={styles.tabTextRightBackground}>
@@ -225,7 +246,7 @@ const onMove = useCallback(
       <Row>
                     <Col md={12}>
                     <div className="flex justify-content-center align-items-center" >
-                    <Link to="/DecompressionBay" style={{ textDecoration: 'none'}}>
+                    <Link to="/DecompressionBay" style={{ textDecoration: 'none' }}>
                       <Button  style={{display: 'flex', justifyContent: 'center', fontSize: '20px',
               color: 'white',
               cursor: 'pointer',
@@ -233,18 +254,21 @@ const onMove = useCallback(
               justifySelf: 'center',
               backgroundColor: '#6a626e',
               borderRadius: '20px',
-              marginTop: '60px'}}>Enter</Button>
+              marginTop: '60px',
+              border: 'none',
+          outline: 'none',}}>Enter</Button>
                       </Link>
                     </div>
                     </Col>
                 </Row>
+                
     </Tab>
     
   
 
     <Tab eventKey="Airlock Journal" title="Airlock Journal">
       <Row>
-      <Col className={styles.tabTextLeft}>
+      <Col className={styles.tabTextLeft} >
       
       <h4>Airlock Journal</h4>
       <p>A reflective space for logging thoughts before stepping into the void.</p>
@@ -258,27 +282,20 @@ const onMove = useCallback(
         quiet confessions, fragments of truth. 
         This is a space for release, a moment to unburden yourself before venturing into the unknown."</p>
       </Col>
-      <Col>
-      <Col>
-  <div 
-    onMouseMove={onMove} 
-    style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
-  >
-    <animated.img
-      src={s8}
-      alt="space"
-      style={{
-        width: '100%',
-        height: 'auto',
-        borderRadius: '10px',
-        transform: interpBg,  
-      }}
-    />
-  </div>
-</Col>
-
-      </Col>
-      <Col className={styles.tabTextRight}>
+     <Col>
+     <Lottie
+    animationData={spaceDeveloper}
+    loop={true}
+    autoplay={true}
+    style={{ 
+      height: '500px', 
+      width: '400px',
+      maxWidth: '100%' 
+    }}
+  />
+     </Col>
+     
+      <Col className={styles.tabTextRight} >
       <div className={styles.tabTextRightBackground}>
         <div style={{ paddingTop: '25px', display: 'grid', justifyContent: 'center', alignItems: 'center', textAlign: 'center' }}>
         <div className={styles.inlineText}>
@@ -329,7 +346,9 @@ const onMove = useCallback(
               justifySelf: 'center',
               backgroundColor: '#6a626e',
               borderRadius: '20px',
-              marginTop: '60px'}}>Enter</Button>
+              marginTop: '60px',
+              border: 'none',
+          outline: 'none',}}>Enter</Button>
                       </Link>
                     </div>
                     </Col>
@@ -354,26 +373,18 @@ const onMove = useCallback(
         unjudging, eternal. Many come here not just to chart their course among the constellations, but to lose themselves in 
         the reminder of how small their troubles truly are beneath an infinite sky.</p>
       </Col>
-      <Col>
-      <Col>
-  <div 
-    onMouseMove={onMove} 
-    style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
-  >
-    <animated.img
-      src={s9}
-      alt="space"
-      style={{
-        width: '100%',
-        height: 'auto',
-        borderRadius: '10px',
-        transform: interpBg,  
-      }}
-    />
-  </div>
-</Col>
-
-      </Col>
+    <Col>
+     <Lottie
+    animationData={SpaceMan}
+    loop={true}
+    autoplay={true}
+    style={{ 
+      height: '500px', 
+      width: '400px',
+      maxWidth: '100%' 
+    }}
+  />
+     </Col>
       <Col className={styles.tabTextRight}>
       <div className={styles.tabTextRightBackground}>
         <div style={{ paddingTop: '25px', display: 'grid', justifyContent: 'center', alignItems: 'center', textAlign: 'center' }}>
@@ -426,7 +437,9 @@ const onMove = useCallback(
               justifySelf: 'center',
               backgroundColor: '#6a626e',
               borderRadius: '20px',
-              marginTop: '60px'}}>Enter</Button>
+              marginTop: '60px',
+              border: 'none',
+          outline: 'none',}}>Enter</Button>
                       </Link>
                     </div>
                     </Col>
@@ -448,26 +461,19 @@ const onMove = useCallback(
         The walls carry echoes of countless transmissions: laughter, grief, confessions never meant to fade. Here, you can 
         speak into the void and know that your voice, your story, will ripple far beyond these walls.</p>
       </Col>
-      <Col>
-      <Col>
-  <div 
-    onMouseMove={onMove} 
-    style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
-  >
-    <animated.img
-      src={s10}
-      alt="space"
-      style={{
-        width: '100%',
-        height: 'auto',
-        borderRadius: '10px',
-        transform: interpBg,  
-      }}
-    />
-  </div>
-</Col>
-
-      </Col>
+     <Col>
+    <Lottie
+    animationData={AstronautMusic}
+    loop={true}
+    autoplay={true}
+    style={{ 
+      height: '600px', 
+      width: '400px',
+      maxWidth: '100%' 
+    }}
+  />
+     
+           </Col>
       <Col className={styles.tabTextRight}>
       <div className={styles.tabTextRightBackground}>
         <div style={{ paddingTop: '25px', display: 'grid', justifyContent: 'center', alignItems: 'center', textAlign: 'center' }}>
@@ -520,7 +526,9 @@ const onMove = useCallback(
               justifySelf: 'center',
               backgroundColor: '#6a626e',
               borderRadius: '20px',
-              marginTop: '60px'}}>Enter</Button>
+              marginTop: '60px',
+              border: 'none',
+          outline: 'none',}}>Enter</Button>
                       </Link>
                     </div>
                     </Col>
@@ -542,25 +550,17 @@ const onMove = useCallback(
         no one and everyone—just another voice carried by the cosmos.</p>
       </Col>
       <Col>
-      <Col>
-  <div 
-    onMouseMove={onMove} 
-    style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
-  >
-    <animated.img
-      src={s11}
-      alt="space"
-      style={{
-        width: '100%',
-        height: 'auto',
-        borderRadius: '10px',
-        transform: interpBg,  
-      }}
-    />
-  </div>
-</Col>
-
-      </Col>
+     <Lottie
+    animationData={FreeConsultation}
+    loop={true}
+    autoplay={true}
+    style={{ 
+      height: '500px', 
+      width: '400px',
+      maxWidth: '100%' 
+    }}
+  />
+            </Col>
       <Col className={styles.tabTextRight}>
       <div className={styles.tabTextRightBackground}>
         <div style={{ paddingTop: '25px', display: 'grid', justifyContent: 'center', alignItems: 'center', textAlign: 'center' }}>
@@ -614,7 +614,9 @@ const onMove = useCallback(
               justifySelf: 'center',
               backgroundColor: '#6a626e',
               borderRadius: '20px',
-              marginTop: '60px'}}>Enter</Button>
+              marginTop: '60px',
+              border: 'none',
+          outline: 'none',}}>Enter</Button>
                       </Link>
                     </div>
                     </Col>
@@ -636,25 +638,18 @@ const onMove = useCallback(
         the boundaries between mind and matter no longer exist.</p>
       </Col>
       <Col>
-      <Col>
-  <div 
-    onMouseMove={onMove} 
-    style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
-  >
-    <animated.img
-      src={s12}
-      alt="space"
-      style={{
-        width: '100%',
-        height: 'auto',
-        borderRadius: '10px',
-        transform: interpBg,  
-      }}
-    />
-  </div>
-</Col>
+     <Lottie
+    animationData={Circlepencil}
+    loop={true}
+    autoplay={true}
+    style={{ 
+      height: '500px', 
+      width: '400px',
+      maxWidth: '100%' 
+    }}
+  />
 
-      </Col>
+            </Col>
       <Col className={styles.tabTextRight}>
       <div className={styles.tabTextRightBackground}>
         <div style={{ paddingTop: '25px', display: 'grid', justifyContent: 'center', alignItems: 'center', textAlign: 'center' }}>
@@ -709,7 +704,9 @@ const onMove = useCallback(
               justifySelf: 'center',
               backgroundColor: '#6a626e',
               borderRadius: '20px',
-              marginTop: '60px'}}>Enter</Button>
+              marginTop: '60px',
+              border: 'none',
+          outline: 'none',}}>Enter</Button>
                       </Link>
                     </div>
                     </Col>
@@ -732,26 +729,16 @@ const onMove = useCallback(
         beside you, ready to answer questions or simply listen. Some say the AI carries echoes of every traveler who ever 
         spoke to it, woven together into a guide that feels less like a machine and more like a fragment of the cosmos itself.</p>
       </Col>
-      <Col>
-      <Col>
-  <div 
-    onMouseMove={onMove} 
-    style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
-  >
-    <animated.img
-      src={s13}
-      alt="space"
-      style={{
-        width: '100%',
-        height: 'auto',
-        borderRadius: '10px',
-        transform: interpBg,  
-      }}
-    />
-  </div>
-</Col>
-
-      </Col>
+      <Lottie
+    animationData={Astronaut}
+    loop={true}
+    autoplay={true}
+    style={{ 
+      height: '500px', 
+      width: '400px',
+      maxWidth: '100%' 
+    }}
+  />
       <Col className={styles.tabTextRight}>
       <div className={styles.tabTextRightBackground}>
         <div style={{ paddingTop: '25px', display: 'grid', justifyContent: 'center', alignItems: 'center', textAlign: 'center' }}>
@@ -807,7 +794,9 @@ const onMove = useCallback(
               justifySelf: 'center',
               backgroundColor: '#6a626e',
               borderRadius: '20px',
-              marginTop: '60px'}}>Enter</Button>
+              marginTop: '60px',
+              border: 'none',
+          outline: 'none',}}>Enter</Button>
                       </Link>
                     </div>
                     </Col>
