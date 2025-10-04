@@ -35,7 +35,7 @@ import AstronautMusic from '../../assets/Animations/AstronautMusic.json';
 import Circlepencil from '../../assets/Animations/Circlepencil.json';
 import FreeConsultation from '../../assets/Animations/FreeConsultation.json';
 import spaceDeveloper from '../../assets/Animations/spaceDeveloper.json';
-
+import spaceX from '../../assets/Animations/spaceX.json';
 
 
 
@@ -94,7 +94,7 @@ const onMove = useCallback(
     </div>
     
     <div className={styles.TextTop}>
-      <h1 style={{fontSize: '170px', 
+      <h1 style={{fontSize: window.innerWidth < 768 ? '50px' : '170px', 
   fontFamily: "Saira Stencil One", fontWeight: '400', letterSpacing: '10px', color: 'white', textShadow: '2px 2px 4px #000000', opacity: '0.8'
 }}>SOLAYULM</h1>
     </div>
@@ -195,14 +195,26 @@ const onMove = useCallback(
       <p>Here, the hum of machinery softens into silence. Gravity stabilizers hum low beneath your feet as the station welcomes you back from the chaos outside. This chamber is a sanctuary for weary travelers—a place to let the tension bleed away, to breathe, and to remember that you are safe within these walls.</p>
       <p>Step inside and let the hum of the station fade. This is where tension dissolves and your body finds balance again, weightlessly adjusting to calm. It’s the reset point — a place to let go of earthbound heaviness before drifting into new worlds.</p>
       </Col>
-      <Col>
+      {/* <Col>
       <DotLottieReact
             src="https://lottie.host/28aff156-7549-4371-a253-fae6c17ba0fd/2GdD3zuhPa.json"
             loop
             autoplay
             
           />
-      </Col>
+      </Col> */}
+      <Col>
+           <Lottie
+          animationData={spaceX}
+          loop={true}
+          autoplay={true}
+          style={{ 
+            height: '500px', 
+            width: '400px',
+            maxWidth: '100%' 
+          }}
+        />
+           </Col>
       <Col className={styles.tabTextRight}>
       <div className={styles.tabTextRightBackground}>
         <div style={{ paddingTop: '25px', display: 'grid', justifyContent: 'center', alignItems: 'center', textAlign: 'center' }}>
@@ -250,7 +262,7 @@ const onMove = useCallback(
                       <Button  style={{display: 'flex', justifyContent: 'center', fontSize: '20px',
               color: 'white',
               cursor: 'pointer',
-              width: '10%',
+              width: window.innerWidth < 768 ? '30%' : '10%',
               justifySelf: 'center',
               backgroundColor: '#6a626e',
               borderRadius: '20px',
@@ -342,7 +354,7 @@ const onMove = useCallback(
                       <Button  style={{display: 'flex', justifyContent: 'center', fontSize: '20px',
               color: 'white',
               cursor: 'pointer',
-              width: '10%',
+               width: window.innerWidth < 768 ? '30%' : '10%',
               justifySelf: 'center',
               backgroundColor: '#6a626e',
               borderRadius: '20px',
@@ -433,7 +445,7 @@ const onMove = useCallback(
                       <Button  style={{display: 'flex', justifyContent: 'center', fontSize: '20px',
               color: 'white',
               cursor: 'pointer',
-              width: '10%',
+               width: window.innerWidth < 768 ? '30%' : '10%',
               justifySelf: 'center',
               backgroundColor: '#6a626e',
               borderRadius: '20px',
@@ -522,7 +534,7 @@ const onMove = useCallback(
                       <Button  style={{display: 'flex', justifyContent: 'center', fontSize: '20px',
               color: 'white',
               cursor: 'pointer',
-              width: '10%',
+               width: window.innerWidth < 768 ? '30%' : '10%',
               justifySelf: 'center',
               backgroundColor: '#6a626e',
               borderRadius: '20px',
@@ -610,7 +622,7 @@ const onMove = useCallback(
                       <Button  style={{display: 'flex', justifyContent: 'center', fontSize: '20px',
               color: 'white',
               cursor: 'pointer',
-              width: '10%',
+               width: window.innerWidth < 768 ? '30%' : '10%',
               justifySelf: 'center',
               backgroundColor: '#6a626e',
               borderRadius: '20px',
@@ -700,7 +712,7 @@ const onMove = useCallback(
                       <Button  style={{display: 'flex', justifyContent: 'center', fontSize: '20px',
               color: 'white',
               cursor: 'pointer',
-              width: '10%',
+               width: window.innerWidth < 768 ? '30%' : '10%',
               justifySelf: 'center',
               backgroundColor: '#6a626e',
               borderRadius: '20px',
@@ -790,7 +802,7 @@ const onMove = useCallback(
                       <Button  style={{display: 'flex', justifyContent: 'center', fontSize: '20px',
               color: 'white',
               cursor: 'pointer',
-              width: '10%',
+               width: window.innerWidth < 768 ? '30%' : '10%',
               justifySelf: 'center',
               backgroundColor: '#6a626e',
               borderRadius: '20px',
