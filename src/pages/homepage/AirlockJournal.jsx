@@ -97,9 +97,6 @@ const AirlockJournal = () => {
       {/* Actions */}
       <Row className="justify-content-center mt-3">
         <Col xs="auto">
-          <Button className="save-btn w-100" disabled>Save</Button>
-        </Col>
-        <Col xs="auto">
           <Button className={styles.sendBtn} ref={buttonRef} onClick={handleSend}>Send to Black Hole</Button>
         </Col>
       </Row>
