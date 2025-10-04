@@ -17,7 +17,7 @@ import HoloRoom from "./pages/homepage/HoloRoom.jsx";
 import AiCompanion from "./pages/homepage/AiCompanion.jsx";
 import AboutPage from "./pages/homepage/About.jsx";
 import HelpPage from "./pages/homepage/HelpAvailable.jsx";
-import Homepage2 from "./pages/homepage/Homepage2.jsx";
+// import Homepage2 from "./pages/homepage/Homepage2.jsx";
 import GoToTop from "../src/components/GoToTop.jsx";
 
 const App = () => {
@@ -40,7 +40,7 @@ const App = () => {
           <Route path="/cosmicCompanion" element={<AiCompanion />} />
           <Route path="/AboutPage" element={<AboutPage />} />
           <Route path="/HelpPage" element={<HelpPage />} />
-          <Route path="/Homepage2" element={<Homepage2 />} />
+          {/* <Route path="/Homepage2" element={<Homepage2 />} /> */}
             <Route path="*" element={<h1>Page not found!</h1>} />
           </Routes>
         </div>
