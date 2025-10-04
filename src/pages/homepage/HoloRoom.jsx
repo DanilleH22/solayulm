@@ -371,6 +371,18 @@ const DraggableImage = ({ src, x, y }) => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  
+
+useEffect(() => {
+  const handleResize = () => setWindowWidth(window.innerWidth);
+  window.addEventListener("resize", handleResize);
+  return () => window.removeEventListener("resize", handleResize);
+}, []);
+
+const stageWidth = Math.min(windowWidth * 0.9, 600); // 90% of screen, max 600px
+const stageHeight = stageWidth; // keep square
+
+
 
   const renderActiveFeature = () => {
     switch (activeFeature) {
@@ -550,8 +562,7 @@ const DraggableImage = ({ src, x, y }) => {
       </h2>
 </Col>
         </Row>
-      <Stage  width={1000}
-  height={600}>
+      <Stage  width={stageWidth} height={stageHeight}>
         <Layer>
           {/* Already connected lines */}
           {dots.slice(0, progress + 1).map((dot, i) => {
