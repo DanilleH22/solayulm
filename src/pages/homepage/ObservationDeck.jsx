@@ -830,7 +830,7 @@ const [show, setShow] = useState(false);
             <button  style={{display: 'flex', justifyContent: 'center', fontSize: '20px',
     color: 'white',
     cursor: 'pointer',
-    width: '10%',
+   
     justifySelf: 'center',
     backgroundColor: '#ffffff1a' ,
    width: window.innerWidth < 768 ? '30%' : '10%',
