@@ -1,5 +1,5 @@
-import React from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import React, {useEffect} from "react";
+import { BrowserRouter as Router, Route, Routes, useLocation } from "react-router-dom";
 import Homepage from "./pages/homepage/Homepage.jsx" 
 import Rooms from "./pages/homepage/Rooms.jsx"
 import { Container } from 'react-bootstrap'
@@ -17,6 +17,8 @@ import HoloRoom from "./pages/homepage/HoloRoom.jsx";
 import AiCompanion from "./pages/homepage/AiCompanion.jsx";
 import AboutPage from "./pages/homepage/About.jsx";
 import HelpPage from "./pages/homepage/Helpavailable.jsx";
+import Homepage2 from "./pages/homepage/Homepage2.jsx";
+import GoToTop from "../src/components/GoToTop.jsx";
 
 const App = () => {
   return (
@@ -24,6 +26,7 @@ const App = () => {
       <NavBar />
       <Router>
         <div className="page-content">
+           <GoToTop />
           <Routes>
           <Route path="/" element={<Homepage />} />
           <Route path="/Rooms" element={<Rooms />} />
@@ -37,6 +40,7 @@ const App = () => {
           <Route path="/cosmicCompanion" element={<AiCompanion />} />
           <Route path="/AboutPage" element={<AboutPage />} />
           <Route path="/HelpPage" element={<HelpPage />} />
+          <Route path="/Homepage2" element={<Homepage2 />} />
             <Route path="*" element={<h1>Page not found!</h1>} />
           </Routes>
         </div>
