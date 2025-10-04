@@ -106,6 +106,9 @@ const constellations = {
   }
 };
 
+
+
+
 const HoloRoom = () => {
 
   const [color, setColor] = useColor("hex", "#121212");
@@ -367,22 +370,21 @@ const DraggableImage = ({ src, x, y }) => {
     const handleResize = () => setWindowWidth(window.innerWidth);
     window.addEventListener("resize", handleResize);
 
-    // cleanup on unmount
+    
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  
+const stageWidth = Math.min(windowWidth * 0.9, 600); 
+const stageHeight = stageWidth; 
 
-useEffect(() => {
-  const handleResize = () => setWindowWidth(window.innerWidth);
-  window.addEventListener("resize", handleResize);
-  return () => window.removeEventListener("resize", handleResize);
-}, []);
-
-const stageWidth = Math.min(windowWidth * 0.9, 600); // 90% of screen, max 600px
-const stageHeight = stageWidth; // keep square
+const handleClear = () => {
+  setLines([]); // Reset all drawn lines
+};
 
 
+// scale factor based on stage size
+const scaleX = stageWidth / 1000; // since your max x is ~900
+const scaleY = stageHeight / 600; // since your max y is ~500
 
   const renderActiveFeature = () => {
     switch (activeFeature) {
@@ -411,9 +413,39 @@ const stageHeight = stageWidth; // keep square
                 dark
               />
             )}
+
+            <Row className="my-3 ml-3" >
+              <Col className='d-flex justify-content-center' md={6} sm={6} xs={6}>
+              <Button variant='outline-info' onClick={handleClear}
+              style={{ width: window.innerWidth < 768 ? '100%' : 'auto' }}
+              className='ml-3'>
+              
+                Clear Canvas
+              </Button>
+              </Col>
+        
+        <Col className='d-flex justify-content-center' md={6} sm={6} xs={6}>
+          <Button
+          className='d-flex justify-content-center'
+              variant='outline-info'
+              onClick={() => {
+                const uri = stageRef.current.toDataURL({ pixelRatio: 2 });
+                const link = document.createElement("a");
+                link.download = "canvas.png";
+                link.href = uri;
+                link.click();
+              }}
+              style={{ width: window.innerWidth < 768 ? '100%' : 'auto' }}
+            >
+          Save Image
+        </Button>
+    
+        </Col>
+      </Row>
             
 
             <Stage className='bg-black'
+            ref={stageRef}
             style={{ marginLeft: window.innerWidth < 768 ? '10px' : '0px' }}
               width={1000}
               height={600}
@@ -469,13 +501,39 @@ const stageHeight = stageWidth; // keep square
         />
       )}
 
-      <div className="d-flex justify-content-center my-3">
+      <Row className=" my-3">
+        <Col className='d-flex justify-content-center' >
         <Button variant='outline-info' onClick={handleNextColouring}>
           Generate New Image
         </Button>
-      </div>
+        </Col>
+        <Col className='d-flex justify-content-center'>
+              <Button variant='outline-info' onClick={handleClear}>
+                Clear Image
+              </Button>
+              </Col>
+        
+        <Col className='d-flex justify-content-center'>
+          <Button
+                  variant='outline-info'
+  onClick={() => {
+    const uri = stageRef.current.toDataURL({ pixelRatio: 2 });
+    const link = document.createElement("a");
+    link.download = "colouring.png";
+    link.href = uri;
+    link.click();
+  }}
+>
+  Save Image
+</Button>
+    
+        </Col>
+      </Row>
+     
+      
 
       <Stage
+      ref={stageRef}
         width={window.innerWidth}
         height={window.innerHeight}
         onMouseDown={handleMouseDown}
@@ -569,17 +627,17 @@ const stageHeight = stageWidth; // keep square
             if (i === 0) return null;
             return (
               <Line
-                key={i}
-                points={[
-                  dots[i - 1].x,
-                  dots[i - 1].y,
-                  dots[i].x,
-                  dots[i].y
-                ]}
-                stroke="white"
-                strokeWidth={2}
-                lineCap="round"
-              />
+  key={i}
+  points={[
+    dots[i - 1].x * scaleX,
+    dots[i - 1].y * scaleY,
+    dots[i].x * scaleX,
+    dots[i].y * scaleY
+  ]}
+  stroke="white"
+  strokeWidth={2}
+  lineCap="round"
+/>
             );
           })}
 
@@ -587,27 +645,28 @@ const stageHeight = stageWidth; // keep square
           {dots.map((dot, i) => (
             <React.Fragment key={i}>
               <Circle
-                x={dot.x}
-                y={dot.y}
-                radius={8}
-                fill={i < progress ? "#fbce5dff" : "white"} //fbce5dff
-                stroke="blue"
-                strokeWidth={1}
-                onClick={() => handleStarClick(i)}
-              />
+  x={dot.x * scaleX}
+  y={dot.y * scaleY}
+  radius={8}
+  fill={i < progress ? "#fbce5dff" : "white"}
+  stroke="blue"
+  strokeWidth={1}
+  onClick={() => handleStarClick(i)}
+/>
+
+
               <Text
-                x={dot.x + 10}
-                y={dot.y - 10}
-                text={`${i + 1}`}
-                fontSize={14}
-                fill="lightblue"
-              />
+  x={dot.x * scaleX + 10}
+  y={dot.y * scaleY - 10}
+  text={`${i + 1}`}
+  fontSize={14}
+  fill="lightblue"
+/>
+
             </React.Fragment>
           ))}
         </Layer>
       </Stage>
-
-      
       
     </Container>
         );
@@ -880,3 +939,4 @@ const stageHeight = stageWidth; // keep square
 };
 
 export default HoloRoom;
+
