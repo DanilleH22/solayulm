@@ -155,8 +155,11 @@ const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   </a>
 </div>
 <div className='pb-3'>
+  <Link to='https://ko-fi.com/solayulm' target="_blank" style={{ textDecoration: 'none'}}>
+  
   {/* this will open a modal about donating/showing support to keep the page going not mandatory though */}
-  <button style={{backgroundColor: '#6a626e', marginTop: '20px', width: window.innerWidth < 768 ? '60%': '30%' , borderRadius: '5px'}} >Donate</button>
+  <button  style={{backgroundColor: '#6a626e', marginTop: '20px', width: window.innerWidth < 768 ? '60%': '30%' , borderRadius: '5px'}} >Donate</button>
+</Link>
 </div>
 
             
