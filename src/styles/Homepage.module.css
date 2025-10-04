@@ -274,15 +274,15 @@ body, html {
 @media screen  and (max-width: 768px) {
     .overlayText {
         width: 80%;  
-        left: 50%;  
-        top: 45%;   
+        left: 56%;  
+        top: 48%;   
         transform: translate(-50%, -50%);
         font-size: 14px; 
     }
 
     .exploreButton {
         width: 60%;  
-        left: 50%;   
+        left: 80%;   
         top: 90%;    
         transform: translate(-50%, -50%);
         font-size: 16px; 
@@ -305,8 +305,8 @@ body, html {
 
   .TextBottom {
     position: absolute;
-    top: 70%;
-    left: 65%;
+    top: 78%;
+    left: 68%;
     transform: translate(-50%, -50%);
     color: white;
     text-align: center;
