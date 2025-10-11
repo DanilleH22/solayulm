@@ -165,10 +165,10 @@ const [show, setShow] = useState(false);
   ];
 
   const visualizationEnvironments = [
-    { id: 'forest', name: 'Forest', icon: faLeaf, src: "visualisations/forestWalk.mp4"},
-    { id: 'ocean', name: 'Ocean', icon: faWater, src: "visualisations/OceanWalk.mp4" },
-    { id: 'mountain', name: 'Mountain', icon: faWind, src: "visualisations/MountainWalk.mp4" },
-    { id: 'fireplace', name: 'Fireplace', icon: faFire, src: "visualisations/FireplaceWalk.mp4" }
+    { id: 'forest', name: 'Forest', icon: faLeaf, src: "/visualisations/ForestV.mp4"},
+    { id: 'ocean', name: 'Ocean', icon: faWater, src: "/visualisations/beachWalk.mp4" },
+    { id: 'mountain', name: 'Mountain', icon: faWind, src: "/visualisations/Hiking.mp4" },
+    { id: 'fireplace', name: 'Fireplace', icon: faFire, src: "/visualisations/FireplaceWalk.mp4" }
   ];
   const selectedEnv = visualizationEnvironments.find(env => env.id === visualizationType);
 
@@ -332,6 +332,10 @@ const [show, setShow] = useState(false);
           <div className="p-6">
             <h3 className="text-xl font-semibold mb-4 text-center">Guided Visualization</h3>
             <p className="mb-4  text-center">Select an environment to visualize for mental relaxation.</p>
+            <p className="mb-4  text-center">Settle into your own internal space without external direction. </p>
+            <p className="mb-4  text-center">Project their own meaning onto the walk. Maybe focus on the visual details, on the sounds, or on your breath.</p>
+            <p className="mb-4  text-center">Mentally simulate the physical act of walking—focusing on the rhythm and sensation of steps—the ambience alone which is less intrusive.</p>
+            
             
             <div className="grid grid-cols-2 gap-3 mb-4"
              style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', padding:'10px', gap: '10px' }}>
