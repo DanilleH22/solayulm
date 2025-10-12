@@ -377,6 +377,11 @@ const DraggableImage = ({ src, x, y }) => {
 const stageWidth = Math.min(windowWidth * 0.9, 600); 
 const stageHeight = stageWidth; 
 
+const handleClear = () => {
+  setLines([]); // Reset all drawn lines
+};
+
+
 // scale factor based on stage size
 const scaleX = stageWidth / 1000; // since your max x is ~900
 const scaleY = stageHeight / 600; // since your max y is ~500
@@ -408,9 +413,39 @@ const scaleY = stageHeight / 600; // since your max y is ~500
                 dark
               />
             )}
+
+            <Row className="my-3 ml-3" >
+              <Col className='d-flex justify-content-center' md={6} sm={6} xs={6}>
+              <Button variant='outline-info' onClick={handleClear}
+              style={{ width: window.innerWidth < 768 ? '100%' : 'auto' }}
+              className='ml-3'>
+              
+                Clear Canvas
+              </Button>
+              </Col>
+        
+        <Col className='d-flex justify-content-center' md={6} sm={6} xs={6}>
+          <Button
+          className='d-flex justify-content-center'
+              variant='outline-info'
+              onClick={() => {
+                const uri = stageRef.current.toDataURL({ pixelRatio: 2 });
+                const link = document.createElement("a");
+                link.download = "canvas.png";
+                link.href = uri;
+                link.click();
+              }}
+              style={{ width: window.innerWidth < 768 ? '100%' : 'auto' }}
+            >
+          Save Image
+        </Button>
+    
+        </Col>
+      </Row>
             
 
             <Stage className='bg-black'
+            ref={stageRef}
             style={{ marginLeft: window.innerWidth < 768 ? '10px' : '0px' }}
               width={1000}
               height={600}
@@ -466,13 +501,39 @@ const scaleY = stageHeight / 600; // since your max y is ~500
         />
       )}
 
-      <div className="d-flex justify-content-center my-3">
+      <Row className=" my-3">
+        <Col className='d-flex justify-content-center' >
         <Button variant='outline-info' onClick={handleNextColouring}>
           Generate New Image
         </Button>
-      </div>
+        </Col>
+        <Col className='d-flex justify-content-center'>
+              <Button variant='outline-info' onClick={handleClear}>
+                Clear Image
+              </Button>
+              </Col>
+        
+        <Col className='d-flex justify-content-center'>
+          <Button
+                  variant='outline-info'
+  onClick={() => {
+    const uri = stageRef.current.toDataURL({ pixelRatio: 2 });
+    const link = document.createElement("a");
+    link.download = "colouring.png";
+    link.href = uri;
+    link.click();
+  }}
+>
+  Save Image
+</Button>
+    
+        </Col>
+      </Row>
+     
+      
 
       <Stage
+      ref={stageRef}
         width={window.innerWidth}
         height={window.innerHeight}
         onMouseDown={handleMouseDown}
