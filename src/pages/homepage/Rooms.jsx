@@ -23,6 +23,15 @@ import hr from '../../assets/images/hr.png';
 import od from '../../assets/images/od.png';
 import vc from '../../assets/images/vc.png';
 
+import Lottie from "lottie-react";
+import SpaceMan from '../../assets/Animations/Space_Man.json';
+import Astronaut from '../../assets/Animations/Astronaut.json';
+import AstronautMusic from '../../assets/Animations/AstronautMusic.json';
+import Circlepencil from '../../assets/Animations/Circlepencil.json';
+import FreeConsultation from '../../assets/Animations/FreeConsultation.json';
+import spaceDeveloper from '../../assets/Animations/spaceDeveloper.json';
+import spaceX from '../../assets/Animations/spaceX.json';
+
 const Rooms = () => {
   const [{ xy }, set] = useSpring(() => ({ xy: [0, 0] }));
 
@@ -79,7 +88,7 @@ const onMove = useCallback(
     onMouseMove={onMove} 
     style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
   >
-    <animated.img
+    {/* <animated.img
       src={db}
       alt="space"
       style={{
@@ -87,7 +96,17 @@ const onMove = useCallback(
         borderRadius: '10px',
         transform: interpBg,  
       }}
-    />
+    /> */}
+    <Lottie
+          animationData={spaceX}
+          loop={true}
+          autoplay={true}
+          style={{ 
+            height: '500px', 
+            width: '400px',
+            maxWidth: '100%' 
+          }}
+        />
   </div>
     {/* <img src={img_3212} alt="space" /> */}
   </Col>
@@ -100,15 +119,16 @@ const onMove = useCallback(
   
 <Col md={5} lg={4} className={styles.servicesImg}>
   <div onMouseMove={onMove} style={{ overflow: "visible" }}>
-    <animated.img
-      src={aj}
-      alt="space"
-     style={{
-        width: '100%',
-        borderRadius: '10px',
-        transform: interpBg,  
-      }}
-    />
+  <Lottie
+    animationData={spaceDeveloper}
+    loop={true}
+    autoplay={true}
+    style={{ 
+      height: '500px', 
+      width: '400px',
+      maxWidth: '100%' 
+    }}
+  />
   </div>
 </Col>
 
@@ -178,15 +198,16 @@ const onMove = useCallback(
     onMouseMove={onMove} 
     style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
   >
-    <animated.img
-      src={od}
-      alt="space"
-      style={{
-        width: '100%',
-        borderRadius: '10px',
-        transform: interpBg,  
-      }}
-    />
+    <Lottie
+    animationData={SpaceMan}
+    loop={true}
+    autoplay={true}
+    style={{ 
+      height: '500px', 
+      width: '400px',
+      maxWidth: '100%' 
+    }}
+  />
   </div>
   </Col>
 </Row>
@@ -200,15 +221,16 @@ const onMove = useCallback(
     onMouseMove={onMove} 
     style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
   >
-    <animated.img
-      src={cc}
-      alt="space"
-      style={{
-        width: '100%',
-        borderRadius: '10px',
-        transform: interpBg,  
-      }}
-    />
+    <Lottie
+    animationData={AstronautMusic}
+    loop={true}
+    autoplay={true}
+    style={{ 
+      height: '600px', 
+      width: '400px',
+      maxWidth: '100%' 
+    }}
+  />
   </div>
   </Col>
   <Col className={styles.servicesText} md={7} lg={8}>
@@ -278,15 +300,16 @@ const onMove = useCallback(
     onMouseMove={onMove} 
     style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
   >
-    <animated.img
-      src={vc}
-      alt="space"
-      style={{
-        width: '100%',
-        borderRadius: '10px',
-        transform: interpBg,  
-      }}
-    />
+     <Lottie
+    animationData={FreeConsultation}
+    loop={true}
+    autoplay={true}
+    style={{ 
+      height: '500px', 
+      width: '400px',
+      maxWidth: '100%' 
+    }}
+  />
   </div>
   </Col>
 </Row>
@@ -300,15 +323,16 @@ const onMove = useCallback(
     onMouseMove={onMove} 
     style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
   >
-    <animated.img
-      src={hr}
-      alt="space"
-      style={{
-        width: '100%',
-        borderRadius: '10px',
-        transform: interpBg,  
-      }}
-    />
+    <Lottie
+    animationData={Circlepencil}
+    loop={true}
+    autoplay={true}
+    style={{ 
+      height: '500px', 
+      width: '400px',
+      maxWidth: '100%' 
+    }}
+  />
   </div>
   </Col>
   <Col className={styles.servicesText} md={7} lg={8}>
@@ -379,15 +403,16 @@ const onMove = useCallback(
     onMouseMove={onMove} 
     style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
   >
-    <animated.img
-      src={aicc}
-      alt="space"
-     style={{
-        width: '100%',
-        borderRadius: '10px',
-        transform: interpBg,  
-      }}
-    />
+    <Lottie
+    animationData={Astronaut}
+    loop={true}
+    autoplay={true}
+    style={{ 
+      height: '500px', 
+      width: '400px',
+      maxWidth: '100%' 
+    }}
+  />
   </div>
   </Col>
 </Row>
