@@ -63,10 +63,10 @@ body, html {
   }
   
 
-.exploreButton, .exploreButton1 {
+.exploreButton {
     position: absolute;
     top: 85%;
-    left: 55%;
+    left: 60%;
     transform: translate(-50%, -50%);
     font-size: 18px;
     color: white;
@@ -76,22 +76,18 @@ body, html {
     width: 30%;
 }
 
+
+
 .exploreButton button {
     background-color: #6a626e;
     border: none;
 }
-.exploreButton1 button {
-    background-color: #6a626e;
-    border: none;
-}
+
 
 .exploreButtonbutton:hover {
     background-color: #555151;
 }
 
-.exploreButton1 button:hover {
-    background-color: #555151;
-}
 
 .servicesText {
     
@@ -328,7 +324,7 @@ body, html {
   }
 
   .exploreButton1  {
-       position: absolute;
+    position: absolute;
     top: 80%;
     left: 75%;
     transform: translate(-50%, -50%);
