@@ -271,15 +271,18 @@ body, html {
     .overlayText {
         width: 80%;  
         left: 56%;  
-        top: 44%;   
+        top: 42%;   
         transform: translate(-50%, -50%);
         font-size: 14px; 
+    }
+    .TextTop {
+      top: 15%;
     }
 
     .exploreButton {
         width: 60%;  
         left: 80%;   
-        top: 90%;    
+        top: 80%;    
         transform: translate(-50%, -50%);
         font-size: 16px; 
     }
@@ -301,7 +304,7 @@ body, html {
 
   .TextBottom {
     position: absolute;
-    top: 78%;
+    top: 70%;
     left: 68%;
     transform: translate(-50%, -50%);
     color: white;
