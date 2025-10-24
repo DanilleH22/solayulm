@@ -271,7 +271,7 @@ body, html {
     .overlayText {
         width: 80%;  
         left: 56%;  
-        top: 48%;   
+        top: 44%;   
         transform: translate(-50%, -50%);
         font-size: 14px; 
     }

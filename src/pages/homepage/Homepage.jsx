@@ -94,7 +94,7 @@ const onMove = useCallback(
     </div>
     
     <div className={styles.TextTop}>
-      <h1 style={{fontSize: window.innerWidth < 768 ? '50px' : '170px', 
+      <h1 style={{fontSize: window.innerWidth < 768 ? '50px' : '170px', paddingBottom: windowWidth <768 ? '10px' : '0',
   fontFamily: "Saira Stencil One", fontWeight: '400', letterSpacing: '10px', color: 'white', textShadow: '2px 2px 4px #000000', opacity: '0.8'
 }}>SOLAYULM</h1>
     </div>
