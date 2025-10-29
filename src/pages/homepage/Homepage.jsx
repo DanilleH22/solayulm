@@ -79,8 +79,9 @@ const onMove = useCallback(
     <>
     <Helmet>
         <title>Solayulm – Wellness in the Digital Cosmos</title>
-        <meta name="description" content="A digital sanctuary for calm, creativity, and reflection." />
+        <meta name="description" content="Explore a digital sanctuary for calm, creativity, and reflection." />
         <meta name="keywords" content="wellness, calm, mental health, space, relaxation, mindfulness" />
+        <meta property="og:title" content="Solayulm – Your Calm Digital Universe" />
       </Helmet>
     
     <Container fluid>
