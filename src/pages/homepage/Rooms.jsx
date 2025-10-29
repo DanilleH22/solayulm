@@ -63,7 +63,7 @@ const onMove = useCallback(
         welcomes you back from the chaos outside. This chamber is a sanctuary for weary travelers—a place to let the tension 
         bleed away, to breathe, and to remember that you are safe within these walls.</p>
 
-   <h3>Room Details:</h3>
+   <h3>Planet Details:</h3>
    <p>Adjustable gravity recliners, calming soundscapes, oxygen-enriched air, and guided decompression sequences.</p>
 
    <h3>Purpose</h3>
@@ -139,7 +139,7 @@ const onMove = useCallback(
         infinite void, explorers carve their thoughts into digital logs—last words, quiet confessions, fragments of truth. 
         This is a space for release, a moment to unburden yourself before venturing into the unknown.</p>
 
-   <h3>Room Details:</h3>
+   <h3>Planet Details:</h3>
    <p>Private digital logs, voice-to-text journals, encryption for secrets, and ambient quiet to encourage reflection.</p>
 
    <h3>Purpose</h3>
@@ -173,7 +173,7 @@ const onMove = useCallback(
         unjudging, eternal. Many come here not just to chart their course among the constellations, but to lose themselves in 
         the reminder of how small their troubles truly are beneath an infinite sky.</p>
 
-   <h3>Room Details:</h3>
+   <h3>Planet Details:</h3>
    <p>Panoramic starlit views, real-time celestial maps, meditation cushions, and calming ambient light cycles.</p>
 
    <h3>Purpose</h3>
@@ -240,7 +240,7 @@ const onMove = useCallback(
         carry echoes of countless transmissions: laughter, grief, confessions never meant to fade. Here, you can speak into 
         the void and know that your voice, your story, will ripple far beyond these walls.</p>
 
-   <h3>Room Details:</h3>
+   <h3>Planet Details:</h3>
    <p>Voice recording booths, encrypted message capsules, sound archives, and the ability to send transmissions across the 
     network.</p>
 
@@ -275,7 +275,7 @@ const onMove = useCallback(
         dissolve, where travelers and wanderers speak freely, untethered by identity. In this ethereal current, you are both 
         no one and everyone—just another voice carried by the cosmos.</p>
 
-   <h3>Room Details:</h3>
+   <h3>Planet Details:</h3>
    <p>Anonymized connections, real-time chat streams, and ephemeral conversations that vanish like stardust.</p>
 
    <h3>Purpose</h3>
@@ -342,7 +342,7 @@ const onMove = useCallback(
         alone. Paint with starlight, write with sound, build worlds from thought. This is where creation becomes release, and 
         the boundaries between mind and matter no longer exist.</p>
 
-   <h3>Room Details:</h3>
+   <h3>Planet Details:</h3>
    <p>Immersive holographic creative tools—painting, soundscapes, world-building, and 3D storytelling environments.</p>
 
    <h3>Purpose</h3>
@@ -377,7 +377,7 @@ const onMove = useCallback(
         spoke to it, woven together into a guide that feels less like a machine and more like a fragment of the cosmos itself.
         </p>
 
-   <h3>Room Details:</h3>
+   <h3>Planet Details:</h3>
    <p>Guidance, conversation, knowledge access, and adaptive companionship tuned to your emotional state.</p>
 
    <h3>Purpose</h3>
