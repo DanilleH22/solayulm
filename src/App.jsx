@@ -19,6 +19,7 @@ import AboutPage from "./pages/homepage/About.jsx";
 import HelpPage from "./pages/homepage/HelpAvailable.jsx";
 import Homepage2 from "./pages/homepage/Homepage2.jsx";
 import GoToTop from "../src/components/GoToTop.jsx";
+import ToolKit from "./pages/homepage/ToolKit.jsx";
 
 const App = () => {
   return (
@@ -40,6 +41,7 @@ const App = () => {
           <Route path="/cosmicCompanion" element={<AiCompanion />} />
           <Route path="/AboutPage" element={<AboutPage />} />
           <Route path="/HelpPage" element={<HelpPage />} />
+          <Route path="/Toolkit" element={<ToolKit />} />
           <Route path="/Homepage2" element={<Homepage2 />} />
             <Route path="*" element={<h1>Page not found!</h1>} />
           </Routes>
