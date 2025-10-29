@@ -2,6 +2,7 @@
 import {React, useEffect, useState} from "react";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import { Link } from "react-router";
+import { Helmet } from "react-helmet-async"
 
 const HelpPage = () => {
 
@@ -22,6 +23,14 @@ const HelpPage = () => {
     const stageWidth = Math.min(windowWidth * 0.9, 600); // 90% of screen, max 600px
     const stageHeight = stageWidth; // keep square
   return (
+    <>
+    <Helmet>
+  <title>Help & Support – You Are Not Alone | Solayulm</title>
+  <meta name="description" content="Find calm and reach out. Solayulm’s Help Centre connects you to supportive resources when you need them most." />
+  <meta property="og:title" content="Help Available | Solayulm" />
+  <meta property="og:description" content="Support and guidance for your wellbeing — because space should feel safe." />
+</Helmet>
+
     <Container className="my-5 text-light">
       <Row className="text-center mb-4">
         <h1>Help & Support</h1>
@@ -172,6 +181,7 @@ const HelpPage = () => {
                       </Col>
                   </Row>
     </Container>
+    </>
   );
 };
 

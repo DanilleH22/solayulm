@@ -13,6 +13,7 @@ import { RotatingRings } from "../../components/RotatingRings.jsx";
 import  MoodBar  from "../../components/MoodBar.jsx";
 import  FocusDial  from "../../components/FocusDial.jsx";
 import { Link } from "react-router";
+import { Helmet } from "react-helmet-async"
 
 
 
@@ -64,6 +65,14 @@ const toggleEnergy = () => {
 
 
   return (
+    <>
+    <Helmet>
+  <title>Decompression Bay – Visual Meditation & Emotional Release | Solayulm</title>
+  <meta name="description" content="Unwind in the Decompression Bay — an immersive visual experience designed to help you let go and reset your energy." />
+  <meta property="og:title" content="Decompression Bay | Solayulm" />
+  <meta property="og:description" content="Breathe. Watch. Release. A meditative digital bay to soothe your mind." />
+</Helmet>
+
     <Container fluid>
       <Row className="text-center my-5">
         <h1>Decompression Bay</h1>
@@ -312,6 +321,7 @@ const toggleEnergy = () => {
       
 
     </Container>
+    </>
   );
 };
 

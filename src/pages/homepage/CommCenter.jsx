@@ -8,6 +8,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import WavesBackground from "../../components/WavesBackground.jsx";
 import { Link } from "react-router";
+import {Helmet} from "react-helmet-async"
 
 // --- Assets ---
 
@@ -166,6 +167,13 @@ const handleVolumeToggle = () => {
 
 
   return (
+    <>
+    <Helmet>
+  <title>Comm Center Radio – Listen, Unwind & Drift | Solayulm</title>
+  <meta name="description" content="Tune in to Solayulm’s Comm Center — soothing sounds and spoken reflections to calm your mind and elevate your mood." />
+  <meta property="og:title" content="Comm Center Radio | Solayulm" />
+  <meta property="og:description" content="A peaceful digital radio transmitting serenity across your inner space." />
+</Helmet>
     <Container>
       <Row className="text-center my-5">
         <Col>
@@ -277,6 +285,7 @@ const handleVolumeToggle = () => {
                 </Col>
             </Row>
     </Container>
+    </>
   );
 };
 

@@ -32,6 +32,8 @@ import FreeConsultation from '../../assets/Animations/FreeConsultation.json';
 import spaceDeveloper from '../../assets/Animations/spaceDeveloper.json';
 import spaceX from '../../assets/Animations/spaceX.json';
 
+import { Helmet } from "react-helmet-async"
+
 const Rooms = () => {
   const [{ xy }, set] = useSpring(() => ({ xy: [0, 0] }));
 
@@ -50,6 +52,14 @@ const onMove = useCallback(
 );
 
   return (
+    <>
+    <Helmet>
+  <title>Planet Rooms – Explore Inner Worlds | Solayulm</title>
+  <meta name="description" content="Each planet room holds a different energy. Travel through Solayulm’s cosmic spaces and discover new emotional worlds." />
+  <meta property="og:title" content="Planet Rooms | Solayulm" />
+  <meta property="og:description" content="Journey across digital planets that mirror your mood and energy." />
+</Helmet>
+
     <Container fluid>
     <ScrollAnimation animationVariants={{
     hidden: { opacity: 0, x: -100 },
@@ -419,6 +429,7 @@ const onMove = useCallback(
 </ScrollAnimation>
 
     </Container>
+    </>
   )
 }
 

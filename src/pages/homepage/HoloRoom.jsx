@@ -23,6 +23,7 @@ import colouring12 from '../../assets/images/colouring/colouring12.png'
 import colouring13 from '../../assets/images/colouring/colouring13.png'
 import colouring14 from '../../assets/images/colouring/colouring14.png'
 import colouring15 from '../../assets/images/colouring/colouring15.png'
+import { Helmet } from 'react-helmet-async';
 
 
 
@@ -778,6 +779,15 @@ const scaleY = stageHeight / 600; // since your max y is ~500
 
 
   return (
+    <>
+    <Helmet>
+  <title>Holo Room – Create, Colour & Connect | Solayulm</title>
+  <meta name="description" content="Step into the Holo Room — your creative galaxy for moodboards, colouring, and mindful digital expression." />
+  <meta property="og:title" content="Holo Room | Solayulm" />
+  <meta property="og:description" content="A serene creative space to visualise your feelings and connect the dots within." />
+</Helmet>
+
+    
     <Container>
      <Row className="text-center mb-4">
                 <Col>
@@ -935,6 +945,7 @@ const scaleY = stageHeight / 600; // since your max y is ~500
                 </Col>
             </Row>
     </Container>
+    </>
   );
 };
 

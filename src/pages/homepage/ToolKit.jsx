@@ -1,8 +1,17 @@
 import React from 'react'
 import { Container, Row, Col, Button, Card } from "react-bootstrap";
+import { Helmet } from "react-helmet-async"
 
 const ToolKit = () => {
   return (
+    <>
+    <Helmet>
+  <title>Toolkit – Create Your Serene Space | Solayulm</title>
+  <meta name="description" content="Shop Solayulm’s Toolkit — curated wellness items and ambient products to turn your space into a sanctuary." />
+  <meta property="og:title" content="Toolkit | Solayulm" />
+  <meta property="og:description" content="Explore calming tools, lighting, and decor that enhance your personal space for serenity." />
+</Helmet>
+
     <Container>
         <Row className="text-center mb-4">
                 <Col>
@@ -490,6 +499,7 @@ const ToolKit = () => {
         </Col>
     </Row>
     </Container>
+    </>
   )
 }
 

@@ -18,6 +18,8 @@ import RedGalaxyShader from '../../components/RedGalaxyShader.jsx';
 import PurpleNebula from '../../components/PurpleNebula.jsx';
 import styles from "../../styles/ObservationDeck.module.css"
 
+import { Helmet } from "react-helmet-async"
+
 const ObservationDeck = () => {
   const [isSoundOn, setIsSoundOn] = useState(false);
 
@@ -599,6 +601,14 @@ const [show, setShow] = useState(false);
   };
 
   return (
+    <>
+    <Helmet>
+  <title>Observation Deck – Meditate & Visualise Among the Stars | Solayulm</title>
+  <meta name="description" content="Observe your thoughts and the cosmos on the Solayulm Observation Deck — meditate, express gratitude, and expand your awareness." />
+  <meta property="og:title" content="Observation Deck | Solayulm" />
+  <meta property="og:description" content="A cosmic space for mindfulness, music, and visual meditation." />
+</Helmet>
+
     <div 
       className={'min-h-screen '}
       
@@ -847,6 +857,7 @@ const [show, setShow] = useState(false);
 
      
     </div>
+    </>
   );
 };
 

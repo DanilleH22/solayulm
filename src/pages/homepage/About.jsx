@@ -6,9 +6,20 @@ import Lottie from "lottie-react";
 import astronautFisherman from '../../assets/Animations/astronautFishermen.json';
 import astronautTelescope from '../../assets/Animations/astronautTelescope.json';
 import s14 from '../../assets/images/s14.PNG';
+import { Helmet } from 'react-helmet-async'
 
 const AboutPage = () => {
+ 
+ 
   return (
+    <>
+    <Helmet>
+  <title>About Solayulm – The Vision Behind the Digital Sanctuary</title>
+  <meta name="description" content="Discover the story and purpose of Solayulm — a wellness-inspired space merging art, calm, and technology." />
+  <meta property="og:title" content="About Solayulm" />
+  <meta property="og:description" content="Learn about Solayulm’s vision: creating peace and presence in the digital world." />
+</Helmet>
+
     <Container className="my-5 text-light">
       {/* Header */}
       <Row className="text-center mb-3">
@@ -186,6 +197,7 @@ const AboutPage = () => {
                 </Col>
             </Row>
     </Container>
+    </>
   );
 };
 

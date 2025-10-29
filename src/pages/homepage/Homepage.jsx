@@ -36,6 +36,7 @@ import Circlepencil from '../../assets/Animations/Circlepencil.json';
 import FreeConsultation from '../../assets/Animations/FreeConsultation.json';
 import spaceDeveloper from '../../assets/Animations/spaceDeveloper.json';
 import spaceX from '../../assets/Animations/spaceX.json';
+import { Helmet } from 'react-helmet-async'
 
 
 
@@ -75,6 +76,13 @@ const onMove = useCallback(
 
 
   return (
+    <>
+    <Helmet>
+        <title>Solayulm – Wellness in the Digital Cosmos</title>
+        <meta name="description" content="A digital sanctuary for calm, creativity, and reflection." />
+        <meta name="keywords" content="wellness, calm, mental health, space, relaxation, mindfulness" />
+      </Helmet>
+    
     <Container fluid>
   <div className={styles.imgTextWrapper}>
    
@@ -821,7 +829,7 @@ const onMove = useCallback(
 
 
 </Container>
-
+</>
   );
 };
 

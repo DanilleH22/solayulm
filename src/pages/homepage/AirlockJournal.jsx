@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import Snowfall from 'react-snowfall';
 import { gsap } from "gsap";
 import OrbitingDots from "../../components/OrbitingDots.jsx";
+import { Helmet } from 'react-helmet-async'
 
 
 const AirlockJournal = () => {

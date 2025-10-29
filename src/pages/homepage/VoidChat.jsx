@@ -4,6 +4,7 @@ import { Link } from "react-router";
 import  ShootingStars  from "../../components/ShootingStars.jsx"
 import  { Aurora } from "../../components/Aurora.jsx"
 import styles from "../../styles/VoidChat.module.css"
+import { Helmet } from "react-helmet-async"
 
 
 const VoidChat = () => {
@@ -151,6 +152,14 @@ const handleClick = () => {
   setCurrentPrompt(newPrompt);
 };
   return (
+    <>
+    <Helmet>
+  <title>Void Chat – Speak & Release Your Thoughts | Solayulm</title>
+  <meta name="description" content="Let it all go in Void Chat — a sacred space to speak your thoughts, explore prompts, and release into the digital void." />
+  <meta property="og:title" content="Void Chat | Solayulm" />
+  <meta property="og:description" content="Speak your mind. Let go. The void listens without judgment." />
+</Helmet>
+
     <div style={{ 
       maxWidth: '85%', 
       margin: '0 auto', 
@@ -361,6 +370,7 @@ const handleClick = () => {
      
       
     </div>
+    </>
   );
 };
 

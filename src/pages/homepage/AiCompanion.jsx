@@ -3,10 +3,19 @@ import NoddingAvatar from "../../components/AiCompanion/NoddingAvatar";
 import ChatBox from "../../components/AiCompanion/ChatBox";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import { Link } from "react-router";
+import { Helmet } from 'react-helmet-async'
 
 
 const AiCompanion = () => {
   return (
+    <>
+    <Helmet>
+  <title>AI Companion – Talk, Reflect & Feel Heard | Solayulm</title>
+  <meta name="description" content="Connect with Solayulm’s AI Companion — a gentle conversational guide for reflection, mindfulness, and emotional release." />
+  <meta property="og:title" content="AI Companion by Solayulm" />
+  <meta property="og:description" content="Your mindful digital companion — here to listen and guide you toward calm." />
+</Helmet>
+    <Container>
     <div>
         <Row>
             <Col className='text-center mb-5'>
@@ -40,6 +49,8 @@ const AiCompanion = () => {
                     </Col>
                 </Row>
     </div>
+    </Container>
+    </>
   )
 }
 
