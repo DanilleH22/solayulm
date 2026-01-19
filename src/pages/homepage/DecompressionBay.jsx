@@ -310,11 +310,12 @@ const toggleEnergy = () => {
 
 <Row>
     <Col md={12}>
-    <div className="flex justify-content-center align-items-center" >
-    <Link to="/Rooms" style={{ background: 'none', textDecoration: 'none'}}>
-      <Button className={styles.MinutesButton} style={{display: 'flex', justifyContent: 'center'}}>Exit</Button>
-      </Link>
-    </div>
+    <div className="d-flex justify-content-center">
+  <Link to="/Rooms" style={{ textDecoration: "none" }}>
+    <Button className={styles.MinutesButton}>Exit</Button>
+  </Link>
+</div>
+
     </Col>
 </Row>
 
