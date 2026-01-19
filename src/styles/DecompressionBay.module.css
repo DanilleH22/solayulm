@@ -25,13 +25,13 @@
 }
 
 
-.MinutesButton, .MinutesButton2 {
+.MinutesButton {
     font-size: 18px;
     color: white;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    width: 50%;
+    width: 15%;
     justify-self: center;
     background-color: #6a626e ;
     margin: 8px;
@@ -66,5 +66,9 @@
     .MinutesButton2 {
       width: 100%;
       
+    }
+
+    .MinutesButton {
+      width: 15%;
     }
   }
