@@ -2,26 +2,29 @@
     align-items: center;
     text-align: center;
     min-width: auto;    
-  max-width: fit-content; 
+    width: 100%;
+
 }
 
 .controlButton {
-    max-width: 70%;
+  width: 100%;
+
     margin-bottom: 10px;
 }
 
 .systemChecksCenter {
     text-align: center;
     padding: 20px;
-   min-width: auto;    
-  max-width: fit-content; 
+     
+   width: 100%;
+
 }
 
 .systemChecksRight {
   padding: 20px;
   text-align: center;   
-  min-width: auto;    
-  max-width: 100%; 
+  width: 100%;
+
 }
 
 
@@ -34,11 +37,13 @@
     width: 15%;
     justify-self: center;
     background-color: #6a626e ;
-    margin: 8px;
+    margin: 8px auto;
    border: none;
-    
+  display: block;
    
 }
+
+
 
 .MinutesButton2 {
    font-size: 18px;
@@ -49,10 +54,28 @@
     width: 100%;
     justify-self: center;
     background-color: #6a626e ;
-    margin: 8px;
+    margin: 8px auto;
    border: none;
-    
+       
+   display: block;
 }
+
+.MinutesButton3 {
+  font-size: 18px;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 15%;
+  justify-self: center;
+  background-color: #6a626e ;
+  margin: 8px 10px;
+ border: none;
+
+ 
+}
+
+
 
 
 
@@ -63,12 +86,12 @@
     
 
 @media screen and (max-width: 768px) {
-    .MinutesButton2 {
-      width: 100%;
-      
-    }
-
-    .MinutesButton {
-      width: 15%;
-    }
+  .MinutesButton {
+    width: 160px;
   }
+
+  .MinutesButton2 {
+    width: 50%;
+    max-width: 280px;
+  }
+}
