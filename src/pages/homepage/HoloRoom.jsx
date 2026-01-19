@@ -130,8 +130,7 @@ const HoloRoom = () => {
     const [progress, setProgress] = useState(0); // how many lines drawn
 
     const transformerRef = React.useRef();
-
-      
+    
     
     
       
@@ -387,6 +386,27 @@ const handleClear = () => {
 const scaleX = stageWidth / 1000; // since your max x is ~900
 const scaleY = stageHeight / 600; // since your max y is ~500
 
+    
+const getBounds = (dots) => {
+  const xs = dots.map(d => d.x);
+  const ys = dots.map(d => d.y);
+
+  return {
+    minX: Math.min(...xs),
+    maxX: Math.max(...xs),
+    minY: Math.min(...ys),
+    maxY: Math.max(...ys),
+  };
+};
+const bounds = getBounds(dots);
+
+const constellationWidth = (bounds.maxX - bounds.minX) * scaleX;
+const constellationHeight = (bounds.maxY - bounds.minY) * scaleY;
+
+// center inside stage
+const offsetX = (stageWidth - constellationWidth) / 2 - bounds.minX * scaleX;
+const offsetY = (stageHeight - constellationHeight) / 2 - bounds.minY * scaleY;
+
   const renderActiveFeature = () => {
     switch (activeFeature) {
       case 'canvas':
@@ -622,32 +642,55 @@ const scaleY = stageHeight / 600; // since your max y is ~500
 </Col>
         </Row>
       <Stage  width={stageWidth} height={stageHeight}>
-        <Layer>
+        <Layer style={{ top: "40%"}}>
           {/* Already connected lines */}
           {dots.slice(0, progress + 1).map((dot, i) => {
             if (i === 0) return null;
             return (
-              <Line
+//               <Line
+//   key={i}
+//   points={[
+//     dots[i - 1].x * scaleX,
+//     dots[i - 1].y * scaleY,
+//     dots[i].x * scaleX,
+//     dots[i].y * scaleY
+//   ]}
+//   stroke="white"
+//   strokeWidth={2}
+//   lineCap="round"
+// />
+<Line
   key={i}
   points={[
-    dots[i - 1].x * scaleX,
-    dots[i - 1].y * scaleY,
-    dots[i].x * scaleX,
-    dots[i].y * scaleY
+    dots[i - 1].x * scaleX + offsetX,
+    dots[i - 1].y * scaleY + offsetY,
+    dots[i].x * scaleX + offsetX,
+    dots[i].y * scaleY + offsetY
   ]}
   stroke="white"
   strokeWidth={2}
   lineCap="round"
 />
+
+
             );
           })}
 
           {/* Stars */}
           {dots.map((dot, i) => (
             <React.Fragment key={i}>
-              <Circle
+              {/* <Circle
   x={dot.x * scaleX}
   y={dot.y * scaleY}
+  radius={8}
+  fill={i < progress ? "#fbce5dff" : "white"}
+  stroke="blue"
+  strokeWidth={1}
+  onClick={() => handleStarClick(i)}
+/> */}
+<Circle
+  x={dot.x * scaleX + offsetX}
+  y={dot.y * scaleY + offsetY}
   radius={8}
   fill={i < progress ? "#fbce5dff" : "white"}
   stroke="blue"
@@ -656,13 +699,22 @@ const scaleY = stageHeight / 600; // since your max y is ~500
 />
 
 
-              <Text
+
+              {/* <Text
   x={dot.x * scaleX + 10}
   y={dot.y * scaleY - 10}
   text={`${i + 1}`}
   fontSize={14}
   fill="lightblue"
+/> */}
+<Text
+  x={dot.x * scaleX + offsetX + 10}
+  y={dot.y * scaleY + offsetY - 10}
+  text={`${i + 1}`}
+  fontSize={14}
+  fill="lightblue"
 />
+
 
             </React.Fragment>
           ))}
