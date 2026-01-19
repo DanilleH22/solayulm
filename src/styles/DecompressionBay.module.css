@@ -70,5 +70,7 @@
 
     .MinutesButton {
       width: 15%;
+      display: flex;
+    justify-content: center;
     }
   }
