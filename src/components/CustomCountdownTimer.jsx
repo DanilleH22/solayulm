@@ -98,7 +98,7 @@ const EndSequence = () => {
       
     }
   }}
-  className={styles.MinutesButton}
+  className={styles.MinutesButton3}
   style={{ width: '25%' }}
 >
   {isRunning ? "Pause" : "Start"}
@@ -107,7 +107,7 @@ const EndSequence = () => {
 
     <Button
       onClick={resetTimer}
-      className={styles.MinutesButton}
+      className={styles.MinutesButton3}
       style={{ width: '25%' }}
     >
       Reset
