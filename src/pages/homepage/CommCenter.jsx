@@ -268,21 +268,28 @@ const handleVolumeToggle = () => {
           </div>
         </div>
       </div>
-       <Row>
-                <Col md={12}>
-                <div className="flex justify-content-center align-items-center" >
-                <Link to="/Rooms" style={{ textDecoration: 'none'}}>
-                  <Button variant="outline-info"  style={{display: 'flex', justifyContent: 'center', fontSize: '20px',
-          color: 'white',
-          cursor: 'pointer',
-          
-          justifySelf: 'center',
-          width: window.innerWidth < 768 ? '30%' : '10%',
-         
-          marginTop: '60px'}}>Exit</Button>
-                  </Link>
-                </div>
-                </Col>
+       
+
+            <Row className="justify-content-center">
+              <Col xs={12} className="text-center">
+                <Link to="/Rooms" style={{ textDecoration: 'none' }}>
+                  <Button 
+                    variant="outline-info"
+                    className="mobile-responsive-btn"
+                    style={{
+                      fontSize: window.innerWidth < 768 ? '18px' : '20px',
+                      color: 'white',
+                      cursor: 'pointer',
+                      marginTop: '60px',
+                      marginBottom: '10px',
+                      padding: window.innerWidth < 768 ? '8px 24px' : '10px 30px',
+                      minWidth: window.innerWidth < 768 ? '100px' : '120px'
+                    }}
+                  >
+                    Exit
+                  </Button>
+                </Link>
+              </Col>
             </Row>
     </Container>
     </>
