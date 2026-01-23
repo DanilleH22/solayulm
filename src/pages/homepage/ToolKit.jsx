@@ -23,6 +23,8 @@ const ToolKit = () => {
                 </Col>
               </Row>
 
+              {/* Featured Tools Section */}
+
               <Row className='text-center'>
                 <Col>
                     <h3>Featured Tools</h3>
@@ -30,10 +32,11 @@ const ToolKit = () => {
                     </Row>
 
 
-              <Row className='text-center'>
+              <Row>
                 <Col>
-                    
-                    <Card style={{ width: '18rem' }}>
+               
+           
+            <Card style={{ width: '18rem' }}>
       <Card.Img variant="top" src="holder.js/100px180" />
       <Card.Body>
         <Card.Title>Card Title</Card.Title>
@@ -41,41 +44,77 @@ const ToolKit = () => {
           Some quick example text to build on the card title and make up the
           bulk of the card's content.
         </Card.Text>
-        <Card.Link href="#">Shop now</Card.Link>
+        <Card.Link href="#">Card Link</Card.Link>
       </Card.Body>
     </Card>
-                </Col>
+    <Row className='mt-3'>
+      <Col>
+      <h4 className='text-center'>Benefits:</h4>
+              <ul>
+                <li>Supports the space and keeps it ad-free</li>
+                <li>Enhances your personal space for serenity</li>
+                <li>Curated wellness items and ambient products</li>
+              </ul>
+      </Col>
+    </Row>
+    </Col>
+    <Col>
+               
+               
+               <Card style={{ width: '18rem' }}>
+         <Card.Img variant="top" src="holder.js/100px180" />
+         <Card.Body>
+           <Card.Title>Card Title</Card.Title>
+           <Card.Text>
+             Some quick example text to build on the card title and make up the
+             bulk of the card's content.
+           </Card.Text>
+           <Card.Link href="#">Card Link</Card.Link>
+         </Card.Body>
+       </Card>
+       <Row className='mt-3'>
+      <Col>
+      <h4 className='text-center'>Benefits:</h4>
+              <ul>
+                <li>Supports the space and keeps it ad-free</li>
+                <li>Enhances your personal space for serenity</li>
+                <li>Curated wellness items and ambient products</li>
+              </ul>
+      </Col>
+    </Row>
+       </Col>
+       <Col>
+               
+               
+               <Card style={{ width: '18rem' }}>
+         <Card.Img variant="top" src="holder.js/100px180" />
+         <Card.Body>
+           <Card.Title>Card Title</Card.Title>
+           <Card.Text>
+             Some quick example text to build on the card title and make up the
+             bulk of the card's content.
+           </Card.Text>
+           <Card.Link href="#">Card Link</Card.Link>
+         </Card.Body>
+       </Card>
+       <Row className='mt-3'>
+      <Col>
+      <h4 className='text-center'>Benefits:</h4>
+              <ul>
+                <li>Supports the space and keeps it ad-free</li>
+                <li>Enhances your personal space for serenity</li>
+                <li>Curated wellness items and ambient products</li>
+              </ul>
+      </Col>
+    </Row>
+       </Col>
+      
 
-                <Col>
-                    
-                    <Card style={{ width: '18rem' }}>
-      <Card.Img variant="top" src="holder.js/100px180" />
-      <Card.Body>
-        <Card.Title>Card Title</Card.Title>
-        <Card.Text>
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
-        </Card.Text>
-        <Card.Link href="#">Shop now</Card.Link>
-      </Card.Body>
-    </Card>
-                </Col>
+    </Row>
 
-                <Col>
-                   
-                    <Card style={{ width: '18rem' }}>
-      <Card.Img variant="top" src="holder.js/100px180" />
-      <Card.Body>
-        <Card.Title>Card Title</Card.Title>
-        <Card.Text>
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
-        </Card.Text>
-        <Card.Link href="#">Shop now</Card.Link>
-      </Card.Body>
-    </Card>
-                </Col>
-              </Row>
+
+    
+     
               
         {/* Creative space */}
 
@@ -98,6 +137,16 @@ const ToolKit = () => {
         <Card.Link href="#">Card Link</Card.Link>
       </Card.Body>
     </Card>
+    <Row className='mt-3'>
+      <Col>
+      <h4>Benefits:</h4>
+              <ul>
+                <li>Supports the space and keeps it ad-free</li>
+                <li>Enhances your personal space for serenity</li>
+                <li>Curated wellness items and ambient products</li>
+              </ul>
+      </Col>
+    </Row>
     </Col>
     <Col>
                
@@ -113,6 +162,16 @@ const ToolKit = () => {
            <Card.Link href="#">Card Link</Card.Link>
          </Card.Body>
        </Card>
+       <Row className='mt-3'>
+      <Col>
+      <h4>Benefits:</h4>
+              <ul>
+                <li>Supports the space and keeps it ad-free</li>
+                <li>Enhances your personal space for serenity</li>
+                <li>Curated wellness items and ambient products</li>
+              </ul>
+      </Col>
+    </Row>
        </Col>
        <Col>
                
@@ -128,6 +187,16 @@ const ToolKit = () => {
            <Card.Link href="#">Card Link</Card.Link>
          </Card.Body>
        </Card>
+       <Row className='mt-3'>
+      <Col>
+      <h4>Benefits:</h4>
+              <ul>
+                <li>Supports the space and keeps it ad-free</li>
+                <li>Enhances your personal space for serenity</li>
+                <li>Curated wellness items and ambient products</li>
+              </ul>
+      </Col>
+    </Row>
        </Col>
        <Col>
                
@@ -143,6 +212,16 @@ const ToolKit = () => {
            <Card.Link href="#">Card Link</Card.Link>
          </Card.Body>
        </Card>
+       <Row className='mt-3'>
+      <Col>
+      <h4>Benefits:</h4>
+              <ul>
+                <li>Supports the space and keeps it ad-free</li>
+                <li>Enhances your personal space for serenity</li>
+                <li>Curated wellness items and ambient products</li>
+              </ul>
+      </Col>
+    </Row>
        </Col>
 
     </Row>
@@ -163,6 +242,16 @@ const ToolKit = () => {
         <Card.Link href="#">Card Link</Card.Link>
       </Card.Body>
     </Card>
+    <Row className='mt-3'>
+      <Col>
+      <h4>Benefits:</h4>
+              <ul>
+                <li>Supports the space and keeps it ad-free</li>
+                <li>Enhances your personal space for serenity</li>
+                <li>Curated wellness items and ambient products</li>
+              </ul>
+      </Col>
+    </Row>
     </Col>
     <Col>
                
@@ -178,6 +267,16 @@ const ToolKit = () => {
            <Card.Link href="#">Card Link</Card.Link>
          </Card.Body>
        </Card>
+       <Row className='mt-3'>
+      <Col>
+      <h4>Benefits:</h4>
+              <ul>
+                <li>Supports the space and keeps it ad-free</li>
+                <li>Enhances your personal space for serenity</li>
+                <li>Curated wellness items and ambient products</li>
+              </ul>
+      </Col>
+    </Row>
        </Col>
        <Col>
                
@@ -193,6 +292,16 @@ const ToolKit = () => {
            <Card.Link href="#">Card Link</Card.Link>
          </Card.Body>
        </Card>
+       <Row className='mt-3'>
+      <Col>
+      <h4>Benefits:</h4>
+              <ul>
+                <li>Supports the space and keeps it ad-free</li>
+                <li>Enhances your personal space for serenity</li>
+                <li>Curated wellness items and ambient products</li>
+              </ul>
+      </Col>
+    </Row>
        </Col>
        <Col>
                
@@ -208,6 +317,16 @@ const ToolKit = () => {
            <Card.Link href="#">Card Link</Card.Link>
          </Card.Body>
        </Card>
+       <Row className='mt-3'>
+      <Col>
+      <h4>Benefits:</h4>
+              <ul>
+                <li>Supports the space and keeps it ad-free</li>
+                <li>Enhances your personal space for serenity</li>
+                <li>Curated wellness items and ambient products</li>
+              </ul>
+      </Col>
+    </Row>
        </Col>
 
     </Row>
@@ -235,6 +354,16 @@ const ToolKit = () => {
         <Card.Link href="#">Card Link</Card.Link>
       </Card.Body>
     </Card>
+    <Row className='mt-3'>
+      <Col>
+      <h4>Benefits:</h4>
+              <ul>
+                <li>Supports the space and keeps it ad-free</li>
+                <li>Enhances your personal space for serenity</li>
+                <li>Curated wellness items and ambient products</li>
+              </ul>
+      </Col>
+    </Row>
     </Col>
     <Col>
                
@@ -250,6 +379,16 @@ const ToolKit = () => {
            <Card.Link href="#">Card Link</Card.Link>
          </Card.Body>
        </Card>
+       <Row className='mt-3'>
+      <Col>
+      <h4>Benefits:</h4>
+              <ul>
+                <li>Supports the space and keeps it ad-free</li>
+                <li>Enhances your personal space for serenity</li>
+                <li>Curated wellness items and ambient products</li>
+              </ul>
+      </Col>
+    </Row>
        </Col>
        <Col>
                
@@ -265,6 +404,16 @@ const ToolKit = () => {
            <Card.Link href="#">Card Link</Card.Link>
          </Card.Body>
        </Card>
+       <Row className='mt-3'>
+      <Col>
+      <h4>Benefits:</h4>
+              <ul>
+                <li>Supports the space and keeps it ad-free</li>
+                <li>Enhances your personal space for serenity</li>
+                <li>Curated wellness items and ambient products</li>
+              </ul>
+      </Col>
+    </Row>
        </Col>
        <Col>
                
@@ -280,6 +429,16 @@ const ToolKit = () => {
            <Card.Link href="#">Card Link</Card.Link>
          </Card.Body>
        </Card>
+       <Row className='mt-3'>
+      <Col>
+      <h4>Benefits:</h4>
+              <ul>
+                <li>Supports the space and keeps it ad-free</li>
+                <li>Enhances your personal space for serenity</li>
+                <li>Curated wellness items and ambient products</li>
+              </ul>
+      </Col>
+    </Row>
        </Col>
 
     </Row>
@@ -300,6 +459,16 @@ const ToolKit = () => {
         <Card.Link href="#">Card Link</Card.Link>
       </Card.Body>
     </Card>
+    <Row className='mt-3'>
+      <Col>
+      <h4>Benefits:</h4>
+              <ul>
+                <li>Supports the space and keeps it ad-free</li>
+                <li>Enhances your personal space for serenity</li>
+                <li>Curated wellness items and ambient products</li>
+              </ul>
+      </Col>
+    </Row>
     </Col>
     <Col>
                
@@ -315,6 +484,16 @@ const ToolKit = () => {
            <Card.Link href="#">Card Link</Card.Link>
          </Card.Body>
        </Card>
+       <Row className='mt-3'>
+      <Col>
+      <h4>Benefits:</h4>
+              <ul>
+                <li>Supports the space and keeps it ad-free</li>
+                <li>Enhances your personal space for serenity</li>
+                <li>Curated wellness items and ambient products</li>
+              </ul>
+      </Col>
+    </Row>
        </Col>
        <Col>
                
@@ -330,6 +509,16 @@ const ToolKit = () => {
            <Card.Link href="#">Card Link</Card.Link>
          </Card.Body>
        </Card>
+       <Row className='mt-3'>
+      <Col>
+      <h4>Benefits:</h4>
+              <ul>
+                <li>Supports the space and keeps it ad-free</li>
+                <li>Enhances your personal space for serenity</li>
+                <li>Curated wellness items and ambient products</li>
+              </ul>
+      </Col>
+    </Row>
        </Col>
        <Col>
                
@@ -345,6 +534,16 @@ const ToolKit = () => {
            <Card.Link href="#">Card Link</Card.Link>
          </Card.Body>
        </Card>
+       <Row className='mt-3'>
+      <Col>
+      <h4>Benefits:</h4>
+              <ul>
+                <li>Supports the space and keeps it ad-free</li>
+                <li>Enhances your personal space for serenity</li>
+                <li>Curated wellness items and ambient products</li>
+              </ul>
+      </Col>
+    </Row>
        </Col>
 
     </Row>
@@ -365,14 +564,24 @@ const ToolKit = () => {
             <Card style={{ width: '18rem' }}>
       <Card.Img variant="top" src="holder.js/100px180" />
       <Card.Body>
-        <Card.Title>Weighted Blanket</Card.Title>
+        <Card.Title>Card Title</Card.Title>
         <Card.Text>
           Some quick example text to build on the card title and make up the
           bulk of the card's content.
         </Card.Text>
-        <Card.Link href="https://amzn.to/4oFE8sr" target="_blank">Card Link</Card.Link>
+        <Card.Link href="#">Card Link</Card.Link>
       </Card.Body>
     </Card>
+    <Row className='mt-3'>
+      <Col>
+      <h4>Benefits:</h4>
+              <ul>
+                <li>Supports the space and keeps it ad-free</li>
+                <li>Enhances your personal space for serenity</li>
+                <li>Curated wellness items and ambient products</li>
+              </ul>
+      </Col>
+    </Row>
     </Col>
     <Col>
                
@@ -388,6 +597,16 @@ const ToolKit = () => {
            <Card.Link href="#">Card Link</Card.Link>
          </Card.Body>
        </Card>
+       <Row className='mt-3'>
+      <Col>
+      <h4>Benefits:</h4>
+              <ul>
+                <li>Supports the space and keeps it ad-free</li>
+                <li>Enhances your personal space for serenity</li>
+                <li>Curated wellness items and ambient products</li>
+              </ul>
+      </Col>
+    </Row>
        </Col>
        <Col>
                
@@ -403,6 +622,16 @@ const ToolKit = () => {
            <Card.Link href="#">Card Link</Card.Link>
          </Card.Body>
        </Card>
+       <Row className='mt-3'>
+      <Col>
+      <h4>Benefits:</h4>
+              <ul>
+                <li>Supports the space and keeps it ad-free</li>
+                <li>Enhances your personal space for serenity</li>
+                <li>Curated wellness items and ambient products</li>
+              </ul>
+      </Col>
+    </Row>
        </Col>
        <Col>
                
@@ -418,6 +647,16 @@ const ToolKit = () => {
            <Card.Link href="#">Card Link</Card.Link>
          </Card.Body>
        </Card>
+       <Row className='mt-3'>
+      <Col>
+      <h4>Benefits:</h4>
+              <ul>
+                <li>Supports the space and keeps it ad-free</li>
+                <li>Enhances your personal space for serenity</li>
+                <li>Curated wellness items and ambient products</li>
+              </ul>
+      </Col>
+    </Row>
        </Col>
 
     </Row>
@@ -438,6 +677,16 @@ const ToolKit = () => {
         <Card.Link href="#">Card Link</Card.Link>
       </Card.Body>
     </Card>
+    <Row className='mt-3'>
+      <Col>
+      <h4>Benefits:</h4>
+              <ul>
+                <li>Supports the space and keeps it ad-free</li>
+                <li>Enhances your personal space for serenity</li>
+                <li>Curated wellness items and ambient products</li>
+              </ul>
+      </Col>
+    </Row>
     </Col>
     <Col>
                
@@ -453,6 +702,16 @@ const ToolKit = () => {
            <Card.Link href="#">Card Link</Card.Link>
          </Card.Body>
        </Card>
+       <Row className='mt-3'>
+      <Col>
+      <h4>Benefits:</h4>
+              <ul>
+                <li>Supports the space and keeps it ad-free</li>
+                <li>Enhances your personal space for serenity</li>
+                <li>Curated wellness items and ambient products</li>
+              </ul>
+      </Col>
+    </Row>
        </Col>
        <Col>
                
@@ -468,6 +727,16 @@ const ToolKit = () => {
            <Card.Link href="#">Card Link</Card.Link>
          </Card.Body>
        </Card>
+       <Row className='mt-3'>
+      <Col>
+      <h4>Benefits:</h4>
+              <ul>
+                <li>Supports the space and keeps it ad-free</li>
+                <li>Enhances your personal space for serenity</li>
+                <li>Curated wellness items and ambient products</li>
+              </ul>
+      </Col>
+    </Row>
        </Col>
        <Col>
                
@@ -483,6 +752,16 @@ const ToolKit = () => {
            <Card.Link href="#">Card Link</Card.Link>
          </Card.Body>
        </Card>
+       <Row className='mt-3'>
+      <Col>
+      <h4>Benefits:</h4>
+              <ul>
+                <li>Supports the space and keeps it ad-free</li>
+                <li>Enhances your personal space for serenity</li>
+                <li>Curated wellness items and ambient products</li>
+              </ul>
+      </Col>
+    </Row>
        </Col>
 
     </Row>
