@@ -397,8 +397,11 @@ const onMove = useCallback(
    <p>When you feel lost, curious, or simply in need of a voice to remind you that you’re not drifting through the void alone.
    </p>
    <div className={styles.exploringButton}>
-  <Link to="/cosmicCompanion">
-    <Button style={{
+  <Link disabled to="">
+   {/* <Link disabled to="/cosmicCompanion"></Link> */}
+    <Button 
+    disabled
+    style={{
         outline: 'none',
         boxShadow: 'none',
         backgroundColor: '#6a626e',
