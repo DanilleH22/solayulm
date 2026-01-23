@@ -49,6 +49,15 @@ const AirlockJournal = () => {
   
 
   return (
+    <>
+    <Helmet>
+  <title>Airlock Journal – Breathe, Write & Reflect | Solayulm</title>
+  <meta name="description" content="Enter the Airlock Journal — release your thoughts, breathe out the noise, and discover peace through writing." />
+  <meta property="og:title" content="Airlock Journal | Solayulm" />
+  <meta property="og:description" content="A mindful writing space for self-reflection and release." />
+</Helmet>
+
+    
     <Container fluid className={styles.airlockJournal}>
    
 
@@ -118,6 +127,7 @@ const AirlockJournal = () => {
         </Col>
       </Row>
     </Container>
+    </>
   );
 };
 

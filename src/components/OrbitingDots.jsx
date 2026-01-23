@@ -105,7 +105,7 @@ const messages = [
       />
     ))}
     <Modal show={show} onHide={() => setShow(false)} size="lg" centered >
-  <Modal.Header closeButton style={{backgroundColor: '#98b5f0ff;'}}>
+  <Modal.Header closeButton style={{backgroundColor: '#6a626e ;'}}>
     <Modal.Title></Modal.Title>
   </Modal.Header>
   <Modal.Body  style={{ fontSize: "1.25rem", textAlign: "center", color: 'black', backgroundColor: '#98b5f0;'  }}>
