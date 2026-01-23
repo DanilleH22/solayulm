@@ -23,9 +23,9 @@ const CHANNELS = {
   "Lofi Beats": [
     // { id: 1, name: "Lofi 1", src: "/LofiBeats/zelda1Lofi.mp4" },
     // { id: 2, name: "Lofi 2", src: "/LofiBeats/zelda2Lofi.mp4" },
-    { id: 3, name: "Lofi 3", src: "/LofiBeats/lofi3.mp4" },
+    // { id: 3, name: "Lofi 3", src: "/LofiBeats/lofi3.mp4" },
   
-    { id: 5, name: "Lofi 5", src: "/LofiBeats/lofi5.mp4" },
+    // { id: 5, name: "Lofi 5", src: "/LofiBeats/lofi5.mp4" },
     { id: 6, name: "Lofi 6", src: "/LofiBeats/lofi6.mp3" },
     { id: 7, name: "Lofi 7", src: "/LofiBeats/lofi7.mp3" },
     { id: 8, name: "Lofi 8", src: "/LofiBeats/lofi8.mp3" },
