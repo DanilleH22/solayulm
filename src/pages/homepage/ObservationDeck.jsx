@@ -837,7 +837,22 @@ const [show, setShow] = useState(false);
         </div>
       </div>
 
-    
+      <Row>
+          <Col md={12}>
+          <div className="flex justify-content-center align-items-center" >
+          <Link to="/Rooms" style={{ textDecoration: 'none'}}>
+            <button  style={{display: 'flex', justifyContent: 'center', fontSize: '20px',
+    color: 'white',
+    cursor: 'pointer',
+   
+    justifySelf: 'center',
+    backgroundColor: '#ffffff1a' ,
+   width: window.innerWidth < 768 ? '30%' : '10%',
+    margin: '8px'}}>Exit</button>
+            </Link>
+          </div>
+          </Col>
+      </Row>
       
      <Row className="justify-content-center">
   <Col xs={12} className="text-center">
@@ -852,7 +867,7 @@ const [show, setShow] = useState(false);
           border: '1px solid #ddb0ffff',
          
           padding: window.innerWidth < 768 ? '8px 20px' : '5px 15px',
-          width: window.innerWidth < 768 ? '50%' : '10%',
+          minWidth: window.innerWidth < 768 ? '90px' : '150px',
           transition: 'all 0.3s ease'
         }}
       >
