@@ -93,9 +93,7 @@ const CommCenter = () => {
    const [isMuted, setIsMuted] = useState(false);
   const audioRef = useRef(null);
   
-audioRef.current.play().catch(err => {
-  console.error("Audio failed:", err);
-});
+
   const playlist = CHANNELS[currentChannel];
   const currentTrack = playlist[currentIndex];
 
