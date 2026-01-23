@@ -607,6 +607,7 @@ const offsetY = (stageHeight - constellationHeight) / 2 - bounds.minY * scaleY;
             <Button
               variant="outline-info"
               className="w-100 align-middle"
+               onTap={() => handleStarClick(i)}
               onClick={() => {
                 setCurrentConstellation(key);
                 setProgress(0);
@@ -641,7 +642,7 @@ const offsetY = (stageHeight - constellationHeight) / 2 - bounds.minY * scaleY;
       </h2>
 </Col>
         </Row>
-      <Stage  width={stageWidth} height={stageHeight}>
+      <Stage  width={stageWidth} height={stageHeight} onTouchStart={(e) => e.evt.preventDefault()}>
         <Layer style={{ top: "40%"}}>
           {/* Already connected lines */}
           {dots.slice(0, progress + 1).map((dot, i) => {
@@ -688,7 +689,7 @@ const offsetY = (stageHeight - constellationHeight) / 2 - bounds.minY * scaleY;
   strokeWidth={1}
   onClick={() => handleStarClick(i)}
 /> */}
-<Circle
+{/* <Circle
   x={dot.x * scaleX + offsetX}
   y={dot.y * scaleY + offsetY}
   radius={8}
@@ -696,7 +697,19 @@ const offsetY = (stageHeight - constellationHeight) / 2 - bounds.minY * scaleY;
   stroke="blue"
   strokeWidth={1}
   onClick={() => handleStarClick(i)}
+   onTap={() => handleStarClick(i)}
+/> */}
+<Circle
+  x={dot.x * scaleX + offsetX}
+  y={dot.y * scaleY + offsetY}
+  radius={window.innerWidth < 768 ? 9 : 10}
+  fill={i < progress ? "#fbce5dff" : "white"}
+  stroke="blue"
+  strokeWidth={1}
+  onTap={() => handleStarClick(i)}
+  onClick={() => handleStarClick(i)}
 />
+
 
 
 
@@ -750,12 +763,25 @@ const offsetY = (stageHeight - constellationHeight) / 2 - bounds.minY * scaleY;
     link.href = uri;
     link.click();
   }}
+   onTap={() => {
+    const uri = stageRef.current.toDataURL();
+    const link = document.createElement("a");
+    link.download = "moodboard.png";
+    link.href = uri;
+    link.click();
+  }}
 >
   Save as Image
 </Button>
                 <Button
                  variant='outline-info'
   onClick={() =>
+    setMoodNotes([
+      ...moodNotes,
+      { text: "New note", x: 100, y: 100, id: Date.now() },
+    ])
+  }
+  onTap={() =>
     setMoodNotes([
       ...moodNotes,
       { text: "New note", x: 100, y: 100, id: Date.now() },
@@ -785,6 +811,16 @@ const offsetY = (stageHeight - constellationHeight) / 2 - bounds.minY * scaleY;
     fill="white"
     onClick={() => setSelectedId(note.id)}
     onDblClick={() => {
+      const newText = prompt("Edit note:", note.text);
+      if (newText) {
+        setMoodNotes(
+          moodNotes.map((n) =>
+            n.id === note.id ? { ...n, text: newText } : n
+          )
+        );
+      }
+    }}
+     onTap={() => {
       const newText = prompt("Edit note:", note.text);
       if (newText) {
         setMoodNotes(
@@ -901,6 +937,13 @@ const offsetY = (stageHeight - constellationHeight) / 2 - bounds.minY * scaleY;
       const randomPrompt = categoryPrompts[Math.floor(Math.random() * categoryPrompts.length)];
       setCurrentPrompt(randomPrompt);
     }}
+    onTap={() => {
+      setCurrentJournalPrompt(channel);
+      setCurrentChannel(channel); 
+      const categoryPrompts = prompts[channel];
+      const randomPrompt = categoryPrompts[Math.floor(Math.random() * categoryPrompts.length)];
+      setCurrentPrompt(randomPrompt);
+    }}
     
   >
     {channel}
@@ -936,6 +979,7 @@ const offsetY = (stageHeight - constellationHeight) / 2 - bounds.minY * scaleY;
           variant="outline-info" 
           className="w-100"
           onClick={() => handleFeatureChange('canvas')}
+          onTap={() => handleFeatureChange('canvas')}
           style={{ backgroundColor: activeFeature === 'canvas' ? "#17a2b8" : "" }}
         >
           Canvas
