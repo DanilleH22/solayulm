@@ -95,47 +95,89 @@ const CommCenter = () => {
   
 
   const playlist = CHANNELS[currentChannel];
-  const currentTrack = playlist[currentIndex];
+  // const currentTrack = playlist[currentIndex];
 
-  // Load track when channel/index changes
-// Remove autoplay from useEffect
+// Add these states
+const [currentTrack, setCurrentTrack] = useState(null);
+
+
+// Proper initialization useEffect
+useEffect(() => {
+  if (!playlist || !playlist[currentIndex]) return;
+
+  const track = playlist[currentIndex];
+  setCurrentTrack(track);
+
+  // Don't create Audio here - just set the track
+}, [currentChannel, currentIndex]);
+
+// Separate useEffect for audio handling
 useEffect(() => {
   if (!currentTrack) return;
 
-  if (audioRef.current) {
-    audioRef.current.pause();
-    // Don't set src to empty - just pause
-  }
+  const setupAudio = () => {
+    // Clean up previous audio
+    if (audioRef.current) {
+      audioRef.current.pause();
+      audioRef.current.src = '';
+    }
 
-  audioRef.current = new Audio(currentTrack.src);
-  audioRef.current.loop = false;
-  audioRef.current.volume = isMuted ? 0 : 0.5;
+    // Create new Audio with the source
+    audioRef.current = new Audio(currentTrack.src);
+    
+    // Set properties
+    audioRef.current.volume = isMuted ? 0 : 0.5;
+    audioRef.current.preload = 'auto';
+    
+    // Set up event handlers
+    audioRef.current.addEventListener('ended', handleNext);
+    audioRef.current.addEventListener('error', (e) => {
+      console.error('Audio loading error:', e);
+      console.error('Failed src:', currentTrack.src);
+      setIsPlaying(false);
+    });
 
-  // REMOVE THIS: Don't try to autoplay
-  // if (isPlaying) {
-  //   audioRef.current.play().catch(err => console.log("Play blocked:", err));
-  // }
-
-  // Auto-advance when ended
-  audioRef.current.onended = () => {
-    handleNext();
+    // Load the audio (important!)
+    audioRef.current.load();
   };
 
+  setupAudio();
+
   return () => {
-    // Only pause, don't destroy
     if (audioRef.current) {
+      audioRef.current.removeEventListener('ended', handleNext);
       audioRef.current.pause();
     }
   };
-}, [currentChannel, currentIndex]); // Remove isPlaying from dependencies
+}, [currentTrack, isMuted]);
 
-  // Controls
-  const handlePlay = () => {
-    if (audioRef.current) {
-      audioRef.current.play();
-      setIsPlaying(true);
+// Fix the handlePlay function
+const handlePlay = async () => {
+  if (!audioRef.current || !audioRef.current.src) {
+    console.error('No audio source available');
+    
+    // Re-initialize if needed
+    if (currentTrack) {
+      audioRef.current = new Audio(currentTrack.src);
+      audioRef.current.volume = isMuted ? 0 : 0.5;
+      audioRef.current.load();
+    } else {
+      return;
     }
-  };
+  }
+
+  try {
+    await audioRef.current.play();
+    setIsPlaying(true);
+  } catch (error) {
+    console.error('Play failed:', error);
+    
+    // Debug: Check what's in audioRef
+    console.log('audioRef.current:', audioRef.current);
+    console.log('audioRef.current.src:', audioRef.current?.src);
+    console.log('currentTrack:', currentTrack);
+  }
+};
 
   const handlePause = () => {
     if (audioRef.current) {
@@ -168,6 +210,24 @@ const handleVolumeToggle = () => {
     setIsMuted(audioRef.current.muted);
   }
 };
+
+
+// Add this effect to check audio sources
+useEffect(() => {
+  // Check all audio file URLs
+  Object.keys(CHANNELS).forEach(channel => {
+    CHANNELS[channel].forEach(track => {
+      // Test if file exists
+      fetch(track.src, { method: 'HEAD' })
+        .then(res => {
+          console.log(`${track.name}: ${res.ok ? '✅ Found' : '❌ Missing'}`);
+        })
+        .catch(() => {
+          console.error(`❌ Cannot access: ${track.src}`);
+        });
+    });
+  });
+}, []);
 
 
   return (
