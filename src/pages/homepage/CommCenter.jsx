@@ -98,32 +98,36 @@ const CommCenter = () => {
   const currentTrack = playlist[currentIndex];
 
   // Load track when channel/index changes
-  useEffect(() => {
-    if (!currentTrack) return;
+// Remove autoplay from useEffect
+useEffect(() => {
+  if (!currentTrack) return;
 
+  if (audioRef.current) {
+    audioRef.current.pause();
+    // Don't set src to empty - just pause
+  }
+
+  audioRef.current = new Audio(currentTrack.src);
+  audioRef.current.loop = false;
+  audioRef.current.volume = isMuted ? 0 : 0.5;
+
+  // REMOVE THIS: Don't try to autoplay
+  // if (isPlaying) {
+  //   audioRef.current.play().catch(err => console.log("Play blocked:", err));
+  // }
+
+  // Auto-advance when ended
+  audioRef.current.onended = () => {
+    handleNext();
+  };
+
+  return () => {
+    // Only pause, don't destroy
     if (audioRef.current) {
       audioRef.current.pause();
     }
-
-    audioRef.current = new Audio(currentTrack.src);
-    audioRef.current.loop = false; // auto-advance instead
-    audioRef.current.volume = 0.5;
-
-    if (isPlaying) {
-      audioRef.current.play().catch(err => console.log("Play blocked:", err));
-    }
-
-    // Auto-advance when ended
-    audioRef.current.onended = () => {
-      handleNext();
-    };
-
-    return () => {
-      if (audioRef.current) {
-        audioRef.current.pause();
-      }
-    };
-  }, [currentChannel, currentIndex]);
+  };
+}, [currentChannel, currentIndex]); // Remove isPlaying from dependencies
 
   // Controls
   const handlePlay = () => {
