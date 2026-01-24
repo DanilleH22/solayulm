@@ -26,7 +26,7 @@ const CHANNELS = {
     // { id: 3, name: "Lofi 3", src: "/LofiBeats/lofi3.mp4" },
   
     // { id: 5, name: "Lofi 5", src: "/LofiBeats/lofi5.mp4" },
-    { id: 6, name: "Lofi 6", src: "/LofiBeats/lofi6.mp3" },
+    // { id: 6, name: "Lofi 6", src: "/LofiBeats/lofi6.mp3" },
     { id: 7, name: "Lofi 7", src: "/LofiBeats/lofi7.mp3" },
     { id: 8, name: "Lofi 8", src: "/LofiBeats/lofi8.mp3" },
     { id: 9, name: "Lofi 9", src: "/LofiBeats/lofi9.mp3" },
