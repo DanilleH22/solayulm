@@ -302,6 +302,12 @@ body, html {
         font-size: 14px; 
     }
 
+    .tabTextRightBackground {
+       border-radius: 5% 5% 5% 5%;
+        padding-bottom: 30px;
+        transform: translate(10px, 10px);
+    }
+
   .TextBottom {
     position: absolute;
     top: 70%;
