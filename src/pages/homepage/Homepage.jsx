@@ -213,7 +213,7 @@ const onMove = useCallback(
           />
       </Col> */}
       <Col>
-           <Lottie
+           {/* <Lottie
           animationData={spaceX}
           loop={true}
           autoplay={true}
@@ -222,7 +222,17 @@ const onMove = useCallback(
             width: '400px',
             maxWidth: '100%' 
           }}
-        />
+        /> */}
+        <Lottie
+  animationData={spaceX}
+  loop={true}
+  autoplay={true}
+  style={{ 
+    height: 'auto', 
+    width: '100%',
+    maxWidth: '100%'
+  }}
+/>
            </Col>
       <Col className={styles.tabTextRight}>
       <div className={styles.tabTextRightBackground}>
