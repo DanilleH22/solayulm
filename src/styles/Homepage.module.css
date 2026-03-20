@@ -365,5 +365,7 @@ body, html {
 @media screen and (max-width: 768px) {
   .enterButton {
     width: 30%;
+    align-items: center;
+        align-self: center;
   }
 }
