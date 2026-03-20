@@ -78,6 +78,12 @@
     }
   }
 
+  @media (max-width: 1200px) {
+    .exploringButton {
+   
+    margin-top: 10px;
+    }
+  }
 
 
   @media (max-width: 768px) {
