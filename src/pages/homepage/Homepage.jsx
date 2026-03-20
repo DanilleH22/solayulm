@@ -268,16 +268,7 @@ const onMove = useCallback(
                     <Col md={12}>
                     <div className="flex justify-content-center align-items-center" >
                     <Link to="/DecompressionBay" style={{ textDecoration: 'none' }}>
-                      <Button  style={{display: 'flex', justifyContent: 'center', fontSize: '20px',
-              color: 'white',
-              cursor: 'pointer',
-              width: window.innerWidth < 768 ? '30%' : '10%',
-              justifySelf: 'center',
-              backgroundColor: '#6a626e',
-              borderRadius: '20px',
-              marginTop: '60px',
-              border: 'none',
-          outline: 'none',}}>Enter</Button>
+                      <Button  className={styles.enterButton}>Enter</Button>
                       </Link>
                     </div>
                     </Col>
