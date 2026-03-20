@@ -266,7 +266,9 @@ const onMove = useCallback(
       </Row>
       <Row>
                     <Col md={12}>
-                    <div style={{display: 'flex', justifyContent: 'center', fontSize: '20px',
+                    <div className="flex justify-content-center align-items-center" >
+                    <Link to="/DecompressionBay" style={{ textDecoration: 'none' }}>
+                      <Button  style={{display: 'flex', justifyContent: 'center', fontSize: '20px',
               color: 'white',
               cursor: 'pointer',
               width: window.innerWidth < 768 ? '30%' : '10%',
@@ -275,17 +277,7 @@ const onMove = useCallback(
               borderRadius: '20px',
               marginTop: '60px',
               border: 'none',
-          outline: 'none',}} >
-                    <Link to="/DecompressionBay" style={{ textDecoration: 'none' }}>
-                      <Button style={{display: 'flex', justifyContent: 'center', fontSize: '20px',
-              color: 'white',
-              cursor: 'pointer',
-              width: window.innerWidth < 768 ? '30%' : '10%',
-              justifySelf: 'center',
-              backgroundColor: '#6a626e',
-              
-              border: 'none',
-          outline: 'none',}}  >Enter</Button>
+          outline: 'none',}}>Enter</Button>
                       </Link>
                     </div>
                     </Col>
