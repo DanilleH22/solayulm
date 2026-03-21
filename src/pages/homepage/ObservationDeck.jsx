@@ -395,8 +395,8 @@ const [show, setShow] = useState(false);
             <h3 className="text-xl font-semibold mb-4 text-center">Breathing Exercises</h3>
             <p className="mb-4 text-center">Select a breathing pattern to help regulate your nervous system.</p>
             
-            <div className="mb-6 space-y-3"
-             style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', padding:'10px', gap: '10px' }}>
+            <div className="mb-6 space-y-3 h-100"
+             style={{ display: 'flex', justifyContent: 'center', padding:'10px', gap: '10px' }}>
               {breathingPatterns.map(pattern => (
                 <button
                   key={pattern.id}
