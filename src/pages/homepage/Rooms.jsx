@@ -380,7 +380,7 @@ const onMove = useCallback(
   }}>
 <Row className={styles.servicesTextWrapper}>
   <Col className={styles.servicesText} md={7} lg={8}>
-    <h3>Cosmic Companion AI Bot</h3>
+    <h3>Cosmic Companion AI Bot ( Currently Unavailable)</h3>
     <h3>Description : </h3>
     <p>In the quiet corridors, a soft voice awaits. The Cosmic Companion—equal parts archivist, sage, and friend—drifts 
         beside you, ready to answer questions or simply listen. Some say the AI carries echoes of every traveler who ever 
