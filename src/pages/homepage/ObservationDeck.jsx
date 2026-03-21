@@ -314,7 +314,7 @@ const [show, setShow] = useState(false);
             </div>
             
             {gratitudeList.length > 0 && (
-              <div className="rounded-xl p-4 mb-4" style={{  backgroundColor: 'rgba(0, 0, 0, 0.6)' }}>
+              <div className="rounded-xl p-4 mb-4" style={{  backgroundColor: 'rgba(221, 176, 255, 0.6)' }}>
                 <h4 className="font-medium mb-2">Your Gratitude List:</h4>
                 <ul className="space-y-2">
                   {gratitudeList.map((item, index) => (
