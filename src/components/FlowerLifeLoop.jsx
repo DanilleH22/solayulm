@@ -16,7 +16,7 @@ export default function FlowerLifeLoop() {
   return (
     <div className="relative flex items-center justify-center h-screen 
     w-full bg-gradient-to-br from-black via-indigo-950 to-purple-900 overflow-hidden"
-        style={{   transform: 'translate( 10%, -20px)'  }}
+        style={{  transform: window.innerWidth < 768 ? 'translate(0%, 0%)' : 'translate( 10%, -20px)'  }}
     >
       <svg width="500" height="500" viewBox="-150 -150 300 300">
         {positions.map(([x, y], i) => (

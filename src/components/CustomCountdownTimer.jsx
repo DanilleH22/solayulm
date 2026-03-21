@@ -10,7 +10,7 @@ import { NebulaFlow } from "./NebulaFlow.jsx";
 import   JumpingDots  from "./JumpingDots.jsx";
 import { RotatingRings } from "./RotatingRings.jsx";
 import VisualSequence  from "./VisualSequence.jsx";
-import styles2 from "../styles/Visuals.module.css";
+
 
 
 export default function CustomCountdownTimer({ duration = 300 }) { // default 5 minutes
