@@ -98,17 +98,17 @@ const toggleEnergy = () => {
 
     <Row >
       <Col md={4} className="text-center mb-4">
-       <Button className={styles.MinutesButton2} onClick={() => toggleStress(true)}>
+       <Button className={styles.MinutesButton2} onClick={() => toggleStress(true)} variant={"outline-info"}>
         Stressed
       </Button>
       </Col>
       <Col md={4} className="text-center mb-4">
-       <Button className={styles.MinutesButton2} onClick={() => toggleCalm(true)}>
+       <Button className={styles.MinutesButton2} onClick={() => toggleCalm(true)} variant={"outline-info"}>
         Calm
       </Button>
       </Col>
       <Col md={4} className="text-center mb-4">
-       <Button className={styles.MinutesButton2} onClick={() => toggleEnergy(true)}>
+       <Button className={styles.MinutesButton2} onClick={() => toggleEnergy(true)} variant={"outline-info"}>
         Energy
       </Button>
       </Col>
@@ -271,6 +271,7 @@ const toggleEnergy = () => {
           <Button
             onClick={() => setDuration(btn.time * 60)}
             className={styles.MinutesButton2}
+            variant={"outline-info"}
           >
             {btn.label}
           </Button>
