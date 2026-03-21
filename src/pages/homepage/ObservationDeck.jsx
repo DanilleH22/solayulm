@@ -546,11 +546,11 @@ const [show, setShow] = useState(false);
 
 <Alert
   show={show}
-  onClose={() => setShow(false)}   // ✅ use onClose not onClick
+  onClose={() => setShow(false)}  
   dismissible
   className={styles.customAlert}
   style={{
-    width: "40%",
+    width: window.innerWidth < 768 ? '100%' : '40%',
     display: "flex",
     border: "none",
     marginTop: "10px",
