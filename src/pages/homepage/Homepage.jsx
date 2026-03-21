@@ -195,7 +195,7 @@ const onMove = useCallback(
     className={styles.tabs}
     fill
   >
-    <Tab eventKey="Decompression Bay" title="Decompression Bay" >
+    <Tab eventKey="Decompression Bay" title="Decompression Bay" className={styles.tabContent}>
       <Row>
       <Col className={styles.tabTextLeft}>
       
@@ -279,7 +279,7 @@ const onMove = useCallback(
     
   
 
-    <Tab eventKey="Airlock Journal" title="Airlock Journal">
+    <Tab eventKey="Airlock Journal" title="Airlock Journal" className={styles.tabContent}>
       <Row>
       <Col className={styles.tabTextLeft} >
       
@@ -362,7 +362,7 @@ const onMove = useCallback(
 
 
     
-    <Tab eventKey="Observation Deck" title="Observation Deck">
+    <Tab eventKey="Observation Deck" title="Observation Deck" className={styles.tabContent}>
       <Row>
       <Col className={styles.tabTextLeft}>
       
@@ -441,7 +441,7 @@ const onMove = useCallback(
                 </Row>
     </Tab>
 
-    <Tab eventKey="Comm Center" title="Comm Center">
+    <Tab eventKey="Comm Center" title="Comm Center" className={styles.tabContent}>
       <Row>
       <Col className={styles.tabTextLeft}>
       
@@ -521,7 +521,7 @@ const onMove = useCallback(
                 </Row>
     </Tab>
 
-    <Tab eventKey="Void Chat" title="Void Chat">
+    <Tab eventKey="Void Chat" title="Void Chat" className={styles.tabContent}>
       <Row>
       <Col className={styles.tabTextLeft}>
       
@@ -600,7 +600,7 @@ const onMove = useCallback(
                 </Row>
     </Tab>
 
-    <Tab eventKey="Holo Room" title="Holo Room">
+    <Tab eventKey="Holo Room" title="Holo Room" className={styles.tabContent}>
       <Row>
       <Col className={styles.tabTextLeft}>
       
@@ -682,7 +682,7 @@ const onMove = useCallback(
     </Tab>
 
 
-    <Tab eventKey="Cosmic Companion" title="Cosmic Companion">
+    <Tab eventKey="Cosmic Companion" title="Cosmic Companion" className={styles.tabContent}>
       <Row>
       <Col className={styles.tabTextLeft}>
       

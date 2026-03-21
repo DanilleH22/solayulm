@@ -269,6 +269,9 @@ body, html {
 }
 
 @media screen  and (max-width: 768px) {
+  .tabContent{
+    margin-left: 25px;
+  }
     .overlayText {
         width: 80%;  
         left: 56%;  
@@ -392,12 +395,13 @@ body, html {
 
 
 @media screen and (max-width: 768px) {
+  .tabs{
+    margin-left: 10px;
+  }
   .enterButton {
     width: 50%;
         align-self: center;
    
   }
 
-  .linkButton {
-     padding-left: 50px;}
 }
