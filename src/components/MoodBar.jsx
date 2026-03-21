@@ -14,12 +14,13 @@ const MoodBar = () => {
   const [isSoundOn, setIsSoundOn] = useState(true); // Changed to true by default
   const [isUserInteracted, setIsUserInteracted] = useState(false);
   
+  
   const moodSounds = {
-    calm: "music/aromatic.mp3",
-    bright: "music/ABeautifulGarden.mp3",
-    intense: "music/FallingIntoYou.mp3",
-    fire: "music/Face_The_Future.mp3",
-  };
+  calm: "/assets/music/aromatic.mp3",  // Added leading slash and assets folder
+  bright: "/assets/music/ABeautifulGarden.mp3",
+  intense: "/assets/music/FallingIntoYou.mp3",
+  fire: "/assets/music/Face_The_Future.mp3",
+};
 
   // Update section whenever mood changes
   useEffect(() => {
@@ -100,7 +101,7 @@ const MoodBar = () => {
   return (
     <>
     <Row>
-      <Col md={12} className="justify-content-center flex">
+      <Col md={12} className="justify-content-center">
       <Stack sx={{ width: "100%", maxWidth: "800px" }}>
         <Slider
           value={mood}
