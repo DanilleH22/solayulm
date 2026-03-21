@@ -45,7 +45,7 @@
 
 
 
-.MinutesButton2 {
+.MinutesButton2, .MinutesButton3 {
    font-size: 18px;
     color: white;
     border-radius: 5px;
@@ -79,7 +79,7 @@
 
 
 
-.MinutesButton:hover, .MinutesButton2:hover {
+.MinutesButton:hover, .MinutesButton2:hover, .MinutesButton3:hover {
     background-color: #555151;
   
 }
@@ -92,6 +92,11 @@
 
   .MinutesButton2 {
     width: 50%;
+    max-width: 280px;
+  }
+
+  .MinutesButton3 {
+    width: 70%;
     max-width: 280px;
   }
 }
