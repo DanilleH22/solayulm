@@ -430,15 +430,15 @@ const [show, setShow] = useState(false);
               ))}
             </div>
             
-            <div className="d-flex justify-content-center align-center mt-6 bg-black text-center" >
+            <div className="d-flex justify-content-center align-center mt-6 bg-transparent text-center" >
               <div 
                 className="rounded-full border-4 text-center border-white border-opacity-30 d-flex  transition-all duration-100"
                 style={{
                   width: `${getCircleSize()}px`,
                   height: `${getCircleSize()}px`,
-                  borderColor: breathPhase === 'in' ? 'rgba(79, 70, 229, 0.8)' : 
-                             breathPhase === 'out' ? 'rgba(236, 72, 153, 0.8)' : 
-                             'rgba(255, 255, 255, 0.3)',
+                  backgroundColor: breathPhase === 'in' ? 'rgba(221, 176, 255, 1)' : 
+                             breathPhase === 'out' ? 'rgba(221, 176, 255, 1)' : 
+                             'rgb(169, 125, 203)',
                   transition: 'all 0.1s ease'
                 }}
               >
@@ -480,7 +480,7 @@ const [show, setShow] = useState(false);
                 onClick={stopBreathingExercise}
                 className="py-3  mb-3 "
                 style={{
-                  width: '18%',
+                  width: window.innerWidth < 768 ? '50%' : '18%',
     backgroundColor: '#ad7fd0ff', 
     fontSize: '1.15rem',   
     transition: 'all 0.2s ease-in-out',
