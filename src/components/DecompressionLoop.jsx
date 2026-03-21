@@ -25,7 +25,7 @@ export default function DecompressionLoop() {
           width: "300px",
           height: "300px",
           borderRadius: "50%",
-          marginLeft: "25px",
+          marginLeft: window.innerWidth < 768 ? '5px' : '25px',
           paddingTop: "15px",
           paddingLeft: "40px",
           background:
