@@ -347,21 +347,12 @@ const onMove = useCallback(
       </div>
       </div>
       </Col>
-      </Row>
+      </Row> 
       <Row>
                     <Col md={12}>
-                    <div className="flex justify-content-center align-items-center" >
-                    <Link to="/AirlockJournal" style={{ textDecoration: 'none'}}>
-                      <Button  style={{display: 'flex', justifyContent: 'center', fontSize: '20px',
-              color: 'white',
-              cursor: 'pointer',
-               width: window.innerWidth < 768 ? '30%' : '10%',
-              justifySelf: 'center',
-              backgroundColor: '#6a626e',
-              borderRadius: '20px',
-              marginTop: '60px',
-              border: 'none',
-          outline: 'none',}}>Enter</Button>
+                    <div className="flex justify-content-center justify-self-center align-items-center" >
+                    <Link to="/AirlockJournal" style={{ textDecoration: 'none' }}>
+                      <Button  className={styles.enterButton}>Enter</Button>
                       </Link>
                     </div>
                     </Col>
@@ -439,20 +430,11 @@ const onMove = useCallback(
       </div>
       </Col>
       </Row>
-      <Row>
+                <Row>
                     <Col md={12}>
-                    <div className="flex justify-content-center align-items-center" >
-                    <Link to="/ObservationDeck" style={{ textDecoration: 'none'}}>
-                      <Button  style={{display: 'flex', justifyContent: 'center', fontSize: '20px',
-              color: 'white',
-              cursor: 'pointer',
-               width: window.innerWidth < 768 ? '30%' : '10%',
-              justifySelf: 'center',
-              backgroundColor: '#6a626e',
-              borderRadius: '20px',
-              marginTop: '60px',
-              border: 'none',
-          outline: 'none',}}>Enter</Button>
+                    <div className="flex justify-content-center justify-self-center align-items-center" >
+                    <Link to="/ObservationDeck" style={{ textDecoration: 'none' }}>
+                      <Button  className={styles.enterButton}>Enter</Button>
                       </Link>
                     </div>
                     </Col>
@@ -528,20 +510,11 @@ const onMove = useCallback(
       </div>
       </Col>
       </Row>
-      <Row>
+              <Row>
                     <Col md={12}>
-                    <div className="flex justify-content-center align-items-center" >
-                    <Link to="/CommCenter" style={{ textDecoration: 'none'}}>
-                      <Button  style={{display: 'flex', justifyContent: 'center', fontSize: '20px',
-              color: 'white',
-              cursor: 'pointer',
-               width: window.innerWidth < 768 ? '30%' : '10%',
-              justifySelf: 'center',
-              backgroundColor: '#6a626e',
-              borderRadius: '20px',
-              marginTop: '60px',
-              border: 'none',
-          outline: 'none',}}>Enter</Button>
+                    <div className="flex justify-content-center justify-self-center align-items-center" >
+                    <Link to="/CommCenter" style={{ textDecoration: 'none' }}>
+                      <Button  className={styles.enterButton}>Enter</Button>
                       </Link>
                     </div>
                     </Col>
@@ -616,20 +589,11 @@ const onMove = useCallback(
       </div>
       </Col>
       </Row>
-      <Row>
+                <Row>
                     <Col md={12}>
-                    <div className="flex justify-content-center align-items-center" >
-                    <Link to="/VoidChat" style={{ textDecoration: 'none'}}>
-                      <Button  style={{display: 'flex', justifyContent: 'center', fontSize: '20px',
-              color: 'white',
-              cursor: 'pointer',
-               width: window.innerWidth < 768 ? '30%' : '10%',
-              justifySelf: 'center',
-              backgroundColor: '#6a626e',
-              borderRadius: '20px',
-              marginTop: '60px',
-              border: 'none',
-          outline: 'none',}}>Enter</Button>
+                    <div className="flex justify-content-center justify-self-center align-items-center" >
+                    <Link to="/VoidChat" style={{ textDecoration: 'none' }}>
+                      <Button  className={styles.enterButton}>Enter</Button>
                       </Link>
                     </div>
                     </Col>
@@ -706,20 +670,11 @@ const onMove = useCallback(
       </div>
       </Col>
       </Row>
-       <Row>
+                <Row>
                     <Col md={12}>
-                    <div className="flex justify-content-center align-items-center" >
-                    <Link to="/HoloRoom" style={{ textDecoration: 'none'}}>
-                      <Button  style={{display: 'flex', justifyContent: 'center', fontSize: '20px',
-              color: 'white',
-              cursor: 'pointer',
-               width: window.innerWidth < 768 ? '30%' : '10%',
-              justifySelf: 'center',
-              backgroundColor: '#6a626e',
-              borderRadius: '20px',
-              marginTop: '60px',
-              border: 'none',
-          outline: 'none',}}>Enter</Button>
+                    <div className="flex justify-content-center justify-self-center align-items-center" >
+                    <Link to="/HoloRoom" style={{ textDecoration: 'none' }}>
+                      <Button  className={styles.enterButton}>Enter</Button>
                       </Link>
                     </div>
                     </Col>
@@ -796,20 +751,11 @@ const onMove = useCallback(
       </div>
       </Col>
       </Row>
-      <Row>
+          <Row>
                     <Col md={12}>
-                    <div className="flex justify-content-center align-items-center" >
-                    <Link to="/cosmicCompanion" style={{ textDecoration: 'none'}}>
-                      <Button  style={{display: 'flex', justifyContent: 'center', fontSize: '20px',
-              color: 'white',
-              cursor: 'pointer',
-               width: window.innerWidth < 768 ? '30%' : '10%',
-              justifySelf: 'center',
-              backgroundColor: '#6a626e',
-              borderRadius: '20px',
-              marginTop: '60px',
-              border: 'none',
-          outline: 'none',}}>Enter</Button>
+                    <div className="flex justify-content-center justify-self-center align-items-center" >
+                    <Link to="/cosmicCompanion" style={{ textDecoration: 'none' }}>
+                      <Button  className={styles.enterButton}>Enter</Button>
                       </Link>
                     </div>
                     </Col>
