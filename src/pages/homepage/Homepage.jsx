@@ -267,8 +267,8 @@ const onMove = useCallback(
       </Row>
       <Row>
                     <Col md={12}>
-                    <div className="flex justify-content-center justify-self-center align-items-center" >
-                    <Link to="/DecompressionBay" style={{ textDecoration: 'none' }}>
+                    <div className={styles.linkButton} >
+                    <Link to="/DecompressionBay" style={{ textDecoration: 'none' }} >
                       <Button  className={styles.enterButton}>Enter</Button>
                       </Link>
                     </div>
@@ -350,7 +350,7 @@ const onMove = useCallback(
       </Row> 
       <Row>
                     <Col md={12}>
-                    <div className="flex justify-content-center justify-self-center align-items-center" >
+                    <div className={styles.linkButton} >
                     <Link to="/AirlockJournal" style={{ textDecoration: 'none' }}>
                       <Button  className={styles.enterButton}>Enter</Button>
                       </Link>
@@ -432,7 +432,7 @@ const onMove = useCallback(
       </Row>
                 <Row>
                     <Col md={12}>
-                    <div className="flex justify-content-center justify-self-center align-items-center" >
+                    <div className={styles.linkButton} >
                     <Link to="/ObservationDeck" style={{ textDecoration: 'none' }}>
                       <Button  className={styles.enterButton}>Enter</Button>
                       </Link>
@@ -512,7 +512,7 @@ const onMove = useCallback(
       </Row>
               <Row>
                     <Col md={12}>
-                    <div className="flex justify-content-center justify-self-center align-items-center" >
+                    <div className={styles.linkButton} >
                     <Link to="/CommCenter" style={{ textDecoration: 'none' }}>
                       <Button  className={styles.enterButton}>Enter</Button>
                       </Link>
@@ -591,7 +591,7 @@ const onMove = useCallback(
       </Row>
                 <Row>
                     <Col md={12}>
-                    <div className="flex justify-content-center justify-self-center align-items-center" >
+                    <div className={styles.linkButton} >
                     <Link to="/VoidChat" style={{ textDecoration: 'none' }}>
                       <Button  className={styles.enterButton}>Enter</Button>
                       </Link>
@@ -672,7 +672,7 @@ const onMove = useCallback(
       </Row>
                 <Row>
                     <Col md={12}>
-                    <div className="flex justify-content-center justify-self-center align-items-center" >
+                    <div className={styles.linkButton} >
                     <Link to="/HoloRoom" style={{ textDecoration: 'none' }}>
                       <Button  className={styles.enterButton}>Enter</Button>
                       </Link>
@@ -753,7 +753,7 @@ const onMove = useCallback(
       </Row>
           <Row>
                     <Col md={12}>
-                    <div className="flex justify-content-center justify-self-center align-items-center" >
+                    <div className={styles.linkButton} >
                     <Link to="/cosmicCompanion" style={{ textDecoration: 'none' }}>
                       <Button  className={styles.enterButton}>Enter</Button>
                       </Link>

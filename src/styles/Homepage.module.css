@@ -383,11 +383,21 @@ body, html {
 }
 
 
+.linkButton {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  
+}
+
 
 @media screen and (max-width: 768px) {
   .enterButton {
     width: 50%;
- 
         align-self: center;
+   
   }
+
+  .linkButton {
+     padding-left: 50px;}
 }
