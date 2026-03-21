@@ -225,7 +225,7 @@ const handleClick = () => {
 
       <div style={{ 
         position: 'relative', 
-        minHeight: '800px', 
+        Height: '100vh', 
         border: '2px solid #33335a', 
         borderRadius: '15px',
         overflow: 'hidden',

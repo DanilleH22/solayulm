@@ -36,7 +36,7 @@ export const Aurora = () => {
     >
 
       <div className="absolute inset-0 z-0">
-        <Canvas>
+        <Canvas style={{ height: window.innerHeight <768 ? "100vh" : "70vh" }}>
           <Stars radius={50} count={2500} factor={4} fade speed={2} />
         </Canvas>
       </div>
