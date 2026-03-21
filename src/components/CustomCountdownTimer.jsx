@@ -10,6 +10,7 @@ import { NebulaFlow } from "./NebulaFlow.jsx";
 import   JumpingDots  from "./JumpingDots.jsx";
 import { RotatingRings } from "./RotatingRings.jsx";
 import VisualSequence  from "./VisualSequence.jsx";
+import styles2 from "../styles/Visuals.module.css";
 
 
 export default function CustomCountdownTimer({ duration = 300 }) { // default 5 minutes
@@ -113,14 +114,14 @@ const EndSequence = () => {
       Reset
     </Button>
     </Col>
-  <Col md={5} xs={12} className="text-center" style={{ marginTop: window.innerWidth < 768 ? '100px': '0', marginLeft: window.innerWidth < 768 ? '50px': '0',  }}>
+  <Col md={5} xs={12} className={styles.VisualsColumn}>
     {showVisuals ? (
       <>
-        <h5 style={{   transform: 'translate( 10%, -30px)',  }}>Visuals are ON</h5>
+        <h5 className={styles.VisualsTitle}>Visuals are ON</h5>
         {/* <FlowerOfLifeLoop /> 
         <SpiralLoop />  */}
         {/* <DecompressionLoop />  */}
-        <VisualSequence style={{ marginRight: window.innerWidth < 768 ? '100px': '0'}} />
+        <VisualSequence className={styles.VisualSequences} />
         {/* <NebulaFlow />  */}
       </>
     ) : (

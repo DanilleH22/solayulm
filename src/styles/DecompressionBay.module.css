@@ -101,6 +101,57 @@
 
   .MinutesButton4 {
     width: 70%;
-    max-width: 280px;
+    /* max-width: 280px; */
   }
 }
+
+
+.VisualsColumn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 100px;
+    margin-left: 50px;
+}
+
+.VisualsTitle {
+    transform: translate( 10%, -30px);
+} 
+
+.VisualSequences {
+        margin-right: 100px;
+    }
+
+    .FlowerOfLifeContainer {
+      position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100%;
+  background: linear-gradient(to bottom right, #000000, #1e1b4b, #581c87);
+  overflow: hidden;
+  transform: translate(10%, -20px);
+    }
+       
+
+@media screen and (max-width: 768px) {
+    .VisualsColumn {
+        margin-top: 50px;
+        margin-right: 0;
+    }
+
+    .VisualsTitle {
+         transform: translate( 0%, -40px);
+    }   
+
+    .VisualSequences {
+        margin-right: 25px;
+    }
+
+     .FlowerOfLifeContainer {
+      
+        transform: translate( 0%, 0px);
+    }
+  }

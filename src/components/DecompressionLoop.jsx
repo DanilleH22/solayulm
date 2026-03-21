@@ -11,7 +11,8 @@ export default function DecompressionLoop() {
       {/* Text */}
       <motion.h1
         className="text-2xl font-light text-white/90 mb-6 py-10 text-center flex justify-around items-center" 
-        style={{   transform: 'translate( 30%, -30px)'  }}
+        style={{   transform: window.innerWidth < 768 ? 'translate( 8%, -40px)' : 'translate( 30%, -35px)'  }}
+        
         animate={{ opacity: [0, 1, 0] }}
         transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
       >
