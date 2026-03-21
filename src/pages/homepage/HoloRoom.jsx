@@ -528,7 +528,7 @@ const offsetY = (stageHeight - constellationHeight) / 2 - bounds.minY * scaleY;
         />
       )}
 
-      <Row className="my-3 justify-self-center">
+      <Row className="my-3 justify-self-center ml-3" >
   <Col xs={12} sm={6} md={4} lg={4} className='d-flex justify-content-center mb-2 mb-sm-0'>
     <Button variant='outline-info' onClick={handleNextColouring} className="w-100 w-sm-auto">
       Generate New Image
