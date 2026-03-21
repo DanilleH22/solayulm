@@ -528,35 +528,35 @@ const offsetY = (stageHeight - constellationHeight) / 2 - bounds.minY * scaleY;
         />
       )}
 
-      <Row className=" my-3">
-        <Col className='d-flex justify-content-center' >
-        <Button variant='outline-info' onClick={handleNextColouring}>
-          Generate New Image
-        </Button>
-        </Col>
-        <Col className='d-flex justify-content-center'>
-              <Button variant='outline-info' onClick={handleClear}>
-                Clear Image
-              </Button>
-              </Col>
-        
-        <Col className='d-flex justify-content-center'>
-          <Button
-                  variant='outline-info'
-  onClick={() => {
-    const uri = stageRef.current.toDataURL({ pixelRatio: 2 });
-    const link = document.createElement("a");
-    link.download = "colouring.png";
-    link.href = uri;
-    link.click();
-  }}
->
-  Save Image
-</Button>
-    
-        </Col>
-      </Row>
-     
+      <Row className="my-3 justify-self-center">
+  <Col xs={12} sm={6} md={4} lg={4} className='d-flex justify-content-center mb-2 mb-sm-0'>
+    <Button variant='outline-info' onClick={handleNextColouring} className="w-100 w-sm-auto">
+      Generate New Image
+    </Button>
+  </Col>
+  
+  <Col xs={12} sm={6} md={4} lg={4} className='d-flex justify-content-center mb-2 mb-sm-0'>
+    <Button variant='outline-info' onClick={handleClear} className="w-100 w-sm-auto">
+      Clear Image
+    </Button>
+  </Col>
+  
+  <Col xs={12} sm={12} md={4} lg={4} className='d-flex justify-content-center'>
+    <Button
+      variant='outline-info'
+      className="w-100 w-sm-auto"
+      onClick={() => {
+        const uri = stageRef.current.toDataURL({ pixelRatio: 2 });
+        const link = document.createElement("a");
+        link.download = "colouring.png";
+        link.href = uri;
+        link.click();
+      }}
+    >
+      Save Image
+    </Button>
+  </Col>
+</Row>
       
 
       <Stage
