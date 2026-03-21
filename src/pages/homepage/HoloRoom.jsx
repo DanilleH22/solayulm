@@ -819,7 +819,14 @@ const offsetY = (stageHeight - constellationHeight) / 2 - bounds.minY * scaleY;
   + Add Note
 </Button>
               </div>
-        
+        <div 
+        className={styles.canvasContainer}
+        style={{ 
+          touchAction: 'none',
+          userSelect: 'none',
+          WebkitTapHighlightColor: 'transparent'
+        }}
+      >
               <Stage ref={stageRef}  width={800} height={600} style={{ border: "1px solid #ccc" }}>
                 
                 <Layer>
@@ -877,7 +884,7 @@ const offsetY = (stageHeight - constellationHeight) / 2 - bounds.minY * scaleY;
                 </Layer>
               </Stage>
              
-
+</div>
 
             </div>
           );
