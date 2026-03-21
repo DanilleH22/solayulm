@@ -398,6 +398,14 @@ body, html {
   .tabs{
     margin-left: 10px;
   }
+  
+.inlineText h3{
+  font-size: 16px !important;
+}
+.inlineText p{
+  font-size: 12px !important;
+}
+
   .enterButton {
     width: 50%;
         align-self: center;
