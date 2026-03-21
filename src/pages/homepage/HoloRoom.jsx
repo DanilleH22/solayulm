@@ -637,13 +637,13 @@ const offsetY = (stageHeight - constellationHeight) / 2 - bounds.minY * scaleY;
         <Col className="d-flex justify-content-center gap-2 my-3">
         <div className="text-center" style={{ width:  window.innerWidth < 768 ? '50%' : '40%' }}>
             <Button
-        variant='outline-info' onClick={() => setProgress(0)}>Reset</Button>
+        variant='outline-info' onClick={() => setProgress(0)} style={{ marginLeft: window.innerWidth <768 ? '2rem' : '0' }} >Reset</Button>
             </div></Col>
       </Row>
         <Row>
             <Col>
             
-      <h2 style={{ textAlign: "center", color: "white" }}>
+      <h2 style={{ textAlign: "center", color: "white", marginLeft: window.innerWidth <768 ? '1rem' : '0'  }}>
         {name}
       </h2>
 </Col>
