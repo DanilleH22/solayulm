@@ -528,7 +528,7 @@ const offsetY = (stageHeight - constellationHeight) / 2 - bounds.minY * scaleY;
         />
       )}
 
-      <Row className="my-3 justify-self-center ml-3" >
+      <Row className="m-2 justify-self-center mb-3" >
   <Col xs={12} sm={6} md={4} lg={4} className='d-flex justify-content-center mb-2 mb-sm-0'>
     <Button variant='outline-info' onClick={handleNextColouring} className="w-100 w-sm-auto">
       Generate New Image
@@ -572,7 +572,7 @@ const offsetY = (stageHeight - constellationHeight) / 2 - bounds.minY * scaleY;
           {image && (
             <KonvaImage 
               image={image} 
-              width={window.innerWidth * 0.87} 
+              width={window.innerWidth > 768 ? window.innerWidth * 0.87 : window.innerWidth * 0.93} 
               height={window.innerHeight * 1} 
               x={window.innerWidth * 0}
               y={window.innerHeight * 0}
