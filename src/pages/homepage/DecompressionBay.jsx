@@ -270,7 +270,7 @@ const toggleEnergy = () => {
         >
           <Button
             onClick={() => setDuration(btn.time * 60)}
-            className={styles.MinutesButton2}
+            className={styles.MinutesButton3}
           >
             {btn.label}
           </Button>
