@@ -7,6 +7,7 @@ import { Image as KonvaImage } from 'react-konva';
 import useImage from 'use-image'; 
 import { Transformer } from "react-konva";
 import { Link } from "react-router";
+import styles from "../../styles/HoloRoom.module.css";
 
 import colouring1 from '../../assets/images/colouring/colouring1.png'
 import colouring2 from '../../assets/images/colouring/colouring2.png'
@@ -469,7 +470,14 @@ const offsetY = (stageHeight - constellationHeight) / 2 - bounds.minY * scaleY;
     
         </Col>
       </Row>
-            
+            <div 
+        className={styles.canvasContainer}
+        style={{ 
+          touchAction: 'none',
+          userSelect: 'none',
+          WebkitTapHighlightColor: 'transparent'
+        }}
+      >
 
             <Stage className='bg-black'
             ref={stageRef}
@@ -500,6 +508,7 @@ const offsetY = (stageHeight - constellationHeight) / 2 - bounds.minY * scaleY;
                 ))}
               </Layer>
             </Stage>
+            </div>
           </div>
         );
       case 'colouring':
@@ -529,76 +538,89 @@ const offsetY = (stageHeight - constellationHeight) / 2 - bounds.minY * scaleY;
       )}
 
       <Row className="m-2 justify-self-center mb-3" >
-  <Col xs={12} sm={6} md={4} lg={4} className='d-flex justify-content-center mb-2 mb-sm-0'>
-    <Button variant='outline-info' onClick={handleNextColouring} className="w-100 w-sm-auto">
-      Generate New Image
-    </Button>
-  </Col>
-  
-  <Col xs={12} sm={6} md={4} lg={4} className='d-flex justify-content-center mb-2 mb-sm-0'>
-    <Button variant='outline-info' onClick={handleClear} className="w-100 w-sm-auto">
-      Clear Image
-    </Button>
-  </Col>
-  
-  <Col xs={12} sm={12} md={4} lg={4} className='d-flex justify-content-center'>
-    <Button
-      variant='outline-info'
-      className="w-100 w-sm-auto"
-      onClick={() => {
-        const uri = stageRef.current.toDataURL({ pixelRatio: 2 });
-        const link = document.createElement("a");
-        link.download = "colouring.png";
-        link.href = uri;
-        link.click();
-      }}
-    >
-      Save Image
-    </Button>
-  </Col>
-</Row>
+        <Col xs={12} sm={6} md={4} lg={4} className='d-flex justify-content-center mb-2 mb-sm-0'>
+          <Button variant='outline-info' onClick={handleNextColouring} className="w-100 w-sm-auto">
+            Generate New Image
+          </Button>
+        </Col>
+        
+        <Col xs={12} sm={6} md={4} lg={4} className='d-flex justify-content-center mb-2 mb-sm-0'>
+          <Button variant='outline-info' onClick={handleClear} className="w-100 w-sm-auto">
+            Clear Image
+          </Button>
+        </Col>
+        
+        <Col xs={12} sm={12} md={4} lg={4} className='d-flex justify-content-center'>
+          <Button
+            variant='outline-info'
+            className="w-100 w-sm-auto"
+            onClick={() => {
+              const uri = stageRef.current.toDataURL({ pixelRatio: 2 });
+              const link = document.createElement("a");
+              link.download = "colouring.png";
+              link.href = uri;
+              link.click();
+            }}
+          >
+            Save Image
+          </Button>
+        </Col>
+      </Row>
       
-
-      <Stage
-      ref={stageRef}
-        width={window.innerWidth}
-        height={window.innerHeight}
-        onMouseDown={handleMouseDown}
-        onMouseMove={handleMouseMove}
-        onMouseUp={handleMouseUp}
+      <div 
+        className={styles.canvasContainer}
+        style={{ 
+          touchAction: 'none',
+          userSelect: 'none',
+          WebkitTapHighlightColor: 'transparent'
+        }}
       >
-        <Layer>
-          {/* Background colouring page */}
-          {image && (
-            <KonvaImage 
-              image={image} 
-              width={window.innerWidth > 768 ? window.innerWidth * 0.87 : window.innerWidth * 0.93} 
-              height={window.innerHeight * 1} 
-              x={window.innerWidth * 0}
-              y={window.innerHeight * 0}
-            />
-          )}
+        <Stage
+          ref={stageRef}
+          width={window.innerWidth}
+          height={window.innerHeight}
+          draggable={false}
+          onMouseDown={handleMouseDown}
+          onMouseMove={handleMouseMove}
+          onMouseUp={handleMouseUp}
+          onTouchStart={handleMouseDown}
+          onTouchMove={handleMouseMove}
+          onTouchEnd={handleMouseUp}
+          onTouchCancel={handleMouseUp}
+        >
+          <Layer>
+            {/* Background colouring page */}
+            {image && (
+              <KonvaImage 
+                image={image} 
+                width={window.innerWidth > 768 ? window.innerWidth * 0.87 : window.innerWidth * 0.93} 
+                height={window.innerHeight * 1} 
+                x={window.innerWidth * 0}
+                y={window.innerHeight * 0}
+              />
+            )}
 
-          {/* User drawings */}
-          {lines.map((line, i) => (
-            <Line
-              key={i}
-              points={line.points}
-              stroke={line.tool === "eraser" ? "white" : line.color}
-              strokeWidth={5}
-              tension={0.5}
-              lineCap="round"
-              lineJoin="round"
-              globalCompositeOperation={
-                line.tool === "eraser" ? "destination-out" : "source-over"
-              }
-            />
-          ))}
-        </Layer>
-      </Stage>
+            {/* User drawings */}
+            {lines.map((line, i) => (
+              <Line
+                key={i}
+                points={line.points}
+                stroke={line.tool === "eraser" ? "white" : line.color}
+                strokeWidth={5}
+                tension={0.5}
+                lineCap="round"
+                lineJoin="round"
+                globalCompositeOperation={
+                  line.tool === "eraser" ? "destination-out" : "source-over"
+                }
+              />
+            ))}
+            
+          </Layer>
+        </Stage>
+      </div>
     </div>
   );
-
         
         case 'connect the dots':
         return (

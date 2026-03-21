@@ -1,0 +1,12 @@
+.canvasContainer {
+  touch-action: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  position: relative;
+  overflow: hidden;
+}
+
+.canvasContainer canvas {
+  touch-action: none;
+  user-select: none;
+}
