@@ -1,20 +1,16 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Slider, Stack } from "@mui/material";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { 
-  faVolumeUp, 
-  faVolumeMute, 
-} from '@fortawesome/free-solid-svg-icons';
-import { Container, Row, Col, Button, Alert } from "react-bootstrap";
+import { faVolumeUp, faVolumeMute } from '@fortawesome/free-solid-svg-icons';
 
 const MoodBar = () => {
   const [mood, setMood] = useState(30);
   const [currentSection, setCurrentSection] = useState("calm");
-  const audioRef = useRef(null);
-  const [isSoundOn, setIsSoundOn] = useState(true); // Changed to true by default
+  const [isSoundOn, setIsSoundOn] = useState(true);
   const [isUserInteracted, setIsUserInteracted] = useState(false);
-  
-  
+  const audioRef = useRef(null);
+
+  // 🔊 Cloudflare R2 URLs
   const moodSounds = {
   calm: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/aromatic.mp3",  
   bright: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/ABeautifulGarden.mp3",
@@ -22,7 +18,7 @@ const MoodBar = () => {
   fire: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/Face_The_Future.mp3",
 };
 
-  // Update section whenever mood changes
+  // Update current section based on mood
   useEffect(() => {
     let section = "";
     if (mood < 44) section = "calm";
@@ -33,154 +29,122 @@ const MoodBar = () => {
     setCurrentSection(section);
   }, [mood]);
 
-  // Handle mute/unmute
+  // Handle first user interaction (required for iOS)
   useEffect(() => {
     const audio = audioRef.current;
     if (!audio) return;
-    
-    if (isSoundOn) {
-      audio.volume = 1; // Full volume when on
-    } else {
-      audio.volume = 0; // Mute when off
-    }
+
+    const handleFirstInteraction = () => {
+      setIsUserInteracted(true);
+      if (isSoundOn) {
+        audio.play().catch((err) => console.log("iOS play error:", err));
+      }
+      window.removeEventListener("click", handleFirstInteraction);
+      window.removeEventListener("touchstart", handleFirstInteraction);
+    };
+
+    window.addEventListener("click", handleFirstInteraction);
+    window.addEventListener("touchstart", handleFirstInteraction);
+
+    return () => {
+      window.removeEventListener("click", handleFirstInteraction);
+      window.removeEventListener("touchstart", handleFirstInteraction);
+    };
   }, [isSoundOn]);
 
-  // Play audio on section change — after user interaction
-
-  useEffect(() => {
-  const audio = audioRef.current;
-  if (!audio) return;
-
-  // Only play after a touch/click
-  const handleFirstInteraction = () => {
-    setIsUserInteracted(true);
-    if (isSoundOn) {
-      audio.play().catch((err) => console.log("iOS play error:", err));
-    }
-
-    // Remove listeners
-    window.removeEventListener("click", handleFirstInteraction);
-    window.removeEventListener("touchstart", handleFirstInteraction);
-  };
-
-  window.addEventListener("click", handleFirstInteraction);
-  window.addEventListener("touchstart", handleFirstInteraction);
-
-  return () => {
-    window.removeEventListener("click", handleFirstInteraction);
-    window.removeEventListener("touchstart", handleFirstInteraction);
-  };
-}, [isSoundOn]);
-
-
-
-useEffect(() => {
-  const handleFirstInteraction = () => {
-    setIsUserInteracted(true);
-
-    const audio = audioRef.current;
-    if (audio && isSoundOn) {
-      audio.play().catch(console.log);
-    }
-
-    window.removeEventListener("click", handleFirstInteraction);
-  };
-
-  window.addEventListener("click", handleFirstInteraction);
-
-  return () => {
-    window.removeEventListener("click", handleFirstInteraction);
-  };
-}, []);
-
-
-
-  // Handle playing when sound is turned on
+  // Play / pause audio when section changes or sound toggled
   useEffect(() => {
     const audio = audioRef.current;
     if (!audio) return;
-    
-    if (isSoundOn && isUserInteracted) {
-      audio.play().catch((err) => {
-        console.log("Error playing audio:", err);
-      });
-    } else if (!isSoundOn && audio) {
-      audio.pause();
-    }
-  }, [isSoundOn, isUserInteracted]);
 
-  // Toggle mute function
+    // Stop current audio
+    audio.pause();
+
+    // Set new source
+    audio.src = moodSounds[currentSection];
+    audio.load();
+
+    // Only play if user has interacted and sound is on
+    if (isSoundOn && isUserInteracted) {
+      audio.play().catch((err) => console.log("Error playing audio:", err));
+    }
+  }, [currentSection, isSoundOn, isUserInteracted]);
+
+  // Toggle mute
   const toggleMute = () => {
     setIsSoundOn(!isSoundOn);
+    const audio = audioRef.current;
+    if (audio) {
+      audio.volume = !isSoundOn ? 1 : 0;
+    }
   };
 
   return (
-  <section className="d-flex justify-content-center">
-    <div style={{ width: "100%", maxWidth: "800px", textAlign: "center" }}>
-      
-      {/* 🔝 Mood Bar */}
-      <Stack sx={{ width: "100%" }}>
-        <Slider
-          value={mood}
-          onChange={(e, val) => setMood(val)}
-          defaultValue={30}
-          aria-label="Mood Spectrum"
-          valueLabelDisplay="auto"
-          sx={{
-            height: 18,
-            "& .MuiSlider-rail": {
-              opacity: 1,
-              backgroundImage:
-                "linear-gradient(90deg, #0000FF, #00FF11, #FFFF00, #FFB300, #FF0000)",
-              borderRadius: 6,
-            },
-            "& .MuiSlider-track": { backgroundColor: "transparent" },
-            "& .MuiSlider-thumb": {
-              width: 40,
-              height: 40,
-              backgroundColor: "#fff",
-              border: "2px solid #000",
-              boxShadow: `0 0 20px ${
-                mood < 44
-                  ? "blue"
-                  : mood < 72
-                  ? "yellow"
-                  : mood < 86
-                  ? "orange"
-                  : "red"
-              }`,
-              transition: "box-shadow 0.3s ease",
-            },
+    <section className="d-flex justify-content-center mt-4">
+      <div style={{ width: "100%", maxWidth: "800px", textAlign: "center" }}>
+        {/* 🔝 Mood Slider */}
+        <Stack sx={{ width: "100%" }}>
+          <Slider
+            value={mood}
+            onChange={(e, val) => setMood(val)}
+            defaultValue={30}
+            aria-label="Mood Spectrum"
+            valueLabelDisplay="auto"
+            sx={{
+              height: 18,
+              "& .MuiSlider-rail": {
+                opacity: 1,
+                backgroundImage:
+                  "linear-gradient(90deg, #0000FF, #00FF11, #FFFF00, #FFB300, #FF0000)",
+                borderRadius: 6,
+              },
+              "& .MuiSlider-track": { backgroundColor: "transparent" },
+              "& .MuiSlider-thumb": {
+                width: 40,
+                height: 40,
+                backgroundColor: "#fff",
+                border: "2px solid #000",
+                boxShadow: `0 0 20px ${
+                  mood < 44
+                    ? "blue"
+                    : mood < 72
+                    ? "yellow"
+                    : mood < 86
+                    ? "orange"
+                    : "red"
+                }`,
+                transition: "box-shadow 0.3s ease",
+              },
+            }}
+          />
+        </Stack>
+
+        {/* ✨ Mood Text */}
+        <div className="mt-3 mb-3">
+          {mood < 44 && <h4>“Take a deep breath, you’re in balance.”</h4>}
+          {mood >= 44 && mood < 72 && <h4>“Your energy is rising—time to focus!”</h4>}
+          {mood >= 72 && mood < 86 && <h4>“Tap into your spark and imagination.”</h4>}
+          {mood >= 86 && <h4>“Feel the fire—channel it wisely.”</h4>}
+        </div>
+
+        {/* 🔊 Mute Button */}
+        <button
+          onClick={toggleMute}
+          style={{
+            border: "none",
+            backgroundColor: "transparent",
+            cursor: "pointer",
+            fontSize: "28px",
           }}
-        />
-      </Stack>
+        >
+          <FontAwesomeIcon icon={isSoundOn ? faVolumeUp : faVolumeMute} />
+        </button>
 
-      {/* ✨ Text */}
-      <div className="mt-3 mb-3">
-        {mood < 44 && <h4>“Take a deep breath, you’re in balance.”</h4>}
-        {mood >= 44 && mood < 72 && <h4>“Your energy is rising—time to focus!”</h4>}
-        {mood >= 72 && mood < 86 && <h4>“Tap into your spark and imagination.”</h4>}
-        {mood >= 86 && <h4>“Feel the fire—channel it wisely.”</h4>}
+        {/* 🎵 Audio Element */}
+        <audio ref={audioRef} loop preload="auto" />
       </div>
-
-      {/* 🔊 Mute Button UNDERNEATH */}
-      <button
-        onClick={toggleMute}
-        style={{
-          border: "none",
-          backgroundColor: "transparent",
-          cursor: "pointer",
-          fontSize: "24px",
-        }}
-      >
-        <FontAwesomeIcon icon={isSoundOn ? faVolumeUp : faVolumeMute} />
-      </button>
-
-      {/* 🎵 Audio */}
-      <audio ref={audioRef} loop preload="auto" />
-    </div>
-  </section>
-)};
-
+    </section>
+  );
+};
 
 export default MoodBar;
