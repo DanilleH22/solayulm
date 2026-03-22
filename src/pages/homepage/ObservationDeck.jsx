@@ -153,10 +153,10 @@ const [show, setShow] = useState(false);
 
   
   const ambientSounds = [
-      { name: "Space Ambience", src: "music/SeasideSound.mp3"},
-    { name: "Calming Waves", src: "music/WavesSound.mp3" },
-    { name: "Gentle Rain", src: "music/gentleRain.mp3" },
-    { name: "Forest Sounds", src: "music/SeasideSound.mp3" }
+      { name: "Space Ambience", src: "public/music/SeasideSound.mp3"},
+    { name: "Calming Waves", src: "public/music/WavesSound.mp3" },
+    { name: "Gentle Rain", src: "public/music/gentleRain.mp3" },
+    { name: "Forest Sounds", src: "public/music/SeasideSound.mp3" }
   ];
 
 
