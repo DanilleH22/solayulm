@@ -248,6 +248,26 @@ const [show, setShow] = useState(false);
     }
   }, [isSoundOn]);
 
+
+  useEffect(() => {
+    
+  const handleFirstInteraction = () => {
+    setIsUserInteracted(true);
+    if (isSoundOn) audioRef.current.play().catch(console.log);
+    window.removeEventListener("click", handleFirstInteraction);
+    window.removeEventListener("touchstart", handleFirstInteraction);
+  };
+
+  window.addEventListener("click", handleFirstInteraction);
+  window.addEventListener("touchstart", handleFirstInteraction);
+
+  return () => {
+    window.removeEventListener("click", handleFirstInteraction);
+    window.removeEventListener("touchstart", handleFirstInteraction);
+  };
+}, [isSoundOn]);
+
+
   // Handle sound change
   useEffect(() => {
     if (audioRef.current) {
