@@ -95,6 +95,10 @@ const [windowWidth, setWindowWidth] = useState(window.innerWidth);
             <Link to="/HelpPage" style={{ textDecoration: 'none'}}>
                   <p>Help available</p>
                   </Link>
+
+            <Link to="/Toolkit" style={{ textDecoration: 'none'}}>
+                  <p>Toolkit</p>
+                  </Link>
           </Col>
 
           {/* Music Switch */}
