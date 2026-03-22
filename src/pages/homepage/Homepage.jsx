@@ -146,7 +146,7 @@ const onMove = useCallback(
   >
     <Button
       style={{ 
-        backgroundColor: "#6a626e", 
+        background: "linear-gradient(90deg, #3b3b6a 0%, #52528f 50%, #9f9ff9 100%)",
         outline: 'none',
         boxShadow: 'none',
       border: 'none', }}
