@@ -16,10 +16,10 @@ const MoodBar = () => {
   
   
   const moodSounds = {
-  calm: "public/music/aromatic.mp3",  
-  bright: "public/music/ABeautifulGarden.mp3",
-  intense: "public/music/FallingIntoYou.mp3",
-  fire: "public/music/Face_The_Future.mp3",
+  calm: "/music/aromatic.mp3",  
+  bright: "/music/ABeautifulGarden.mp3",
+  intense: "/music/FallingIntoYou.mp3",
+  fire: "/music/Face_The_Future.mp3",
 };
 
   // Update section whenever mood changes
@@ -46,38 +46,79 @@ const MoodBar = () => {
   }, [isSoundOn]);
 
   // Play audio on section change — after user interaction
+  // useEffect(() => {
+  //   const audio = audioRef.current;
+  //   if (!audio) return;
+
+  //   // Only change src if it's different from current
+  //   if (audio.src !== moodSounds[currentSection]) {
+  //     audio.src = moodSounds[currentSection];
+  //     audio.load();
+  //   }
+
+  //   const playAudio = () => {
+  //     if (isSoundOn) {
+  //       audio.play().catch((err) => {
+  //         console.log("Error playing audio:", err);
+  //       });
+  //     }
+  //     setIsUserInteracted(true);
+  //   };
+
+  //   // Only add listeners if not already interacted
+  //   if (!isUserInteracted) {
+  //     window.addEventListener("click", playAudio);
+  //     window.addEventListener("touchstart", playAudio);
+  //     window.addEventListener("keydown", playAudio);
+
+  //     return () => {
+  //       window.removeEventListener("click", playAudio);
+  //       window.removeEventListener("touchstart", playAudio);
+  //       window.removeEventListener("keydown", playAudio);
+  //     };
+  //   }
+  // }, [currentSection, isSoundOn, isUserInteracted]);
+
+
   useEffect(() => {
+  const audio = audioRef.current;
+  if (!audio) return;
+
+  // stop current audio safely
+  audio.pause();
+
+  // set new source
+  audio.src = moodSounds[currentSection];
+
+  // only play if allowed
+  if (isSoundOn && isUserInteracted) {
+    audio.play().catch((err) => {
+      console.log("Error playing audio:", err);
+    });
+  }
+}, [currentSection, isSoundOn, isUserInteracted]);
+
+
+useEffect(() => {
+  const handleFirstInteraction = () => {
+    setIsUserInteracted(true);
+
     const audio = audioRef.current;
-    if (!audio) return;
-
-    // Only change src if it's different from current
-    if (audio.src !== moodSounds[currentSection]) {
-      audio.src = moodSounds[currentSection];
-      audio.load();
+    if (audio && isSoundOn) {
+      audio.play().catch(console.log);
     }
 
-    const playAudio = () => {
-      if (isSoundOn) {
-        audio.play().catch((err) => {
-          console.log("Error playing audio:", err);
-        });
-      }
-      setIsUserInteracted(true);
-    };
+    window.removeEventListener("click", handleFirstInteraction);
+  };
 
-    // Only add listeners if not already interacted
-    if (!isUserInteracted) {
-      window.addEventListener("click", playAudio);
-      window.addEventListener("touchstart", playAudio);
-      window.addEventListener("keydown", playAudio);
+  window.addEventListener("click", handleFirstInteraction);
 
-      return () => {
-        window.removeEventListener("click", playAudio);
-        window.removeEventListener("touchstart", playAudio);
-        window.removeEventListener("keydown", playAudio);
-      };
-    }
-  }, [currentSection, isSoundOn, isUserInteracted]);
+  return () => {
+    window.removeEventListener("click", handleFirstInteraction);
+  };
+}, []);
+
+
 
   // Handle playing when sound is turned on
   useEffect(() => {
