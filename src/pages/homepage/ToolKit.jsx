@@ -1,785 +1,135 @@
-import React from 'react'
-import { Container, Row, Col, Button, Card } from "react-bootstrap";
-import { Helmet } from "react-helmet-async"
+import React from 'react';
+import { Container, Row, Col, Card } from "react-bootstrap";
+import { Helmet } from "react-helmet-async";
+import { Link } from "react-router";
+
+// 🔹 Reusable Card Component
+const ToolCard = ({ title, text, link }) => {
+  return (
+    <Card className="h-100 shadow-sm border-0" style={{ backgroundColor: '#ddb0ffff' }}>
+      <Card.Img 
+        variant="top" 
+        src="https://via.placeholder.com/300x200" 
+      />
+
+      <Card.Body>
+        <Card.Title>{title}</Card.Title>
+        <Card.Text>{text}</Card.Text>
+        <Card.Link href={link}>Explore</Card.Link>
+      </Card.Body>
+
+      <Card.Body>
+        <h6 className="text-center">Benefits:</h6>
+        <ul className="small mb-0">
+          <li>Supports the space</li>
+          <li>Enhances your environment</li>
+          <li>Curated for calm</li>
+        </ul>
+      </Card.Body>
+    </Card>
+  );
+};
+
+// 🔹 Section Data (EASY TO EDIT / SCALE)
+const sections = [
+  { title: "Featured Tools", items: 3 },
+  { title: "Creative Space", items: 4},
+  { title: "Mindfulness Space", items: 4 },
+  { title: "Body Space", items: 4 },
+];
 
 const ToolKit = () => {
   return (
     <>
-    <Helmet>
-  <title>Toolkit – Create Your Serene Space | Solayulm</title>
-  <meta name="description" content="Shop Solayulm’s Toolkit — curated wellness items and ambient products to turn your space into a sanctuary." />
-  <meta property="og:title" content="Toolkit | Solayulm" />
-  <meta property="og:description" content="Explore calming tools, lighting, and decor that enhance your personal space for serenity." />
-</Helmet>
+      <Helmet>
+        <title>Toolkit – Create Your Serene Space | Solayulm</title>
+        <meta 
+          name="description" 
+          content="Shop Solayulm’s Toolkit — curated wellness items and ambient products to turn your space into a sanctuary." 
+        />
+      </Helmet>
 
-    <Container>
-        <Row className="text-center mb-4">
-                <Col>
-                  <h1>The Solayulm Toolkit</h1>
-                  <p>
-                    ✨ Welcome to my toolkit — a curated space of things that make the Solayulm experience feel deeper, calmer, and more inspired. 
-                    Each link supports the space and keeps it ad-free, so thank you for exploring mindfully 💫
-                  </p>
-                </Col>
-              </Row>
+      <Container>
 
-              {/* Featured Tools Section */}
-
-              <Row className='text-center'>
-                <Col>
-                    <h3>Featured Tools</h3>
-                    </Col>
-                    </Row>
-
-
-              <Row>
-                <Col>
-               
-           
-            <Card style={{ width: '18rem' }}>
-      <Card.Img variant="top" src="holder.js/100px180" />
-      <Card.Body>
-        <Card.Title>Card Title</Card.Title>
-        <Card.Text>
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
-        </Card.Text>
-        <Card.Link href="#">Card Link</Card.Link>
-      </Card.Body>
-    </Card>
-    <Row className='mt-3'>
-      <Col>
-      <h4 className='text-center'>Benefits:</h4>
-              <ul>
-                <li>Supports the space and keeps it ad-free</li>
-                <li>Enhances your personal space for serenity</li>
-                <li>Curated wellness items and ambient products</li>
-              </ul>
-      </Col>
-    </Row>
-    </Col>
-    <Col>
-               
-               
-               <Card style={{ width: '18rem' }}>
-         <Card.Img variant="top" src="holder.js/100px180" />
-         <Card.Body>
-           <Card.Title>Card Title</Card.Title>
-           <Card.Text>
-             Some quick example text to build on the card title and make up the
-             bulk of the card's content.
-           </Card.Text>
-           <Card.Link href="#">Card Link</Card.Link>
-         </Card.Body>
-       </Card>
-       <Row className='mt-3'>
-      <Col>
-      <h4 className='text-center'>Benefits:</h4>
-              <ul>
-                <li>Supports the space and keeps it ad-free</li>
-                <li>Enhances your personal space for serenity</li>
-                <li>Curated wellness items and ambient products</li>
-              </ul>
-      </Col>
-    </Row>
-       </Col>
-       <Col>
-               
-               
-               <Card style={{ width: '18rem' }}>
-         <Card.Img variant="top" src="holder.js/100px180" />
-         <Card.Body>
-           <Card.Title>Card Title</Card.Title>
-           <Card.Text>
-             Some quick example text to build on the card title and make up the
-             bulk of the card's content.
-           </Card.Text>
-           <Card.Link href="#">Card Link</Card.Link>
-         </Card.Body>
-       </Card>
-       <Row className='mt-3'>
-      <Col>
-      <h4 className='text-center'>Benefits:</h4>
-              <ul>
-                <li>Supports the space and keeps it ad-free</li>
-                <li>Enhances your personal space for serenity</li>
-                <li>Curated wellness items and ambient products</li>
-              </ul>
-      </Col>
-    </Row>
-       </Col>
-      
-
-    </Row>
-
-
-    
-     
-              
-        {/* Creative space */}
-
-        <Row className='text-center pt-5'>
-            <Col>
-            <h4>Creative Space</h4>
-            <p>Lighting, music, focus tools</p>
-            <Row>
-                <Col>
-               
-           
-            <Card style={{ width: '18rem' }}>
-      <Card.Img variant="top" src="holder.js/100px180" />
-      <Card.Body>
-        <Card.Title>Card Title</Card.Title>
-        <Card.Text>
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
-        </Card.Text>
-        <Card.Link href="#">Card Link</Card.Link>
-      </Card.Body>
-    </Card>
-    <Row className='mt-3'>
-      <Col>
-      <h4>Benefits:</h4>
-              <ul>
-                <li>Supports the space and keeps it ad-free</li>
-                <li>Enhances your personal space for serenity</li>
-                <li>Curated wellness items and ambient products</li>
-              </ul>
-      </Col>
-    </Row>
-    </Col>
-    <Col>
-               
-               
-               <Card style={{ width: '18rem' }}>
-         <Card.Img variant="top" src="holder.js/100px180" />
-         <Card.Body>
-           <Card.Title>Card Title</Card.Title>
-           <Card.Text>
-             Some quick example text to build on the card title and make up the
-             bulk of the card's content.
-           </Card.Text>
-           <Card.Link href="#">Card Link</Card.Link>
-         </Card.Body>
-       </Card>
-       <Row className='mt-3'>
-      <Col>
-      <h4>Benefits:</h4>
-              <ul>
-                <li>Supports the space and keeps it ad-free</li>
-                <li>Enhances your personal space for serenity</li>
-                <li>Curated wellness items and ambient products</li>
-              </ul>
-      </Col>
-    </Row>
-       </Col>
-       <Col>
-               
-               
-               <Card style={{ width: '18rem' }}>
-         <Card.Img variant="top" src="holder.js/100px180" />
-         <Card.Body>
-           <Card.Title>Card Title</Card.Title>
-           <Card.Text>
-             Some quick example text to build on the card title and make up the
-             bulk of the card's content.
-           </Card.Text>
-           <Card.Link href="#">Card Link</Card.Link>
-         </Card.Body>
-       </Card>
-       <Row className='mt-3'>
-      <Col>
-      <h4>Benefits:</h4>
-              <ul>
-                <li>Supports the space and keeps it ad-free</li>
-                <li>Enhances your personal space for serenity</li>
-                <li>Curated wellness items and ambient products</li>
-              </ul>
-      </Col>
-    </Row>
-       </Col>
-       <Col>
-               
-              
-               <Card style={{ width: '18rem' }}>
-         <Card.Img variant="top" src="holder.js/100px180" />
-         <Card.Body>
-           <Card.Title>Card Title</Card.Title>
-           <Card.Text>
-             Some quick example text to build on the card title and make up the
-             bulk of the card's content.
-           </Card.Text>
-           <Card.Link href="#">Card Link</Card.Link>
-         </Card.Body>
-       </Card>
-       <Row className='mt-3'>
-      <Col>
-      <h4>Benefits:</h4>
-              <ul>
-                <li>Supports the space and keeps it ad-free</li>
-                <li>Enhances your personal space for serenity</li>
-                <li>Curated wellness items and ambient products</li>
-              </ul>
-      </Col>
-    </Row>
-       </Col>
-
-    </Row>
-
-
-    <Row className='mt-4'>
-                <Col>
-               
-           
-            <Card style={{ width: '18rem' }}>
-      <Card.Img variant="top" src="holder.js/100px180" />
-      <Card.Body>
-        <Card.Title>Card Title</Card.Title>
-        <Card.Text>
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
-        </Card.Text>
-        <Card.Link href="#">Card Link</Card.Link>
-      </Card.Body>
-    </Card>
-    <Row className='mt-3'>
-      <Col>
-      <h4>Benefits:</h4>
-              <ul>
-                <li>Supports the space and keeps it ad-free</li>
-                <li>Enhances your personal space for serenity</li>
-                <li>Curated wellness items and ambient products</li>
-              </ul>
-      </Col>
-    </Row>
-    </Col>
-    <Col>
-               
-               
-               <Card style={{ width: '18rem' }}>
-         <Card.Img variant="top" src="holder.js/100px180" />
-         <Card.Body>
-           <Card.Title>Card Title</Card.Title>
-           <Card.Text>
-             Some quick example text to build on the card title and make up the
-             bulk of the card's content.
-           </Card.Text>
-           <Card.Link href="#">Card Link</Card.Link>
-         </Card.Body>
-       </Card>
-       <Row className='mt-3'>
-      <Col>
-      <h4>Benefits:</h4>
-              <ul>
-                <li>Supports the space and keeps it ad-free</li>
-                <li>Enhances your personal space for serenity</li>
-                <li>Curated wellness items and ambient products</li>
-              </ul>
-      </Col>
-    </Row>
-       </Col>
-       <Col>
-               
-               
-               <Card style={{ width: '18rem' }}>
-         <Card.Img variant="top" src="holder.js/100px180" />
-         <Card.Body>
-           <Card.Title>Card Title</Card.Title>
-           <Card.Text>
-             Some quick example text to build on the card title and make up the
-             bulk of the card's content.
-           </Card.Text>
-           <Card.Link href="#">Card Link</Card.Link>
-         </Card.Body>
-       </Card>
-       <Row className='mt-3'>
-      <Col>
-      <h4>Benefits:</h4>
-              <ul>
-                <li>Supports the space and keeps it ad-free</li>
-                <li>Enhances your personal space for serenity</li>
-                <li>Curated wellness items and ambient products</li>
-              </ul>
-      </Col>
-    </Row>
-       </Col>
-       <Col>
-               
-              
-               <Card style={{ width: '18rem' }}>
-         <Card.Img variant="top" src="holder.js/100px180" />
-         <Card.Body>
-           <Card.Title>Card Title</Card.Title>
-           <Card.Text>
-             Some quick example text to build on the card title and make up the
-             bulk of the card's content.
-           </Card.Text>
-           <Card.Link href="#">Card Link</Card.Link>
-         </Card.Body>
-       </Card>
-       <Row className='mt-3'>
-      <Col>
-      <h4>Benefits:</h4>
-              <ul>
-                <li>Supports the space and keeps it ad-free</li>
-                <li>Enhances your personal space for serenity</li>
-                <li>Curated wellness items and ambient products</li>
-              </ul>
-      </Col>
-    </Row>
-       </Col>
-
-    </Row>
-            </Col>
-        </Row>
-
-        {/* Mindfulness space */}
-
-        <Row className='text-center pt-5'>
-            <Col>
-            <h4>Mindfulness Space</h4>
-            <p>Tools for mental clarity</p>
-            <Row>
-                <Col>
-               
-           
-            <Card style={{ width: '18rem' }}>
-      <Card.Img variant="top" src="holder.js/100px180" />
-      <Card.Body>
-        <Card.Title>Card Title</Card.Title>
-        <Card.Text>
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
-        </Card.Text>
-        <Card.Link href="#">Card Link</Card.Link>
-      </Card.Body>
-    </Card>
-    <Row className='mt-3'>
-      <Col>
-      <h4>Benefits:</h4>
-              <ul>
-                <li>Supports the space and keeps it ad-free</li>
-                <li>Enhances your personal space for serenity</li>
-                <li>Curated wellness items and ambient products</li>
-              </ul>
-      </Col>
-    </Row>
-    </Col>
-    <Col>
-               
-               
-               <Card style={{ width: '18rem' }}>
-         <Card.Img variant="top" src="holder.js/100px180" />
-         <Card.Body>
-           <Card.Title>Card Title</Card.Title>
-           <Card.Text>
-             Some quick example text to build on the card title and make up the
-             bulk of the card's content.
-           </Card.Text>
-           <Card.Link href="#">Card Link</Card.Link>
-         </Card.Body>
-       </Card>
-       <Row className='mt-3'>
-      <Col>
-      <h4>Benefits:</h4>
-              <ul>
-                <li>Supports the space and keeps it ad-free</li>
-                <li>Enhances your personal space for serenity</li>
-                <li>Curated wellness items and ambient products</li>
-              </ul>
-      </Col>
-    </Row>
-       </Col>
-       <Col>
-               
-               
-               <Card style={{ width: '18rem' }}>
-         <Card.Img variant="top" src="holder.js/100px180" />
-         <Card.Body>
-           <Card.Title>Card Title</Card.Title>
-           <Card.Text>
-             Some quick example text to build on the card title and make up the
-             bulk of the card's content.
-           </Card.Text>
-           <Card.Link href="#">Card Link</Card.Link>
-         </Card.Body>
-       </Card>
-       <Row className='mt-3'>
-      <Col>
-      <h4>Benefits:</h4>
-              <ul>
-                <li>Supports the space and keeps it ad-free</li>
-                <li>Enhances your personal space for serenity</li>
-                <li>Curated wellness items and ambient products</li>
-              </ul>
-      </Col>
-    </Row>
-       </Col>
-       <Col>
-               
-              
-               <Card style={{ width: '18rem' }}>
-         <Card.Img variant="top" src="holder.js/100px180" />
-         <Card.Body>
-           <Card.Title>Card Title</Card.Title>
-           <Card.Text>
-             Some quick example text to build on the card title and make up the
-             bulk of the card's content.
-           </Card.Text>
-           <Card.Link href="#">Card Link</Card.Link>
-         </Card.Body>
-       </Card>
-       <Row className='mt-3'>
-      <Col>
-      <h4>Benefits:</h4>
-              <ul>
-                <li>Supports the space and keeps it ad-free</li>
-                <li>Enhances your personal space for serenity</li>
-                <li>Curated wellness items and ambient products</li>
-              </ul>
-      </Col>
-    </Row>
-       </Col>
-
-    </Row>
-
-
-    <Row className='mt-4'>
-                <Col>
-               
-           
-            <Card style={{ width: '18rem' }}>
-      <Card.Img variant="top" src="holder.js/100px180" />
-      <Card.Body>
-        <Card.Title>Card Title</Card.Title>
-        <Card.Text>
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
-        </Card.Text>
-        <Card.Link href="#">Card Link</Card.Link>
-      </Card.Body>
-    </Card>
-    <Row className='mt-3'>
-      <Col>
-      <h4>Benefits:</h4>
-              <ul>
-                <li>Supports the space and keeps it ad-free</li>
-                <li>Enhances your personal space for serenity</li>
-                <li>Curated wellness items and ambient products</li>
-              </ul>
-      </Col>
-    </Row>
-    </Col>
-    <Col>
-               
-               
-               <Card style={{ width: '18rem' }}>
-         <Card.Img variant="top" src="holder.js/100px180" />
-         <Card.Body>
-           <Card.Title>Card Title</Card.Title>
-           <Card.Text>
-             Some quick example text to build on the card title and make up the
-             bulk of the card's content.
-           </Card.Text>
-           <Card.Link href="#">Card Link</Card.Link>
-         </Card.Body>
-       </Card>
-       <Row className='mt-3'>
-      <Col>
-      <h4>Benefits:</h4>
-              <ul>
-                <li>Supports the space and keeps it ad-free</li>
-                <li>Enhances your personal space for serenity</li>
-                <li>Curated wellness items and ambient products</li>
-              </ul>
-      </Col>
-    </Row>
-       </Col>
-       <Col>
-               
-               
-               <Card style={{ width: '18rem' }}>
-         <Card.Img variant="top" src="holder.js/100px180" />
-         <Card.Body>
-           <Card.Title>Card Title</Card.Title>
-           <Card.Text>
-             Some quick example text to build on the card title and make up the
-             bulk of the card's content.
-           </Card.Text>
-           <Card.Link href="#">Card Link</Card.Link>
-         </Card.Body>
-       </Card>
-       <Row className='mt-3'>
-      <Col>
-      <h4>Benefits:</h4>
-              <ul>
-                <li>Supports the space and keeps it ad-free</li>
-                <li>Enhances your personal space for serenity</li>
-                <li>Curated wellness items and ambient products</li>
-              </ul>
-      </Col>
-    </Row>
-       </Col>
-       <Col>
-               
-              
-               <Card style={{ width: '18rem' }}>
-         <Card.Img variant="top" src="holder.js/100px180" />
-         <Card.Body>
-           <Card.Title>Card Title</Card.Title>
-           <Card.Text>
-             Some quick example text to build on the card title and make up the
-             bulk of the card's content.
-           </Card.Text>
-           <Card.Link href="#">Card Link</Card.Link>
-         </Card.Body>
-       </Card>
-       <Row className='mt-3'>
-      <Col>
-      <h4>Benefits:</h4>
-              <ul>
-                <li>Supports the space and keeps it ad-free</li>
-                <li>Enhances your personal space for serenity</li>
-                <li>Curated wellness items and ambient products</li>
-              </ul>
-      </Col>
-    </Row>
-       </Col>
-
-    </Row>
-            </Col>
-        </Row>
-
-
-        {/* Body space */}
-
-        <Row className='text-center pt-5'>
-            <Col>
-            <h4>Body Space</h4>
-            <p>Comfort and posture tools</p>
-            <Row>
-                <Col>
-               
-           
-            <Card style={{ width: '18rem' }}>
-      <Card.Img variant="top" src="holder.js/100px180" />
-      <Card.Body>
-        <Card.Title>Card Title</Card.Title>
-        <Card.Text>
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
-        </Card.Text>
-        <Card.Link href="#">Card Link</Card.Link>
-      </Card.Body>
-    </Card>
-    <Row className='mt-3'>
-      <Col>
-      <h4>Benefits:</h4>
-              <ul>
-                <li>Supports the space and keeps it ad-free</li>
-                <li>Enhances your personal space for serenity</li>
-                <li>Curated wellness items and ambient products</li>
-              </ul>
-      </Col>
-    </Row>
-    </Col>
-    <Col>
-               
-               
-               <Card style={{ width: '18rem' }}>
-         <Card.Img variant="top" src="holder.js/100px180" />
-         <Card.Body>
-           <Card.Title>Card Title</Card.Title>
-           <Card.Text>
-             Some quick example text to build on the card title and make up the
-             bulk of the card's content.
-           </Card.Text>
-           <Card.Link href="#">Card Link</Card.Link>
-         </Card.Body>
-       </Card>
-       <Row className='mt-3'>
-      <Col>
-      <h4>Benefits:</h4>
-              <ul>
-                <li>Supports the space and keeps it ad-free</li>
-                <li>Enhances your personal space for serenity</li>
-                <li>Curated wellness items and ambient products</li>
-              </ul>
-      </Col>
-    </Row>
-       </Col>
-       <Col>
-               
-               
-               <Card style={{ width: '18rem' }}>
-         <Card.Img variant="top" src="holder.js/100px180" />
-         <Card.Body>
-           <Card.Title>Card Title</Card.Title>
-           <Card.Text>
-             Some quick example text to build on the card title and make up the
-             bulk of the card's content.
-           </Card.Text>
-           <Card.Link href="#">Card Link</Card.Link>
-         </Card.Body>
-       </Card>
-       <Row className='mt-3'>
-      <Col>
-      <h4>Benefits:</h4>
-              <ul>
-                <li>Supports the space and keeps it ad-free</li>
-                <li>Enhances your personal space for serenity</li>
-                <li>Curated wellness items and ambient products</li>
-              </ul>
-      </Col>
-    </Row>
-       </Col>
-       <Col>
-               
-              
-               <Card style={{ width: '18rem' }}>
-         <Card.Img variant="top" src="holder.js/100px180" />
-         <Card.Body>
-           <Card.Title>Card Title</Card.Title>
-           <Card.Text>
-             Some quick example text to build on the card title and make up the
-             bulk of the card's content.
-           </Card.Text>
-           <Card.Link href="#">Card Link</Card.Link>
-         </Card.Body>
-       </Card>
-       <Row className='mt-3'>
-      <Col>
-      <h4>Benefits:</h4>
-              <ul>
-                <li>Supports the space and keeps it ad-free</li>
-                <li>Enhances your personal space for serenity</li>
-                <li>Curated wellness items and ambient products</li>
-              </ul>
-      </Col>
-    </Row>
-       </Col>
-
-    </Row>
-
-
-    <Row className='mt-4'>
-                <Col>
-               
-           
-            <Card style={{ width: '18rem' }}>
-      <Card.Img variant="top" src="holder.js/100px180" />
-      <Card.Body>
-        <Card.Title>Card Title</Card.Title>
-        <Card.Text>
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
-        </Card.Text>
-        <Card.Link href="#">Card Link</Card.Link>
-      </Card.Body>
-    </Card>
-    <Row className='mt-3'>
-      <Col>
-      <h4>Benefits:</h4>
-              <ul>
-                <li>Supports the space and keeps it ad-free</li>
-                <li>Enhances your personal space for serenity</li>
-                <li>Curated wellness items and ambient products</li>
-              </ul>
-      </Col>
-    </Row>
-    </Col>
-    <Col>
-               
-               
-               <Card style={{ width: '18rem' }}>
-         <Card.Img variant="top" src="holder.js/100px180" />
-         <Card.Body>
-           <Card.Title>Card Title</Card.Title>
-           <Card.Text>
-             Some quick example text to build on the card title and make up the
-             bulk of the card's content.
-           </Card.Text>
-           <Card.Link href="#">Card Link</Card.Link>
-         </Card.Body>
-       </Card>
-       <Row className='mt-3'>
-      <Col>
-      <h4>Benefits:</h4>
-              <ul>
-                <li>Supports the space and keeps it ad-free</li>
-                <li>Enhances your personal space for serenity</li>
-                <li>Curated wellness items and ambient products</li>
-              </ul>
-      </Col>
-    </Row>
-       </Col>
-       <Col>
-               
-               
-               <Card style={{ width: '18rem' }}>
-         <Card.Img variant="top" src="holder.js/100px180" />
-         <Card.Body>
-           <Card.Title>Card Title</Card.Title>
-           <Card.Text>
-             Some quick example text to build on the card title and make up the
-             bulk of the card's content.
-           </Card.Text>
-           <Card.Link href="#">Card Link</Card.Link>
-         </Card.Body>
-       </Card>
-       <Row className='mt-3'>
-      <Col>
-      <h4>Benefits:</h4>
-              <ul>
-                <li>Supports the space and keeps it ad-free</li>
-                <li>Enhances your personal space for serenity</li>
-                <li>Curated wellness items and ambient products</li>
-              </ul>
-      </Col>
-    </Row>
-       </Col>
-       <Col>
-               
-              
-               <Card style={{ width: '18rem' }}>
-         <Card.Img variant="top" src="holder.js/100px180" />
-         <Card.Body>
-           <Card.Title>Card Title</Card.Title>
-           <Card.Text>
-             Some quick example text to build on the card title and make up the
-             bulk of the card's content.
-           </Card.Text>
-           <Card.Link href="#">Card Link</Card.Link>
-         </Card.Body>
-       </Card>
-       <Row className='mt-3'>
-      <Col>
-      <h4>Benefits:</h4>
-              <ul>
-                <li>Supports the space and keeps it ad-free</li>
-                <li>Enhances your personal space for serenity</li>
-                <li>Curated wellness items and ambient products</li>
-              </ul>
-      </Col>
-    </Row>
-       </Col>
-
-    </Row>
-            </Col>
-        </Row>
-
-
-    <Row className='pt-4'>
-        <Col>
+        {/* 🔹 Header */}
+        <Row className="text-center mb-4 px-3 px-md-0">
+          <Col>
+            <h1>The Solayulm Toolkit</h1>
             <p>
-                These links are affiliate-based - meaning I may earn a small commission if you choose to explore through them. 
-                This helps keep Solayulm free and glowing.
-                </p>
-        </Col>
-    </Row>
-    </Container>
-    </>
-  )
-}
+              ✨ Welcome to my toolkit — a curated space of things that make the 
+              Solayulm experience feel deeper, calmer, and more inspired.
+              <br />
+              Each link supports the space and keeps it ad-free 💫
+            </p>
+          </Col>
+        </Row>
 
-export default ToolKit
+        {/* 🔹 Sections */}
+        {sections.map((section, i) => (
+          <div key={i} className="my-5">
+
+            <h3 className="text-center mb-4">
+              {section.title}
+            </h3>
+
+           <Row className="g-4 justify-content-center px-3 px-md-0" >
+
+
+              {Array.from({ length: section.items }).map((_, idx) => (
+                <Col  className='text-center'
+                  key={idx}
+                  xs={12}     // mobile
+                  sm={6}      // small screens
+                  md={4}      // tablets
+                  lg={3}      // desktop
+                >
+                  <ToolCard 
+                    title="Card Title"
+                    text="Some quick example text to build on the card title."
+                    link="#"
+                  />
+                </Col>
+              ))}
+            </Row>
+
+          </div>
+        ))}
+
+        {/* 🔹 Footer Note */}
+        <Row className="pt-4">
+          <Col className="text-center">
+            <p className="small">
+              These links are affiliate-based — meaning I may earn a small commission 
+              if you explore through them. This helps keep Solayulm free and glowing ✨
+            </p>
+          </Col>
+        </Row>
+         <Row className="justify-content-center">
+          <Col xs={12} className="text-center">
+            <Link to="/Rooms" className="text-decoration-none">
+              <button 
+                className="custom-exit-btn"
+                style={{
+                  fontSize: window.innerWidth < 768 ? '16px' : '20px',
+                  color: 'white',
+                  cursor: 'pointer',
+                  backgroundColor: '#ffffff1a',
+                  border: '1px solid #ddb0ffff',
+                 
+                  padding: window.innerWidth < 768 ? '8px 20px' : '5px 15px',
+                  minWidth: window.innerWidth < 768 ? '90px' : '150px',
+                  transition: 'all 0.3s ease'
+                }}
+              >
+                Exit
+              </button>
+            </Link>
+          </Col>
+        </Row>
+
+      </Container>
+    </>
+  );
+};
+
+export default ToolKit;
