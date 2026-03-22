@@ -152,11 +152,18 @@ const [show, setShow] = useState(false);
 
 
   
-  const ambientSounds = [
-      { name: "Space Ambience", src: "public/music/SeasideSound.mp3"},
-    { name: "Calming Waves", src: "public/music/WavesSound.mp3" },
-    { name: "Gentle Rain", src: "public/music/gentleRain.mp3" },
-    { name: "Forest Sounds", src: "public/music/SeasideSound.mp3" }
+  // const ambientSounds = [
+  //     { name: "Space Ambience", src: "/music/SeasideSound.mp3"},
+  //   { name: "Calming Waves", src: "/music/WavesSound.mp3" },
+  //   { name: "Gentle Rain", src: "/music/gentleRain.mp3" },
+  //   { name: "Forest Sounds", src: "/music/SeasideSound.mp3" }
+  // ];
+
+   const ambientSounds = [
+      { name: "Space Ambience", src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/spaceSound.mp3"},
+    { name: "Calming Waves", src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/wavesSound.mp3" },
+    { name: "Gentle Rain", src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/gentleRain.mp3" },
+    { name: "Forest Sounds", src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/seasideSound.mp3" }
   ];
 
 
