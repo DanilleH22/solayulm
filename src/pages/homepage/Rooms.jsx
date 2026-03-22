@@ -86,7 +86,7 @@ const onMove = useCallback(
     <Button style={{
         outline: 'none',
         boxShadow: 'none',
-        backgroundColor: '#6a626e',
+        backgroundColor: 'transparent',
         border: 'none',
       }}>Explore</Button>
   </Link>
@@ -162,7 +162,7 @@ const onMove = useCallback(
     <Button style={{
         outline: 'none',
         boxShadow: 'none',
-        backgroundColor: '#6a626e',
+        backgroundColor: 'transparent',
         border: 'none',
       }}>Explore</Button>
   </Link>
@@ -196,7 +196,7 @@ const onMove = useCallback(
     <Button style={{
         outline: 'none',
         boxShadow: 'none',
-        backgroundColor: '#6a626e',
+        backgroundColor: 'transparent',
         border: 'none',
       }}>Explore</Button>
   </Link>
@@ -264,7 +264,7 @@ const onMove = useCallback(
     <Button style={{
         outline: 'none',
         boxShadow: 'none',
-        backgroundColor: '#6a626e',
+        backgroundColor: 'transparent',
         border: 'none',
       }}>Explore</Button>
   </Link>
@@ -298,7 +298,7 @@ const onMove = useCallback(
     <Button style={{
         outline: 'none',
         boxShadow: 'none',
-        backgroundColor: '#6a626e',
+        backgroundColor: 'transparent',
         border: 'none',
       }}>Explore</Button>
   </Link>
@@ -365,7 +365,7 @@ const onMove = useCallback(
     <Button style={{
         outline: 'none',
         boxShadow: 'none',
-        backgroundColor: '#6a626e',
+        backgroundColor: 'transparent',
         border: 'none',
       }}>Explore</Button>
   </Link>
@@ -404,7 +404,7 @@ const onMove = useCallback(
     style={{
         outline: 'none',
         boxShadow: 'none',
-        backgroundColor: '#6a626e',
+        backgroundColor: 'transparent',
         border: 'none',
       }}>Explore</Button>
   </Link>
