@@ -46,57 +46,32 @@ const MoodBar = () => {
   }, [isSoundOn]);
 
   // Play audio on section change — after user interaction
-  // useEffect(() => {
-  //   const audio = audioRef.current;
-  //   if (!audio) return;
-
-  //   // Only change src if it's different from current
-  //   if (audio.src !== moodSounds[currentSection]) {
-  //     audio.src = moodSounds[currentSection];
-  //     audio.load();
-  //   }
-
-  //   const playAudio = () => {
-  //     if (isSoundOn) {
-  //       audio.play().catch((err) => {
-  //         console.log("Error playing audio:", err);
-  //       });
-  //     }
-  //     setIsUserInteracted(true);
-  //   };
-
-  //   // Only add listeners if not already interacted
-  //   if (!isUserInteracted) {
-  //     window.addEventListener("click", playAudio);
-  //     window.addEventListener("touchstart", playAudio);
-  //     window.addEventListener("keydown", playAudio);
-
-  //     return () => {
-  //       window.removeEventListener("click", playAudio);
-  //       window.removeEventListener("touchstart", playAudio);
-  //       window.removeEventListener("keydown", playAudio);
-  //     };
-  //   }
-  // }, [currentSection, isSoundOn, isUserInteracted]);
-
 
   useEffect(() => {
   const audio = audioRef.current;
   if (!audio) return;
 
-  // stop current audio safely
-  audio.pause();
+  // Only play after a touch/click
+  const handleFirstInteraction = () => {
+    setIsUserInteracted(true);
+    if (isSoundOn) {
+      audio.play().catch((err) => console.log("iOS play error:", err));
+    }
 
-  // set new source
-  audio.src = moodSounds[currentSection];
+    // Remove listeners
+    window.removeEventListener("click", handleFirstInteraction);
+    window.removeEventListener("touchstart", handleFirstInteraction);
+  };
 
-  // only play if allowed
-  if (isSoundOn && isUserInteracted) {
-    audio.play().catch((err) => {
-      console.log("Error playing audio:", err);
-    });
-  }
-}, [currentSection, isSoundOn, isUserInteracted]);
+  window.addEventListener("click", handleFirstInteraction);
+  window.addEventListener("touchstart", handleFirstInteraction);
+
+  return () => {
+    window.removeEventListener("click", handleFirstInteraction);
+    window.removeEventListener("touchstart", handleFirstInteraction);
+  };
+}, [isSoundOn]);
+
 
 
 useEffect(() => {
