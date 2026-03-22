@@ -177,7 +177,7 @@ useEffect(() => {
       </button>
 
       {/* 🎵 Audio */}
-      <audio ref={audioRef} loop />
+      <audio ref={audioRef} loop preload="auto" />
     </div>
   </section>
 )};
