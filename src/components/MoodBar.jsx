@@ -16,10 +16,10 @@ const MoodBar = () => {
   
   
   const moodSounds = {
-  calm: "/assets/music/aromatic.mp3",  // Added leading slash and assets folder
-  bright: "/assets/music/ABeautifulGarden.mp3",
-  intense: "/assets/music/FallingIntoYou.mp3",
-  fire: "/assets/music/Face_The_Future.mp3",
+  calm: "public/music/aromatic.mp3",  
+  bright: "public/music/ABeautifulGarden.mp3",
+  intense: "public/music/FallingIntoYou.mp3",
+  fire: "public/music/Face_The_Future.mp3",
 };
 
   // Update section whenever mood changes
@@ -99,10 +99,11 @@ const MoodBar = () => {
   };
 
   return (
-    <>
-    <Row>
-      <Col md={12} className="justify-content-center">
-      <Stack sx={{ width: "100%", maxWidth: "800px" }}>
+  <section className="d-flex justify-content-center">
+    <div style={{ width: "100%", maxWidth: "800px", textAlign: "center" }}>
+      
+      {/* 🔝 Mood Bar */}
+      <Stack sx={{ width: "100%" }}>
         <Slider
           value={mood}
           onChange={(e, val) => setMood(val)}
@@ -136,37 +137,34 @@ const MoodBar = () => {
             },
           }}
         />
-
-        <div className="text-center mb-3">
-          {mood < 44 && <h4 className="text-blue-400">“Take a deep breath, you’re in balance.”</h4>}
-          {mood >= 44 && mood < 72 && <h4 className="text-yellow-400">“Your energy is rising—time to focus!”</h4>}
-          {mood >= 72 && mood < 86 && <h4 className="text-orange-400">“Tap into your spark and imagination.”</h4>}
-          {mood >= 86 && <h4 className="text-red-400">“Feel the fire—channel it wisely.”</h4>}
-        </div>
-
-        <audio ref={audioRef} loop />
-        
       </Stack>
 
-      </Col>
-    
-      <Col md={12} >
-        <button
-          onClick={toggleMute}
-          style={{ 
-            width: '10%', 
-            border: 'none', 
-            backgroundColor: 'transparent',
-            cursor: 'pointer'
-          }}
-        >
-          <FontAwesomeIcon icon={isSoundOn ? faVolumeUp : faVolumeMute} />
-        </button>
-      
-      </Col>
-    </Row>
-    </>
-  );
-};
+      {/* ✨ Text */}
+      <div className="mt-3 mb-3">
+        {mood < 44 && <h4>“Take a deep breath, you’re in balance.”</h4>}
+        {mood >= 44 && mood < 72 && <h4>“Your energy is rising—time to focus!”</h4>}
+        {mood >= 72 && mood < 86 && <h4>“Tap into your spark and imagination.”</h4>}
+        {mood >= 86 && <h4>“Feel the fire—channel it wisely.”</h4>}
+      </div>
+
+      {/* 🔊 Mute Button UNDERNEATH */}
+      <button
+        onClick={toggleMute}
+        style={{
+          border: "none",
+          backgroundColor: "transparent",
+          cursor: "pointer",
+          fontSize: "24px",
+        }}
+      >
+        <FontAwesomeIcon icon={isSoundOn ? faVolumeUp : faVolumeMute} />
+      </button>
+
+      {/* 🎵 Audio */}
+      <audio ref={audioRef} loop />
+    </div>
+  </section>
+)};
+
 
 export default MoodBar;
