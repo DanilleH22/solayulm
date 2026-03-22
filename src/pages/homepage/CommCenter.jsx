@@ -170,6 +170,37 @@ useEffect(() => {
   };
 }, [currentTrack, isMuted]);
 
+const handleAudioError = (e) => {
+  const audio = audioRef.current;
+  
+  // Ignore errors if the audio eventually plays
+  // These are often just network hiccups
+  if (audio && audio.currentTime > 0) {
+    return; // Audio is playing, ignore the error
+  }
+  
+  // Only show error if it's a real problem
+  if (audio && audio.error) {
+    // MEDIA_ERR_NETWORK (2) often resolves itself on retry
+    if (audio.error.code === 2 && audioRef.current?.src) {
+      console.log('Network hiccup, will retry...');
+      // Try reloading once
+      if (!audio.hasBeenRetried) {
+        audio.hasBeenRetried = true;
+        audio.load();
+        setTimeout(() => {
+          audio.play().catch(() => {});
+        }, 1000);
+      }
+      return;
+    }
+    
+    // Only log/display real errors
+    console.error('Audio error:', audio.error);
+    setError('Failed to load audio');
+  }
+};
+
 // Fix the handlePlay function
 const handlePlay = async () => {
   if (!audioRef.current || !audioRef.current.src) {
