@@ -106,7 +106,7 @@ const Testing = () => {
 
     generateGalaxy();
 
-    // const gui = new GUI();
+    const gui = new GUI();
     // gui.add(parameters, "count").min(1000).max(100000).step(1000).onFinishChange(generateGalaxy);
     // gui.add(parameters, "size").min(0.001).max(0.1).step(0.001).onFinishChange(generateGalaxy);
     // gui.add(parameters, "radius").min(1).max(20).step(0.1).onFinishChange(generateGalaxy);
