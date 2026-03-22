@@ -21,55 +21,57 @@ import {Helmet} from "react-helmet-async"
 // --- Channel Lists ---
 const CHANNELS = {
   "Lofi Beats": [
-    // { id: 1, name: "Lofi 1", src: "/LofiBeats/zelda1Lofi.mp4" },
-    // { id: 2, name: "Lofi 2", src: "/LofiBeats/zelda2Lofi.mp4" },
-    // { id: 3, name: "Lofi 3", src: "/LofiBeats/lofi3.mp4" },
-  
-    // { id: 5, name: "Lofi 5", src: "/LofiBeats/lofi5.mp4" },
-    { id: 6, name: "Lofi 6", src: "/LofiBeats/lofi6.mp3" },
-    { id: 7, name: "Lofi 7", src: "/LofiBeats/lofi7.mp3" },
-    { id: 8, name: "Lofi 8", src: "/LofiBeats/lofi8.mp3" },
-    { id: 9, name: "Lofi 9", src: "/LofiBeats/lofi9.mp3" },
-    { id: 10, name: "Lofi 10", src: "/LofiBeats/lofi10.mp3" },
+    // { id: 1, name: "Lofi 1", src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/lofi1.mp3" },
+    // { id: 2, name: "Lofi 2", src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/lofi2.mp3" },
+    // { id: 3, name: "Lofi 3", src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/lofi3.mp4" },
+    // { id: 4, name: "Lofi 4", src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/lofi4.mp3" },
+    { id: 5, name: "Lofi 5", src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/lofi5.mp4" },
+    { id: 6, name: "Lofi 6", src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/lofi6.mp3" },
+    { id: 7, name: "Lofi 7", src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/lofi7.mp3" },
+    { id: 8, name: "Lofi 8", src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/lofi8.mp3" },
+    { id: 9, name: "Lofi 9", src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/lofi9.mp3" },
+    { id: 10, name: "Lofi 10", src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/lofi10.mp3" },
   ],
+
+  
   "Affirmations": [
-    { id: 1, name: "Abundance & Success", src: "/Affirmations/abu_suc.mp3" },
-    { id: 2, name: "Adventure & Expansion", src: "/Affirmations/adv_exp.mp3" },
-    { id: 3, name: "Calm & Stress Relief", src: "/Affirmations/calm_str.mp3" },
-    { id: 4, name: "Creativity & Inspiration", src: "/Affirmations/cre_insp.mp3" },
-    { id: 5, name: "Focus & Productivity", src: "/Affirmations/foc_pro.mp3" },
-    { id: 6, name: "Healing & Self-Love", src: "/Affirmations/hea_sel.mp3" },
-    { id: 7, name: "Relationships & Connection", src: "/Affirmations/rel_con.mp3" },
-    { id: 8, name: "Self-Confidence & Empowerment", src: "/Affirmations/selfC_emp.mp3" },
-    { id: 9, name: "Sleep & Rest", src: "/Affirmations/sle_res.mp3" },
-    { id: 10, name: "Spiritual Growth & Intuition", src: "/Affirmations/spiG_int.mp3" },
+    { id: 1, name: "Abundance & Success", src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/abu_suc.mp3" },
+    { id: 2, name: "Adventure & Expansion", src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/adv_exp.mp3" },
+    { id: 3, name: "Calm & Stress Relief", src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/calm_str.mp3" },
+    { id: 4, name: "Creativity & Inspiration", src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/cre_insp.mp3" },
+    { id: 5, name: "Focus & Productivity", src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/foc_pro.mp3" },
+    { id: 6, name: "Healing & Self-Love", src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/hea_sel.mp3" },
+    { id: 7, name: "Relationships & Connection", src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/rel_con.mp3" },
+    { id: 8, name: "Self-Confidence & Empowerment", src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/selfC_emp.mp3" },
+    { id: 9, name: "Sleep & Rest", src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/sle_res.mp3" },
+    { id: 10, name: "Spiritual Growth & Intuition", src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/spiG_int.mp3" },
    
   ],
   "Soothing Stories": [
-    { id: 1, name: "The Lighthouse on the Edge of a Nebula", src: "/SoothingStories/lighthouse.mp3" },
-    { id: 2, name: "The Library of Stars", src: "/SoothingStories/libraryS.mp3" },
-    { id: 3, name: "The Glass Planet", src: "/SoothingStories/glassP.mp3" },
-    { id: 4, name: "The Sleeping Comet ", src: "/SoothingStories/sleepingC.mp3" },
-    { id: 5, name: "The Garden on Io ", src: "/SoothingStories/gardenL.mp3" },
-    { id: 6, name: "The Lighthouse of Andromeda", src: "/SoothingStories/andromeda.mp3" },
-    { id: 7, name: "The Bridge of Auroras", src: "/SoothingStories/bridgeAur.mp3" },
-    { id: 8, name: "The Forgotten Moon", src: "/SoothingStories/forgottenM.mp3" },
-    { id: 9, name: "The Star Garden", src: "/SoothingStories/starGard.mp3" },
-    { id: 10, name: "The Celestial Caravan", src: "/SoothingStories/celestialCara.mp3" },
+    { id: 1, name: "The Lighthouse on the Edge of a Nebula", src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/lighthouse.mp3" },
+    { id: 2, name: "The Library of Stars", src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/libraryS.mp3" },
+    { id: 3, name: "The Glass Planet", src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/glassP.mp3" },
+    { id: 4, name: "The Sleeping Comet ", src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/sleepingC.mp3" },
+    { id: 5, name: "The Garden on Io ", src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/gardenL.mp3" },
+    { id: 6, name: "The Lighthouse of Andromeda", src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/andromeda.mp3" },
+    { id: 7, name: "The Bridge of Auroras", src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/bridgeAur.mp3" },
+    { id: 8, name: "The Forgotten Moon", src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/forgottenM.mp3" },
+    { id: 9, name: "The Star Garden", src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/starGard.mp3" },
+    { id: 10, name: "The Celestial Caravan", src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/celestialCara.mp3" },
   ],
   
 
   "Ambient Noise": [
-    { id: 1, name: "Ambiance 1", src: "/AmbientNoises/ambient1.mp3" },
-    { id: 2, name: "Ambiance 2", src: "/AmbientNoises/ambient2.mp3" },
-    { id: 3, name: "Ambiance 3", src: "/AmbientNoises/ambient3.mp3" },
-    { id: 4, name: "Ambiance 4", src: "/AmbientNoises/ambient4.mp3" },
-    { id: 5, name: "Ambiance 5", src: "/AmbientNoises/ambient5.mp3" },
-    { id: 6, name: "Ambiance 6", src: "/AmbientNoises/ambient6.mp3" },
-    { id: 7, name: "Ambiance 7", src: "/AmbientNoises/ambient7.mp3" },
-    { id: 8, name: "Ambiance 8", src: "/AmbientNoises/ambient8.mp3" },
-    { id: 9, name: "Ambiance 9", src: "/AmbientNoises/ambient9.mp3" },
-    { id: 10, name: "Ambiance 10", src: "/AmbientNoises/ambient10.mp3" },
+    { id: 1, name: "Ambiance 1", src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/ambient1.mp3" },
+    { id: 2, name: "Ambiance 2", src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/ambient2.mp3" },
+    { id: 3, name: "Ambiance 3", src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/ambient3.mp3" },
+    { id: 4, name: "Ambiance 4", src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/ambient4.mp3" },
+    { id: 5, name: "Ambiance 5", src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/ambient5.mp3" },
+    { id: 6, name: "Ambiance 6", src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/ambient6.mp3" },
+    { id: 7, name: "Ambiance 7", src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/ambient7.mp3" },
+    { id: 8, name: "Ambiance 8", src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/ambient8.mp3" },
+    // { id: 9, name: "Ambiance 9", src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/ambient9.mp3" },
+    // { id: 10, name: "Ambiance 10", src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/ambient10.mp3" },
   ],
   // "Lost Signals": [
   //   { id: 1, name: "Lost Signal 1", src: "/MysterySignals/mystsignal1.mp3" },
@@ -84,6 +86,23 @@ const CHANNELS = {
   // ] 
   // add later
 };
+
+// addEventListener("fetch", event => {
+//   event.respondWith(handleRequest(event.request))
+// })
+
+// async function handleRequest(request) {
+//   const url = "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/andromeda.mp3"
+//   const response = await fetch(url)
+//   const newHeaders = new Headers(response.headers)
+//   newHeaders.set("Access-Control-Allow-Origin", "*") // allow all domains
+//   return new Response(response.body, {
+//     status: response.status,
+//     statusText: response.statusText,
+//     headers: newHeaders
+//   })
+// }
+
 
 
 const CommCenter = () => {
@@ -232,12 +251,12 @@ useEffect(() => {
 
   return (
     <>
-    <Helmet>
+    {/* <Helmet>
   <title>Comm Center Radio – Listen, Unwind & Drift | Solayulm</title>
   <meta name="description" content="Tune in to Solayulm’s Comm Center — soothing sounds and spoken reflections to calm your mind and elevate your mood." />
   <meta property="og:title" content="Comm Center Radio | Solayulm" />
   <meta property="og:description" content="A peaceful digital radio transmitting serenity across your inner space." />
-</Helmet>
+</Helmet> */}
     <Container>
       <Row className="text-center my-5">
         <Col>
