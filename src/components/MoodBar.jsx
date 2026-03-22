@@ -16,10 +16,10 @@ const MoodBar = () => {
   
   
   const moodSounds = {
-  calm: "/music/aromatic.mp3",  
-  bright: "/music/ABeautifulGarden.mp3",
-  intense: "/music/FallingIntoYou.mp3",
-  fire: "/music/Face_The_Future.mp3",
+  calm: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/aromatic.mp3",  
+  bright: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/ABeautifulGarden.mp3",
+  intense: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/FallingIntoYou.mp3",
+  fire: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/Face_The_Future.mp3",
 };
 
   // Update section whenever mood changes
