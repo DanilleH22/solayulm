@@ -356,65 +356,65 @@ const [show, setShow] = useState(false);
           </div>
         );
       
-      case 'visualization':
-        return (
-          <div className="p-6">
-            <h3 className="text-xl font-semibold mb-4 text-center">Guided Visualization</h3>
-            <p className="mb-4  text-center">Select an environment to visualize for mental relaxation.</p>
-            <p className="mb-4  text-center">Settle into your own internal space without external direction. </p>
-            <p className="mb-4  text-center">Project their own meaning onto the walk. Maybe focus on the visual details, on the sounds, or on your breath.</p>
-            <p className="mb-4  text-center">Mentally simulate the physical act of walking—focusing on the rhythm and sensation of steps—the ambience alone which is less intrusive.</p>
+//       case 'visualization':
+//         return (
+//           <div className="p-6">
+//             <h3 className="text-xl font-semibold mb-4 text-center">Guided Visualization</h3>
+//             <p className="mb-4  text-center">Select an environment to visualize for mental relaxation.</p>
+//             <p className="mb-4  text-center">Settle into your own internal space without external direction. </p>
+//             <p className="mb-4  text-center">Project their own meaning onto the walk. Maybe focus on the visual details, on the sounds, or on your breath.</p>
+//             <p className="mb-4  text-center">Mentally simulate the physical act of walking—focusing on the rhythm and sensation of steps—the ambience alone which is less intrusive.</p>
             
             
-            <div className="grid grid-cols-2 gap-3 mb-4"
-             style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', padding:'10px', gap: '10px' }}>
-              {visualizationEnvironments.map(env => (
-                <button
-                  key={env.id}
-                  onClick={() => setVisualizationType(env.id)}
-                   style={{
-    backgroundColor: visualizationType === env.id  ? '#ddb0ffff' : 'rgba(255, 255, 255, 0.1)',
-    padding: '0.5rem',
+//             <div className="grid grid-cols-2 gap-3 mb-4"
+//              style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', padding:'10px', gap: '10px' }}>
+//               {visualizationEnvironments.map(env => (
+//                 <button
+//                   key={env.id}
+//                   onClick={() => setVisualizationType(env.id)}
+//                    style={{
+//     backgroundColor: visualizationType === env.id  ? '#ddb0ffff' : 'rgba(255, 255, 255, 0.1)',
+//     padding: '0.5rem',
    
-    width: window.innerWidth < 768 ? '40%' : '15%',
-    fontSize: '1rem',  
-    transition: 'all 0.2s ease-in-out',
-    cursor: 'pointer',
-    color: 'white',
-    fontWeight: '500',
-  }}
+//     width: window.innerWidth < 768 ? '40%' : '15%',
+//     fontSize: '1rem',  
+//     transition: 'all 0.2s ease-in-out',
+//     cursor: 'pointer',
+//     color: 'white',
+//     fontWeight: '500',
+//   }}
  
   
-                  // className={`p-4 rounded-xl flex flex-col items-center transition-all ${
-                  //   visualizationType === env.id 
-                  //     ? 'bg-pink-600' 
-                  //     : 'bg-white bg-opacity-10 hover:bg-opacity-20'
-                  // }`}
-                >
+//                   // className={`p-4 rounded-xl flex flex-col items-center transition-all ${
+//                   //   visualizationType === env.id 
+//                   //     ? 'bg-pink-600' 
+//                   //     : 'bg-white bg-opacity-10 hover:bg-opacity-20'
+//                   // }`}
+//                 >
                  
-                  <FontAwesomeIcon icon={env.icon} className="text-2xl pr-5" />
-                  <span >{env.name}</span>
+//                   <FontAwesomeIcon icon={env.icon} className="text-2xl pr-5" />
+//                   <span >{env.name}</span>
                  
-                </button>
-              ))}
-            </div>
-            <div>
+//                 </button>
+//               ))}
+//             </div>
+//             <div>
            
   
-    <video
-      src={selectedEnv.src}
+//     <video
+//       src={selectedEnv.src}
      
-      loop
-      muted
-      controls
+//       loop
+//       muted
+//       controls
 
-      className="w-full rounded-xl shadow-lg"
-    />
+//       className="w-full rounded-xl shadow-lg"
+//     />
   
-</div>
+// </div>
             
-          </div>
-        );
+//           </div>
+//         );
       
       case 'breathing':
         return (
@@ -771,7 +771,7 @@ const [show, setShow] = useState(false);
   Gratitude
 </button>
 
-   <button
+   {/* <button
   onClick={() => setActiveFeature('visualization')}
   style={{
     backgroundColor: activeFeature === 'visualization' ? '#ddb0ffff' : 'rgba(255, 255, 255, 0.1)',
@@ -797,7 +797,7 @@ const [show, setShow] = useState(false);
   }}
 >
   Visualization
-</button>
+</button> */}
                 <button
   onClick={() => setActiveFeature('breathing')}
   style={{
