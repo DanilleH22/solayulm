@@ -152,10 +152,10 @@ const sections = [
         link: "https://amzn.to/3ODW7mY"
       },
       {
-        title: "Foam Roller",
-        text: "Releases physical tension from the body.",
-        img: "https://via.placeholder.com/300x200",
-        link: "https://example.com/roller"
+        title: "SALKING 2-in-1 Ultrasonic Essential Oil Diffuser & Himalayan Salt Lamp",
+        text: "2-in-1 Himalayan salt lamp & essential oil diffuser – Salt therapy meets soothing aromatherapy.",
+        img: "https://m.media-amazon.com/images/I/71BdaIxNUaL._AC_SX679_.jpg",
+        link: "https://amzn.to/42JbvBF"
       }
     ]
   }
