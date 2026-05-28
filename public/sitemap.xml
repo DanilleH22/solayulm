@@ -3,9 +3,88 @@
 
   <url>
     <loc>https://www.solayulm.co.uk/</loc>
-    <lastmod>2026-05-28</lastmod>
-    <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
 
+  <url>
+    <loc>https://www.solayulm.co.uk/#home</loc>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>https://www.solayulm.co.uk/about</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.solayulm.co.uk/DecompressionBay</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.solayulm.co.uk/AirlockJournal</loc>
+    <priority>0.7</priority>
+  </url>
+
+   <url>
+    <loc>https://www.solayulm.co.uk/AirlockJournal</loc>
+    <priority>0.7</priority>
+  </url>
+
+   <url>
+    <loc>https://www.solayulm.co.uk/Homepage2</loc>
+    <priority>0.7</priority>
+  </url>
+
+   <url>
+    <loc>https://www.solayulm.co.uk/Toolkit</loc>
+    <priority>0.7</priority>
+  </url>
+
+   <url>
+    <loc>https://www.solayulm.co.uk/HelpPage</loc>
+    <priority>0.7</priority>
+    </url>
+      
+     <url>
+    <loc>https://www.solayulm.co.uk/AboutPage</loc>
+    <priority>0.7</priority>
+  </url>
+
+   <url>
+    <loc>https://www.solayulm.co.uk/cosmicCompanion</loc>
+    <priority>0.7</priority>
+  </url>
+
+   <url>
+    <loc>https://www.solayulm.co.uk/testing</loc>
+    <priority>0.7</priority>
+  </url>
+
+   <url>
+    <loc>https://www.solayulm.co.uk/HoloRoom</loc>
+    <priority>0.7</priority>
+  </url>
+
+   <url>
+    <loc>https://www.solayulm.co.uk/VoidChat</loc>
+    <priority>0.7</priority>
+  </url>
+
+   <url>
+    <loc>https://www.solayulm.co.uk/CommCenter</loc>
+    <priority>0.7</priority>
+  </url>
+
+   <url>
+    <loc>https://www.solayulm.co.uk/ObservationDeck</loc>
+    <priority>0.7</priority>
+  </url>
+
+   <url>
+    <loc>https://www.solayulm.co.uk/Rooms</loc>
+    <priority>0.7</priority>
+  </url>
+
 </urlset>
+
