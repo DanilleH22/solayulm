@@ -6,23 +6,25 @@ import { Link } from "react-router";
 // 🔹 Reusable Card Component
 const ToolCard = ({ title, text, link, img }) => {
   return (
-    <Card className="h-100 shadow-sm border-0 text-center" style={{ backgroundColor: '#ddb0ffff' }}>
+    <Card className="h-100 shadow-sm text-center" style={{ backgroundColor: 'transparent', border: '1px solid #ddb0ffff'}}>
       
+<div className="position-absolute top-0 end-0 p-2" style={{ overlay: '#F7F1FF' }}></div>
+
       {/* Image */}
-      <Card.Img 
+      {/* <Card.Img 
         variant="top" 
         src={img}
-        style={{ height: "200px", objectFit: "cover" }}
-      />
+        style={{ height: "200px", objectFit: "cover",  background: "transparent" }}
+      /> */}
 
       {/* Main Content */}
       <Card.Body>
-        <Card.Title>{title}</Card.Title>
+        <Card.Title style={{ color:'#c8c894' }}>{title}</Card.Title>
         <Card.Text>{text}</Card.Text>
         <Card.Link 
           href={link} 
           target="_blank"
-          style={{ fontWeight: "bold" }}
+          style={{ fontWeight: "bold", color:'#fcfcf3' }}
         >
           Explore →
         </Card.Link>
@@ -30,7 +32,7 @@ const ToolCard = ({ title, text, link, img }) => {
 
       {/* Benefits */}
       <Card.Body>
-        <h6 className="text-center">Benefits:</h6>
+        <h6 className="text-center" style={{ color: '#c8c894' }}>Benefits:</h6>
         <ul className="small mb-0" style={{ listStyle: "none", padding: 0 }}>
           <li>Supports the space</li>
           <li>Enhances your environment</li>
@@ -48,22 +50,16 @@ const sections = [
     title: "Featured Tools",
     items: [
       {
-        title: "Aromatherapy Diffuser",
+        title: "5 Senses Journal",
         text: "Creates a calm, grounding atmosphere instantly.",
         img: "https://via.placeholder.com/300x200",
         link: "https://example.com/diffuser"
       },
       {
-        title: "Sunrise Alarm Clock",
+        title: "Colouring Book for Mindfulness",
         text: "Wake up peacefully with soft warm light.",
         img: "https://via.placeholder.com/300x200",
         link: "https://amzn.to/3P4nEOl"
-      },
-      {
-        title: "Weighted Blanket",
-        text: "Reduces anxiety & settles the nervous system.",
-        img: "https://via.placeholder.com/300x200",
-        link: "https://example.com/blanket"
       }
     ]
   },
@@ -72,22 +68,22 @@ const sections = [
     title: "Creative Space",
     items: [
       {
-        title: "Sketchbook",
-        text: "Encourages free-flowing creative expression.",
-        img: "https://via.placeholder.com/300x200",
-        link: "https://example.com/sketchbook"
+        title: "Candle Making Kit",
+        text: "Everything you need to pour, scent, and light your own custom candles at home.",
+        img: "https://m.media-amazon.com/images/I/81BhS0OydtL._AC_SX679_.jpg",
+        link: "https://amzn.to/4eZPPsg"
       },
       {
-        title: "Alcohol Markers",
-        text: "Bold colour for emotional expression.",
-        img: "https://via.placeholder.com/300x200",
-        link: "https://example.com/markers"
+        title: "Resin Jewellery Making Kit",
+        text: "This handy uv resin kit contains all the essential accessories needed to get started, eliminating the need for separate searches.",
+        img: "https://m.media-amazon.com/images/I/81OajdIxycL._AC_SY300_SX300_QL70_ML2_.jpg",
+        link: "https://amzn.to/3QZMIGU"
       },
       {
-        title: "Watercolour Set",
-        text: "Soft textures perfect for calming art sessions.",
+        title: "Flower Crochet Kits for Starters",
+        text: "A perfect work will bring you a sense of achievement and satisfaction, cultivate new hobbies and hands-on skills, and enrich our lives",
         img: "https://via.placeholder.com/300x200",
-        link: "https://example.com/watercolour"
+        link: "https://amzn.to/4298TNl"
       },
       {
         title: "Digital Drawing Tablet",
@@ -146,13 +142,13 @@ const sections = [
         link: "https://amzn.to/48GAY2d"
       },
       {
-        title: "Valeness Yoga Headstand Stool",
+        title: "Yoga Headstand Stool",
         text: "With the headstand bench, you can relieve back pain, release tension & reduce stress.",
         img: "https://m.media-amazon.com/images/I/71LTBGh4K4L._AC_SX679_.jpg",
         link: "https://amzn.to/3ODW7mY"
       },
       {
-        title: "SALKING 2-in-1 Ultrasonic Essential Oil Diffuser & Himalayan Salt Lamp",
+        title: "Ultrasonic Essential Oil Diffuser & Himalayan Salt Lamp",
         text: "2-in-1 Himalayan salt lamp & essential oil diffuser – Salt therapy meets soothing aromatherapy.",
         img: "https://m.media-amazon.com/images/I/71BdaIxNUaL._AC_SX679_.jpg",
         link: "https://amzn.to/42JbvBF"
@@ -205,7 +201,7 @@ const ToolKit = () => {
                   <ToolCard 
                     title={item.title}
                     text={item.text}
-                    img={item.img}
+                   // img={item.img}
                     link={item.link}
                   />
                 </Col>
