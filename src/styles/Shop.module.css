@@ -1,0 +1,1029 @@
+
+/* ========================================
+   SOLAYULM — JOURNAL SHOP PAGE
+======================================== */
+
+body {
+  background: #080610;
+  color: #f5f3f8;
+}
+
+.journal-page {
+  min-height: 100vh;
+  color: #f5f3f8;
+}
+
+/* Main product card */
+.journal-product {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  width: 90%;
+  color: #f5f3f8;
+  background:
+    radial-gradient(
+      ellipse at 10% 0%,
+      rgba(113, 64, 157, 0.24),
+      transparent 48%
+    ),
+    linear-gradient(145deg, #171020 0%, #0b0812 75%);
+  border: 1px solid #ddb0ff;
+  border-radius: 20px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+  margin-left: 50px;
+}
+
+.journal-product > .card-body {
+  padding: 32px;
+}
+
+/* Product introduction */
+.journal-product__intro {
+  margin-bottom: 4px;
+}
+
+/* Book cover */
+.journal-product__image-wrapper {
+  width: 100%;
+  max-width: 260px;
+  margin: 0 auto;
+  overflow: hidden;
+  background: #21152d;
+  border: 1px solid rgba(221, 176, 255, 0.3);
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+.journal-product__image {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 4;
+  object-fit: contain;
+}
+
+/* Product text */
+.journal-product__details {
+  min-width: 0;
+}
+
+.journal-product__eyebrow {
+  margin: 0 0 12px;
+  color: #c8c894;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  line-height: 1.6;
+}
+
+.journal-product__details h1 {
+  margin: 0 0 12px;
+  color: #c8c894;
+  font-size: clamp(24px, 3vw, 36px);
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.journal-product__subtitle {
+  margin: 0 0 14px;
+  color: #e0c9f5;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.journal-product__description {
+  margin: 0;
+  color: #eee8f4;
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+/* Divider */
+.journal-product__divider {
+  height: 1px;
+  margin: 30px 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(221, 176, 255, 0.55),
+    transparent
+  );
+}
+
+/* Edition selector */
+.journal-product__fieldset {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.journal-product__fieldset legend {
+  margin-bottom: 8px;
+  color: #c8c894;
+  font-size: 23px;
+  font-weight: 600;
+}
+
+.journal-product__hint {
+  margin: 0 0 18px;
+  color: #b8afc2;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.journal-product__options {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* Individual edition cards */
+.journal-edition {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+  min-height: 86px;
+  padding: 18px;
+  background: rgba(8, 6, 16, 0.65);
+  border: 1px solid #674488;
+  border-radius: 14px;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.journal-edition:hover {
+  background: rgba(55, 37, 76, 0.55);
+  border-color: #c19ae8;
+}
+
+.journal-edition--selected {
+  background: rgba(68, 44, 91, 0.55);
+  border-color: #ddb0ff;
+  box-shadow: 0 0 16px rgba(177, 132, 220, 0.12);
+  margin: 15px 0;
+}
+
+/* Accessible custom radio indicator */
+.journal-edition input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.journal-edition input:focus-visible
+  + .journal-edition__indicator {
+  outline: 2px solid #c8c894;
+  outline-offset: 4px;
+}
+
+.journal-edition__indicator {
+  display: flex;
+  flex: 0 0 22px;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border: 1.5px solid #aaa0b7;
+  border-radius: 50%;
+  color: #080610;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.journal-edition--selected .journal-edition__indicator {
+  background: #ddb0ff;
+  border-color: #ddb0ff;
+}
+
+.journal-edition__details {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 0;
+}
+
+.journal-edition__name {
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.journal-edition__description {
+  color: #b8afc2;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.journal-edition__price {
+  flex-shrink: 0;
+  margin-left: auto;
+  color: #c8c894;
+  font-size: 17px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+/* Continue button */
+.journal-product__button {
+  display: block;
+  width: 100%;
+  min-height: 52px;
+  margin: 24px 0 10px;
+  padding: 14px 20px;
+  appearance: none;
+  color: #fff;
+  background: linear-gradient(
+    100deg,
+    #3b2b55 0%,
+    #674488 55%,
+    #8c69ad 100%
+  );
+  border: 1px solid #ddb0ff;
+  border-radius: 12px;
+  box-shadow: 0 0 18px rgba(181, 172, 217, 0.12);
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.5;
+  text-align: center;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+
+.journal-product__button:hover {
+  background: linear-gradient(
+    100deg,
+    #674488 0%,
+    #8963ae 55%,
+    #a786c8 100%
+  );
+  box-shadow: 0 0 24px rgba(181, 172, 217, 0.28);
+}
+
+.journal-product__button:active {
+  transform: scale(0.99);
+}
+
+.journal-product__button:focus-visible,
+.journal-exit-button:focus-visible {
+  outline: 2px solid #c8c894;
+  outline-offset: 4px;
+}
+
+/* Exit button */
+.journal-exit-button {
+  display: block;
+  width: 25%;
+  min-height: 52px;
+  margin: 24px 0 10px;
+  padding: 14px 20px;
+  appearance: none;
+  color: #fff;
+  background: linear-gradient(
+    100deg,
+    #3b2b55 0%,
+    #674488 55%,
+    #8c69ad 100%
+  );
+  border: 1px solid #ddb0ff;
+  border-radius: 12px;
+  box-shadow: 0 0 18px rgba(181, 172, 217, 0.12);
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.5;
+  text-align: center;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+transform: translateX(150%);
+}
+
+.journal-exit-button:hover {
+  background: linear-gradient(
+    100deg,
+    #674488 0%,
+    #8963ae 55%,
+    #a786c8 100%
+  );
+  box-shadow: 0 0 24px rgba(181, 172, 217, 0.28);
+}
+
+.journal-exit-button:active {
+  transform: scale(0.99);
+}
+
+/* Footnote */
+.journal-product__footnote {
+  margin: 18px 0 0;
+  color: #a49aaa;
+  font-size: 12px;
+  line-height: 1.7;
+  text-align: center;
+}
+
+/* Back button */
+.journal-page__footer {
+  display: flex;
+  justify-content: center;
+  padding: 24px 0 0;
+}
+
+.journal-exit-button {
+  min-width: 120px;
+  padding: 10px 22px;
+  color: #f5f3f8;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid #ddb0ff;
+  border-radius: 10px;
+  font-family: inherit;
+  font-size: 15px;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.journal-exit-button:hover {
+  background: rgba(221, 176, 255, 0.12);
+  border-color: #c8c894;
+}
+
+.journal-edition__content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  
+}
+/* ========================================
+   TABLET
+======================================== */
+
+@media (max-width: 768px) {
+  .journal-product > .card-body {
+    padding: 24px;
+  }
+
+  .journal-product__divider {
+    margin: 24px 0;
+  }
+
+  .journal-product__fieldset legend {
+    font-size: 21px;
+  }
+}
+
+/* ========================================
+   MOBILE
+======================================== */
+
+@media (max-width: 576px) {
+  .journal-page {
+    padding-top: 24px !important;
+    padding-bottom: 24px !important;
+  }
+
+  .journal-product {
+    border-radius: 16px;
+  }
+
+  .journal-product > .card-body {
+    padding: 18px;
+  }
+
+  .journal-product__intro {
+    --bs-gutter-x: 16px;
+    --bs-gutter-y: 16px;
+  }
+
+  .journal-product__image-wrapper {
+    border-radius: 9px;
+  }
+
+  .journal-product__eyebrow {
+    margin-bottom: 8px;
+    font-size: 9px;
+    letter-spacing: 1.2px;
+  }
+
+  .journal-product__details h1 {
+    margin-bottom: 8px;
+    font-size: 23px;
+  }
+
+  .journal-product__subtitle {
+    margin-bottom: 10px;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  .journal-product__description {
+    font-size: 13px;
+    line-height: 1.65;
+  }
+
+  .journal-product__divider {
+    margin: 22px 0;
+  }
+
+  .journal-product__fieldset legend {
+    font-size: 20px;
+  }
+
+  .journal-edition {
+    gap: 10px;
+    min-height: 78px;
+    padding: 13px 11px;
+    border-radius: 12px;
+    display: none;
+    flex-direction: column;
+  }
+
+  .journal-edition__indicator {
+    flex-basis: 20px;
+    width: 20px;
+    height: 20px;
+  }
+
+  .journal-edition__name {
+    font-size: 14px;
+  }
+
+  .journal-edition__description {
+    font-size: 11px;
+    overflow-wrap: anywhere;
+  }
+
+  .journal-edition__price {
+    font-size: 14px;
+  }
+
+  .journal-product__button {
+    min-height: 50px;
+    padding: 12px;
+    font-size: 14px;
+  }
+}
+
+/* Extra-small phones */
+@media (max-width: 360px) {
+  .journal-product > .card-body {
+    padding: 13px;
+  }
+
+  .journal-product__intro {
+    --bs-gutter-x: 12px;
+  }
+
+  .journal-product__details h1 {
+    font-size: 20px;
+  }
+
+  .journal-product__subtitle,
+  .journal-product__description {
+    font-size: 12px;
+  }
+
+  .journal-edition {
+    gap: 8px;
+    padding: 11px 8px;
+  }
+
+  .journal-edition__price {
+    font-size: 13px;
+  }
+}
+
+
+
+/* =========================
+   SHOP MAIN PAGE
+========================= */
+
+.shop-page {
+  min-height: 100vh;
+  overflow: hidden;
+  color: #f5f0ff;
+  background: #100c20;
+}
+
+/* Hero */
+
+.shop-hero {
+  position: relative;
+  padding: 110px 20px 100px;
+  text-align: center;
+  background:
+    radial-gradient(
+      ellipse at 50% 0%,
+      rgba(126, 82, 171, 0.3),
+      transparent 65%
+    ),
+    linear-gradient(180deg, #171027 0%, #100c20 100%);
+}
+
+.shop-hero__eyebrow,
+.shop-collection__eyebrow,
+.shop-note__eyebrow {
+  margin-bottom: 18px;
+  color: #c8c894;
+  font-family: "Orbitron", sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  line-height: 1.8;
+}
+
+.shop-hero__title {
+  max-width: 850px;
+  margin: 0 auto 24px;
+  color: #f8f2ff;
+  font-family: "Saira Stencil One", sans-serif;
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  line-height: 1.2;
+}
+
+.shop-hero__description {
+  max-width: 660px;
+  margin: 0 auto 32px;
+  color: rgba(245, 240, 255, 0.76);
+  font-size: 1rem;
+  line-height: 1.9;
+}
+
+.shop-hero__button {
+  /* display: inline-flex; */
+  align-items: center;
+  /* justify-content: center;
+  gap: 12px; */
+  padding: 14px 24px;
+  color: #171020;
+  border: 1px solid #ddb0ff;
+  border-radius: 8px;
+  background: #ddb0ff;
+  font-family: "Orbitron", sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.shop-hero__button:hover {
+  color: #fff;
+  border-color: #c99be9;
+  background: #78549a;
+  transform: translateY(-2px);
+}
+
+/* Collection */
+
+.shop-collection {
+  padding: 80px 0 110px;
+  background:
+    radial-gradient(
+      ellipse at 100% 50%,
+      rgba(62, 65, 120, 0.12),
+      transparent 50%
+    ),
+    #100c20;
+}
+
+.shop-collection__heading {
+  max-width: 650px;
+  margin: 0 auto 48px;
+  text-align: center;
+}
+
+.shop-collection__title {
+  margin-bottom: 18px;
+  color: #f8f2ff;
+  font-family: "Saira Stencil One", sans-serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+}
+
+.shop-collection__description {
+  margin: 0;
+  color: rgba(245, 240, 255, 0.7);
+  font-size: 0.98rem;
+  line-height: 1.8;
+}
+
+/* Book cards */
+
+.book-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  border: 1px solid rgba(221, 176, 255, 0.2);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.025);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+  transition:
+    border-color 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.book-card:hover {
+  border-color: rgba(221, 176, 255, 0.6);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.25);
+  transform: translateY(-5px);
+}
+
+.book-card__image-link {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+.book-card__image-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 330px;
+  padding: 28px;
+  overflow: hidden;
+  background:
+    radial-gradient(
+      circle at 50% 40%,
+      rgba(144, 102, 190, 0.22),
+      transparent 70%
+    ),
+    #19132b;
+}
+
+.book-card__image {
+  display: block;
+  width: 100%;
+  max-width: 245px;
+  height: 300px;
+  object-fit: contain;
+  border-radius: 5px;
+  filter: drop-shadow(0 12px 20px rgba(0, 0, 0, 0.35));
+  transition: transform 0.3s ease;
+}
+
+.book-card:hover .book-card__image {
+  transform: scale(1.035);
+}
+
+.book-card__type {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  padding: 7px 10px;
+  color: #e8d9f5;
+  border: 1px solid rgba(221, 176, 255, 0.25);
+  border-radius: 20px;
+  background: rgba(16, 12, 32, 0.85);
+  font-size: 0.68rem;
+  letter-spacing: 0.04em;
+}
+
+.book-card__content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 26px;
+}
+
+.book-card__subtitle {
+  margin-bottom: 10px;
+  color: #c8c894;
+  font-size: 0.78rem;
+  line-height: 1.7;
+}
+
+.book-card__title {
+  margin-bottom: 14px;
+  color: #f8f2ff;
+  font-family: "Saira Stencil One", sans-serif;
+  font-size: 1.45rem;
+  line-height: 1.4;
+}
+
+.book-card__description {
+  flex: 1;
+  margin-bottom: 24px;
+  color: rgba(245, 240, 255, 0.7);
+  font-size: 0.9rem;
+  line-height: 1.8;
+}
+
+.book-card__button {
+  /* display: inline-flex; */
+  align-items: center;
+  /* justify-content: center;
+  gap: 8px; */
+  width: 100%;
+  margin-top: auto;
+  padding: 13px 16px;
+  color: #ddb0ff;
+  border: 1px solid rgba(221, 176, 255, 0.55);
+  border-radius: 8px;
+  background: transparent;
+  font-family: "Orbitron", sans-serif;
+  font-size: 0.72rem;
+  font-weight: 500;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.book-card__button:hover {
+  color: #171020;
+  border-color: #ddb0ff;
+  background: #ddb0ff;
+}
+
+/* Closing note */
+
+.shop-note {
+  padding: 75px 20px;
+  border-top: 1px solid rgba(221, 176, 255, 0.15);
+  background:
+    radial-gradient(
+      ellipse at 50% 100%,
+      rgba(100, 73, 145, 0.2),
+      transparent 70%
+    ),
+    #151027;
+  text-align: center;
+}
+
+.shop-note__title {
+  max-width: 760px;
+  margin: 0 auto 18px;
+  color: #f8f2ff;
+  font-family: "Saira Stencil One", sans-serif;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  line-height: 1.4;
+}
+
+.shop-note__description {
+  margin: 0 auto;
+  color: rgba(245, 240, 255, 0.7);
+  font-size: 0.95rem;
+  line-height: 1.8;
+}
+
+/* Responsive layout */
+
+@media (max-width: 767px) {
+  .shop-hero {
+    padding: 75px 16px 65px;
+  }
+
+  .shop-hero__description {
+    font-size: 0.92rem;
+  }
+
+  .shop-collection {
+    padding: 55px 0 70px;
+  }
+
+  .shop-collection__heading {
+    margin-bottom: 32px;
+    padding: 0 10px;
+  }
+
+  .book-card__image-wrapper {
+    min-height: 300px;
+  }
+
+  .book-card__image {
+    height: 270px;
+  }
+
+  .book-card__content {
+    padding: 22px;
+  }
+
+  .shop-note {
+    padding: 55px 18px;
+  }
+}
+
+
+/* =========================
+   TOOLKIT FEATURE SECTION
+========================= */
+
+.shop-toolkit {
+  position: relative;
+  padding: 55px 0;
+  overflow: hidden;
+  background:
+    radial-gradient(
+      ellipse at 80% 50%,
+      rgba(118, 81, 163, 0.2),
+      transparent 55%
+    ),
+    linear-gradient(135deg, #1b1430 0%, #131027 100%);
+}
+
+.shop-toolkit__inner {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  align-items: center;
+  gap: 45px;
+  padding: 45px;
+  border: 1px solid rgba(221, 176, 255, 0.3);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.025);
+  box-shadow: 0 20px 55px rgba(0, 0, 0, 0.15);
+}
+
+.shop-toolkit__content {
+  max-width: 570px;
+}
+
+.shop-toolkit__eyebrow {
+  margin-bottom: 16px;
+  color: #c8c894;
+  font-family: "Orbitron", sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  line-height: 1.8;
+}
+
+.shop-toolkit__title {
+  margin-bottom: 20px;
+  color: #f8f2ff;
+  font-family: "Saira Stencil One", sans-serif;
+  font-size: clamp(1.9rem, 4vw, 3rem);
+  line-height: 1.35;
+}
+
+.shop-toolkit__description {
+  margin-bottom: 26px;
+  color: rgba(245, 240, 255, 0.75);
+  font-size: 0.95rem;
+  line-height: 1.9;
+}
+
+.shop-toolkit__button {
+  /* display: inline-flex; */
+  align-items: center;
+  /* justify-content: center;
+  gap: 10px; */
+  padding: 14px 22px;
+  color: #171020;
+  border: 1px solid #ddb0ff;
+  border-radius: 8px;
+  background: #ddb0ff;
+  font-family: "Orbitron", sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.shop-toolkit__button:hover {
+  color: #fff;
+  border-color: #c99be9;
+  background: #78549a;
+  transform: translateY(-2px);
+}
+
+.shop-toolkit__note {
+  margin: 18px 0 0;
+  color: rgba(245, 240, 255, 0.5);
+  font-size: 0.78rem;
+  line-height: 1.7;
+}
+
+/* Decorative cosmic visual */
+
+.shop-toolkit__visual {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 260px;
+}
+
+.shop-toolkit__orbit {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 220px;
+  height: 220px;
+  border: 1px solid rgba(221, 176, 255, 0.25);
+  border-radius: 50%;
+  box-shadow:
+    0 0 45px rgba(150, 100, 190, 0.08),
+    inset 0 0 35px rgba(150, 100, 190, 0.08);
+}
+
+.shop-toolkit__orbit::before {
+  position: absolute;
+  width: 165px;
+  height: 165px;
+  border: 1px solid rgba(200, 200, 148, 0.3);
+  border-radius: 50%;
+  content: "";
+}
+
+.shop-toolkit__planet {
+  width: 90px;
+  height: 90px;
+  border: 1px solid rgba(221, 176, 255, 0.5);
+  border-radius: 50%;
+  background:
+    radial-gradient(
+      circle at 30% 25%,
+      rgba(221, 176, 255, 0.9),
+      rgba(126, 82, 171, 0.65) 45%,
+      #211735 100%
+    );
+  box-shadow: 0 0 35px rgba(183, 131, 232, 0.25);
+}
+
+.shop-toolkit__star,
+.shop-toolkit__sparkle,
+.shop-toolkit__small-star {
+  position: absolute;
+  color: #c8c894;
+}
+
+.shop-toolkit__star {
+  top: 20px;
+  right: 35px;
+  font-size: 1.4rem;
+}
+
+.shop-toolkit__sparkle {
+  bottom: 28px;
+  left: 28px;
+  color: #ddb0ff;
+  font-size: 1.8rem;
+}
+
+.shop-toolkit__small-star {
+  top: 50%;
+  left: 10px;
+  font-size: 0.8rem;
+}
+
+.shop-toolkit__visual-caption {
+  margin: 22px 0 0;
+  color: rgba(245, 240, 255, 0.6);
+  font-family: "Orbitron", sans-serif;
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-align: center;
+}
+
+/* Mobile */
+
+@media (max-width: 767px) {
+  .shop-toolkit {
+    padding: 35px 0;
+  }
+
+  .shop-toolkit__inner {
+    grid-template-columns: 1fr;
+    gap: 25px;
+    padding: 28px 22px;
+  }
+
+  .shop-toolkit__visual {
+    min-height: 220px;
+  }
+
+  .shop-toolkit__orbit {
+    width: 185px;
+    height: 185px;
+  }
+
+  .shop-toolkit__orbit::before {
+    width: 140px;
+    height: 140px;
+  }
+
+  .shop-toolkit__planet {
+    width: 75px;
+    height: 75px;
+  }
+}
