@@ -20,6 +20,9 @@ import HelpPage from "./pages/homepage/HelpAvailable.jsx";
 import Homepage2 from "./pages/homepage/Homepage2.jsx";
 import GoToTop from "../src/components/GoToTop.jsx";
 import ToolKit from "./pages/homepage/ToolKit.jsx";
+import InnerSense from "./pages/homepage/InnerSenseJournal.jsx";
+import ColoringTheCosmo from "./pages/homepage/ColoringTheCosmoJournal.jsx";
+import Shop from "./pages/homepage/Shop.jsx";
 
 const App = () => {
   return (
@@ -43,6 +46,10 @@ const App = () => {
           <Route path="/HelpPage" element={<HelpPage />} />
           <Route path="/Toolkit" element={<ToolKit />} />
           <Route path="/Homepage2" element={<Homepage2 />} />
+          <Route path="/Shop" element={<Shop />} /> 
+          <Route path="/Shop/ColoringTheCosmoJournal" element={<ColoringTheCosmo />} />
+          <Route path="/Shop/InnerSenseJournal" element={<InnerSense />} />
+          
             <Route path="*" element={<h1>Page not found!</h1>} />
           </Routes>
         </div>
