@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import SpaceCard from '../../components/SpaceCard.jsx';
 import Typewriter from 'typewriter-effect';
 import styles from '../../styles/Homepage.module.css'
+
 import s1 from '../../assets/images/s1.jpg';
 import s3 from '../../assets/images/s3.PNG';
 import s6 from '../../assets/images/s6.PNG';
@@ -154,6 +155,27 @@ const onMove = useCallback(
       Explore
     </Button>
   </Link>
+  </div>
+  <div className={styles.shopButton}>
+  <Link
+    to="/shop"
+    style={{
+      textDecoration: "none",
+      outline: "none",
+      color: "inherit",
+      WebkitTapHighlightColor: "transparent", 
+    }}
+  >
+    <Button
+      style={{ 
+        background: "linear-gradient(90deg, #3b3b6a 0%, #52528f 50%, #9f9ff9 100%)",
+        outline: 'none',
+        boxShadow: 'none',
+      border: 'none', }}
+    >
+      Shop
+    </Button>
+  </Link>
 </div>
 
   </div>
@@ -171,7 +193,7 @@ const onMove = useCallback(
     </ul>
   </Col>
 
-  <Col md={3} className={styles.servicesImg}>
+  {/* <Col md={3} className={styles.servicesImg}>
   <motion.div  
           initial={{ y: 0 }}
           animate={{ y: [0, -5, 0], rotate: [0, 0.5, 0] }} // floating effect
@@ -183,7 +205,31 @@ const onMove = useCallback(
         >
     <img src={s6} alt="space" />
     </motion.div>
-  </Col>
+  </Col> */}
+</Row>
+
+<Row>
+
+{/* Quote Section */}
+<section className={styles.quoteSection}>
+  <div className={styles.quoteContent}>
+    <span className={styles.quoteEyebrow}>
+      A MOMENT BETWEEN WORLDS
+    </span>
+
+    <h2 className={styles.quoteText}>
+      “You don't have to understand every feeling
+      to give it space.”
+    </h2>
+
+    <div className={styles.quoteDivider}></div>
+
+    <p className={styles.quoteSubtext}>
+      Take what you need. Leave what you don't.
+    </p>
+  </div>
+</section>
+
 </Row>
 
 <Row>
@@ -225,9 +271,13 @@ const onMove = useCallback(
         />
         
            </Col>
-      <Col className={styles.tabTextRight}>
+      
+      </Row>
+      <Row>
+
+        <Col className={styles.tabTextRight}>
       <div className={styles.tabTextRightBackground}>
-        <div style={{ paddingTop: '25px', display: 'grid', justifyContent: 'center', alignItems: 'center', textAlign: 'center' }}>
+        <div style={{ paddingTop: '25px',  justifyContent: 'center', alignItems: 'center', textAlign: 'center' }}>
       <div className={styles.inlineText}>
         
       <h3>Area:</h3> 
@@ -277,7 +327,7 @@ const onMove = useCallback(
                 
     </Tab>
     
-  
+  {/* Airlock Journal */}
 
     <Tab eventKey="Airlock Journal" title="Airlock Journal" className={styles.tabContent}>
       <Row>
@@ -308,7 +358,10 @@ const onMove = useCallback(
   />
      </Col>
      
-      <Col className={styles.tabTextRight} >
+      
+      </Row> 
+      <Row>
+        <Col className={styles.tabTextRight} >
       <div className={styles.tabTextRightBackground}>
         <div style={{ paddingTop: '25px', display: 'grid', justifyContent: 'center', alignItems: 'center', textAlign: 'center' }}>
         <div className={styles.inlineText}>
@@ -347,7 +400,7 @@ const onMove = useCallback(
       </div>
       </div>
       </Col>
-      </Row> 
+      </Row>
       <Row>
                     <Col md={12}>
                     <div className={styles.linkButton} >
@@ -389,7 +442,10 @@ const onMove = useCallback(
     }}
   />
      </Col>
-      <Col className={styles.tabTextRight}>
+      
+      </Row>
+      <Row>
+        <Col className={styles.tabTextRight}>
       <div className={styles.tabTextRightBackground}>
         <div style={{ paddingTop: '25px', display: 'grid', justifyContent: 'center', alignItems: 'center', textAlign: 'center' }}>
         <div className={styles.inlineText}>
@@ -469,7 +525,9 @@ const onMove = useCallback(
   />
      
            </Col>
-      <Col className={styles.tabTextRight}>
+      
+      </Row> <Row>
+        <Col className={styles.tabTextRight}>
       <div className={styles.tabTextRightBackground}>
         <div style={{ paddingTop: '25px', display: 'grid', justifyContent: 'center', alignItems: 'center', textAlign: 'center' }}>
         <div className={styles.inlineText}>
@@ -547,7 +605,10 @@ const onMove = useCallback(
     }}
   />
             </Col>
-      <Col className={styles.tabTextRight}>
+      
+      </Row>
+      <Row>
+        <Col className={styles.tabTextRight}>
       <div className={styles.tabTextRightBackground}>
         <div style={{ paddingTop: '25px', display: 'grid', justifyContent: 'center', alignItems: 'center', textAlign: 'center' }}>
         <div className={styles.inlineText}>
@@ -627,7 +688,10 @@ const onMove = useCallback(
   />
 
             </Col>
-      <Col className={styles.tabTextRight}>
+      
+      </Row>
+      <Row>
+        <Col className={styles.tabTextRight}>
       <div className={styles.tabTextRightBackground}>
         <div style={{ paddingTop: '25px', display: 'grid', justifyContent: 'center', alignItems: 'center', textAlign: 'center' }}>
         <div className={styles.inlineText}>
@@ -707,7 +771,10 @@ const onMove = useCallback(
       maxWidth: '100%' 
     }}
   />
-      <Col className={styles.tabTextRight}>
+      
+      </Row>
+      <Row>
+        <Col className={styles.tabTextRight}>
       <div className={styles.tabTextRightBackground}>
         <div style={{ paddingTop: '25px', display: 'grid', justifyContent: 'center', alignItems: 'center', textAlign: 'center' }}>
         <div className={styles.inlineText}>
