@@ -1,128 +1,221 @@
+
 import React, { useState, useEffect, useRef } from "react";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { 
-  faExpand, 
-  faVolumeUp, 
-  faVolumeMute, 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faVolumeUp,
+  faVolumeMute,
   faHeart,
   faWind,
   faWater,
   faFire,
-  faLeaf
-} from '@fortawesome/free-solid-svg-icons';
-import { Container, Row, Col, Button, Alert } from "react-bootstrap";
+  faLeaf,
+} from "@fortawesome/free-solid-svg-icons";
+import { Row, Col, Alert } from "react-bootstrap";
 import { Link } from "react-router";
+import { Helmet } from "react-helmet-async";
 
-import GalaxyShader from '../../components/GalaxyShader.jsx';
-import RedGalaxyShader from '../../components/RedGalaxyShader.jsx';
-import PurpleNebula from '../../components/PurpleNebula.jsx';
-import styles from "../../styles/ObservationDeck.module.css"
+import GalaxyShader from "../../components/GalaxyShader.jsx";
+import RedGalaxyShader from "../../components/RedGalaxyShader.jsx";
+import PurpleNebula from "../../components/PurpleNebula.jsx";
+import styles from "../../styles/Homepage2.module.css";
 
-import { Helmet } from "react-helmet-async"
+// =========================
+// AMBIENT SOUNDS
+// =========================
+
+const ambientSounds = [
+  {
+    name: "Space Ambience",
+    src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/spaceSound.mp3",
+  },
+  {
+    name: "Calming Waves",
+    src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/wavesSound.mp3",
+  },
+  {
+    name: "Gentle Rain",
+    src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/gentleRain.mp3",
+  },
+  {
+    name: "Forest Sounds",
+    src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/seasideSound.mp3",
+  },
+];
+
+const shaders = [
+  {
+    id: "redGalaxy",
+    name: "Red Galaxy",
+    component: RedGalaxyShader,
+  },
+  {
+    id: "purpleNebula",
+    name: "Purple Nebula",
+    component: PurpleNebula,
+  },
+];
+
+const breathingPatterns = [
+  { id: "box", name: "Box Breathing", pattern: [4, 4, 4, 4] },
+  { id: "478", name: "4-7-8 Method", pattern: [4, 7, 8, 0] },
+  { id: "coherent", name: "Coherent Breathing", pattern: [5, 5, 5, 5] },
+];
+
+const groundingExercises = [
+  {
+    number: 5,
+    title: "5 Things You Can See",
+    description: "Look around and notice five things you can see.",
+  },
+  {
+    number: 4,
+    title: "4 Things You Can Feel",
+    description: "Notice four things you can touch or feel.",
+  },
+  {
+    number: 3,
+    title: "3 Things You Can Hear",
+    description: "Listen for three distinct sounds.",
+  },
+  {
+    number: 2,
+    title: "2 Things You Can Smell",
+    description: "Notice two things you can smell.",
+  },
+  {
+    number: 1,
+    title: "1 Thing You Can Taste",
+    description: "Notice one thing you can taste.",
+  },
+];
 
 const ObservationDeck = () => {
+  // =========================
+  // STATE
+  // =========================
+
   const [isSoundOn, setIsSoundOn] = useState(false);
+  const [activeShader, setActiveShader] = useState("redGalaxy");
 
-  const [activeShader, setActiveShader] = useState('redGalaxy');
-
-  const [activeFeature, setActiveFeature] = useState('gratitude');
-  const [gratitudeEntry, setGratitudeEntry] = useState('');
+  const [activeFeature, setActiveFeature] = useState("gratitude");
+  const [gratitudeEntry, setGratitudeEntry] = useState("");
   const [gratitudeList, setGratitudeList] = useState([]);
-  const [visualizationType, setVisualizationType] = useState('forest');
-  const [breathingPattern, setBreathingPattern] = useState('box');
-   const [currentSound, setCurrentSound] = useState(0);
+
+  const [currentSound, setCurrentSound] = useState(0);
   const audioRef = useRef(null);
 
   const [isBreathingActive, setIsBreathingActive] = useState(false);
-  const [breathPhase, setBreathPhase] = useState('in'); // 'in', 'hold', 'out', 'hold-out'
+  const [breathPhase, setBreathPhase] = useState("in");
   const [breathProgress, setBreathProgress] = useState(0);
-  const [currentStep, setCurrentStep] = useState(0);
   const breathingTimerRef = useRef(null);
 
+  const [breathingPattern, setBreathingPattern] = useState("box");
+
   const [text, setText] = useState("");
-   const textRef = useRef();
-   const buttonRef = useRef();
-   const [sending, setSending] = useState(false);
-    const timeoutRef = useRef(null);
-   
-     const resetSend = () => {
-       if (timeoutRef.current) {
-         clearTimeout(timeoutRef.current);
-       }
-       setText("");       
-       setSending(false);  
-       
-       
-     };
-   
-      const handleSend = () => {
-        resetSend()
-      }
-const [show, setShow] = useState(false);
+  const [show, setShow] = useState(false);
 
-  // Breathing exercise logic
+  // =========================
+  // AUDIO
+  // =========================
+
   useEffect(() => {
-    if (isBreathingActive) {
-      const pattern = breathingPatterns.find(p => p.id === breathingPattern);
-      if (!pattern) return;
+    const audio = new Audio(ambientSounds[currentSound].src);
 
-      const totalTime = pattern.pattern.reduce((sum, time) => sum + time, 0);
-      const steps = [
-        { phase: 'in', duration: pattern.pattern[0] },
-        { phase: 'hold', duration: pattern.pattern[1] },
-        { phase: 'out', duration: pattern.pattern[2] },
-        { phase: 'hold-out', duration: pattern.pattern[3] }
-      ].filter(step => step.duration > 0);
+    audio.loop = true;
+    audio.volume = 0.5;
+    audioRef.current = audio;
 
-      const startTime = Date.now();
-      
-      const updateBreathing = () => {
-        const elapsed = (Date.now() - startTime) / 1000;
-        const cycleTime = elapsed % totalTime;
-        
-        let accumulated = 0;
-        let currentStepIndex = 0;
-        let currentPhase = 'in';
-        
-        for (let i = 0; i < steps.length; i++) {
-          accumulated += steps[i].duration;
-          if (cycleTime <= accumulated) {
-            currentStepIndex = i;
-            currentPhase = steps[i].phase;
-            break;
-          }
-        }
-        
-        const stepStart = accumulated - steps[currentStepIndex].duration;
-        const stepProgress = (cycleTime - stepStart) / steps[currentStepIndex].duration;
-        
-        setBreathPhase(currentPhase);
-        setBreathProgress(stepProgress * 100);
-        setCurrentStep(currentStepIndex);
-      };
+    return () => {
+      audio.pause();
+      audioRef.current = null;
+    };
+  }, [currentSound]);
 
-      breathingTimerRef.current = setInterval(updateBreathing, 100);
-      
-      return () => {
-        if (breathingTimerRef.current) {
-          clearInterval(breathingTimerRef.current);
-        }
-      };
+  useEffect(() => {
+    const audio = audioRef.current;
+
+    if (!audio) return;
+
+    if (isSoundOn) {
+      audio.play().catch((error) => {
+        console.warn("Audio playback could not start:", error);
+      });
     } else {
-      setBreathPhase('in');
-      setBreathProgress(0);
-      setCurrentStep(0);
+      audio.pause();
     }
-  }, [isBreathingActive, breathingPattern]);
 
-  // Cleanup on unmount
+    return () => {
+      audio.pause();
+    };
+  }, [isSoundOn, currentSound]);
+
+  const handleSoundChange = (event) => {
+    setCurrentSound(Number(event.target.value));
+  };
+
+  // =========================
+  // BREATHING EXERCISE
+  // =========================
+
   useEffect(() => {
+    if (!isBreathingActive) {
+      setBreathPhase("in");
+      setBreathProgress(0);
+      return;
+    }
+
+    const selectedPattern = breathingPatterns.find(
+      (pattern) => pattern.id === breathingPattern
+    );
+
+    if (!selectedPattern) return;
+
+    const steps = [
+      { phase: "in", duration: selectedPattern.pattern[0] },
+      { phase: "hold", duration: selectedPattern.pattern[1] },
+      { phase: "out", duration: selectedPattern.pattern[2] },
+      { phase: "hold-out", duration: selectedPattern.pattern[3] },
+    ].filter((step) => step.duration > 0);
+
+    const totalTime = steps.reduce(
+      (total, step) => total + step.duration,
+      0
+    );
+
+    const startTime = Date.now();
+
+    const updateBreathing = () => {
+      const elapsed = (Date.now() - startTime) / 1000;
+      const cycleTime = elapsed % totalTime;
+
+      let accumulated = 0;
+
+      for (const step of steps) {
+        const stepStart = accumulated;
+        accumulated += step.duration;
+
+        if (cycleTime < accumulated) {
+          const progress =
+            ((cycleTime - stepStart) / step.duration) * 100;
+
+          setBreathPhase(step.phase);
+          setBreathProgress(progress);
+          break;
+        }
+      }
+    };
+
+    updateBreathing();
+
+    breathingTimerRef.current = setInterval(updateBreathing, 100);
+
     return () => {
       if (breathingTimerRef.current) {
         clearInterval(breathingTimerRef.current);
+        breathingTimerRef.current = null;
       }
     };
-  }, []);
+  }, [isBreathingActive, breathingPattern]);
 
   const startBreathingExercise = () => {
     setIsBreathingActive(true);
@@ -133,221 +226,104 @@ const [show, setShow] = useState(false);
   };
 
   const getBreathText = () => {
-    switch(breathPhase) {
-      case 'in': return 'Breathe In';
-      case 'hold': return 'Hold';
-      case 'out': return 'Breathe Out';
-      case 'hold-out': return 'Hold';
-      default: return 'Breathe In';
+    switch (breathPhase) {
+      case "in":
+        return "Breathe In";
+      case "hold":
+      case "hold-out":
+        return "Hold";
+      case "out":
+        return "Breathe Out";
+      default:
+        return "Breathe In";
     }
   };
 
   const getCircleSize = () => {
-    if (breathPhase === 'in') return 80 + (breathProgress / 100) * 60; // 80px to 140px
-    if (breathPhase === 'out') return 140 - (breathProgress / 100) * 60; // 140px to 80px
-    return breathPhase === 'hold' ? 140 : 80;
+    if (breathPhase === "in") {
+      return 80 + (breathProgress / 100) * 60;
+    }
+
+    if (breathPhase === "out") {
+      return 140 - (breathProgress / 100) * 60;
+    }
+
+    return breathPhase === "hold" ? 140 : 80;
   };
 
-  
-
-
-  
-  // const ambientSounds = [
-  //     { name: "Space Ambience", src: "/music/SeasideSound.mp3"},
-  //   { name: "Calming Waves", src: "/music/WavesSound.mp3" },
-  //   { name: "Gentle Rain", src: "/music/gentleRain.mp3" },
-  //   { name: "Forest Sounds", src: "/music/SeasideSound.mp3" }
-  // ];
-
-   const ambientSounds = [
-      { name: "Space Ambience", src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/spaceSound.mp3"},
-    { name: "Calming Waves", src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/wavesSound.mp3" },
-    { name: "Gentle Rain", src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/gentleRain.mp3" },
-    { name: "Forest Sounds", src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/seasideSound.mp3" }
-  ];
-
-
-  const shaders = [
-    { id: 'redGalaxy', name: 'Red Galaxy', component: <RedGalaxyShader /> },
-    { id: 'purpleNebula', name: 'Purple Nebula', component: <PurpleNebula /> }
-   
-  ];
-
-  const visualizationEnvironments = [
-    { id: 'forest', name: 'Forest', icon: faLeaf, src: "/visualisations/ForestV.mp4"},
-    { id: 'ocean', name: 'Ocean', icon: faWater, src: "/visualisations/beachWalk.mp4" },
-    { id: 'mountain', name: 'Mountain', icon: faWind, src: "/visualisations/Hiking.mp4" },
-    { id: 'fireplace', name: 'Fireplace', icon: faFire, src: "/visualisations/FireplaceWalk.mp4" }
-  ];
-  const selectedEnv = visualizationEnvironments.find(env => env.id === visualizationType);
-
-
-  const breathingPatterns = [
-    { id: 'box', name: 'Box Breathing', pattern: [4, 4, 4, 4] },
-    { id: '478', name: '4-7-8 Method', pattern: [4, 7, 8, 0] },
-    { id: 'coherent', name: 'Coherent Breathing', pattern: [5, 5, 5, 5] }
-  ];
-
- 
+  // =========================
+  // GRATITUDE JOURNAL
+  // =========================
 
   const addGratitudeItem = () => {
-    if (gratitudeEntry.trim()) {
-      setGratitudeList([...gratitudeList, gratitudeEntry]);
-      setGratitudeEntry('');
-    }
+    const entry = gratitudeEntry.trim();
+
+    if (!entry) return;
+
+    setGratitudeList((previousList) => [...previousList, entry]);
+    setGratitudeEntry("");
   };
 
-
- 
-  // Initialize audio on component mount
-  useEffect(() => {
-    audioRef.current = new Audio(ambientSounds[currentSound].src);
-    audioRef.current.loop = true;
-    audioRef.current.volume = 0.5;
-
-    return () => {
-      if (audioRef.current) {
-        audioRef.current.pause();
-      }
-    };
-  }, []);
-
-  // Handle sound toggle
-  useEffect(() => {
-    if (audioRef.current) {
-      if (isSoundOn) {
-        const playAudio = () => {
-          audioRef.current.play().catch((error) => {
-            console.log("Audio play failed:", error);
-          });
-        };
-
-        // Try to play immediately if already interacted
-        playAudio();
-
-        // Also set up user gesture listeners
-        const handleUserGesture = () => {
-          playAudio();
-          window.removeEventListener("click", handleUserGesture);
-          window.removeEventListener("touchstart", handleUserGesture);
-          window.removeEventListener("keydown", handleUserGesture);
-        };
-
-        window.addEventListener("click", handleUserGesture);
-        window.addEventListener("touchstart", handleUserGesture);
-        window.addEventListener("keydown", handleUserGesture);
-
-        return () => {
-          window.removeEventListener("click", handleUserGesture);
-          window.removeEventListener("touchstart", handleUserGesture);
-          window.removeEventListener("keydown", handleUserGesture);
-        };
-      } else {
-        audioRef.current.pause();
-      }
-    }
-  }, [isSoundOn]);
-
-
-  useEffect(() => {
-    
-  const handleFirstInteraction = () => {
-    setIsUserInteracted(true);
-    if (isSoundOn) audioRef.current.play().catch(console.log);
-    window.removeEventListener("click", handleFirstInteraction);
-    window.removeEventListener("touchstart", handleFirstInteraction);
+  const handleSaveThoughts = () => {
+    setText("");
+    setShow(true);
   };
 
-  window.addEventListener("click", handleFirstInteraction);
-  window.addEventListener("touchstart", handleFirstInteraction);
-
-  return () => {
-    window.removeEventListener("click", handleFirstInteraction);
-    window.removeEventListener("touchstart", handleFirstInteraction);
-  };
-}, [isSoundOn]);
-
-
-  // Handle sound change
-  useEffect(() => {
-    if (audioRef.current) {
-      const wasPlaying = !audioRef.current.paused;
-      audioRef.current.pause();
-      audioRef.current = new Audio(ambientSounds[currentSound].src);
-      audioRef.current.loop = true;
-      audioRef.current.volume = 0.5;
-      
-      if (wasPlaying && isSoundOn) {
-        audioRef.current.play().catch(console.error);
-      }
-    }
-  }, [currentSound]);
-
-  // Update the sound selection handler
-  const handleSoundChange = (index) => {
-    setCurrentSound(index);
-  };
-
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-
-  useEffect(() => {
-    const handleResize = () => setWindowWidth(window.innerWidth);
-    window.addEventListener("resize", handleResize);
-
-    // cleanup on unmount
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  // =========================
+  // ACTIVE FEATURE CONTENT
+  // =========================
 
   const renderActiveFeature = () => {
-    switch(activeFeature) {
-      case 'gratitude':
+    switch (activeFeature) {
+      case "gratitude":
         return (
-          <div className="p-6">
-            <h3 className="text-xl font-semibold mb-4 text-center">Gratitude Journal</h3>
-            <p className="mb-4  text-center">Take a moment to reflect on things you're grateful for today.</p>
-            
-            <div className="flex mb-4 d-flex align-items-center justify-content-center text-center h-10">
+          <div>
+            <h3 className={styles.featureTitle}>Gratitude Journal</h3>
+
+            <p className={styles.featureText}>
+              Take a moment to reflect on things you're grateful for today.
+            </p>
+
+            <div className={styles.gratitudeForm}>
               <input
                 type="text"
                 value={gratitudeEntry}
-                onChange={(e) => setGratitudeEntry(e.target.value)}
-                style={{marginLeft: window. innerMargingLeft < 768 ? '30': '15' }}
+                onChange={(event) =>
+                  setGratitudeEntry(event.target.value)
+                }
+                onKeyDown={(event) => {
+                  if (event.key === "Enter") {
+                    addGratitudeItem();
+                  }
+                }}
                 placeholder="What are you grateful for today?"
-                className="flex-grow bg-black bg-opacity-30 border border-white border-opacity-20 rounded-l-full px-4 py-2 text-white"
-                onKeyPress={(e) => e.key === 'Enter' && addGratitudeItem()}
+                className={styles.gratitudeInput}
+                aria-label="Gratitude entry"
               />
-              <button 
+
+              <button
+                type="button"
                 onClick={addGratitudeItem}
-                className="mx-3 my-2  transition-colors "
-                style={{
-                 
-                  width: window.innerWidth < 768 ? '30%' : '10%',
-                  height: '46px',
-    backgroundColor: '#ddb0ffff', 
-     padding: '0.5rem',
-    fontSize: '1.15rem',   
-    transition: 'all 0.2s ease-in-out',
-    cursor: 'pointer',
-    color: 'white',
-    fontWeight: '500'
-    
-  }}
-  
-  
-                
+                className={styles.actionButton}
               >
                 Add
               </button>
             </div>
-            
+
             {gratitudeList.length > 0 && (
-              <div className="rounded-xl p-4 mb-4" style={{  backgroundColor: 'rgba(221, 176, 255, 0.6)' }}>
-                <h4 className="font-medium mb-2">Your Gratitude List:</h4>
-                <ul className="space-y-2">
+              <div className={styles.gratitudeList}>
+                <h4 className={styles.gratitudeListTitle}>
+                  Your Gratitude List:
+                </h4>
+
+                <ul>
                   {gratitudeList.map((item, index) => (
-                    <li key={index} className="flex items-center" style={{listStyle: 'none',}}>
-                      <FontAwesomeIcon icon={faHeart} className="text-pink-500 mr-2 text-sm" />
-                      <span> {item}</span>
+                    <li key={`${index}-${item}`}>
+                      <FontAwesomeIcon
+                        icon={faHeart}
+                        className={styles.gratitudeHeart}
+                      />
+                      <span>{item}</span>
                     </li>
                   ))}
                 </ul>
@@ -355,540 +331,381 @@ const [show, setShow] = useState(false);
             )}
           </div>
         );
-      
-//       case 'visualization':
-//         return (
-//           <div className="p-6">
-//             <h3 className="text-xl font-semibold mb-4 text-center">Guided Visualization</h3>
-//             <p className="mb-4  text-center">Select an environment to visualize for mental relaxation.</p>
-//             <p className="mb-4  text-center">Settle into your own internal space without external direction. </p>
-//             <p className="mb-4  text-center">Project their own meaning onto the walk. Maybe focus on the visual details, on the sounds, or on your breath.</p>
-//             <p className="mb-4  text-center">Mentally simulate the physical act of walking—focusing on the rhythm and sensation of steps—the ambience alone which is less intrusive.</p>
-            
-            
-//             <div className="grid grid-cols-2 gap-3 mb-4"
-//              style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', padding:'10px', gap: '10px' }}>
-//               {visualizationEnvironments.map(env => (
-//                 <button
-//                   key={env.id}
-//                   onClick={() => setVisualizationType(env.id)}
-//                    style={{
-//     backgroundColor: visualizationType === env.id  ? '#ddb0ffff' : 'rgba(255, 255, 255, 0.1)',
-//     padding: '0.5rem',
-   
-//     width: window.innerWidth < 768 ? '40%' : '15%',
-//     fontSize: '1rem',  
-//     transition: 'all 0.2s ease-in-out',
-//     cursor: 'pointer',
-//     color: 'white',
-//     fontWeight: '500',
-//   }}
- 
-  
-//                   // className={`p-4 rounded-xl flex flex-col items-center transition-all ${
-//                   //   visualizationType === env.id 
-//                   //     ? 'bg-pink-600' 
-//                   //     : 'bg-white bg-opacity-10 hover:bg-opacity-20'
-//                   // }`}
-//                 >
-                 
-//                   <FontAwesomeIcon icon={env.icon} className="text-2xl pr-5" />
-//                   <span >{env.name}</span>
-                 
-//                 </button>
-//               ))}
-//             </div>
-//             <div>
-           
-  
-//     <video
-//       src={selectedEnv.src}
-     
-//       loop
-//       muted
-//       controls
 
-//       className="w-full rounded-xl shadow-lg"
-//     />
-  
-// </div>
-            
-//           </div>
-//         );
-      
-      case 'breathing':
+      case "breathing":
         return (
-          <div className="p-6">
-            <h3 className="text-xl font-semibold mb-4 text-center">Breathing Exercises</h3>
-            <p className="mb-4 text-center">Select a breathing pattern to help regulate your nervous system.</p>
-            
-            <div className="mb-6 space-y-3 h-100"
-             style={{ display: 'flex', justifyContent: 'center', padding:'10px', gap: '10px' }}>
-              {breathingPatterns.map(pattern => (
+          <div>
+            <h3 className={styles.featureTitle}>
+              Breathing Exercises
+            </h3>
+
+            <p className={styles.featureText}>
+              Select a breathing pattern to help regulate your nervous system.
+            </p>
+
+            <div className={styles.buttonGroup}>
+              {breathingPatterns.map((pattern) => (
                 <button
                   key={pattern.id}
+                  type="button"
                   onClick={() => setBreathingPattern(pattern.id)}
                   disabled={isBreathingActive}
-                  // className={`w-full p-3 rounded-xl text-left transition-all ${
-                  //   breathingPattern === pattern.id 
-                  //     ? 'bg-pink-600' 
-                  //     : 'bg-white bg-opacity-10 hover:bg-opacity-20'
-                  // } ${isBreathingActive ? 'opacity-50' : ''}`}
-                  
-  style={{
-    backgroundColor: breathingPattern === pattern.id ? '#ddb0ffff' : 'rgba(255, 255, 255, 0.1)',
-    padding: '0.5rem',
-    fontSize: '1rem',
-    transition: 'all 0.2s ease-in-out',
-    
-    color: 'white',
-    fontWeight: '500',
-    width: '100%',
-    textAlign: 'center',
-    opacity: isBreathingActive ? 0.9 : 1,
-  cursor: isBreathingActive ? 'not-allowed' : 'pointer',
-  }}  >
-                  <div className="font-medium">{pattern.name}</div>
-                  <div className="text-sm opacity-100">
-                    {pattern.pattern[0]}s in - {pattern.pattern[1]}s hold - {pattern.pattern[2]}s out
-                    {pattern.pattern[3] > 0 ? ` - ${pattern.pattern[3]}s hold` : ''}
-                  </div>
+                  className={`${styles.deckButton} ${
+                    breathingPattern === pattern.id
+                      ? styles.selectedButton
+                      : ""
+                  }`}
+                  aria-pressed={breathingPattern === pattern.id}
+                >
+                  <span>
+                    {pattern.name}
+                    <br />
+                    <small>
+                      {pattern.pattern[0]}s in -{" "}
+                      {pattern.pattern[1]}s hold -{" "}
+                      {pattern.pattern[2]}s out
+                      {pattern.pattern[3] > 0
+                        ? ` - ${pattern.pattern[3]}s hold`
+                        : ""}
+                    </small>
+                  </span>
                 </button>
               ))}
             </div>
-            
-            <div className="d-flex justify-content-center align-center mt-6 bg-transparent text-center" >
-              <div 
-                className="rounded-full border-4 text-center border-white border-opacity-30 d-flex  transition-all duration-100"
-                style={{
-                  width: `${getCircleSize()}px`,
-                  height: `${getCircleSize()}px`,
-                  backgroundColor: breathPhase === 'in' ? 'rgba(221, 176, 255, 1)' : 
-                             breathPhase === 'out' ? 'rgba(221, 176, 255, 1)' : 
-                             'rgb(169, 125, 203)',
-                  transition: 'all 0.1s ease'
-                }}
-              >
-                <span 
-                style={{transform: 'translate(0%, 30%)'}}
-               >{getBreathText()}</span>
-              </div>
+
+            <div
+              className={styles.breathingCircle}
+              style={{
+                width: `${getCircleSize()}px`,
+                height: `${getCircleSize()}px`,
+                backgroundColor:
+                  breathPhase === "hold" || breathPhase === "hold-out"
+                    ? "rgba(169, 125, 203, 0.95)"
+                    : "rgba(221, 176, 255, 0.95)",
+              }}
+              aria-live="polite"
+            >
+              <span>{getBreathText()}</span>
             </div>
 
-            {/* Progress indicator */}
-            <div className="w-full bg-gray-700 bg-opacity-50 rounded-full h-2 mb-4">
-              <div 
-                className="bg-pink-600 h-2 rounded-full transition-all duration-100"
-                style={{ width: `${breathProgress}%`}}
-              ></div>
-            </div>
-
-            <div className="d-flex justify-content-center align-center">
-            {!isBreathingActive ? (
-              <button 
-                onClick={startBreathingExercise}
-                className="py-3 mb-3 "
-                style={{
-                  // width: '18%',
-                  width: window.innerWidth < 768 ? '65%' : '18%',
-    backgroundColor: '#ddb0ffff', 
-    fontSize: '1.15rem',   
-    transition: 'all 0.2s ease-in-out',
-    cursor: 'pointer',
-    color: 'white',
-    fontWeight: '400',
- 
-}}
-              >
-                Start Breathing Exercise
-              </button>
-            ) : (
-              <button 
-                onClick={stopBreathingExercise}
-                className="py-3  mb-3 "
-                style={{
-                  width: window.innerWidth < 768 ? '50%' : '18%',
-    backgroundColor: '#ad7fd0ff', 
-    fontSize: '1.15rem',   
-    transition: 'all 0.2s ease-in-out',
-    cursor: 'pointer',
-    color: 'white',
-    fontWeight: '400'}}
-              >
-                Stop Exercise
-              </button>
-            )}
-            </div>
-          </div>
-        );
-      case 'senses':
-        return (
-          <div className="p-6 text-center">
-            <h3 className="text-xl font-semibold mb-4">5-4-3-2-1 Grounding Technique</h3>
-            <p className="mb-4 opacity-80">A simple exercise to help bring you into the present moment.</p>
-            
-            <div className="space-y-4 mb-6">
-              <div className="p-4 rounded-xl">
-                <h4 className="font-medium mb-2 text-pink-400">5 Things You Can See</h4>
-                <p className="text-sm opacity-80">Look around and notice five things you can see.</p>
-              </div>
-              
-              <div className=" p-4 rounded-xl">
-                <h4 className="font-medium mb-2 text-pink-400">4 Things You Can Feel</h4>
-                <p className="text-sm opacity-80">Notice four things you can touch or feel.</p>
-              </div>
-              
-              <div className="p-4 rounded-xl">
-                <h4 className="font-medium mb-2 text-pink-400">3 Things You Can Hear</h4>
-                <p className="text-sm opacity-80">Listen for three distinct sounds.</p>
-              </div>
-              
-              <div className="p-4 rounded-xl">
-                <h4 className="font-medium mb-2 text-pink-400">2 Things You Can Smell</h4>
-                <p className="text-sm opacity-80">Notice two things you can smell.</p>
-              </div>
-              
-              <div className="p-4 rounded-xl">
-                <h4 className="font-medium mb-2 text-pink-400">1 Thing You Can Taste</h4>
-                <p className="text-sm opacity-80">Notice one thing you can taste.</p>
-              </div>
-<Row className="justify-content-center ">
-        <Col xs={12} md={11} sm={10} style={{
-          marginLeft: window.innerWidth < 768 ? '25px': '0'
-        }}>
-              <textarea
-                type="text"
-                
-                onChange={(e) => setText(e.target.value)}
-                 placeholder="Type your thoughts here..."
-            rows={10}
-            value={text}
-                className="flex-grow bg-black bg-opacity-30 border border-white border-opacity-20 rounded-l-full  text-white"
-                onKeyPress={(e) => e.key === 'Enter' }
+            <div
+              className={styles.progressTrack}
+              role="progressbar"
+              aria-label="Breathing phase progress"
+              aria-valuenow={Math.round(breathProgress)}
+              aria-valuemin={0}
+              aria-valuemax={100}
+            >
+              <div
+                className={styles.progressFill}
+                style={{ width: `${breathProgress}%` }}
               />
-              </Col>
-            </Row>
             </div>
-            
 
-<Alert
-  show={show}
-  onClose={() => setShow(false)}  
-  dismissible
-  className={styles.customAlert}
-  style={{
-    width: window.innerWidth < 768 ? '100%' : '40%',
-    display: "flex",
-    border: "none",
-    marginTop: "10px",
-    justifySelf: "center",
-    backgroundColor: "rgba(255, 255, 255, 0)",
-    fontSize: "1.15rem",
-    transition: "all 0.2s ease-in-out",
-    color: "white",
-    fontWeight: "400",
-  }}
->
-  <p>Your response has been saved</p>
-</Alert>
-
-{!show && (
-  <button
-    ref={buttonRef}
-    onClick={() => {
-      setShow(true);
-      handleSend();
-    }}
-    style={{
-     
-      width: window.innerWidth < 768 ? '30%' : '10%',
-      backgroundColor: "#ad7fd0ff",
-      fontSize: "1.5rem",
-      transition: "all 0.2s ease-in-out",
-      cursor: "pointer",
-      color: "white",
-      fontWeight: "400",
-      margin: '10px'
-    }}
-  >
-    Save
-  </button>
-)}
-
-
-            
-
-   
+            <div className="d-flex justify-content-center">
+              {!isBreathingActive ? (
+                <button
+                  type="button"
+                  onClick={startBreathingExercise}
+                  className={styles.actionButton}
+                >
+                  Start Breathing Exercise
+                </button>
+              ) : (
+                <button
+                  type="button"
+                  onClick={stopBreathingExercise}
+                  className={styles.actionButton}
+                >
+                  Stop Exercise
+                </button>
+              )}
+            </div>
           </div>
         );
-      
+
+      case "senses":
+        return (
+          <div>
+            <h3 className={styles.featureTitle}>
+              5-4-3-2-1 Grounding Technique
+            </h3>
+
+            <p className={styles.featureText}>
+              A simple exercise to help bring you into the present moment.
+            </p>
+
+            {groundingExercises.map((exercise) => (
+              <div
+                key={exercise.number}
+                className={styles.groundingItem}
+              >
+                <h4>{exercise.title}</h4>
+                <p>{exercise.description}</p>
+              </div>
+            ))}
+
+            <div className="mt-4">
+              <textarea
+                value={text}
+                onChange={(event) => {
+                  setText(event.target.value);
+                  setShow(false);
+                }}
+                placeholder="Type your thoughts here..."
+                rows={6}
+                className={styles.deckTextarea}
+                aria-label="Your grounding reflections"
+              />
+
+              <div className="d-flex justify-content-center">
+                <button
+                  type="button"
+                  onClick={handleSaveThoughts}
+                  className={styles.actionButton}
+                >
+                  Save
+                </button>
+              </div>
+
+              <Alert
+                show={show}
+                onClose={() => setShow(false)}
+                dismissible
+                className={styles.customAlert}
+              >
+                <p>Your response has been saved</p>
+              </Alert>
+            </div>
+          </div>
+        );
+
       default:
         return null;
     }
   };
 
+  // =========================
+  // PAGE
+  // =========================
+
+  const ActiveShader =
+    shaders.find((shader) => shader.id === activeShader)?.component ||
+    GalaxyShader;
+
   return (
     <>
-    <Helmet>
-  <title>Observation Deck – Meditate & Visualise Among the Stars | Solayulm</title>
-  <meta name="description" content="Observe your thoughts and the cosmos on the Solayulm Observation Deck — meditate, express gratitude, and expand your awareness." />
-  <meta property="og:title" content="Observation Deck | Solayulm" />
-  <meta property="og:description" content="A cosmic space for mindfulness, music, and visual meditation." />
-</Helmet>
+      <Helmet>
+        <title>
+          Observation Deck – Meditate &amp; Visualise Among the Stars |
+          Solayulm
+        </title>
 
-    <div 
-      className={'min-h-screen '}
-      
-    >
-      {/* Header */}
-      <div className="text-center py-8 px-4">
-        <h1 className="text-4xl font-bold mb-3 bg-gradient-to-r from-purple-400 to-pink-600 bg-clip-text text-transparent">
-         Observation Deck
-        </h1>
-        <p className="text-xl mb-4 max-w-2xl mx-auto">
-          Your sanctuary for relaxation and mindfulness
-        </p>
-      </div>
+        <meta
+          name="description"
+          content="Observe your thoughts and the cosmos on the Solayulm Observation Deck — meditate, express gratitude, and expand your awareness."
+        />
 
-      {/* Main Content Area */}
-      <div className="relative max-w-6xl mx-auto">
-        {/* Shader Display */}
-        <div className="relative rounded-xl overflow-hidden shadow-2xl mb-8" style={{ height: "70vh" }}>
-          {shaders.find(shader => shader.id === activeShader)?.component}
+        <meta
+          property="og:title"
+          content="Observation Deck | Solayulm"
+        />
 
-         
-          
-        </div> 
+        <meta
+          property="og:description"
+          content="A cosmic space for mindfulness, music, and visual meditation."
+        />
+      </Helmet>
 
-        {/* Control Panel */}
-        <div className="mb-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {/* Shader Selection */}
-            <div>
-              <h3 className="text-lg font-semibold my-3 flex text-center">
-                <span className="w-2 h-2 bg-pink-500 rounded-full mr-2"></span>
-                Visual Experiences
-              </h3>
-              <div className="flex flex-wrap gap-2 justify-content-center"
-              style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                {shaders.map(shader => (
-                  <button
-                    key={shader.id}
-                    onClick={() => setActiveShader(shader.id)}
-                    
-                    // className={`px-4 py-2 rounded-full text-sm transition-all ${
-                    //   activeShader === shader.id 
-                    //     ? 'bg-pink-600 text-white' 
-                    //     : 'bg-white bg-opacity-10 hover:bg-opacity-20'
-                    // }`}
-                    style={{
-    backgroundColor: activeShader === shader.id  ? '#ddb0ffff' : 'rgba(255, 255, 255, 0.1)',
-    padding: '0.5rem',
-  
-  width: window.innerWidth < 768 ? '35%' : '25%',
-    fontSize: '1rem',
-    transition: 'all 0.2s ease-in-out',
-    cursor: 'pointer',
-    color: 'white',
-    fontWeight: '500',
-    
-  }}
-  
-                  >
-                    {shader.name}
-                  </button>
-                ))}
-              </div>
-            </div>
+      <main className={styles.galaxyPage}>
+        {/* HEADER */}
 
-             {/* Sound Controls - Updated */}
-      <div>
-        <h3 className="text-lg font-semibold my-3 flex text-center">
-          <span className="w-2 h-2 bg-blue-500 rounded-full mr-2 "></span>
-          Soundscape
-        </h3>
-        <div className="flex items-center space-x-4 "
-        style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-          <button
-            onClick={() => setIsSoundOn(!isSoundOn)}
-            className="p-3 mr-3 "
-            style={{ width: '5%', border: 'none', 
-              backgroundColor: 'transparent',
-              marginRight: window.innerWidth < 768 ? '10px' : '10px',
-            }}
+        <header className={styles.deckHeader}>
+          <h1 className={styles.deckTitle}>Observation Deck</h1>
+
+          <p className={styles.deckSubtitle}>
+            Your sanctuary for relaxation and mindfulness
+          </p>
+        </header>
+
+        <div className={styles.deckContent}>
+          {/* SHADER DISPLAY */}
+
+          <section
+            className={styles.shaderFrame}
+            aria-label="Cosmic visual experience"
           >
-            <FontAwesomeIcon icon={isSoundOn ? faVolumeUp : faVolumeMute} />
-          </button>
-          <select 
-            value={currentSound}
-            onChange={(e) => handleSoundChange(parseInt(e.target.value))}
-            className="bg-black bg-opacity-30 border border-white border-opacity-20 rounded-full px-4 py-2 text-white"
-            style={{ width: '50%'}}
-          >
-            {ambientSounds.map((sound, index) => (
-              <option key={sound.name} value={index}>
-                {sound.name}
-              </option>
-            ))}
-          </select>
+            <ActiveShader />
+          </section>
+
+          {/* CONTROL PANEL */}
+
+          <section className={styles.controlPanel}>
+            <Row className="g-3">
+              {/* VISUAL EXPERIENCES */}
+
+              <Col xs={12} md={4}>
+                <div className={styles.controlSection}>
+                  <h3 className={styles.sectionTitle}>
+                    <FontAwesomeIcon
+                      icon={faFire}
+                      className="me-2"
+                    />
+                    Visual Experiences
+                  </h3>
+
+                  <div className={styles.buttonGroup}>
+                    {shaders.map((shader) => (
+                      <button
+                        key={shader.id}
+                        type="button"
+                        onClick={() => setActiveShader(shader.id)}
+                        className={`${styles.deckButton} ${
+                          activeShader === shader.id
+                            ? styles.selectedButton
+                            : ""
+                        }`}
+                        aria-pressed={activeShader === shader.id}
+                      >
+                        {shader.name}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </Col>
+
+              {/* SOUNDSCAPE */}
+
+              <Col xs={12} md={4}>
+                <div className={styles.controlSection}>
+                  <h3 className={styles.sectionTitle}>
+                    <FontAwesomeIcon
+                      icon={isSoundOn ? faVolumeUp : faVolumeMute}
+                      className="me-2"
+                    />
+                    Soundscape
+                  </h3>
+
+                  <div className={styles.soundControls}>
+                    <button
+                      type="button"
+                      onClick={() => setIsSoundOn((previous) => !previous)}
+                      className={styles.soundToggle}
+                      aria-label={
+                        isSoundOn
+                          ? "Mute ambient sound"
+                          : "Play ambient sound"
+                      }
+                      aria-pressed={isSoundOn}
+                    >
+                      <FontAwesomeIcon
+                        icon={isSoundOn ? faVolumeUp : faVolumeMute}
+                      />
+                    </button>
+
+                    <select
+                      value={currentSound}
+                      onChange={handleSoundChange}
+                      className={styles.soundSelect}
+                      aria-label="Choose ambient sound"
+                    >
+                      {ambientSounds.map((sound, index) => (
+                        <option key={sound.name} value={index}>
+                          {sound.name}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
+              </Col>
+
+              {/* RELAXATION TOOLS */}
+
+              <Col xs={12} md={4}>
+                <div className={styles.controlSection}>
+                  <h3 className={styles.sectionTitle}>
+                    <FontAwesomeIcon
+                      icon={faLeaf}
+                      className="me-2"
+                    />
+                    Relaxation Tools
+                  </h3>
+
+                  <div className={styles.buttonGroup}>
+                    <button
+                      type="button"
+                      onClick={() => setActiveFeature("gratitude")}
+                      className={`${styles.toolButton} ${
+                        activeFeature === "gratitude"
+                          ? styles.selectedButton
+                          : ""
+                      }`}
+                      aria-pressed={activeFeature === "gratitude"}
+                    >
+                      Gratitude
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={() => setActiveFeature("breathing")}
+                      className={`${styles.toolButton} ${
+                        activeFeature === "breathing"
+                          ? styles.selectedButton
+                          : ""
+                      }`}
+                      aria-pressed={activeFeature === "breathing"}
+                    >
+                      <FontAwesomeIcon
+                        icon={faWind}
+                        className="me-2"
+                      />
+                      Breathing
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={() => setActiveFeature("senses")}
+                      className={`${styles.toolButton} ${
+                        activeFeature === "senses"
+                          ? styles.selectedButton
+                          : ""
+                      }`}
+                      aria-pressed={activeFeature === "senses"}
+                    >
+                      <FontAwesomeIcon
+                        icon={faWater}
+                        className="me-2"
+                      />
+                      Senses
+                    </button>
+                  </div>
+                </div>
+              </Col>
+            </Row>
+          </section>
+
+          {/* ACTIVE FEATURE */}
+
+          <section className={styles.featurePanel}>
+            {renderActiveFeature()}
+          </section>
         </div>
-      </div>
 
-            {/* Feature Selection */}
-            <div>
-              <h3 className="text-lg font-semibold mb-3 flex text-center ">
-                <span className="w-2 h-2 bg-green-500 rounded-full mr-2"></span>
-                Relaxation Tools
-              </h3>
-              <div className="grid grid-cols-2 gap-1 ml-4"
-              style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                <button
-  onClick={() => setActiveFeature('gratitude')}
-  style={{
-    backgroundColor: activeFeature === 'gratitude' ? '#ddb0ffff' : 'rgba(255, 255, 255, 0.1)',
-    padding: '0.5rem',
-  marginLeft: '10px' ,
- 
-    
-    fontSize: window.innerWidth < 768 ? '0.8rem' : '1rem',
-    transition: 'all 0.2s ease-in-out',
-    cursor: 'pointer',
-    color: 'white',
-    fontWeight: '500',
-    
-  }}
-  onMouseEnter={(e) => {
-    if (activeFeature !== 'gratitude') {
-      e.target.style.backgroundColor = 'rgba(255, 255, 255, 0.2)';
-    }
-  }}
-  onMouseLeave={(e) => {
-    if (activeFeature !== 'gratitude') {
-      e.target.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
-    }
-  }}
->
-  Gratitude
-</button>
+        {/* EXIT */}
 
-   {/* <button
-  onClick={() => setActiveFeature('visualization')}
-  style={{
-    backgroundColor: activeFeature === 'visualization' ? '#ddb0ffff' : 'rgba(255, 255, 255, 0.1)',
-    padding: '0.5rem',
-  
-   
-    fontSize: window.innerWidth < 768 ? '0.8rem' : '1rem',
-    transition: 'all 0.2s ease-in-out',
-    cursor: 'pointer',
-    color: 'white',
-    fontWeight: '500',
-    
-  }}
-  onMouseEnter={(e) => {
-    if (activeFeature !== 'visualization') {
-      e.target.style.backgroundColor = 'rgba(255, 255, 255, 0.2)';
-    }
-  }}
-  onMouseLeave={(e) => {
-    if (activeFeature !== 'visualization') {
-      e.target.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
-    }
-  }}
->
-  Visualization
-</button> */}
-                <button
-  onClick={() => setActiveFeature('breathing')}
-  style={{
-    backgroundColor: activeFeature === 'breathing' ? '#ddb0ffff' : 'rgba(255, 255, 255, 0.1)',
-    padding: '0.5rem',
-  
-    
-    fontSize: window.innerWidth < 768 ? '0.8rem' : '1rem',
-    transition: 'all 0.2s ease-in-out',
-    cursor: 'pointer',
-    color: 'white',
-    fontWeight: '500',
-    
-  }}
-  onMouseEnter={(e) => {
-    if (activeFeature !== 'breathing') {
-      e.target.style.backgroundColor = 'rgba(255, 255, 255, 0.2)';
-    }
-  }}
-  onMouseLeave={(e) => {
-    if (activeFeature !== 'breathing') {
-      e.target.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
-    }
-  }}
->
-  Breathing
-</button>
-                <button
-  onClick={() => setActiveFeature('senses')}
-  style={{
-    backgroundColor: activeFeature === 'senses' ? '#ddb0ffff' : 'rgba(255, 255, 255, 0.1)',
-    padding: '0.5rem',
-  marginRight: '10px',
-   
-    fontSize: window.innerWidth < 768 ? '0.8rem' : '1rem',
-    transition: 'all 0.2s ease-in-out',
-    cursor: 'pointer',
-    color: 'white',
-    fontWeight: '500',
-    
-  }}
-  onMouseEnter={(e) => {
-    if (activeFeature !== 'senses') {
-      e.target.style.backgroundColor = 'rgba(255, 255, 255, 0.2)';
-    }
-  }}
-  onMouseLeave={(e) => {
-    if (activeFeature !== 'senses') {
-      e.target.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
-    }
-  }}
->
-  Senses
-</button>
-                
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Active Feature Display */}
-        <div className=" mt-4 rounded-xl backdrop-blur-sm overflow-hidden">
-          {renderActiveFeature()}
-        </div>
-      </div>
-
-      
-     <Row className="justify-content-center">
-  <Col xs={12} className="text-center">
-    <Link to="/Rooms" className="text-decoration-none">
-      <button 
-        className="custom-exit-btn"
-        style={{
-          fontSize: window.innerWidth < 768 ? '16px' : '20px',
-          color: 'white',
-          cursor: 'pointer',
-          backgroundColor: '#ffffff1a',
-          border: '1px solid #ddb0ffff',
-         
-          padding: window.innerWidth < 768 ? '8px 20px' : '5px 15px',
-          minWidth: window.innerWidth < 768 ? '90px' : '150px',
-          transition: 'all 0.3s ease'
-        }}
-      >
-        Exit
-      </button>
-    </Link>
-  </Col>
-</Row>
-     
-    </div>
+        <Row className={styles.exitSection}>
+          <Col xs={12}>
+            <Link to="/Rooms" className="text-decoration-none">
+              <button
+                type="button"
+                className={styles.customExitBtn}
+              >
+                Exit
+              </button>
+            </Link>
+          </Col>
+        </Row>
+      </main>
     </>
   );
 };
