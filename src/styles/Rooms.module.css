@@ -1,152 +1,272 @@
+
+/* =========================
+   PLANET ROOMS — SOLAYULM
+========================= */
+
 .servicesTextWrapper {
-    display: flex;
-   
-    
-    gap: 20px; /* optional spacing */
-    
-  
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+  padding: 65px 4%;
+  overflow: hidden;
 
+  background:
+    radial-gradient(
+      ellipse at 10% 50%,
+      rgba(126, 82, 171, 0.12),
+      transparent 55%
+    ),
+    #100c20;
 
+  border-bottom: 1px solid rgba(221, 176, 255, 0.12);
+}
+
+/* Alternate the atmosphere of every other room */
+.servicesTextWrapper:nth-of-type(even) {
+  background:
+    radial-gradient(
+      ellipse at 90% 50%,
+      rgba(120, 84, 154, 0.15),
+      transparent 55%
+    ),
+    #151027;
+}
+
+/* =========================
+   ROOM DESCRIPTION
+========================= */
+
+.servicesText {
+  flex: 1;
+  min-width: 0;
+  padding: 32px;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+
+  color: rgba(245, 240, 255, 0.78);
+  text-align: left;
+
+  border: 1px solid rgba(221, 176, 255, 0.17);
+  border-radius: 16px;
+
+  background: rgba(255, 255, 255, 0.025);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+}
+
+/* Main room title */
+.servicesText h3:first-child {
+  margin: 0 0 26px;
+  color: #ddb0ff;
+  font-family: "Saira Stencil One", sans-serif;
+  font-size: clamp(1.4rem, 2.2vw, 2rem);
+  font-weight: 400;
+  line-height: 1.45;
+}
+
+/* Description, Planet Details, Purpose, When to use it */
+.servicesText h3:not(:first-child) {
+  margin: 20px 0 8px;
+  color: #c8c894;
+  font-family: "Orbitron", sans-serif;
+  font-size: 0.76rem;
+  font-weight: 500;
+  line-height: 1.7;
+  letter-spacing: 0.8px;
+}
+
+/* Room body text */
+.servicesText p {
+  margin: 0;
+  color: rgba(245, 240, 255, 0.76);
+  font-size: 0.9rem;
+  line-height: 1.9;
+  overflow-wrap: anywhere;
+}
+
+/* =========================
+   ROOM ANIMATIONS
+========================= */
+
+.servicesImg {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex: 0 0 auto;
+  min-width: 0;
+  padding: 10px;
+}
+
+/* Keep Lottie animations responsive */
+.servicesImg > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 420px;
+}
+
+.servicesImg svg,
+.servicesImg canvas {
+  max-width: 100%;
+}
+
+/* =========================
+   EXPLORE BUTTON
+========================= */
+
+.exploringButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  align-self: flex-start;
+
+  width: auto;
+  min-width: 135px;
+  margin: 26px 0 0;
+  padding: 0;
+
+  border: 1px solid rgba(221, 176, 255, 0.7);
+  border-radius: 9px;
+
+  background: linear-gradient(
+    135deg,
+    #302044,
+    #493365
+  );
+
+  box-shadow: 0 0 18px rgba(181, 140, 217, 0.12);
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    transform 0.25s ease;
+}
+
+.exploringButton:hover {
+  transform: translateY(-2px);
+  border-color: #ddb0ff;
+  background: linear-gradient(
+    135deg,
+    #493365,
+    #624582
+  );
+  box-shadow: 0 0 22px rgba(221, 176, 255, 0.22);
+}
+
+/* Override Bootstrap button defaults inside the wrapper */
+.exploringButton a {
+  display: block;
+  text-decoration: none;
+}
+
+.exploringButton a .btn {
+  display: block;
+  width: 100%;
+  padding: 11px 24px;
+
+  color: #f5f0ff !important;
+  font-family: "Orbitron", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+
+  background: transparent !important;
+  border: none !important;
+  border-radius: 9px !important;
+  box-shadow: none !important;
+  animation: none;
+}
+
+.exploringButton a .btn:hover {
+  color: #ffffff !important;
+  background: transparent !important;
+}
+
+/* Disabled Explore button */
+.exploringButton a .btn:disabled {
+  color: rgba(245, 240, 255, 0.4) !important;
+  cursor: not-allowed;
+}
+
+/* =========================
+   RESPONSIVE DESIGN
+========================= */
+
+@media (max-width: 991px) {
+  .servicesTextWrapper {
+    gap: 18px;
+    padding: 45px 3%;
   }
-  
+
   .servicesText {
-    flex: 1;
-    padding: 20px;
-    margin: 20px;
-    text-align: center; 
-     display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+    padding: 25px;
   }
-  
+
   .servicesImg {
-    display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+    padding: 0;
   }
-  
-  
+}
 
-  /* .exploringButton {
-    font-size: 18px;
-    
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    width:50%;
-    justify-self: center;
-    background-color: #6a626e !important;
-} */
-/* 
-.exploreBtn  {
-   outline: none;
-        box-shadow: none;
-        background-color: #6a626e;
-        border: none;
-
-} */
-
-@keyframes swipeIn {
-    from {
-      transform: translateX(100px);
-      opacity: 0;
-    }
-    to {
-      transform: translateX(0);
-      opacity: 1;
-    }
-  }
-  
-  .swipeIn {
-    animation: swipeIn 0.6s ease-in-out forwards;
+@media (max-width: 767px) {
+  .servicesTextWrapper {
+    flex-direction: column;
+    gap: 20px;
+    padding: 35px 5%;
   }
 
-  
-  a button.btn.btn-primary {
-    background-color: #222 !important;
-    border-radius: 12px !important;
-    animation: swipeIn 0.6s ease-in-out forwards;
+  .servicesText,
+  .servicesImg {
+    width: 100%;
+    max-width: 100%;
   }
 
-
-  .exploringButton {
-    background: linear-gradient(90deg, #3b3b6a 0%, #52528f 50%, #9f9ff9 100%);
-  transition: background-color 0.1s ease;
-  /* #1a1a2e;  */
-  color: #ffffff;
-  border: 2px solid #5d3fd3; 
-  border-radius: 20px;
-
-  font-weight: bold;
-  transition: all 0.3s ease;
-   box-shadow: 0 0 20px #b5acd9;
-   width: 35%;
-   font-size: 18px;
-   cursor: pointer;
-   margin: 8px auto;
-   display: block;
+  .servicesText {
+    padding: 23px;
+    order: 2;
   }
 
-/* .enterButton{
-  
-  background: linear-gradient(90deg, #3b3b6a 0%, #52528f 50%, #9f9ff9 100%);
-  transition: background-color 0.1s ease;
-  /* #1a1a2e;  */
-  /* color: #ffffff;
-  border: 2px solid #5d3fd3; 
-  border-radius: 20px;
-  padding: 10px 20px;
-  font-weight: bold;
-  transition: all 0.3s ease;
-   box-shadow: 0 0 20px #b5acd9;
-   width: 35%;
-   font-size: 18px;
-   cursor: pointer;
-   margin: 8px auto;
-   display: block;
-} */ 
-  
-
- 
-
-  @media (max-width: 1200px) {
-    .exploringButton {
-   
-    margin-top: 10px;
-    }
+  .servicesImg {
+    order: 1;
   }
 
-
-  @media (max-width: 768px) {
-  .Container {
-    width: 95%;
+  .servicesText h3:first-child {
+    margin-bottom: 18px;
+    font-size: 1.5rem;
   }
 
-  .Row {
-    flex-direction: column-reverse;
+  .servicesText h3:not(:first-child) {
+    margin-top: 19px;
+    font-size: 0.7rem;
   }
 
-  .Title {
-    font-size: 1.8rem;
-    text-align: center;
+  .servicesText p {
+    font-size: 0.86rem;
+    line-height: 1.8;
   }
 
-  .Paragraph {
-    font-size: 1rem;
-    text-align: justify;
-  }
-
-  .Headshot {
-    max-width: 250px;
-    margin-top: 1rem;
+  .servicesImg > div {
+    max-width: 340px;
   }
 
   .exploringButton {
-    width: 50%;
-    font-size: 20px;
-    padding: 10px 0px;
-  
+    align-self: center;
+    min-width: 150px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .exploringButton {
+    transition: none;
+  }
+
+  .exploringButton:hover {
+    transform: none;
   }
 }
