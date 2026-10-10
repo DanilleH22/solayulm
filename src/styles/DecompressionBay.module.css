@@ -1,186 +1,639 @@
-.systemChecksLeft {
-    align-items: center;
-    text-align: center;
-    min-width: auto;    
-    width: 100%;
 
+/* ========================================
+   DECOMPRESSION BAY — SOLAYULM
+======================================== */
+
+.page {
+  min-height: 100vh;
+  padding: 40px 24px 60px;
+  overflow-x: hidden;
+  color: #f3edf9;
+  background:
+    radial-gradient(
+      ellipse at 50% 0%,
+      rgba(91, 56, 130, 0.28),
+      transparent 48%
+    ),
+    #100d19;
 }
 
-.controlButton {
+/* ========================================
+   WELCOME / HERO
+======================================== */
+
+.hero {
+  max-width: 850px;
+  margin: 0 auto 65px;
+  padding: 55px 20px 35px;
+  text-align: center;
+}
+
+.hero > p:first-child {
+  margin-bottom: 18px;
+  color: #ddb0ff;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+  line-height: 1.8;
+}
+
+.hero h1 {
+  margin-bottom: 20px;
+  color: #ddb0ff;
+  font-family: 'Orbitron', sans-serif;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+}
+
+.hero > p:not(:first-child) {
+  max-width: 620px;
+  margin: 0 auto 12px;
+  color: #c5b8d2;
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+/* ========================================
+   SHARED SECTIONS
+======================================== */
+
+.section {
   width: 100%;
-
-    margin-bottom: 10px;
+  /* max-width: 1050px; */
+  margin: 0 auto 65px;
 }
 
-.systemChecksCenter {
-    text-align: center;
-    padding: 20px;
-     
-   width: 100%;
-
+.sectionHeading {
+  margin-bottom: 16px;
+  color: #ddb0ff;
+  font-family: 'Orbitron', sans-serif;
+  font-size: clamp(1.2rem, 3vw, 1.7rem);
+  line-height: 1.5;
+  text-align: center;
 }
 
-.systemChecksRight {
-  padding: 20px;
-  text-align: center;   
+.sectionIntro {
+  max-width: 680px;
+  margin: 0 auto 28px;
+  color: #c5b8d2;
+  font-size: 0.95rem;
+  line-height: 1.8;
+  text-align: center;
+}
+
+.section h3:not(.sectionHeading) {
+  margin-bottom: 18px;
+  color: #f3edf9;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  text-align: center;
+}
+
+/* ========================================
+   REFLECTION CHOICES
+======================================== */
+
+.moodChoices {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
   width: 100%;
-
+  max-width: 760px;
+  margin: 0 auto 25px;
 }
 
+/* Reflection buttons */
+
+.moodChoice {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  min-height: 54px;
+  padding: 14px 12px;
+  color: #171020;
+  background: #ddb0ff;
+  border: 1px solid #ddb0ff;
+  border-radius: 8px;
+  box-shadow: none;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  line-height: 1.5;
+  text-align: center;
+  overflow-wrap: anywhere;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.moodChoice:hover,
+.moodChoice.active {
+  color: #fff;
+  background: #78549a;
+  border-color: #c99be9;
+  transform: translateY(-2px);
+}
+
+.moodChoice:focus-visible {
+  outline: 2px solid #c8c894;
+  outline-offset: 4px;
+}
+
+.moodChoice span {
+  display: inline-block;
+  margin-bottom: 4px;
+  font-size: 1.2rem;
+}
+
+.moodChoice:active {
+  transform: translateY(0);
+}
+
+/* ========================================
+   REFLECTION PANEL
+======================================== */
+
+.reflectionPanel {
+  display: grid;
+  grid-template-columns: 150px minmax(0, 1fr);
+  align-items: center;
+  gap: 28px;
+  width: 100%;
+  /* max-width: 900px; */
+  margin: 28px auto 0;
+  padding: 30px;
+  background: rgba(35, 26, 47, 0.72);
+  border: 1px solid rgba(221, 176, 255, 0.3);
+  border-radius: 18px;
+  box-sizing: border-box;
+}
+
+.reflectionPanel > :first-child {
+  min-width: 0;
+}
+
+.reflectionQuestions {
+  min-width: 0;
+}
+
+.reflectionQuestions .sectionHeading {
+  text-align: left;
+}
+
+.reflectionQuestions .sectionIntro {
+  margin-left: 0;
+  text-align: left;
+}
+
+.reflectionQuestion {
+  margin: 0;
+  padding: 16px 0;
+  color: #e7ddec;
+  border-bottom: 1px solid rgba(221, 176, 255, 0.14);
+  font-size: 0.93rem;
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+}
+
+.reflectionQuestion:last-child {
+  border-bottom: none;
+}
+
+/* ========================================
+   MEDITATION SESSION PANEL
+======================================== */
+
+.sessionPanel {
+  width: 85%;
+  /* max-width: 900px; */
+  margin: 0 auto;
+  padding: 35px 28px;
+  background: rgba(35, 26, 47, 0.72);
+  border: 1px solid rgba(221, 176, 255, 0.3);
+  border-radius: 20px;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+/* ========================================
+   MINUTES BUTTONS
+   Side-by-side layout with even spacing
+======================================== */
+
+.durationChoices {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: stretch;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  max-width: 900px;
+  margin: 25px auto 30px;
+}
+
+/* Override React Bootstrap button defaults */
+
+.durationChoices .MinutesButton2 {
+  display: inline-flex;
+  flex: 0 1 145px;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  min-width: 120px;
+  max-width: 100%;
+  min-height: 48px;
+  margin: 0;
+  padding: 12px 16px;
+  color: #171020 !important;
+  background: #ddb0ff !important;
+  border: 1px solid #ddb0ff !important;
+  border-radius: 8px !important;
+  box-shadow: none !important;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  line-height: 1.4;
+  text-align: center;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.durationChoices .MinutesButton2:hover,
+.durationChoices .MinutesButton2:focus,
+.durationChoices .MinutesButton2:active {
+  color: #fff !important;
+  background: #78549a !important;
+  border-color: #c99be9 !important;
+  box-shadow: none !important;
+}
+
+.durationChoices .MinutesButton2:hover {
+  transform: translateY(-2px);
+}
+
+.durationChoices .MinutesButton2:focus-visible {
+  outline: 2px solid #c8c894;
+  outline-offset: 4px;
+}
+
+.durationChoices .MinutesButton2:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Selected session length */
+
+.durationChoices .MinutesButton2[aria-pressed='true'] {
+  color: #171020 !important;
+  background: #ddb0ff !important;
+  border-color: #ddb0ff !important;
+}
+
+.durationChoices .MinutesButton2[aria-pressed='true']:hover {
+  color: #fff !important;
+  background: #78549a !important;
+  border-color: #c99be9 !important;
+}
+
+/* ========================================
+   TIMER
+======================================== */
+
+.timerArea {
+  width: 100%;
+  max-width: 950px;
+  margin: 30px auto;
+  padding: 24px 16px;
+  background: rgba(16, 13, 25, 0.65);
+  border: 1px solid rgba(221, 176, 255, 0.2);
+  border-radius: 16px;
+  box-sizing: border-box;
+}
+
+.timerArea .sectionIntro {
+  margin-bottom: 20px;
+}
+
+/* ========================================
+   GALAXY VISUALS & MOOD SPECTRUM
+======================================== */
+
+.spectrumSection {
+  width: 100%;
+  max-width: 760px;
+  margin: 40px auto 0;
+  padding-top: 30px;
+  border-top: 1px solid rgba(221, 176, 255, 0.2);
+}
+
+.spectrumSection video {
+  display: block;
+  width: 100%;
+  max-height: 450px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.spectrumSection > :not(:first-child) {
+  max-width: 100%;
+}
+
+.spectrumSection .MinutesButton2 {
+  margin-top: 0;
+}
+
+/* MoodBar container */
+
+.spectrumSection > div {
+  min-width: 0;
+}
+
+/* ========================================
+   ORIGINAL BUTTON CLASSES
+   For buttons outside durationChoices
+======================================== */
+
+.MinutesButton3{
+  width: 50% !important;
+}
+
+.MinutesButton,
+.MinutesButton2,
+.MinutesButton3,
+.MinutesButton4 {
+  /* display: block; */
+  min-height: 48px;
+  padding: 12px 20px;
+  color: #171020 !important;
+  background: #ddb0ff !important;
+  border: 1px solid #ddb0ff !important;
+  border-radius: 8px !important;
+  box-shadow: none !important;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.MinutesButton:hover,
+.MinutesButton2:hover,
+.MinutesButton3:hover,
+.MinutesButton4:hover {
+  color: #fff !important;
+  background: #78549a !important;
+  border-color: #c99be9 !important;
+  transform: translateY(-2px);
+}
+
+.MinutesButton:focus-visible,
+.MinutesButton2:focus-visible,
+.MinutesButton3:focus-visible,
+.MinutesButton4:focus-visible {
+  outline: 2px solid #c8c894;
+  outline-offset: 4px;
+}
+
+.MinutesButton:disabled,
+.MinutesButton2:disabled,
+.MinutesButton3:disabled,
+.MinutesButton4:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
 
 .MinutesButton {
-    font-size: 18px;
-    color: white;
-    border-radius: 20px;
-    cursor: pointer;
-    background: linear-gradient(90deg, #3b3b6a 0%, #52528f 50%, #9f9ff9 100%);
-    transition: background-color 0.1s ease;
-    width: 15%;
-    justify-self: center;
-    background-color: #6a626e ;
-    margin: 8px auto;
-   border: 2px solid #5d3fd3; 
-  display: block;
-   box-shadow: 0 0 20px #b5acd9;
-   font-weight: bold;
+  width: 155px;
+  margin: 8px auto;
 }
 
-
-
- 
-   
-
-
-
-.MinutesButton2, .MinutesButton4 {
-   
-    color: white;
-    
-    
-    
-    justify-self: center;
-    
-       
-   display: block;
+.MinutesButton2 {
+  width: 100%;
+  margin: 8px auto;
 }
-
-.MinutesButton2, .MinutesButton4 {
-  background: linear-gradient(90deg, #3b3b6a 0%, #52528f 50%, #9f9ff9 100%);
-  transition: background-color 0.1s ease;
-  /* #1a1a2e;  */
-  color: #ffffff;
-  border: 2px solid #5d3fd3; 
-  border-radius: 20px;
-  padding: 10px 20px;
-  font-weight: bold;
-  transition: all 0.3s ease;
-   box-shadow: 0 0 20px #b5acd9;
-   width: 100%;
-   font-size: 18px;
-   cursor: pointer;
-   margin: 8px auto;
-}
-
 
 .MinutesButton3 {
-  background: linear-gradient(90deg, #3b3b6a 0%, #52528f 50%, #9f9ff9 100%);
-  transition: background-color 0.1s ease;
-  /* #1a1a2e;  */
-  color: #ffffff;
-  border: 2px solid #5d3fd3; 
-  border-radius: 20px;
-  padding: 10px 20px;
-  font-weight: bold;
-  transition: all 0.3s ease;
-   box-shadow: 0 0 20px #b5acd9;
-   width: 15%;
-   font-size: 18px;
-   cursor: pointer;
-   margin: 8px ;
-   
+  width: 155px;
+  margin: 8px;
 }
 
-
-
-
-/* .MinutesButton3 {
-  font-size: 18px;
-  color: white;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.1s ease;
-  width: 15%;
-  justify-self: center;
-  background-color: #6a626e ;
-  margin: 8px 10px;
- border: none;
-
- 
-} */
-
-
-
-
-
-.MinutesButton:hover, .MinutesButton2:hover, .MinutesButton3:hover, .MinutesButton4:hover {
-    background-color: #555151;
-  
+.MinutesButton4 {
+  width: 100%;
+  margin: 8px auto;
 }
 
-.MinutesButton:focus, .MinutesButton2:focus, .MinutesButton3:focus, .MinutesButton4:focus {
-    background: linear-gradient(90deg,#b3b3fa 100%)
-  
+/* ========================================
+   EXIT AREA
+======================================== */
+
+.exitArea {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin: 45px auto 0;
 }
 
-@media screen and (max-width: 768px) {
-  .MinutesButton {
-    width: 120px;
+/* ========================================
+   TABLET
+======================================== */
+
+@media (max-width: 768px) {
+  .page {
+    padding: 20px 16px 40px;
   }
 
-  .MinutesButton2 {
+  .hero {
+    margin-bottom: 35px;
+    padding: 35px 5px 20px;
+  }
+
+  .section {
+    margin-bottom: 45px;
+  }
+
+  .moodChoices {
+    gap: 10px;
+  }
+
+  .moodChoice {
+    min-height: 48px;
+    padding: 12px 8px;
+    font-size: 0.75rem;
+  }
+
+  .reflectionPanel {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 24px 18px;
+  }
+
+  .reflectionPanel > :first-child {
+    display: flex;
+    justify-content: center;
+  }
+
+  .reflectionQuestions .sectionHeading,
+  .reflectionQuestions .sectionIntro {
+    text-align: center;
+  }
+
+  .sessionPanel {
+    padding: 28px 18px;
+  }
+
+  .durationChoices {
+    gap: 10px;
+  }
+
+  .durationChoices .MinutesButton2 {
+    flex: 0 1 135px;
+    min-width: 115px;
+    padding: 12px 10px;
+    font-size: 0.75rem;
+  }
+
+  .timerArea {
+    padding: 20px 12px;
+  }
+}
+
+/* ========================================
+   MOBILE
+======================================== */
+
+@media (max-width: 480px) {
+  .page {
+    padding: 16px 12px 32px;
+  }
+
+  .hero {
+    padding: 30px 4px 20px;
+  }
+
+  .hero > p:first-child {
+    font-size: 0.68rem;
+    letter-spacing: 1.5px;
+  }
+
+  .hero > p:not(:first-child) {
+    font-size: 0.9rem;
+  }
+
+  .sectionHeading {
+    font-size: 1.15rem;
+  }
+
+  .sectionIntro {
+    font-size: 0.88rem;
+  }
+
+  .moodChoices {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 7px;
+  }
+
+  .moodChoice {
+    padding: 12px 4px;
+    font-size: 0.68rem;
+  }
+
+  .reflectionPanel {
+    padding: 20px 14px;
+  }
+
+  .reflectionQuestion {
+    padding: 14px 0;
+    font-size: 0.88rem;
+  }
+
+  .sessionPanel {
+    padding: 24px 12px;
+  }
+
+  /* Two columns: buttons never overlap */
+
+  .durationChoices {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: stretch;
+    gap: 10px;
     width: 100%;
-    max-width: 280px;
+  }
+
+  .durationChoices .MinutesButton2 {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    min-height: 46px;
+    margin: 0;
+    padding: 11px 6px;
+    font-size: 0.7rem;
+    overflow-wrap: anywhere;
+  }
+
+  .timerArea {
+    padding: 18px 8px;
+  }
+
+  .spectrumSection {
+    margin-top: 30px;
+    padding-top: 24px;
+  }
+
+  .MinutesButton {
+    width: 155px;
+    max-width: 100%;
+  }
+
+  .MinutesButton3 {
+    width: 155px;
+    max-width: 100%;
   }
 
   .MinutesButton4 {
-    width: 70%;
-    /* max-width: 280px; */
+    width: 100%;
+    max-width: 280px;
   }
 }
 
+/* ========================================
+   REDUCED MOTION ACCESSIBILITY
+======================================== */
 
-.VisualsColumn {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-top: 100px;
-    margin-left: 50px;
-}
-
-.VisualsTitle {
-    transform: translate( 10%, -30px);
-} 
-
-.VisualSequences {
-        margin-right: 100px;
-    }
-
-
-
-@media screen and (max-width: 768px) {
-    .VisualsColumn {
-        margin-top: 50px;
-        margin-right: 0;
-    }
-
-    .VisualsTitle {
-         transform: translate( 0%, -40px);
-    }   
-
-    .VisualSequences {
-        margin-right: 25px;
-    }
-
-   
+@media (prefers-reduced-motion: reduce) {
+  .moodChoice,
+  .MinutesButton,
+  .MinutesButton2,
+  .MinutesButton3,
+  .MinutesButton4 {
+    transition: none;
   }
+
+  .moodChoice:hover,
+  .MinutesButton:hover,
+  .MinutesButton2:hover,
+  .MinutesButton3:hover,
+  .MinutesButton4:hover {
+    transform: none;
+  }
+}
