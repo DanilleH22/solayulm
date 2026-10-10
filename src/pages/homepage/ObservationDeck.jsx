@@ -17,7 +17,7 @@ import { Helmet } from "react-helmet-async";
 import GalaxyShader from "../../components/GalaxyShader.jsx";
 import RedGalaxyShader from "../../components/RedGalaxyShader.jsx";
 import PurpleNebula from "../../components/PurpleNebula.jsx";
-import styles from "../../styles/Homepage2.module.css";
+import styles from "../../styles/ObservationDeck.module.css";
 
 // =========================
 // AMBIENT SOUNDS
