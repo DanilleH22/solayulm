@@ -1,111 +1,11 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion'; 
+import React, { useState, useEffect, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router";
-import  ShootingStars  from "../../components/ShootingStars.jsx"
-import  { Aurora } from "../../components/Aurora.jsx"
-import styles from "../../styles/VoidChat.module.css"
-import { Helmet } from "react-helmet-async"
+import { Helmet } from "react-helmet-async";
 
-
-const VoidChat = () => {
-  const [transcript, setTranscript] = useState('');
-  const [messages, setMessages] = useState([]);
-  const [isListening, setIsListening] = useState(false);
-  const recognitionRef = useRef(null);
-  const finalTranscriptRef = useRef('');
-
-  const spaceItems = ["🌌", "🪐", "☄️", "⭐", "🛰️", "🌙"];
-
-
-
-
-  // Initialize speech recognition
-  useEffect(() => {
-    if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
-      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-      recognitionRef.current = new SpeechRecognition();
-      recognitionRef.current.continuous = true;
-      recognitionRef.current.interimResults = true;
-      
-      recognitionRef.current.onresult = (event) => {
-        let interimTranscript = '';
-        let finalTranscript = finalTranscriptRef.current;
-        
-        for (let i = event.resultIndex; i < event.results.length; i++) {
-          const transcript = event.results[i][0].transcript;
-          if (event.results[i].isFinal) {
-            finalTranscript += transcript;
-          } else {
-            interimTranscript += transcript;
-          }
-        }
-        
-        finalTranscriptRef.current = finalTranscript;
-        setTranscript(finalTranscript + interimTranscript);
-      };
-      
-      recognitionRef.current.onerror = (event) => {
-        console.error('Speech recognition error', event.error);
-        setIsListening(false);
-      };
-    } else {
-      console.error('Speech Recognition API not supported in this browser');
-    }
-    
-    return () => {
-      if (recognitionRef.current) {
-        recognitionRef.current.stop();
-      }
-    };
-  }, []);
-
-  const startListening = () => {
-    if (recognitionRef.current) {
-      finalTranscriptRef.current = '';
-      setTranscript('');
-      recognitionRef.current.start();
-      setIsListening(true);
-    }
-  };
-
-  const stopListening = () => {
-    if (recognitionRef.current) {
-      recognitionRef.current.stop();
-      setIsListening(false);
-    }
-  };
-
-  const resetTranscript = () => {
-    finalTranscriptRef.current = '';
-    setTranscript('');
-    if (recognitionRef.current) {
-      recognitionRef.current.stop();
-      setIsListening(false);
-    }
-  };
-
-  const handleSend = () => {
-    const textToSend = transcript.trim();
-    if (!textToSend) return;
-
-    const randomItem = spaceItems[Math.floor(Math.random() * spaceItems.length)];
-    const newMessage = {
-      id: Date.now(),
-      text: textToSend,
-      icon: randomItem,
-      x: Math.random() * 400 - 200, // Random horizontal position
-      y: -200 - Math.random() * 100, // Vertical target position
-    };
-
-    setMessages((prev) => [...prev, newMessage]);
-    setTranscript('');
-    finalTranscriptRef.current = '';
-
-    // Remove message after animation completes
-    setTimeout(() => {
-      setMessages((prev) => prev.filter((msg) => msg.id !== newMessage.id));
-    }, 8000);
-  };
+import ShootingStars from "../../components/ShootingStars.jsx";
+import { Aurora } from "../../components/Aurora.jsx";
+import styles from "../../styles/VoidChat.module.css";
 
 const journalPromptsArray = [
   "What is something you're grateful for today, no matter how small?",
@@ -137,239 +37,436 @@ const journalPromptsArray = [
   "What assumptions are you making that might not be true?",
   "What does 'success' mean to you personally?",
   "How do you recharge when you're feeling drained?",
-  "What's one thing you can do today to practice self-care?"
+  "What's one thing you can do today to practice self-care?",
 ];
 
-const getRandomJournalPrompt = () => {
-  return journalPromptsArray[Math.floor(Math.random() * journalPromptsArray.length)];
-};
+const spaceItems = ["🌌", "🪐", "☄️", "⭐", "🛰️", "🌙"];
+const MAX_MESSAGE_LENGTH = 1000;
 
-// In your component
-const [currentPrompt, setCurrentPrompt] = useState(getRandomJournalPrompt());
+const getRandomJournalPrompt = () =>
+  journalPromptsArray[
+    Math.floor(Math.random() * journalPromptsArray.length)
+  ];
 
-const handleClick = () => {
-  const newPrompt = getRandomJournalPrompt();
-  setCurrentPrompt(newPrompt);
-};
+const VoidChat = () => {
+  const [transcript, setTranscript] = useState("");
+  const [messages, setMessages] = useState([]);
+  const [isListening, setIsListening] = useState(false);
+  const [currentPrompt, setCurrentPrompt] = useState(
+    getRandomJournalPrompt
+  );
+  const [speechSupported, setSpeechSupported] = useState(true);
+  const [statusMessage, setStatusMessage] = useState("");
+
+  const recognitionRef = useRef(null);
+  const finalTranscriptRef = useRef("");
+  const messageTimersRef = useRef([]);
+
+  // Set up speech recognition
+  useEffect(() => {
+    const SpeechRecognition =
+      window.SpeechRecognition || window.webkitSpeechRecognition;
+
+    if (!SpeechRecognition) {
+      setSpeechSupported(false);
+      return;
+    }
+
+    const recognition = new SpeechRecognition();
+
+    recognition.continuous = true;
+    recognition.interimResults = true;
+    recognition.lang = "en-GB";
+
+    recognition.onresult = (event) => {
+      let interimTranscript = "";
+      let finalTranscript = finalTranscriptRef.current;
+
+      for (let i = event.resultIndex; i < event.results.length; i++) {
+        const spokenText = event.results[i][0].transcript;
+
+        if (event.results[i].isFinal) {
+          finalTranscript += spokenText;
+        } else {
+          interimTranscript += spokenText;
+        }
+      }
+
+      finalTranscriptRef.current = finalTranscript;
+
+      setTranscript(
+        (finalTranscript + interimTranscript).slice(0, MAX_MESSAGE_LENGTH)
+      );
+    };
+
+    recognition.onerror = (event) => {
+      setIsListening(false);
+
+      if (event.error === "not-allowed") {
+        setStatusMessage(
+          "Microphone access was blocked. Check your browser permissions."
+        );
+      } else if (event.error !== "no-speech" && event.error !== "aborted") {
+        setStatusMessage("Voice input stopped. You can type your thoughts instead.");
+      }
+    };
+
+    recognition.onend = () => {
+      setIsListening(false);
+    };
+
+    recognitionRef.current = recognition;
+
+    return () => {
+      recognition.onresult = null;
+      recognition.onerror = null;
+      recognition.onend = null;
+
+      try {
+        recognition.stop();
+      } catch {
+        // Recognition may already have stopped.
+      }
+
+      messageTimersRef.current.forEach(clearTimeout);
+    };
+  }, []);
+
+  const startListening = () => {
+    if (!recognitionRef.current || isListening) return;
+
+    finalTranscriptRef.current = transcript;
+    setStatusMessage("");
+
+    try {
+      recognitionRef.current.start();
+      setIsListening(true);
+    } catch {
+      setStatusMessage(
+        "Voice input could not start. Please try again or type your thoughts."
+      );
+    }
+  };
+
+  const stopListening = () => {
+    if (recognitionRef.current) {
+      try {
+        recognitionRef.current.stop();
+      } catch {
+        // Recognition may already have stopped.
+      }
+    }
+
+    setIsListening(false);
+  };
+
+  const resetTranscript = () => {
+    stopListening();
+    finalTranscriptRef.current = "";
+    setTranscript("");
+    setStatusMessage("Your message has been cleared.");
+  };
+
+  const handleGeneratePrompt = () => {
+    let nextPrompt = getRandomJournalPrompt();
+
+    // Avoid repeating the current prompt when possible.
+    while (
+      journalPromptsArray.length > 1 &&
+      nextPrompt === currentPrompt
+    ) {
+      nextPrompt = getRandomJournalPrompt();
+    }
+
+    setCurrentPrompt(nextPrompt);
+  };
+
+  const handleSend = () => {
+    const textToSend = transcript.trim();
+
+    if (!textToSend) {
+      setStatusMessage("Write or speak something before releasing it.");
+      return;
+    }
+
+    stopListening();
+
+    const randomItem =
+      spaceItems[Math.floor(Math.random() * spaceItems.length)];
+
+    const newMessage = {
+      id: `${Date.now()}-${Math.random()}`,
+      text: textToSend.slice(0, MAX_MESSAGE_LENGTH),
+      icon: randomItem,
+      x: Math.random() * 140 - 70,
+      y: -(140 + Math.random() * 100),
+    };
+
+    setMessages((previousMessages) => [
+      ...previousMessages,
+      newMessage,
+    ]);
+
+    setTranscript("");
+    finalTranscriptRef.current = "";
+    setStatusMessage("Released. Take a breath and let it go.");
+
+    const timer = setTimeout(() => {
+      setMessages((previousMessages) =>
+        previousMessages.filter((message) => message.id !== newMessage.id)
+      );
+
+      messageTimersRef.current = messageTimersRef.current.filter(
+        (existingTimer) => existingTimer !== timer
+      );
+    }, 6500);
+
+    messageTimersRef.current.push(timer);
+  };
+
+  const handleTranscriptChange = (event) => {
+    const nextValue = event.target.value.slice(0, MAX_MESSAGE_LENGTH);
+
+    setTranscript(nextValue);
+    finalTranscriptRef.current = nextValue;
+    setStatusMessage("");
+  };
+
+  const handleKeyDown = (event) => {
+    // Enter sends the message; Shift + Enter creates a new line.
+    if (event.key === "Enter" && !event.shiftKey) {
+      event.preventDefault();
+      handleSend();
+    }
+  };
+
   return (
     <>
-    <Helmet>
-  <title>Void Chat – Speak & Release Your Thoughts | Solayulm</title>
-  <meta name="description" content="Let it all go in Void Chat — a sacred space to speak your thoughts, explore prompts, and release into the digital void." />
-  <meta property="og:title" content="Void Chat | Solayulm" />
-  <meta property="og:description" content="Speak your mind. Let go. The void listens without judgment." />
-</Helmet>
+      <Helmet>
+        <title>Void Chat – Speak & Release Your Thoughts | Solayulm</title>
+        <meta
+          name="description"
+          content="Let it all go in Void Chat — a quiet space to speak your thoughts, explore prompts, and release what you are carrying."
+        />
+        <meta property="og:title" content="Void Chat | Solayulm" />
+        <meta
+          property="og:description"
+          content="Speak your mind. Let go. The void listens without judgment."
+        />
+      </Helmet>
 
-    <div style={{ 
-      maxWidth: '85%', 
-      margin: '0 auto', 
-      padding: '20px', 
-      fontFamily: 'Arial, sans-serif',
-      backgroundColor: '#0a0a1a',
-      color: '#fff',
-      minHeight: '100vh',
-      borderRadius: '30px',
-     
-    }}>
-      {/* Snow background */}
-            <div style={{ position: "fixed", top: 0, left: 0, width: "100%", height: "100%", zIndex: 0, pointerEvents: "none" }}>
-          <ShootingStars/>
-      </div>
-      
-    
-      <div style={{ textAlign: 'center', marginBottom: '30px' }}>
-        <h1 style={{ color: '#6e6ef0', fontSize: '2.5rem' }}>Void Chat</h1>
-        <p style={{ color: '#a0a0d0' }}>Anonymously speak into the void</p>
-      </div>
+      <main className={styles.voidPage}>
+        <div className={styles.starBackground} aria-hidden="true">
+          <ShootingStars />
+        </div>
 
-      <div style={{ 
-        backgroundColor: 'rgba(30, 30, 60, 0.7)', 
-        borderRadius: '15px', 
-        padding: '20px', 
-        marginBottom: '30px',
-        backdropFilter: 'blur(10px)'
-      }}>
-        <h3 style={{ color: '#6e6ef0' }}>How it works</h3>
-        <p>Speak your thoughts for as long or as little as you like, then send it into the void.</p>
-        <p>Once it's sent, allow yourself to feel like you've released the thought.</p>
-        <p>No response, just release.</p>
-        <p>Journal prompts will randomly show if you ever feel stuck on what to process.</p>
-      </div>
+        <div className={styles.pageContent}>
+          {/* Page heading */}
+          <header className={styles.pageHeader}>
+            <h1 className={styles.pageTitle}>Void Chat</h1>
 
-      <div style={{backgroundColor: 'rgba(30, 38, 60, 0.7)', 
-        borderRadius: '15px', 
-        padding: '20px', 
-        marginBottom: '30px',
-        backdropFilter: 'blur(10px)'}}>
-          <h3 style={{ color: '#6e6ef0' }}>Stuck for thought?</h3>
-        <p >Choose from a selection of journal prompts if you are stuck:</p>
-        <p style={{ textAlign: 'center' }}><strong><i>{currentPrompt}</i></strong></p>
-        <div style={{ textAlign: 'center' }}>
-         <button onClick={handleClick}
-          style={{
-                padding: '10px 25px',
-                backgroundColor: '#6e6ef0',
-                color: 'white',
-                border: 'none',
-                borderRadius: '20px',
-                cursor: 'pointer',
-                fontSize: '16px',
-                margin: '10px',
-                width: '125px',
-                alignItems: 'center'
-              }}
-              >Generate</button>
+            <p className={styles.pageSubtitle}>
+              Some thoughts don't need an answer. They just need somewhere
+              to go.
+            </p>
+          </header>
+
+          {/* How it works */}
+          <section className={styles.infoPanel}>
+            <h2 className={styles.panelTitle}>How it works</h2>
+
+            <p className={styles.panelText}>
+              Speak your thoughts for as long or as little as you like,
+              then send them into the void.
+            </p>
+
+            <p className={styles.panelText}>
+              There is no need to organise your feelings or find the
+              perfect words. Let them come as they are.
+            </p>
+
+            <p className={styles.panelText}>
+              Once your message is released, give yourself a moment to
+              breathe. Nothing needs to be solved right now.
+            </p>
+          </section>
+
+          {/* Journal prompt */}
+          <section className={styles.promptPanel}>
+            <h2 className={styles.panelTitle}>Not sure where to begin?</h2>
+
+            <p className={styles.promptIntro}>
+              Let a small question help you find the words.
+            </p>
+
+            <blockquote className={styles.promptQuote}>
+              {currentPrompt}
+            </blockquote>
+
+            <div className={styles.promptActions}>
+              <button
+                type="button"
+                className={styles.promptButton}
+                onClick={handleGeneratePrompt}
+              >
+                Generate prompt
+              </button>
+            </div>
+          </section>
+
+          {/* Void chat and release space */}
+          <section
+            className={styles.chatShell}
+            aria-label="Void Chat release space"
+          >
+            <div className={styles.releaseStage}>
+              <div className={styles.releaseHint}>
+                <h2 className={styles.releaseHintTitle}>
+                  Let it leave your orbit
+                </h2>
+
+                <p className={styles.releaseHintText}>
+                  Write it. Speak it. Release it.
+                </p>
               </div>
-      </div>
-      
 
-      <div style={{ 
-        position: 'relative', 
-        Height: '100vh', 
-        border: '2px solid #33335a', 
-        borderRadius: '15px',
-        overflow: 'hidden',
-        backgroundColor: 'rgba(10, 10, 30, 0.8)'
-      }}>
-        
-        <Aurora
-          />
-        
-        {/* Floating Messages with Animation */}
-        <AnimatePresence>
-          {messages.map((msg) => (
-            <motion.div
-              key={msg.id}
-              initial={{ opacity: 0, y: 0, scale: 0.8 }}
-              animate={{
-                opacity: 1,
-                y: msg.y,
-                x: msg.x,
-                scale: 1,
-              }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 6, ease: "easeOut" }}
-              className={styles.AnimatedText}
-              
-            >
-              <span style={{ fontSize: '20px', display: 'block', marginBottom: '5px' }}>{msg.icon}</span>
-              <p style={{ margin: 0 }}>{msg.text}</p>
-            </motion.div>
-          ))}
-        </AnimatePresence>
+              <div aria-hidden="true">
+                <Aurora />
+              </div>
 
-        {/* Input Dock */}
-        <div style={{ 
-         
-          padding: '20px', 
-          backgroundColor: 'rgba(20, 20, 40, 0.9)',
-          borderTop: '1px solid #33335a'
-        }}>
-          <div style={{ display: 'flex', gap: '10px', marginBottom: '10px' }}>
-            <button 
-              onClick={startListening} 
-              style={{
-                padding: '10px 15px',
-                backgroundColor: isListening ? '#4caf50' : '#33335a',
-                color: 'white',
-                border: 'none',
-                borderRadius: '5px',
-                cursor: 'pointer',
-                flex: 1
-              }}
-              disabled={isListening}
-            >
-              🎙 {isListening ? 'Listening...' : 'Start'}
-            </button>
-            <button 
-              onClick={stopListening} 
-              style={{
-                padding: '10px 15px',
-                backgroundColor: '#33335a',
-                color: 'white',
-                border: 'none',
-                borderRadius: '5px',
-                cursor: 'pointer',
-                flex: 1
-              }}
-              disabled={!isListening}
-            >
-              ⏸ Stop
-            </button>
-            <button
-              onClick={resetTranscript}
-              style={{
-                padding: '10px 15px',
-                backgroundColor: '#33335a',
-                color: 'white',
-                border: 'none',
-                borderRadius: '5px',
-                cursor: 'pointer',
-                flex: 1
-              }}
-            >
-              ♻ Reset
-            </button>
-          </div>
+              {/* Floating messages */}
+              <AnimatePresence>
+                {messages.map((message) => (
+                  <motion.div
+                    key={message.id}
+                    className={styles.floatingMessage}
+                    initial={{
+                      opacity: 0,
+                      y: 15,
+                      x: 0,
+                      scale: 0.85,
+                    }}
+                    animate={{
+                      opacity: [0, 1, 1, 0],
+                      y: [15, 0, message.y * 0.55, message.y],
+                      x: message.x,
+                      scale: [0.85, 1, 1, 0.85],
+                    }}
+                    exit={{ opacity: 0 }}
+                    transition={{
+                      duration: 6,
+                      ease: "easeOut",
+                      times: [0, 0.12, 0.72, 1],
+                    }}
+                  >
+                    <div className={styles.AnimatedText}>
+                      <span className={styles.messageIcon}>
+                        {message.icon}
+                      </span>
 
-          <textarea
-            value={transcript}
-            onChange={(e) => setTranscript(e.target.value)}
-            onKeyDown={(e) => e.key === 'Enter' && handleSend()}
-            rows={4}
-            placeholder="Speak or type into the void..."
-            style={{
-              width: '100%',
-              padding: '15px',
-              borderRadius: '10px',
-              backgroundColor: 'rgba(30, 30, 60, 0.7)',
-              color: 'white',
-              border: '1px solid #44447a',
-              marginBottom: '10px',
-              resize: 'vertical'
-            }}
-          />
+                      <p className={styles.messageText}>
+                        {message.text}
+                      </p>
+                    </div>
+                  </motion.div>
+                ))}
+              </AnimatePresence>
+            </div>
 
-          <div style={{ textAlign: 'right' }}>
-            <button 
-              onClick={handleSend}
-              style={{
-                padding: '10px 25px',
-                backgroundColor: '#6e6ef0',
-                color: 'white',
-                border: 'none',
-                borderRadius: '20px',
-                cursor: 'pointer',
-                fontSize: '16px',
-                width: '200px'
-              }}
-            >
-              Send to Void
-            </button>
+            {/* Input dock */}
+            <div className={styles.inputDock}>
+              <div
+                className={styles.controlGroup}
+                aria-label="Voice input controls"
+              >
+                <button
+                  type="button"
+                  className={`${styles.controlButton} ${
+                    isListening ? styles.listeningButton : ""
+                  }`}
+                  onClick={startListening}
+                  disabled={!speechSupported || isListening}
+                >
+                  🎙 {isListening ? "Listening…" : "Start speaking"}
+                </button>
+
+                <button
+                  type="button"
+                  className={styles.controlButton}
+                  onClick={stopListening}
+                  disabled={!isListening}
+                >
+                  ⏸ Stop
+                </button>
+
+                <button
+                  type="button"
+                  className={styles.controlButton}
+                  onClick={resetTranscript}
+                >
+                  ↻ Reset
+                </button>
+              </div>
+
+              {!speechSupported && (
+                <p className={styles.statusMessage}>
+                  Voice input isn't supported in this browser. You can
+                  still type your message below.
+                </p>
+              )}
+
+              <label htmlFor="void-message" className={styles.panelTitle}>
+                What would you like to release?
+              </label>
+
+              <textarea
+                id="void-message"
+                className={styles.textInput}
+                value={transcript}
+                onChange={handleTranscriptChange}
+                onKeyDown={handleKeyDown}
+                rows={4}
+                maxLength={MAX_MESSAGE_LENGTH}
+                placeholder="Speak or type into the void…"
+              />
+
+              <div className={styles.inputFooter}>
+                <div>
+                  <p className={styles.inputHelp}>
+                    Your message will float away. There is no reply to wait for.
+                  </p>
+
+                  <p className={styles.inputHelp}>
+                    {transcript.length}/{MAX_MESSAGE_LENGTH} characters
+                  </p>
+                </div>
+
+                <button
+                  type="button"
+                  className={styles.sendButton}
+                  onClick={handleSend}
+                  disabled={!transcript.trim()}
+                >
+                  Release to the void ✦
+                </button>
+              </div>
+
+              {statusMessage && (
+                <p className={styles.statusMessage} role="status">
+                  {statusMessage}
+                </p>
+              )}
+            </div>
+          </section>
+
+          {/* Exit */}
+          <div className={styles.exitSection}>
+            <Link to="/Rooms" className={styles.exitButton}>
+              Exit Void Chat
+            </Link>
           </div>
         </div>
-      </div>
-
-      <div style={{ 
-        marginTop: '30px', 
-        padding: '15px', 
-        textAlign: 'center',
-      }}>
-         <Link to="/Rooms" style={{ textDecoration: 'none', }}>
-                  <button  style={{padding: '10px 25px',
-                backgroundColor: '#6e6ef0',
-                color: 'white',
-                border: 'none',
-                borderRadius: '20px',
-                cursor: 'pointer',
-                fontSize: '16px',
-                width: '120px'}}>Exit</button></Link>
-      </div>
-       {/* Multiple shooting star layers with different colors and speeds */}
-      
-     
-      
-    </div>
+      </main>
     </>
   );
 };
