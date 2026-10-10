@@ -700,7 +700,7 @@ const ObservationDeck = () => {
                 type="button"
                 className={styles.customExitBtn}
               >
-                Exit
+                Return to rooms
               </button>
             </Link>
           </Col>

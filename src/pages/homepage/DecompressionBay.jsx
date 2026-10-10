@@ -386,7 +386,7 @@ const DecompressionBay = () => {
         {/* Return to rooms */}
 
         <footer className={styles.exitArea}>
-          <Link to="/Rooms" style={{ textDecoration: 'none' }}>
+          <Link to="/Rooms" style={{ textDecoration: 'none', display: 'flex', justifyContent: 'center' }}>
             <Button
               type="button"
               className={styles.MinutesButton}
