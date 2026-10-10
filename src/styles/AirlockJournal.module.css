@@ -1,49 +1,174 @@
 .textArea {
   opacity: 0.5;
-  background-color: rgba(113, 112, 112, 0.6); /* semi see-through */
+  background-color: rgba(113, 112, 112, 0.6);
   border-radius: 30px;
   color: white;
   padding: 20px;
- box-shadow: 0 0 20px #b5acd9;;
-  border: 2px solid white; 
-  margin-bottom: 30px;
- 
-}
-
-
-.sendBtn, .ExitBtn {
-background: linear-gradient(90deg, #3b3b6a 0%, #52528f 50%, #9f9ff9 100%);
-  /* #1a1a2e;  */
-  color: #ffffff;
-  border: 2px solid #5d3fd3; 
-  border-radius: 20px;
-  padding: 10px 20px;
-  font-weight: bold;
-  transition: all 0.3s ease;
-   box-shadow: 0 0 20px #b5acd9;
-   width: 100%;
-}
-
-.ExitBtn {
-
-   width: 10%;
-}
-
-
-.sendBtn:hover, .ExitBtn {
-  background-color:  #9f9ff9;
-outline: none ;
-  color: #fff;
   box-shadow: 0 0 20px #b5acd9;
+  border: 2px solid white;
+  margin-bottom: 30px;
 }
-
-
+/* =========================
+   EXPLORE BUTTON
+========================= */
+.exploringButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  align-self: flex-start;
+  width: auto;
+  min-width: 135px;
+  margin: 26px 0 0;
+  padding: 0;
+  border: 1px solid rgba(221, 176, 255, 0.7);
+  border-radius: 9px;
+  background: linear-gradient(135deg, #302044, #493365);
+  box-shadow: 0 0 18px rgba(181, 140, 217, 0.12);
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    transform 0.25s ease;
+}
+.exploringButton:hover {
+  transform: translateY(-2px);
+  border-color: #ddb0ff;
+  background: linear-gradient(135deg, #493365, #624582);
+  box-shadow: 0 0 22px rgba(221, 176, 255, 0.22);
+}
+/* Override Bootstrap defaults inside Explore */
+.exploringButton a {
+  display: block;
+  text-decoration: none;
+}
+.exploringButton a .btn {
+  display: block;
+  width: 100%;
+  padding: 11px 24px;
+  color: #f5f0ff !important;
+  font-family: "Orbitron", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+  background: transparent !important;
+  border: none !important;
+  border-radius: 9px !important;
+  box-shadow: none !important;
+  animation: none;
+}
+.exploringButton a .btn:hover {
+  color: #ffffff !important;
+  background: transparent !important;
+}
+.exploringButton a .btn:disabled {
+  color: rgba(245, 240, 255, 0.4) !important;
+  cursor: not-allowed;
+}
+/* =========================
+   SEND & EXIT BUTTONS
+========================= */
+.sendBtn,
+.ExitBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 11px 24px;
+  margin: 18px 8px 0 0;
+  color: #f5f0ff !important;
+  font-family: "Orbitron", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+  background: linear-gradient(
+    135deg,
+    #302044 0%,
+    #493365 100%
+  ) !important;
+  border: 1px solid rgba(221, 176, 255, 0.7) !important;
+  border-radius: 9px !important;
+  box-shadow: 0 0 18px rgba(181, 140, 217, 0.12) !important;
+  outline: none;
+  cursor: pointer;
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    transform 0.25s ease;
+}
+/* Send button */
+.sendBtn {
+  width: 100%;
+}
+/* Exit button */
+.ExitBtn {
+  width: 10%;
+  min-width: 100px;
+}
+/* Both buttons on hover */
+.sendBtn:hover,
+.ExitBtn:hover {
+  color: #ffffff !important;
+  background: linear-gradient(
+    135deg,
+    #493365 0%,
+    #624582 100%
+  ) !important;
+  border-color: #ddb0ff !important;
+  box-shadow: 0 0 22px rgba(221, 176, 255, 0.22) !important;
+  transform: translateY(-2px);
+}
+/* Keyboard accessibility */
+.sendBtn:focus-visible,
+.ExitBtn:focus-visible {
+  outline: 2px solid #ddb0ff !important;
+  outline-offset: 3px;
+}
+/* Disabled Send button */
+.sendBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none !important;
+}
+/* =========================
+   MOBILE
+========================= */
 @media (max-width: 768px) {
   .textArea {
     margin-left: 10px;
   }
-
   .ExitBtn {
     width: 30%;
+    min-width: 100px;
   }
+}
+
+/* =========================
+   TEXT AREA
+========================= */
+
+.textArea {
+  color: #f5f0ff;
+  background-color: #151027;
+  border: 1px solid rgba(221, 176, 255, 0.3);
+  border-radius: 10px;
+  padding: 14px 16px;
+  font-family: inherit;
+  line-height: 1.7;
+
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.textArea::placeholder {
+  color: rgba(245, 240, 255, 0.45);
+}
+
+.textArea:focus {
+  color: #f5f0ff;
+  background-color: #151027;
+  border-color: #ddb0ff;
+  outline: none;
+  box-shadow: 0 0 14px rgba(221, 176, 255, 0.12);
 }
