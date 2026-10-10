@@ -1,12 +1,570 @@
+/* =========================
+HOLO ROOM — MAIN PAGE
+========================= */
+
+.holoPage {
+position: relative;
+isolation: isolate;
+width: min(94%, 1400px);
+min-height: 100vh;
+margin: 0 auto;
+padding: 36px clamp(15px, 3vw, 42px);
+
+color: #f5f0ff;
+font-family: Arial, sans-serif;
+
+background:
+radial-gradient(ellipse at 12% 4%, rgba(112, 76, 165, 0.2), transparent 38%),
+radial-gradient(ellipse at 88% 35%, rgba(69, 79, 155, 0.16), transparent 42%),
+linear-gradient(145deg, #100d20 0%, #151129 48%, #0b1022 100%);
+
+border: 1px solid rgba(190, 157, 235, 0.12);
+border-radius: 28px;
+box-shadow: 0 20px 70px rgba(0, 0, 0, 0.2);
+}
+
+.holoContent {
+position: relative;
+z-index: 1;
+}
+
+.pageHeader {
+max-width: 850px;
+margin: 0 auto 36px;
+text-align: center;
+}
+
+.pageTitle {
+margin: 0 0 14px;
+color: #ddb0ff;
+font-family: “Orbitron”, sans-serif;
+font-size: clamp(1.8rem, 4vw, 2.7rem);
+font-weight: 500;
+letter-spacing: 2px;
+text-shadow: 0 0 24px rgba(190, 140, 255, 0.2);
+}
+
+.pageSubtitle {
+max-width: 720px;
+margin: 0 auto;
+color: #b9b0d5;
+font-size: 0.97rem;
+line-height: 1.8;
+}
+
+/* =========================
+PANELS
+========================= */
+
+.panel {
+margin-bottom: 26px;
+padding: clamp(20px, 3vw, 30px);
+
+background: linear-gradient(
+135deg,
+rgba(45, 33, 68, 0.76),
+rgba(24, 27, 54, 0.8)
+);
+
+border: 1px solid rgba(190, 157, 235, 0.22);
+border-radius: 18px;
+box-shadow:
+0 12px 35px rgba(0, 0, 0, 0.12),
+inset 0 1px 0 rgba(255, 255, 255, 0.025);
+
+backdrop-filter: blur(14px);
+-webkit-backdrop-filter: blur(14px);
+}
+
+.sectionTitle {
+margin: 0 0 14px;
+color: #ddb0ff;
+font-family: “Orbitron”, sans-serif;
+font-size: clamp(1rem, 2vw, 1.2rem);
+font-weight: 500;
+letter-spacing: 0.6px;
+text-align: center;
+}
+
+.sectionDescription {
+margin: 0 auto 20px;
+max-width: 760px;
+color: #c9c1dc;
+font-size: 0.94rem;
+line-height: 1.8;
+text-align: center;
+}
+
+.instructionList {
+display: grid;
+grid-template-columns: repeat(2, minmax(0, 1fr));
+gap: 16px 22px;
+margin: 24px 0 0;
+padding: 0;
+list-style: none;
+counter-reset: holo-step;
+}
+
+.instructionItem {
+position: relative;
+padding: 18px 18px 18px 52px;
+background: rgba(12, 14, 34, 0.36);
+border: 1px solid rgba(190, 157, 235, 0.14);
+border-radius: 13px;
+counter-increment: holo-step;
+}
+
+.instructionItem::before {
+position: absolute;
+top: 18px;
+left: 17px;
+display: grid;
+place-items: center;
+width: 24px;
+height: 24px;
+content: counter(holo-step);
+color: #f4eaff;
+font-family: “Orbitron”, sans-serif;
+font-size: 0.72rem;
+background: rgba(119, 83, 157, 0.55);
+border: 1px solid rgba(221, 176, 255, 0.42);
+border-radius: 50%;
+}
+
+.instructionTitle {
+margin: 0 0 8px;
+color: #e7d1ff;
+font-size: 0.94rem;
+font-weight: 600;
+}
+
+.instructionText {
+margin: 0;
+color: #c5bdd9;
+font-size: 0.88rem;
+line-height: 1.7;
+}
+
+/* =========================
+JOURNAL PROMPTS
+========================= */
+
+.promptCategoryList {
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+gap: 10px;
+margin: 24px 0;
+}
+
+.promptCategoryButton,
+.toolTab,
+.toolButton,
+.actionButton,
+.exitButton {
+display: inline-flex;
+align-items: center;
+justify-content: center;
+min-height: 42px;
+padding: 11px 17px;
+
+color: #e9e1f8;
+font-family: “Orbitron”, sans-serif;
+font-size: 0.72rem;
+font-weight: 500;
+letter-spacing: 0.35px;
+line-height: 1.5;
+text-align: center;
+text-decoration: none;
+
+background: linear-gradient(135deg, #302044, #493365);
+border: 1px solid rgba(221, 176, 255, 0.45);
+border-radius: 10px;
+cursor: pointer;
+
+transition:
+background 0.25s ease,
+border-color 0.25s ease,
+box-shadow 0.25s ease,
+transform 0.25s ease;
+}
+
+.promptCategoryButton:hover,
+.toolTab:hover,
+.toolButton:hover,
+.actionButton:hover,
+.exitButton:hover {
+color: #fff;
+background: linear-gradient(135deg, #493365, #624582);
+border-color: #ddb0ff;
+box-shadow: 0 0 20px rgba(221, 176, 255, 0.16);
+transform: translateY(-1px);
+}
+
+.promptCategoryButtonActive,
+.toolTabActive {
+color: #fff;
+background: linear-gradient(135deg, #654884, #795b9c);
+border-color: #e2c2ff;
+box-shadow: 0 0 18px rgba(190, 140, 255, 0.14);
+}
+
+.promptQuote {
+max-width: 800px;
+min-height: 86px;
+display: flex;
+align-items: center;
+justify-content: center;
+margin: 0 auto 22px;
+padding: 22px;
+
+color: #f4eaff;
+font-size: 1rem;
+font-style: italic;
+line-height: 1.8;
+text-align: center;
+
+background: rgba(12, 15, 36, 0.42);
+border-left: 2px solid rgba(221, 176, 255, 0.7);
+border-radius: 0 13px 13px 0;
+}
+
+.promptActions {
+display: flex;
+justify-content: center;
+}
+
+/* =========================
+CREATIVE TOOL SELECTOR
+========================= */
+
+.toolSection {
+margin-top: 34px;
+}
+
+.toolTabs {
+display: grid;
+grid-template-columns: repeat(4, minmax(0, 1fr));
+gap: 12px;
+margin: 24px 0;
+}
+
+.toolTab {
+min-height: 54px;
+padding: 13px 10px;
+font-size: 0.75rem;
+}
+
+.toolPanel {
+min-width: 0;
+margin-top: 18px;
+padding: clamp(15px, 2.5vw, 25px);
+
+background: linear-gradient(
+145deg,
+rgba(20, 20, 45, 0.9),
+rgba(15, 20, 43, 0.92)
+);
+
+border: 1px solid rgba(190, 157, 235, 0.23);
+border-radius: 18px;
+box-shadow: inset 0 0 28px rgba(103, 78, 154, 0.06);
+}
+
+.toolHeading {
+margin: 0 0 8px;
+color: #e2c2ff;
+font-family: “Orbitron”, sans-serif;
+font-size: 1rem;
+font-weight: 500;
+text-align: center;
+}
+
+.toolDescription {
+margin: 0 auto 20px;
+color: #aaa1c6;
+font-size: 0.86rem;
+line-height: 1.7;
+text-align: center;
+}
+
+/* =========================
+TOOLBAR AND BUTTONS
+========================= */
+
+.toolbar {
+display: flex;
+flex-wrap: wrap;
+align-items: center;
+justify-content: center;
+gap: 9px;
+margin: 18px 0;
+}
+
+.toolButton {
+min-height: 39px;
+padding: 9px 14px;
+font-family: Arial, sans-serif;
+font-size: 0.84rem;
+letter-spacing: 0;
+background: rgba(54, 43, 77, 0.75);
+}
+
+.toolButtonActive {
+color: #fff;
+background: rgba(107, 75, 143, 0.88);
+border-color: #ddb0ff;
+}
+
+.toolButton:disabled {
+opacity: 0.45;
+cursor: not-allowed;
+transform: none;
+box-shadow: none;
+}
+
+.actionButton {
+font-family: Arial, sans-serif;
+font-size: 0.85rem;
+letter-spacing: 0;
+}
+
+.actionRow {
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+gap: 10px;
+margin: 16px 0;
+}
+
+.colorPickerWrap {
+display: flex;
+justify-content: center;
+margin: 14px auto 20px;
+}
+
+/* =========================
+CANVAS
+========================= */
+
 .canvasContainer {
-  touch-action: none;
-  user-select: none;
-  -webkit-tap-highlight-color: transparent;
-  position: relative;
-  overflow: hidden;
+position: relative;
+width: 100%;
+margin: 20px auto 0;
+overflow: hidden;
+touch-action: none;
+user-select: none;
+-webkit-user-select: none;
+-webkit-tap-highlight-color: transparent;
+
+background:
+radial-gradient(ellipse at 50% 50%, rgba(70, 53, 109, 0.18), transparent 65%),
+#0b0d1b;
+
+border: 1px solid rgba(190, 157, 235, 0.27);
+border-radius: 14px;
+box-shadow: 0 0 24px rgba(103, 78, 154, 0.08);
 }
 
 .canvasContainer canvas {
-  touch-action: none;
-  user-select: none;
+display: block;
+max-width: 100%;
+touch-action: none;
+user-select: none;
+-webkit-user-select: none;
+-webkit-tap-highlight-color: transparent;
+}
+
+/* =========================
+CONNECT THE DOTS
+========================= */
+
+.constellationChoices {
+display: grid;
+grid-template-columns: repeat(3, minmax(0, 1fr));
+gap: 10px;
+margin: 20px 0;
+}
+
+.constellationTitle {
+margin: 20px 0 10px;
+color: #ddb0ff;
+font-family: “Orbitron”, sans-serif;
+font-size: 1.05rem;
+font-weight: 500;
+text-align: center;
+}
+
+.constellationProgress {
+margin: 0 0 15px;
+color: #b9b0d5;
+font-size: 0.84rem;
+text-align: center;
+}
+
+.constellationStage {
+max-width: 900px;
+margin: 0 auto;
+overflow: hidden;
+background:
+radial-gradient(ellipse at center, rgba(72, 58, 119, 0.23), transparent 65%),
+rgba(8, 11, 28, 0.7);
+border: 1px solid rgba(190, 157, 235, 0.23);
+border-radius: 14px;
+}
+
+/* =========================
+MOODBOARD
+========================= */
+
+.fileInput {
+display: block;
+width: 100%;
+max-width: 420px;
+padding: 10px;
+color: #d8d0e9;
+font-size: 0.85rem;
+background: rgba(12, 15, 34, 0.75);
+border: 1px solid rgba(190, 157, 235, 0.28);
+border-radius: 10px;
+}
+
+.fileInput::file-selector-button {
+margin-right: 12px;
+padding: 8px 12px;
+color: #f4eaff;
+background: #493365;
+border: 1px solid rgba(221, 176, 255, 0.4);
+border-radius: 7px;
+cursor: pointer;
+}
+
+.moodboardHint {
+margin: 0 0 12px;
+color: #b9b0d5;
+font-size: 0.82rem;
+text-align: center;
+}
+
+/* =========================
+EXIT
+========================= */
+
+.exitSection {
+display: flex;
+justify-content: center;
+padding: 32px 0 10px;
+}
+
+.exitButton {
+min-width: 130px;
+}
+
+/* =========================
+ACCESSIBILITY
+========================= */
+
+.promptCategoryButton:focus-visible,
+.toolTab:focus-visible,
+.toolButton:focus-visible,
+.actionButton:focus-visible,
+.exitButton:focus-visible {
+outline: 2px solid #ddb0ff;
+outline-offset: 3px;
+}
+
+/* =========================
+RESPONSIVE
+========================= */
+
+@media (max-width: 900px) {
+.toolTabs {
+grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.instructionList {
+grid-template-columns: 1fr;
+}
+
+.constellationChoices {
+grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+}
+
+@media (max-width: 600px) {
+.holoPage {
+width: 100%;
+padding: 26px 14px;
+border-radius: 0;
+border-left: 0;
+border-right: 0;
+}
+
+.pageHeader {
+margin-bottom: 26px;
+}
+
+.panel {
+padding: 19px 16px;
+margin-bottom: 20px;
+border-radius: 15px;
+}
+
+.instructionItem {
+padding: 16px 14px 16px 48px;
+}
+
+.toolPanel {
+padding: 13px;
+border-radius: 14px;
+}
+
+.toolTabs {
+gap: 8px;
+}
+
+.toolTab {
+min-height: 48px;
+font-size: 0.68rem;
+}
+
+.promptCategoryList {
+gap: 8px;
+}
+
+.promptCategoryButton {
+width: 100%;
+}
+
+.promptQuote {
+padding: 17px;
+font-size: 0.93rem;
+}
+
+.toolbar {
+gap: 8px;
+}
+
+.toolButton,
+.actionButton {
+flex: 1 1 42%;
+}
+
+.constellationChoices {
+grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.fileInput {
+max-width: 100%;
+}
+}
+
+@media (prefers-reduced-motion: reduce) {
+.promptCategoryButton,
+.toolTab,
+.toolButton,
+.actionButton,
+.exitButton {
+transition: none;
+}
 }
