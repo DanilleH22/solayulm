@@ -16,14 +16,15 @@
   html, body, #root {
     display: block;
     height: 100%;
-    margin: 0;
+    margin: 2px;
     padding: 0;
   }
  .App {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background-image: url('../src/assets/images/airlockBG.png');
+   background-image: url('../src/assets/images/design2.jpeg');
+  
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
