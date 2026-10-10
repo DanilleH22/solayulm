@@ -3,7 +3,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 import Form from 'react-bootstrap/Form';
 import s5 from '../assets/images/s5.PNG';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTwitter, faInstagram, faGithub, faLinkedin, faYoutube, faFacebook, faTiktok } from "@fortawesome/free-brands-svg-icons";
+import { faTwitter, faInstagram, faGithub, faLinkedin, faYoutube, faFacebook, faTiktok, faPinterest } from "@fortawesome/free-brands-svg-icons";
 import { faVolumeUp, faVolumeMute } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router";
 
@@ -149,12 +149,12 @@ const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   <a href="https://instagram.com/yourprofile" target="_blank" rel="noopener noreferrer">
     <FontAwesomeIcon icon={faInstagram} size="2x" />
   </a>
-  <a href="https://github.com/yourprofile" target="_blank" rel="noopener noreferrer">
-    <FontAwesomeIcon icon={faGithub} size="2x" />
+   <a href="https://pinterest.com/yourprofile" target="_blank" rel="noopener noreferrer">
+    <FontAwesomeIcon icon={faPinterest} size="2x" />
   </a>
-  <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener noreferrer">
+  {/* <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener noreferrer">
     <FontAwesomeIcon icon={faLinkedin} size="2x" />
-  </a>
+  </a> */}
   <a href="https://www.tiktok.com/en/" target="_blank" rel="noopener noreferrer">
     <FontAwesomeIcon icon={faTiktok} size="2x" />
   </a>
