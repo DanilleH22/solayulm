@@ -14,7 +14,7 @@ import { Link } from "react-router";
 import { Helmet } from "react-helmet-async";
 
 import WavesBackground from "../../components/WavesBackground.jsx";
-import styles from "../../styles/homepage2.module.css";
+import styles from "../../styles/CommCenter.module.css";
 
 // ==========================================
 // AUDIO CHANNELS
