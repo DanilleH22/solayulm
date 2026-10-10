@@ -1,246 +1,533 @@
-/* Ensure no default margin/padding */
-body, html {
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden; 
+
+/* =========================
+   SOLAYULM HOMEPAGE
+   Matching the Shop aesthetic
+========================= */
+
+/* Global page reset */
+:global(html),
+:global(body) {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  background: #100c20;
 }
+
+:global(body) {
+  color: #f5f0ff;
+}
+
+:global(*) {
+  box-sizing: border-box;
+}
+
+/* =========================
+   HERO SECTION
+========================= */
 
 .imgTextWrapper {
-    position: relative;
-    width: 100%;       
-    height: 80vh;     
-    overflow: hidden;
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  min-height: 680px;
+  height: 85vh;
+  overflow: hidden;
+  color: #f5f0ff;
+  background:
+    radial-gradient(
+      ellipse at 50% 20%,
+      rgba(126, 82, 171, 0.25),
+      transparent 55%
+    ),
+    linear-gradient(180deg, #171027 0%, #100c20 100%);
 }
 
+/* Optional full-size background image */
 .bgImage {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
-.overlayText {
-    position: absolute;
-    top: 70%;
-    left: 18%;
-    transform: translate(-50%, -50%);
-    color: white;
-    text-align: center;
-    padding: 20px;
-    width: 35%;
-}
-
-.TextTop {
-    position: absolute;
-    top: 20%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: white;
-    text-align: center;
-    padding: 20px;
-    
-}
-
-.TextBottom {
-    position: absolute;
-    top: 60%;
-    left: 80%;
-    transform: translate(-50%, -50%);
-    color: white;
-    text-align: center;
-    padding: 20px;
-    width: 35%;
-}
-
+/* Main space image */
 .bgImage2 {
-    position: absolute;
-    top: 60%;
-    left: 50%;
-    width: 40%;     
-    transform: translate(-50%, -50%);
-  }
-  
+  position: absolute;
+  z-index: -1;
+  top: 60%;
+  left: 50%;
+  display: block;
+  width: 43%;
+  max-width: 600px;
+  max-height: 68%;
+  object-fit: contain;
+  object-position: center;
+  transform: translate(-50%, -50%);
+  filter: drop-shadow(0 15px 35px rgba(0, 0, 0, 0.25));
+}
+
+/* SOLAYULM title */
+.TextTop {
+  position: absolute;
+  z-index: 2;
+  top: 7%;
+  left: 50%;
+  width: 100%;
+  padding: 15px;
+  color: #f8f2ff;
+  text-align: center;
+  transform: translateX(-50%);
+}
+
+.TextTop h1 {
+  margin: 0;
+  text-shadow: 0 4px 25px rgba(0, 0, 0, 0.6);
+}
+
+/* Introductory text */
+.overlayText {
+  position: absolute;
+  z-index: 2;
+  top: 65%;
+  left: 4%;
+  width: 29%;
+  padding: 24px;
+  color: #f5f0ff;
+  border: 1px solid rgba(221, 176, 255, 0.22);
+  border-radius: 16px;
+  background: rgba(16, 12, 32, 0.72);
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.18);
+  text-align: left;
+  transform: translateY(-50%);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.overlayText h1 {
+  margin-bottom: 14px;
+  color: #ddb0ff;
+  font-family: "Saira Stencil One", sans-serif;
+  font-size: clamp(1.4rem, 2vw, 2rem);
+  line-height: 1.35;
+}
+
+.overlayText p {
+  margin: 0;
+  color: rgba(245, 240, 255, 0.8);
+  font-size: 0.91rem;
+  line-height: 1.85;
+}
+
+/* Welcome message */
+.TextBottom {
+  position: absolute;
+  z-index: 2;
+  top: 60%;
+  right: 3%;
+  width: 24%;
+  padding: 20px;
+  color: #f5f0ff;
+  text-align: center;
+  transform: translateY(-50%);
+}
+
+.TextBottom h3 {
+  margin-bottom: 12px;
+  color: #f5f0ff;
+  font-family: "Orbitron", sans-serif;
+  font-size: clamp(1rem, 1.6vw, 1.4rem);
+  line-height: 1.65;
+  text-shadow: 0 3px 15px rgba(0, 0, 0, 0.7);
+}
+
+/* =========================
+   HERO BUTTONS
+========================= */
+
+.exploreButton,
+.shopButton {
+  position: absolute;
+  z-index: 3;
+  top: 85%;
+  width: 155px;
+  transform: translate(-50%, -50%);
+}
 
 .exploreButton {
-    position: absolute;
-    top: 85%;
-    left: 60%;
-    transform: translate(-50%, -50%);
-    font-size: 18px;
-    color: white;
-    border-radius: 20px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    width: 30%;
+  left: calc(50% - 90px);
 }
 
-
-
-.exploreButton button {
-    background: linear-gradient(90deg, #3b3b6a 0%, #52528f 50%, #9f9ff9 100%);
-    border: 2px solid #5d3fd3; 
-  border-radius: 20px;
+.shopButton {
+  left: calc(50% + 90px);
 }
 
-
-.exploreButtonbutton:hover {
-      background: linear-gradient(90deg, #2e2e52 0%, #373761 50%, #7878bb 100%);
+.exploreButton a,
+.shopButton a {
+  display: block;
+  text-decoration: none;
 }
 
+.exploreButton button,
+.shopButton button {
+  width: 100%;
+  min-height: 48px;
+  padding: 12px 20px;
+  color: #171020 !important;
+  border: 1px solid #ddb0ff !important;
+  border-radius: 8px !important;
+  background: #ddb0ff !important;
+  box-shadow: none !important;
+  font-family: "Orbitron", sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.exploreButton button:hover,
+.shopButton button:hover {
+  color: #fff !important;
+  border-color: #c99be9 !important;
+  background: #78549a !important;
+  transform: translateY(-2px);
+}
+
+.exploreButton button:focus-visible,
+.shopButton button:focus-visible {
+  outline: 2px solid #c8c894 !important;
+  outline-offset: 4px;
+}
+
+/* =========================
+   WHO ARE YOU SECTION
+========================= */
+
+.servicesTextWrapper {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  margin: 0;
+  padding: 85px max(5%, 25px);
+  background:
+    radial-gradient(
+      ellipse at 0% 50%,
+      rgba(118, 81, 163, 0.16),
+      transparent 55%
+    ),
+    #100c20;
+}
 
 .servicesText {
-    
-    padding: 20px;
-    margin: 20px auto;
-    
-    width: 75%;
-    text-align: left; 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    height: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 75%;
+  height: auto;
+  margin: 0 auto;
+  padding: 35px;
+  border: 1px solid rgba(221, 176, 255, 0.2);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.025);
 }
 
 .servicesText h3 {
-    color: white;
-    margin-bottom: 20px;
-    text-align: center;
+  margin-bottom: 28px;
+  color: #f8f2ff;
+  font-family: "Saira Stencil One", sans-serif;
+  font-size: clamp(1.7rem, 3vw, 2.4rem);
+  text-align: left;
 }
 
 .servicesText ul {
-    list-style: none; 
-    padding-left: 0px;      
-    margin: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
 .servicesText li {
-    color: white;
-    font-size: 18px;
-    line-height: 1.6;
-    margin-bottom: 15px;
-    padding-left: 30px; 
-    position: relative; 
+  position: relative;
+  margin-bottom: 17px;
+  padding-left: 32px;
+  color: rgba(245, 240, 255, 0.8);
+  font-size: 0.95rem;
+  line-height: 1.85;
 }
 
+.servicesText li:last-child {
+  margin-bottom: 0;
+  color: #ddb0ff;
+}
 
-.servicesText li::before {
-  
-  font-family: "Font Awesome 6 Free"; 
-  font-weight: 900; 
+.servicesText li svg {
   position: absolute;
+  top: 6px;
   left: 0;
-  top: 0;
-  
+  color: #c8c894;
+  font-size: 0.9rem;
 }
 
-  .servicesTextWrapper {
-    display: flex;
-    align-items: center; 
-  }
-  
-  
-  
-  .servicesImg img {
-    
-    height: 80%;
-    transform: rotate(40deg);
-    border-radius: 10px;
-  }
-  
-  
+/* Side image */
+.servicesImg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
 
-  .tabs {
-    display: flex;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    scrollbar-width: thin;
-    color: black !important;
-  }
-  
-  .tabs::-webkit-scrollbar {
-    height: 6px;
-  }
-  
+.servicesImg img {
+  display: block;
+  width: 100%;
+  max-width: 270px;
+  height: auto;
+  border: 1px solid rgba(221, 176, 255, 0.18);
+  border-radius: 18px;
+  object-fit: contain;
+  filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.25));
+}
 
+/* =========================
+   ROOM TABS
+========================= */
 
-  .tabTextLeft {
-    text-align: center;
-    padding-left: 10px;
-    margin: 10px;
-    width: 40%;
-    display: flex;
-    align-items: center;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-content: center;
-    top: 80%;
+/* Tab navigation */
+.tabs {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 8px;
+  margin: 0;
+  padding: 18px 5%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  border-top: 1px solid rgba(221, 176, 255, 0.15);
+  border-bottom: 1px solid rgba(221, 176, 255, 0.15);
+  background: #151027;
+  scrollbar-width: thin;
+  scrollbar-color: #78549a #151027;
+}
 
-  }
+.tabs::-webkit-scrollbar {
+  height: 5px;
+}
 
-  .tabTextRight {
-    text-align: center;
-    padding-top: 10px;
-    margin: 10px;
-    width: 35%;
-    display: flex;
-    align-items: center;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-content: center;
-  
+.tabs::-webkit-scrollbar-track {
+  background: #151027;
+}
 
-  }
+.tabs::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: #78549a;
+}
 
-  .inlineText {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  
-  .inlineText h4,
-  .inlineText p {
-    margin: 0;
-    color: white;
-    font-size: 16px;
-  }
-  
-
-  .tabTextRightBackground {
-   /* background-color: rgba(221, 176, 255, 1); */
-   background: linear-gradient(90deg, #3b3b6a 0%, #52528f 50%, #9f9ff9 100%);
-    border-radius:  30% 5% 5% 5%;;
-    padding: 5px;
-    height: auto;
-    margin: 10px;
-    
-  }
-
+/* Bootstrap tab buttons */
 .tabs :global(.nav-link) {
-  color: white !important;         
-  background-color: transparent !important;
-  border: none !important;
+  flex: 0 0 auto;
+  padding: 12px 18px;
+  color: rgba(245, 240, 255, 0.72) !important;
+  border: 1px solid transparent !important;
+  border-radius: 8px !important;
+  background: transparent !important;
+  font-family: "Orbitron", sans-serif;
+  font-size: 0.75rem;
+  transition: all 0.2s ease;
 }
 
-/* On hover (optional highlight) */
 .tabs :global(.nav-link:hover) {
-  color: #ddd !important;
-  background-color: rgba(255, 255, 255, 0.1) !important;
+  color: #ddb0ff !important;
+  border-color: rgba(221, 176, 255, 0.2) !important;
+  background: rgba(221, 176, 255, 0.06) !important;
 }
 
-/* Active tab */
 .tabs :global(.nav-link.active) {
-  color: black !important;          
-  background-color: white !important;
-  border: none !important;
-  border-radius: 6px 6px 0 0;    
+  color: #171020 !important;
+  border-color: #ddb0ff !important;
+  border-radius: 8px !important;
+  background: #ddb0ff !important;
 }
 
+/* Individual room tab panels */
+.tabContent {
+  padding: 45px 3% 35px;
+  color: #f5f0ff;
+  border: 0;
+  background:
+    radial-gradient(
+      ellipse at 50% 0%,
+      rgba(126, 82, 171, 0.12),
+      transparent 65%
+    ),
+    #100c20;
+}
+
+.tabContent > .row {
+  align-items: center;
+}
+
+/* Room descriptions */
+.tabTextLeft {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  width: 100%;
+  margin: 10px 0;
+  padding: 28px;
+  color: rgba(245, 240, 255, 0.78);
+  border: 1px solid rgba(221, 176, 255, 0.18);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.025);
+  text-align: left;
+  height: 100%;
+}
+
+.tabTextLeft h4 {
+  margin-bottom: 18px;
+  color: #ddb0ff;
+  font-family: "Saira Stencil One", sans-serif;
+  font-size: 1.45rem;
+  line-height: 1.45;
+}
+
+.tabTextLeft p {
+  margin-bottom: 16px;
+  font-size: 0.88rem;
+  line-height: 1.9;
+}
+
+.tabTextLeft p:last-child {
+  margin-bottom: 0;
+}
+
+
+/* =========================
+   ROOM TECHNICAL INFORMATION
+========================= */
+
+.tabTextRight {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  width: 100%;
+  margin: 10px 0;
+  padding: 10px;
+  min-width: 0;
+}
+
+/* Main information panel */
+.tabTextRightBackground {
+  width: 100%;
+  height: auto;
+  margin: 0;
+  padding: 24px;
+  border: 1px solid rgba(221, 176, 255, 0.25);
+  border-radius: 14px;
+  background:
+    radial-gradient(
+      circle at 100% 0%,
+      rgba(120, 84, 154, 0.18),
+      transparent 65%
+    ),
+    #1b1430;
+}
+
+/* Inner wrapper around all the information */
+.tabTextRightBackground > div {
+  width: 100%;
+  padding: 0 !important;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  height: auto;
+}
+
+/* Each individual item */
+.inlineText {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  min-width: 0;
+  min-height: 85px;
+  padding: 14px;
+  border: 1px solid rgba(221, 176, 255, 0.12);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.025);
+}
+
+/* Label above the value */
+.inlineText h3,
+.inlineText h4 {
+  margin: 0;
+  color: #c8c894;
+  font-family: "Orbitron", sans-serif;
+  font-size: 0.7rem;
+  font-weight: 500;
+  line-height: 1.5;
+  text-align: left;
+}
+
+/* Value underneath the label */
+.inlineText p {
+  margin: 0;
+  color: rgba(245, 240, 255, 0.9);
+  font-size: 0.85rem;
+  line-height: 1.6;
+  text-align: left;
+  overflow-wrap: anywhere;
+}
+
+
+
+/* =========================
+   ENTER BUTTONS
+========================= */
+
+.linkButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 28px auto 10px;
+  text-align: center;
+}
+
+.enterButton {
+  display: block;
+  width: auto;
+  min-width: 150px;
+  margin: 8px auto;
+  padding: 13px 28px;
+  color: #171020 !important;
+  border: 1px solid #ddb0ff !important;
+  border-radius: 8px !important;
+  background: #ddb0ff !important;
+  box-shadow: none !important;
+  font-family: "Orbitron", sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.enterButton:hover {
+  color: #fff !important;
+  border-color: #c99be9 !important;
+  background: #78549a !important;
+  transform: translateY(-2px);
+}
+
+.enterButton:focus-visible {
+  outline: 2px solid #c8c894 !important;
+  outline-offset: 4px;
+}
+
+/* Existing optional tab styles */
 .tabDecompression {
-  background: linear-gradient(90deg, #89f7fe, #66a6ff);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #ddb0ff;
   font-weight: bold;
 }
 
@@ -248,169 +535,463 @@ body, html {
   position: relative;
   padding: 8px 16px;
 }
+
 .tabShape::before {
-  content: '';
   position: absolute;
+  z-index: -1;
   top: 50%;
   left: 50%;
   width: 80%;
   height: 60%;
-  background: rgba(255, 255, 255, 0.1);
   border-radius: 12px;
+  background: rgba(221, 176, 255, 0.08);
+  content: "";
   transform: translate(-50%, -50%);
-  z-index: -1;
 }
 
 .animationContainer {
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   height: 400px;
   padding: 20px;
 }
 
-@media screen  and (max-width: 768px) {
-  .tabContent{
-    margin-left: 25px;
+
+/* =========================
+   COSMIC QUOTE SECTION
+========================= */
+
+.quoteSection {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 85px 8%;
+  overflow: hidden;
+  text-align: center;
+
+  background:
+    radial-gradient(
+      ellipse at 50% 50%,
+      rgba(112, 72, 153, 0.2),
+      transparent 70%
+    ),
+    linear-gradient(
+      180deg,
+      #100c20 0%,
+      #171027 50%,
+      #100c20 100%
+    );
+
+  border-top: 1px solid rgba(221, 176, 255, 0.1);
+  border-bottom: 1px solid rgba(221, 176, 255, 0.1);
+}
+
+/* Soft atmospheric glow */
+.quoteSection::before {
+  content: "";
+  position: absolute;
+  width: 320px;
+  height: 320px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(151, 103, 199, 0.08);
+  filter: blur(90px);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.quoteContent {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 850px;
+  margin: 0 auto;
+}
+
+.quoteEyebrow {
+  display: block;
+  margin-bottom: 24px;
+  color: #c8c894;
+  font-family: "Orbitron", sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 3px;
+  line-height: 1.8;
+}
+
+.quoteText {
+  margin: 0 auto;
+  color: #f5f0ff;
+  font-family: "Saira Stencil One", sans-serif;
+  font-size: clamp(1.5rem, 3.2vw, 2.5rem);
+  font-weight: 400;
+  line-height: 1.6;
+  letter-spacing: 0.3px;
+}
+
+.quoteDivider {
+  width: 48px;
+  height: 2px;
+  margin: 28px auto;
+  border-radius: 10px;
+  background: #ddb0ff;
+  box-shadow: 0 0 14px rgba(221, 176, 255, 0.4);
+}
+
+.quoteSubtext {
+  margin: 0;
+  color: rgba(245, 240, 255, 0.65);
+  font-size: 0.9rem;
+  line-height: 1.8;
+  letter-spacing: 0.5px;
+}
+
+/* Mobile */
+@media (max-width: 576px) {
+  .quoteSection {
+    padding: 60px 7%;
   }
-    .overlayText {
-        width: 80%;  
-        left: 56%;  
-        top: 42%;   
-        transform: translate(-50%, -50%);
-        font-size: 14px; 
-    }
-    .TextTop {
-      top: 15%;
-    }
 
-    .exploreButton {
-        width: 60%;  
-        left: 80%;   
-        top: 80%;    
-        transform: translate(-50%, -50%);
-        font-size: 16px; 
-    }
+  .quoteEyebrow {
+    margin-bottom: 18px;
+    font-size: 0.6rem;
+    letter-spacing: 2px;
+  }
 
-    .servicesText {
-        width: 90%;  
-        font-size: 14px; 
-    }
+  .quoteText {
+    font-size: 1.45rem;
+    line-height: 1.65;
+  }
 
-    .servicesImg img {
-        height: 30%; 
-        transform: rotate(20deg); 
-    }
+  .quoteDivider {
+    margin: 22px auto;
+  }
 
-    .tabTextLeft, .tabTextRight {
-        width: 100%;  
-        font-size: 14px; 
-    }
+  .quoteSubtext {
+    font-size: 0.82rem;
+  }
+}
 
-    .tabTextRightBackground {
-       border-radius: 5% 5% 5% 5%;
-        padding-bottom: 30px;
-        transform: translate(10px, 10px);
-    }
+
+/* =========================
+   TABLET
+========================= */
+
+@media screen and (max-width: 1100px) {
+  .imgTextWrapper {
+    min-height: 650px;
+    height: 80vh;
+  }
+
+  .overlayText {
+    left: 3%;
+    width: 31%;
+    padding: 18px;
+  }
 
   .TextBottom {
-    position: absolute;
-    top: 70%;
-    left: 68%;
-    transform: translate(-50%, -50%);
-    color: white;
+    right: 2%;
+    width: 25%;
+    padding: 10px;
+  }
+
+  .servicesTextWrapper {
+    padding: 65px 3%;
+  }
+
+  .servicesText {
+    width: 100%;
+    padding: 25px;
+  }
+
+  .tabContent {
+    padding: 30px 2%;
+  }
+
+  .tabTextLeft {
+    padding: 22px;
+  }
+
+  .tabTextRightBackground {
+    padding: 20px 15px;
+  }
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+/* Mobile layout */
+@media (max-width: 576px) {
+  .tabTextRight {
+    padding: 5px;
+  }
+
+  .tabTextRightBackground {
+    padding: 16px;
+  }
+
+  .tabTextRightBackground > div {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .inlineText {
+    min-height: auto;
+    padding: 14px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .imgTextWrapper {
+    min-height: 780px;
+    height: 100svh;
+    max-height: 950px;
+  }
+
+  /* Title stays above the space image */
+  .TextTop {
+    top: 5%;
+    padding: 10px;
+  }
+
+  .TextTop h1 {
+    letter-spacing: 5px !important;
+    line-height: 1.2;
+  }
+
+  /* Keep the intro readable without covering the title */
+  .overlayText {
+    top: 25%;
+    left: 5%;
+    width: 90%;
+    padding: 17px;
+    border-radius: 12px;
     text-align: center;
+    transform: none;
+  }
+
+  .overlayText h1 {
+    margin-bottom: 8px;
+    font-size: 1.35rem;
+  }
+
+  .overlayText p {
+    font-size: 0.8rem;
+    line-height: 1.7;
+  }
+
+  /* Space image */
+  .bgImage2 {
+    top: 60%;
+    left: 50%;
+    width: 82%;
+    max-width: 420px;
+    max-height: 38%;
+    transform: translate(-50%, -50%);
+  }
+
+  /* Welcome text */
+  .TextBottom {
+    top: auto;
+    right: 5%;
+    bottom: 15%;
+    left: 5%;
+    width: 90%;
+    padding: 5px;
+    transform: none;
+  }
+
+  .TextBottom h3 {
+    margin-bottom: 5px;
+    font-size: 0.95rem !important;
+    line-height: 1.6;
+  }
+
+  /* Side-by-side buttons */
+  .exploreButton,
+  .shopButton {
+    top: auto;
+    bottom: 0%;
+    width: 42%;
+    transform: translateX(-50%);
+  }
+
+  .exploreButton {
+    left: 27%;
+  }
+
+  .shopButton {
+    left: 73%;
+  }
+
+  .exploreButton button,
+  .shopButton button {
+    min-height: 44px;
+    padding: 10px 12px;
+    font-size: 0.72rem;
+  }
+
+  /* Who are you section */
+  .servicesTextWrapper {
+    flex-direction: column;
+    gap: 20px;
+    padding: 45px 16px;
+  }
+
+  .servicesText {
+    width: 100%;
+    margin: 0;
+    padding: 24px 20px;
+  }
+
+  .servicesText h3 {
+    margin-bottom: 20px;
+    font-size: 1.7rem;
+    text-align: center;
+  }
+
+  .servicesText li {
+    margin-bottom: 14px;
+    padding-left: 26px;
+    font-size: 0.86rem;
+    line-height: 1.8;
+  }
+
+  .servicesImg {
+    width: 100%;
+    padding: 10px;
+  }
+
+  .servicesImg img {
+    width: 65%;
+    max-width: 230px;
+    height: auto;
+  }
+
+  /* Room navigation */
+  .tabs {
+    gap: 6px;
+    padding: 14px 12px;
+  }
+
+  .tabs :global(.nav-link) {
+    padding: 10px 13px;
+    font-size: 0.68rem;
+    white-space: nowrap;
+  }
+
+  /* Room panels */
+  .tabContent {
+    margin: 0;
+    padding: 24px 16px;
+  }
+
+  .tabTextLeft,
+  .tabTextRight {
+    width: 100%;
+    margin: 10px 0;
     padding: 20px;
-    width: 70%;
-   
-}
-
- .TextBottom h3 {
-    font-size: 16px !important;
- }
-
-.bgImage2 {
-    position: absolute;
-    top: 85%;
-    left: 20%;
-    width: 80%;     
-    transform: translate(-50%, -50%);
   }
 
-  .exploreButton1  {
-    position: absolute;
-    top: 80%;
-    left: 75%;
-    transform: translate(-50%, -50%);
-    font-size: 18px;
-    color: white;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    width: 50%;
-}
-}
-
-
-/* .enterButton {
-  display: flex;
-  justify-content: center;
-  font-size: 20px;
-  color: white;
-  cursor: pointer;
-  justify-self: center;
-  background-color: #6a626e;
-  border-radius: 20px;
-  margin-top: 0px;
-  border: none;
-  outline: none;
-  width: 10%;
-} */
-
-.enterButton{
-  
-  background: linear-gradient(90deg, #3b3b6a 0%, #52528f 50%, #9f9ff9 100%);
-  transition: background-color 0.1s ease;
-  /* #1a1a2e;  */
-  color: #ffffff;
-  border: 2px solid #5d3fd3; 
-  border-radius: 20px;
-  padding: 10px 20px;
-  font-weight: bold;
-  transition: all 0.3s ease;
-   box-shadow: 0 0 20px #b5acd9;
-   width: 35%;
-   font-size: 18px;
-   cursor: pointer;
-   margin: 8px auto;
-   display: block;
-}
-
-
-.linkButton {
-  justify-content: center;
-  align-items: center;
-  display: flex;
-  
-}
-
-
-@media screen and (max-width: 768px) {
-  .tabs{
-    margin-left: 10px;
+  .tabTextLeft h4 {
+    font-size: 1.3rem;
   }
-  
-.inlineText h3{
-  font-size: 16px !important;
-}
-.inlineText p{
-  font-size: 12px !important;
-}
+
+  .tabTextLeft p {
+    font-size: 0.84rem;
+    line-height: 1.8;
+  }
+
+  .tabTextRight {
+    padding: 5px;
+  }
+
+  .tabTextRightBackground {
+    padding: 20px 16px;
+    border-radius: 12px;
+    transform: none;
+  }
+
+  .inlineText {
+    gap: 12px;
+    padding: 9px 0;
+  }
+
+  .inlineText h3,
+  .inlineText h4 {
+    font-size: 0.7rem !important;
+  }
+
+  .inlineText p {
+    font-size: 0.72rem !important;
+  }
+
+  /* Keep Enter buttons consistent */
+  .linkButton {
+    margin: 22px auto 8px;
+  }
 
   .enterButton {
-    width: 50%;
-        align-self: center;
-   
+    width: auto;
+    min-width: 140px;
+    padding: 12px 24px;
+    font-size: 0.75rem;
   }
 
+  .animationContainer {
+    height: auto;
+    min-height: 260px;
+    padding: 15px;
+  }
+}
+
+/* Small mobile screens */
+@media screen and (max-width: 400px) {
+  .imgTextWrapper {
+    min-height: 760px;
+  }
+
+  .TextTop h1 {
+    font-size: 42px !important;
+    letter-spacing: 3px !important;
+  }
+
+  .overlayText {
+    top: 23%;
+    padding: 14px;
+  }
+
+  .overlayText p {
+    font-size: 0.76rem;
+  }
+
+  .bgImage2 {
+    width: 90%;
+  }
+
+  .TextBottom {
+    bottom: 15%;
+  }
+
+  .TextBottom h3 {
+    font-size: 0.85rem !important;
+  }
+
+  .exploreButton button,
+  .shopButton button {
+    padding: 9px 8px;
+    font-size: 0.67rem;
+  }
+
+  .servicesText {
+    padding: 20px 16px;
+  }
+
+  .inlineText {
+    gap: 8px;
+  }
 }
