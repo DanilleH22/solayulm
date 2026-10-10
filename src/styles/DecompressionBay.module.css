@@ -8,13 +8,13 @@
   padding: 40px 24px 60px;
   overflow-x: hidden;
   color: #f3edf9;
-  background:
+  /* background:
     radial-gradient(
       ellipse at 50% 0%,
       rgba(91, 56, 130, 0.28),
       transparent 48%
     ),
-    #100d19;
+    #100d19; */
 }
 
 /* ========================================

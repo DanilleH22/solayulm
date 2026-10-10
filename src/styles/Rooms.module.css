@@ -13,13 +13,13 @@
   padding: 65px 4%;
   overflow: hidden;
 
-  background:
+  /* background:
     radial-gradient(
       ellipse at 10% 50%,
       rgba(126, 82, 171, 0.12),
       transparent 55%
     ),
-    #100c20;
+    #100c20; */
 
   border-bottom: 1px solid rgba(221, 176, 255, 0.12);
 }

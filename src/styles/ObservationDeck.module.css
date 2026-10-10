@@ -5,13 +5,13 @@
   min-height: 100vh;
   padding-bottom: 40px;
   color: #f5f0ff;
-  background:
+  /* background:
     radial-gradient(
       ellipse at 50% 0%,
       rgba(94, 61, 132, 0.22),
       transparent 55%
     ),
-    linear-gradient(180deg, #100b1b 0%, #171025 55%, #0d0915 100%);
+    linear-gradient(180deg, #100b1b 0%, #171025 55%, #0d0915 100%); */
   font-family: "Orbitron", sans-serif;
 }
 .deckHeader {

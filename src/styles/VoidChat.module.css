@@ -14,7 +14,7 @@ overflow: hidden;
 color: #f5f0ff;
 font-family: Arial, sans-serif;
 
-background:
+/* background:
 radial-gradient(
 ellipse at 15% 5%,
 rgba(100, 66, 153, 0.2),
@@ -25,7 +25,7 @@ ellipse at 90% 40%,
 rgba(65, 75, 153, 0.16),
 transparent 42%
 ),
-linear-gradient(145deg, #100d20 0%, #151129 48%, #0b1022 100%);
+linear-gradient(145deg, #100d20 0%, #151129 48%, #0b1022 100%); */
 
 border: 1px solid rgba(190, 157, 235, 0.12);
 border-radius: 28px;

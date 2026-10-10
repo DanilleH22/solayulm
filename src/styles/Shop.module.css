@@ -521,7 +521,7 @@ transform: translateX(150%);
   min-height: 100vh;
   overflow: hidden;
   color: #f5f0ff;
-  background: #100c20;
+  /* background: #100c20; */
 }
 
 /* Hero */
@@ -530,13 +530,13 @@ transform: translateX(150%);
   position: relative;
   padding: 110px 20px 100px;
   text-align: center;
-  background:
+  /* background:
     radial-gradient(
       ellipse at 50% 0%,
       rgba(126, 82, 171, 0.3),
       transparent 65%
     ),
-    linear-gradient(180deg, #171027 0%, #100c20 100%);
+    linear-gradient(180deg, #171027 0%, #100c20 100%); */
 }
 
 .shop-hero__eyebrow,
@@ -595,13 +595,13 @@ transform: translateX(150%);
 
 .shop-collection {
   padding: 80px 0 110px;
-  background:
+  /* background:
     radial-gradient(
       ellipse at 100% 50%,
       rgba(62, 65, 120, 0.12),
       transparent 50%
     ),
-    #100c20;
+    #100c20; */
 }
 
 .shop-collection__heading {
@@ -832,13 +832,7 @@ transform: translateX(150%);
   position: relative;
   padding: 55px 0;
   overflow: hidden;
-  background:
-    radial-gradient(
-      ellipse at 80% 50%,
-      rgba(118, 81, 163, 0.2),
-      transparent 55%
-    ),
-    linear-gradient(135deg, #1b1430 0%, #131027 100%);
+ 
 }
 
 .shop-toolkit__inner {
@@ -849,7 +843,13 @@ transform: translateX(150%);
   padding: 45px;
   border: 1px solid rgba(221, 176, 255, 0.3);
   border-radius: 20px;
-  background: rgba(255, 255, 255, 0.025);
+   background:
+    radial-gradient(
+      ellipse at 80% 50%,
+      rgba(118, 81, 163, 0.2),
+      transparent 55%
+    ),
+    linear-gradient(135deg, #1b1430 0%, #131027 100%);
   box-shadow: 0 20px 55px rgba(0, 0, 0, 0.15);
 }
 

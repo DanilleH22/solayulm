@@ -33,13 +33,13 @@
   height: 85vh;
   overflow: hidden;
   color: #f5f0ff;
-  background:
+  /* background:
     radial-gradient(
       ellipse at 50% 20%,
       rgba(126, 82, 171, 0.25),
       transparent 55%
     ),
-    linear-gradient(180deg, #171027 0%, #100c20 100%);
+    linear-gradient(180deg, #171027 0%, #100c20 100%); */
 }
 
 /* Optional full-size background image */
@@ -212,13 +212,13 @@
   gap: 25px;
   margin: 0;
   padding: 85px max(5%, 25px);
-  background:
+  /* background:
     radial-gradient(
       ellipse at 0% 50%,
       rgba(118, 81, 163, 0.16),
       transparent 55%
     ),
-    #100c20;
+    #100c20; */
 }
 
 .servicesText {
@@ -304,7 +304,7 @@
   overflow-y: hidden;
   border-top: 1px solid rgba(221, 176, 255, 0.15);
   border-bottom: 1px solid rgba(221, 176, 255, 0.15);
-  background: #151027;
+  /* background: #151027; */
   scrollbar-width: thin;
   scrollbar-color: #78549a #151027;
 }
@@ -353,13 +353,7 @@
   padding: 45px 3% 35px;
   color: #f5f0ff;
   border: 0;
-  background:
-    radial-gradient(
-      ellipse at 50% 0%,
-      rgba(126, 82, 171, 0.12),
-      transparent 65%
-    ),
-    #100c20;
+  
 }
 
 .tabContent > .row {
@@ -378,7 +372,7 @@
   color: rgba(245, 240, 255, 0.78);
   border: 1px solid rgba(221, 176, 255, 0.18);
   border-radius: 14px;
-  background: rgba(255, 255, 255, 0.025);
+  background: rgba(255, 255, 255, 0.025); 
   text-align: left;
   height: 100%;
 }
@@ -424,13 +418,13 @@
   padding: 24px;
   border: 1px solid rgba(221, 176, 255, 0.25);
   border-radius: 14px;
-  background:
+  /* background:
     radial-gradient(
       circle at 100% 0%,
       rgba(120, 84, 154, 0.18),
       transparent 65%
     ),
-    #1b1430;
+    #1b1430; */
 }
 
 /* Inner wrapper around all the information */
@@ -456,7 +450,7 @@
   padding: 14px;
   border: 1px solid rgba(221, 176, 255, 0.12);
   border-radius: 10px;
-  background: rgba(255, 255, 255, 0.025);
+  background: rgba(84, 62, 129, 0.78);
 }
 
 /* Label above the value */
