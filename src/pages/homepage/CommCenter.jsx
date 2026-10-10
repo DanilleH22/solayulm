@@ -1,411 +1,531 @@
-import React, { useState, useEffect, useRef } from "react";
+
+import React, { useEffect, useRef, useState } from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
-import styles from "../../styles/CommCenter.module.css";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { 
-  faPlay, faVolumeUp, faVolumeMute, faPause,
-  faForward, faBackward
-} from '@fortawesome/free-solid-svg-icons';
-import WavesBackground from "../../components/WavesBackground.jsx";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faPlay,
+  faPause,
+  faVolumeUp,
+  faVolumeMute,
+  faForward,
+  faBackward,
+} from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router";
-import {Helmet} from "react-helmet-async"
+import { Helmet } from "react-helmet-async";
 
-// --- Assets ---
+import WavesBackground from "../../components/WavesBackground.jsx";
+import styles from "../../styles/homepage2.module.css";
 
+// ==========================================
+// AUDIO CHANNELS
+// ==========================================
 
-
-
-
-
-
-// --- Channel Lists ---
 const CHANNELS = {
   "Lofi Beats": [
-    // { id: 1, name: "Lofi 1", src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/lofi1.mp3" },
-    // { id: 2, name: "Lofi 2", src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/lofi2.mp3" },
-    // { id: 3, name: "Lofi 3", src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/lofi3.mp4" },
-    // { id: 4, name: "Lofi 4", src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/lofi4.mp3" },
-    { id: 5, name: "Lofi 5", src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/lofi5.mp4" },
-    { id: 6, name: "Lofi 6", src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/lofi6.mp3" },
-    { id: 7, name: "Lofi 7", src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/lofi7.mp3" },
-    { id: 8, name: "Lofi 8", src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/lofi8.mp3" },
-    { id: 9, name: "Lofi 9", src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/lofi9.mp3" },
-    { id: 10, name: "Lofi 10", src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/lofi10.mp3" },
+    {
+      id: 5,
+      name: "Lofi 5",
+      src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/lofi5.mp4",
+    },
+    {
+      id: 6,
+      name: "Lofi 6",
+      src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/lofi6.mp3",
+    },
+    {
+      id: 7,
+      name: "Lofi 7",
+      src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/lofi7.mp3",
+    },
+    {
+      id: 8,
+      name: "Lofi 8",
+      src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/lofi8.mp3",
+    },
+    {
+      id: 9,
+      name: "Lofi 9",
+      src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/lofi9.mp3",
+    },
+    {
+      id: 10,
+      name: "Lofi 10",
+      src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/lofi10.mp3",
+    },
   ],
 
-  
-  "Affirmations": [
-    { id: 1, name: "Abundance & Success", src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/abu_suc.mp3" },
-    { id: 2, name: "Adventure & Expansion", src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/adv_exp.mp3" },
-    { id: 3, name: "Calm & Stress Relief", src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/calm_str.mp3" },
-    { id: 4, name: "Creativity & Inspiration", src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/cre_insp.mp3" },
-    { id: 5, name: "Focus & Productivity", src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/foc_pro.mp3" },
-    { id: 6, name: "Healing & Self-Love", src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/hea_sel.mp3" },
-    { id: 7, name: "Relationships & Connection", src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/rel_con.mp3" },
-    { id: 8, name: "Self-Confidence & Empowerment", src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/selfC_emp.mp3" },
-    { id: 9, name: "Sleep & Rest", src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/sle_res.mp3" },
-    { id: 10, name: "Spiritual Growth & Intuition", src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/spiG_int.mp3" },
-   
+  Affirmations: [
+    {
+      id: 1,
+      name: "Abundance & Success",
+      src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/abu_suc.mp3",
+    },
+    {
+      id: 2,
+      name: "Adventure & Expansion",
+      src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/adv_exp.mp3",
+    },
+    {
+      id: 3,
+      name: "Calm & Stress Relief",
+      src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/calm_str.mp3",
+    },
+    {
+      id: 4,
+      name: "Creativity & Inspiration",
+      src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/cre_insp.mp3",
+    },
+    {
+      id: 5,
+      name: "Focus & Productivity",
+      src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/foc_pro.mp3",
+    },
+    {
+      id: 6,
+      name: "Healing & Self-Love",
+      src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/hea_sel.mp3",
+    },
+    {
+      id: 7,
+      name: "Relationships & Connection",
+      src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/rel_con.mp3",
+    },
+    {
+      id: 8,
+      name: "Self-Confidence & Empowerment",
+      src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/selfC_emp.mp3",
+    },
+    {
+      id: 9,
+      name: "Sleep & Rest",
+      src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/sle_res.mp3",
+    },
+    {
+      id: 10,
+      name: "Spiritual Growth & Intuition",
+      src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/spiG_int.mp3",
+    },
   ],
+
   "Soothing Stories": [
-    { id: 1, name: "The Lighthouse on the Edge of a Nebula", src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/lighthouse.mp3" },
-    { id: 2, name: "The Library of Stars", src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/libraryS.mp3" },
-    { id: 3, name: "The Glass Planet", src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/glassP.mp3" },
-    { id: 4, name: "The Sleeping Comet ", src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/sleepingC.mp3" },
-    { id: 5, name: "The Garden on Io ", src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/gardenL.mp3" },
-    { id: 6, name: "The Lighthouse of Andromeda", src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/andromeda.mp3" },
-    { id: 7, name: "The Bridge of Auroras", src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/bridgeAur.mp3" },
-    { id: 8, name: "The Forgotten Moon", src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/forgottenM.mp3" },
-    { id: 9, name: "The Star Garden", src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/starGard.mp3" },
-    { id: 10, name: "The Celestial Caravan", src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/celestialCara.mp3" },
+    {
+      id: 1,
+      name: "The Lighthouse on the Edge of a Nebula",
+      src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/lighthouse.mp3",
+    },
+    {
+      id: 2,
+      name: "The Library of Stars",
+      src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/libraryS.mp3",
+    },
+    {
+      id: 3,
+      name: "The Glass Planet",
+      src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/glassP.mp3",
+    },
+    {
+      id: 4,
+      name: "The Sleeping Comet",
+      src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/sleepingC.mp3",
+    },
+    {
+      id: 5,
+      name: "The Garden on Io",
+      src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/gardenL.mp3",
+    },
+    {
+      id: 6,
+      name: "The Lighthouse of Andromeda",
+      src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/andromeda.mp3",
+    },
+    {
+      id: 7,
+      name: "The Bridge of Auroras",
+      src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/bridgeAur.mp3",
+    },
+    {
+      id: 8,
+      name: "The Forgotten Moon",
+      src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/forgottenM.mp3",
+    },
+    {
+      id: 9,
+      name: "The Star Garden",
+      src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/starGard.mp3",
+    },
+    {
+      id: 10,
+      name: "The Celestial Caravan",
+      src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/celestialCara.mp3",
+    },
   ],
-  
 
   "Ambient Noise": [
-    { id: 1, name: "Ambiance 1", src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/ambient1.mp3" },
-    { id: 2, name: "Ambiance 2", src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/ambient2.mp3" },
-    { id: 3, name: "Ambiance 3", src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/ambient3.mp3" },
-    { id: 4, name: "Ambiance 4", src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/ambient4.mp3" },
-    { id: 5, name: "Ambiance 5", src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/ambient5.mp3" },
-    { id: 6, name: "Ambiance 6", src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/ambient6.mp3" },
-    { id: 7, name: "Ambiance 7", src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/ambient7.mp3" },
-    { id: 8, name: "Ambiance 8", src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/ambient8.mp3" },
-    // { id: 9, name: "Ambiance 9", src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/ambient9.mp3" },
-    // { id: 10, name: "Ambiance 10", src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/ambient10.mp3" },
+    {
+      id: 1,
+      name: "Ambiance 1",
+      src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/ambient1.mp3",
+    },
+    {
+      id: 2,
+      name: "Ambiance 2",
+      src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/ambient2.mp3",
+    },
+    {
+      id: 3,
+      name: "Ambiance 3",
+      src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/ambient3.mp3",
+    },
+    {
+      id: 4,
+      name: "Ambiance 4",
+      src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/ambient4.mp3",
+    },
+    {
+      id: 5,
+      name: "Ambiance 5",
+      src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/ambient5.mp3",
+    },
+    {
+      id: 6,
+      name: "Ambiance 6",
+      src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/ambient6.mp3",
+    },
+    {
+      id: 7,
+      name: "Ambiance 7",
+      src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/ambient7.mp3",
+    },
+    {
+      id: 8,
+      name: "Ambiance 8",
+      src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/ambient8.mp3",
+    },
   ],
-  // "Lost Signals": [
-  //   { id: 1, name: "Lost Signal 1", src: "/MysterySignals/mystsignal1.mp3" },
-  //   { id: 2, name: "Lost Signal 2", src: "/MysterySignals/mystsignal2.mp3" },
-  //   { id: 3, name: "Lost Signal 3", src: "/MysterySignals/mystsignal3.mp3" },
-  //   { id: 4, name: "Lost Signal 4", src: "/MysterySignals/mystsignal4.mp3" },
-  //   { id: 5, name: "Lost Signal 5", src: "/MysterySignals/mystsignal5.mp3" },
-  //   { id: 6, name: "Lost Signal 6", src: "/MysterySignals/mystsignal6.mp3" },
-  //   { id: 7, name: "Lost Signal 7", src: "/MysterySignals/mystsignal7.mp3" },
-  //   { id: 8, name: "Lost Signal 8", src: "/MysterySignals/mystsignal8.mp3" },
-
-  // ] 
-  // add later
 };
 
-// addEventListener("fetch", event => {
-//   event.respondWith(handleRequest(event.request))
-// })
-
-// async function handleRequest(request) {
-//   const url = "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/andromeda.mp3"
-//   const response = await fetch(url)
-//   const newHeaders = new Headers(response.headers)
-//   newHeaders.set("Access-Control-Allow-Origin", "*") // allow all domains
-//   return new Response(response.body, {
-//     status: response.status,
-//     statusText: response.statusText,
-//     headers: newHeaders
-//   })
-// }
-
-
+// ==========================================
+// COMM CENTER
+// ==========================================
 
 const CommCenter = () => {
   const [currentChannel, setCurrentChannel] = useState("Lofi Beats");
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
-   const [isMuted, setIsMuted] = useState(false);
+  const [isMuted, setIsMuted] = useState(false);
+  const [audioError, setAudioError] = useState("");
+
   const audioRef = useRef(null);
-  
 
-  const playlist = CHANNELS[currentChannel];
-  // const currentTrack = playlist[currentIndex];
+  const playlist = CHANNELS[currentChannel] || [];
+  const currentTrack = playlist[currentIndex] || null;
 
-// Add these states
-const [currentTrack, setCurrentTrack] = useState(null);
+  // Create a new audio player whenever the track changes.
+  useEffect(() => {
+    if (!currentTrack) return;
 
+    const audio = new Audio(currentTrack.src);
 
-// Proper initialization useEffect
-useEffect(() => {
-  if (!playlist || !playlist[currentIndex]) return;
+    audio.preload = "metadata";
+    audio.volume = 0.5;
+    audio.muted = isMuted;
 
-  const track = playlist[currentIndex];
-  setCurrentTrack(track);
+    audioRef.current = audio;
+    setAudioError("");
 
-  // Don't create Audio here - just set the track
-}, [currentChannel, currentIndex]);
+    const handleEnded = () => {
+      setCurrentIndex((previousIndex) =>
+        previousIndex >= playlist.length - 1 ? 0 : previousIndex + 1
+      );
+    };
 
-// Separate useEffect for audio handling
-useEffect(() => {
-  if (!currentTrack) return;
-
-  const setupAudio = () => {
-    // Clean up previous audio
-    if (audioRef.current) {
-      audioRef.current.pause();
-      audioRef.current.src = '';
-    }
-
-    // Create new Audio with the source
-    audioRef.current = new Audio(currentTrack.src);
-    
-    // Set properties
-    audioRef.current.volume = isMuted ? 0 : 0.5;
-    audioRef.current.preload = 'auto';
-    
-    // Set up event handlers
-    audioRef.current.addEventListener('ended', handleNext);
-    audioRef.current.addEventListener('error', (e) => {
-      console.error('Audio loading error:', e);
-      console.error('Failed src:', currentTrack.src);
+    const handleError = () => {
       setIsPlaying(false);
-    });
+      setAudioError(
+        "This transmission could not be loaded. Please try another track."
+      );
+    };
 
-    // Load the audio (important!)
-    audioRef.current.load();
-  };
+    audio.addEventListener("ended", handleEnded);
+    audio.addEventListener("error", handleError);
 
-  setupAudio();
+    return () => {
+      audio.removeEventListener("ended", handleEnded);
+      audio.removeEventListener("error", handleError);
+      audio.pause();
+      audio.removeAttribute("src");
+      audio.load();
 
-  return () => {
-    if (audioRef.current) {
-      audioRef.current.removeEventListener('ended', handleNext);
-      audioRef.current.pause();
-    }
-  };
-}, [currentTrack, isMuted]);
-
-const handleAudioError = (e) => {
-  const audio = audioRef.current;
-  
-  // Ignore errors if the audio eventually plays
-  // These are often just network hiccups
-  if (audio && audio.currentTime > 0) {
-    return; // Audio is playing, ignore the error
-  }
-  
-  // Only show error if it's a real problem
-  if (audio && audio.error) {
-    // MEDIA_ERR_NETWORK (2) often resolves itself on retry
-    if (audio.error.code === 2 && audioRef.current?.src) {
-      console.log('Network hiccup, will retry...');
-      // Try reloading once
-      if (!audio.hasBeenRetried) {
-        audio.hasBeenRetried = true;
-        audio.load();
-        setTimeout(() => {
-          audio.play().catch(() => {});
-        }, 1000);
+      if (audioRef.current === audio) {
+        audioRef.current = null;
       }
-      return;
-    }
-    
-    // Only log/display real errors
-    console.error('Audio error:', audio.error);
-    setError('Failed to load audio');
-  }
-};
+    };
+  }, [currentTrack?.src, playlist.length]);
 
-// Fix the handlePlay function
-const handlePlay = async () => {
-  if (!audioRef.current || !audioRef.current.src) {
-    console.error('No audio source available');
-    
-    // Re-initialize if needed
-    if (currentTrack) {
-      audioRef.current = new Audio(currentTrack.src);
-      audioRef.current.volume = isMuted ? 0 : 0.5;
-      audioRef.current.load();
+  // Keep the audio volume and mute state in sync.
+  useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.muted = isMuted;
+      audioRef.current.volume = 0.5;
+    }
+  }, [isMuted, currentTrack]);
+
+  // Play or pause the current track when the state changes.
+  useEffect(() => {
+    const audio = audioRef.current;
+
+    if (!audio) return;
+
+    if (isPlaying) {
+      audio.play().catch((error) => {
+        console.error("Unable to play audio:", error);
+        setIsPlaying(false);
+        setAudioError(
+          "Playback was unavailable. Please try pressing play again."
+        );
+      });
     } else {
-      return;
+      audio.pause();
     }
-  }
+  }, [isPlaying, currentTrack]);
 
-  try {
-    await audioRef.current.play();
+  const handlePlay = () => {
+    setAudioError("");
     setIsPlaying(true);
-  } catch (error) {
-    console.error('Play failed:', error);
-    
-    // Debug: Check what's in audioRef
-    console.log('audioRef.current:', audioRef.current);
-    console.log('audioRef.current.src:', audioRef.current?.src);
-    console.log('currentTrack:', currentTrack);
-  }
-};
+  };
 
   const handlePause = () => {
-    if (audioRef.current) {
-      audioRef.current.pause();
-      setIsPlaying(false);
-    }
+    setIsPlaying(false);
   };
 
   const handleNext = () => {
-    if (currentIndex < playlist.length - 1) {
-      setCurrentIndex(currentIndex + 1);
-    } else {
-      setCurrentIndex(0); // loop back to start
-    }
+    if (!playlist.length) return;
+
+    setCurrentIndex((previousIndex) =>
+      previousIndex >= playlist.length - 1 ? 0 : previousIndex + 1
+    );
+    setAudioError("");
   };
 
   const handlePrev = () => {
-    if (currentIndex > 0) {
-      setCurrentIndex(currentIndex - 1);
-    } else {
-      setCurrentIndex(playlist.length - 1); // loop to last
-    }
+    if (!playlist.length) return;
+
+    setCurrentIndex((previousIndex) =>
+      previousIndex <= 0 ? playlist.length - 1 : previousIndex - 1
+    );
+    setAudioError("");
   };
 
+  const handleVolumeToggle = () => {
+    setIsMuted((previousMuted) => !previousMuted);
+  };
 
-
-const handleVolumeToggle = () => {
-  if (audioRef.current) {
-    audioRef.current.muted = !audioRef.current.muted;
-    setIsMuted(audioRef.current.muted);
-  }
-};
-
-
-// Add this effect to check audio sources
-useEffect(() => {
-  // Check all audio file URLs
-  Object.keys(CHANNELS).forEach(channel => {
-    CHANNELS[channel].forEach(track => {
-      // Test if file exists
-      fetch(track.src, { method: 'HEAD' })
-        .then(res => {
-          console.log(`${track.name}: ${res.ok ? '✅ Found' : '❌ Missing'}`);
-        })
-        .catch(() => {
-          console.error(`❌ Cannot access: ${track.src}`);
-        });
-    });
-  });
-}, []);
-
+  const handleChannelChange = (channel) => {
+    setIsPlaying(false);
+    setCurrentChannel(channel);
+    setCurrentIndex(0);
+    setAudioError("");
+  };
 
   return (
     <>
-    {/* <Helmet>
-  <title>Comm Center Radio – Listen, Unwind & Drift | Solayulm</title>
-  <meta name="description" content="Tune in to Solayulm’s Comm Center — soothing sounds and spoken reflections to calm your mind and elevate your mood." />
-  <meta property="og:title" content="Comm Center Radio | Solayulm" />
-  <meta property="og:description" content="A peaceful digital radio transmitting serenity across your inner space." />
-</Helmet> */}
-    <Container>
-      <Row className="text-center my-5">
-        <Col>
-          <h1>Comm Center (Audio Room)</h1>
-          <p>Tune into calming transmissions</p>
-        </Col>
-      </Row>
+      <Helmet>
+        <title>Comm Center Radio | Solayulm</title>
+        <meta
+          name="description"
+          content="Tune into Solayulm's Comm Center for calming music, affirmations, ambient sounds and soothing stories."
+        />
+      </Helmet>
 
-      <Row className="mb-4">
-        <Col>
-          <h2><strong>Disclaimer!</strong></h2>
-          <p>The Comm Center is designed without visuals on purpose. In a world where we’re constantly stimulated by screens, this space invites you to disconnect from the visual overload and focus entirely on sound. </p>
-          <p>By closing your eyes and tuning into the transmissions, you allow your mind and body to rest, reset, and experience the audio more deeply—whether that’s affirmations, calming beats, or soothing stories.</p>
-        </Col>
-      </Row>
+      <main className={styles.commCenterPage}>
+        <Container>
+          {/* Page introduction */}
+          <Row className="text-center mb-5">
+            <Col>
+              <h1>Comm Center</h1>
+              <p className={styles.introText}>
+                Tune into calming transmissions. Find a sound that meets you
+                where you are, and give yourself a moment to simply listen.
+              </p>
+            </Col>
+          </Row>
 
-      <div className={styles.wrapper}>
-        <div className={styles.borderWrapper}>
-          <div className={styles.gradientBox}>
+          {/* Disclaimer */}
+          <Row className="mb-4">
+            <Col>
+              <section className={styles.disclaimer}>
+                <h2>
+                  <strong>A little note before you tune in</strong>
+                </h2>
 
-            <Row className="my-4">
-              <Col>
-                <h3>
-                  Current Channel: {currentChannel}
-                </h3>
                 <p>
-                  {currentTrack ? `Station Playing: ${currentTrack.name}` : "No track available"}
+                  The Comm Center is designed without visuals on purpose. In a
+                  world where we are constantly stimulated by screens, this
+                  space invites you to step away from visual overload and
+                  focus on sound.
                 </p>
-              </Col>
-            </Row>
 
-            <Row className="g-0 " style={{ height: "300px" }}>
-              <Col md={6} sm={4} className="d-flex flex-column justify-content-center">
-                <Row className="justify-content-center mb-3">
-                  <Col xs="auto" >
-                    <Button variant="outline-info" onClick={handlePlay} className="w-100">
-                      <FontAwesomeIcon icon={faPlay} />
-                    </Button>
+                <p>
+                  If it feels comfortable, close your eyes and settle into the
+                  transmission. Whether you choose calming beats, affirmations
+                  or a soothing story, there is no right way to experience
+                  this moment.
+                </p>
+              </section>
+            </Col>
+          </Row>
+
+          {/* Audio player */}
+          <section className={styles.wrapper} aria-label="Audio player">
+            <div className={styles.borderWrapper}>
+              <div className={styles.gradientBox}>
+                {/* Current transmission */}
+                <Row className="my-3">
+                  <Col className={styles.trackInfo}>
+                    <h3>Current Channel: {currentChannel}</h3>
+
+                    <p>
+                      {currentTrack
+                        ? `Now selected: ${currentTrack.name}`
+                        : "No transmission available"}
+                    </p>
                   </Col>
-                  <Col xs="auto">
-                    <Button variant="outline-info" onClick={handlePause} className="w-100">
-                      <FontAwesomeIcon icon={faPause} />
-                    </Button>
+                </Row>
+
+                {/* Player controls and wave visual */}
+                <Row className={styles.playerRow}>
+                  <Col xs={12} md={6} className={styles.playerControls}>
+                    <div
+                      className={styles.controlGroup}
+                      aria-label="Playback controls"
+                    >
+                      <Button
+                        type="button"
+                        className={styles.controlButton}
+                        onClick={handlePlay}
+                        disabled={!currentTrack || isPlaying}
+                        aria-label="Play audio"
+                        title="Play"
+                      >
+                        <FontAwesomeIcon icon={faPlay} />
+                      </Button>
+
+                      <Button
+                        type="button"
+                        className={styles.controlButton}
+                        onClick={handlePause}
+                        disabled={!currentTrack || !isPlaying}
+                        aria-label="Pause audio"
+                        title="Pause"
+                      >
+                        <FontAwesomeIcon icon={faPause} />
+                      </Button>
+
+                      <Button
+                        type="button"
+                        className={styles.controlButton}
+                        onClick={handleVolumeToggle}
+                        aria-label={isMuted ? "Unmute audio" : "Mute audio"}
+                        aria-pressed={isMuted}
+                        title={isMuted ? "Unmute" : "Mute"}
+                      >
+                        <FontAwesomeIcon
+                          icon={isMuted ? faVolumeMute : faVolumeUp}
+                        />
+                      </Button>
+                    </div>
+
+                    <div
+                      className={styles.controlGroup}
+                      aria-label="Track navigation"
+                    >
+                      <Button
+                        type="button"
+                        className={styles.controlButton}
+                        onClick={handlePrev}
+                        disabled={playlist.length < 2}
+                        aria-label="Previous track"
+                        title="Previous track"
+                      >
+                        <FontAwesomeIcon icon={faBackward} />
+                      </Button>
+
+                      <Button
+                        type="button"
+                        className={styles.controlButton}
+                        onClick={handleNext}
+                        disabled={playlist.length < 2}
+                        aria-label="Next track"
+                        title="Next track"
+                      >
+                        <FontAwesomeIcon icon={faForward} />
+                      </Button>
+                    </div>
+
+                    {audioError && (
+                      <p className={styles.audioError} role="alert">
+                        {audioError}
+                      </p>
+                    )}
                   </Col>
-                  <Col xs="auto">
-                    <Button variant="outline-info" onClick={handleVolumeToggle} className="w-100">
-                      <FontAwesomeIcon  icon={isMuted ? faVolumeMute : faVolumeUp}  />
-                    </Button>
+
+                  {/* Decorative sound waves */}
+                  <Col xs={12} md={6} className={styles.visualColumn}>
+                    <div
+                      className={styles.circleBorder}
+                      aria-hidden="true"
+                    >
+                      <WavesBackground />
+                    </div>
                   </Col>
                 </Row>
 
-                <Row className="justify-content-center" style={{ marginBottom: window.innerWidth < 768 ? '10px' : '30px' }}>
-                  <Col xs="auto">
-                    <Button variant="outline-info" onClick={handlePrev} className="w-100">
-                      <FontAwesomeIcon icon={faBackward} />
-                    </Button>
-                  </Col>
-                  <Col xs="auto">
-                    <Button variant="outline-info" onClick={handleNext} className="w-100">
-                      <FontAwesomeIcon icon={faForward} />
-                    </Button>
-                  </Col>
-                </Row>
-              </Col>
+                {/* Channel selector */}
+                <section
+                  className={styles.channelSection}
+                  aria-label="Choose an audio channel"
+                >
+                  <h3 className={styles.channelHeading}>
+                    Choose Your Transmission
+                  </h3>
 
-              <Col md={6} className="d-flex justify-content-center align-items-center">
-                <div className={styles.CircleBorder}>
-                  <WavesBackground />
-                </div>
-              </Col>
-            </Row>
+                  <div className={styles.channelList}>
+                    {Object.keys(CHANNELS).map((channel) => {
+                      const isActive = channel === currentChannel;
 
-            <Row className="mt-4 ">
-              <Col className="d-flex justify-content-center flex-wrap gap-2 ">
-              <h3 className="d-flex justify-content-center" style={{ marginTop: window.innerWidth < 768 ? '100px' : '30px' }}>Channel's</h3>
-                {Object.keys(CHANNELS).map(channel => (
-                  <Button
-                    key={channel}
-                    variant={channel === currentChannel ? "info" : "outline-info"}
-                    onClick={() => {
-                      setCurrentChannel(channel);
-                      setCurrentIndex(0); 
-                      setIsPlaying(false); 
-                    }}
-                  >
-                    {channel}
-                  </Button>
-                ))}
-              </Col>
-            </Row>
+                      return (
+                        <Button
+                          key={channel}
+                          type="button"
+                          className={`${styles.channelButton} ${
+                            isActive ? styles.activeChannel : ""
+                          }`}
+                          aria-pressed={isActive}
+                          onClick={() => handleChannelChange(channel)}
+                        >
+                          {channel}
+                        </Button>
+                      );
+                    })}
+                  </div>
+                </section>
+              </div>
+            </div>
+          </section>
 
+          {/* Exit */}
+          <div className={styles.exitSection}>
+            <Link to="/Rooms" aria-label="Return to the rooms">
+              <Button
+                type="button"
+                className={styles.exitButton}
+              >
+                Exit 
+              </Button>
+            </Link>
           </div>
-        </div>
-      </div>
-       
-
-            <Row className="justify-content-center">
-              <Col xs={12} className="text-center">
-                <Link to="/Rooms" style={{ textDecoration: 'none' }}>
-                  <Button 
-                    variant="outline-info"
-                    className="mobile-responsive-btn"
-                    style={{
-                      fontSize: window.innerWidth < 768 ? '18px' : '20px',
-                      color: 'white',
-                      cursor: 'pointer',
-                      marginTop: '60px',
-                      marginBottom: '10px',
-                      padding: window.innerWidth < 768 ? '8px 24px' : '10px 30px',
-                      minWidth: window.innerWidth < 768 ? '100px' : '120px'
-                    }}
-                  >
-                    Exit
-                  </Button>
-                </Link>
-              </Col>
-            </Row>
-    </Container>
+        </Container>
+      </main>
     </>
   );
 };
