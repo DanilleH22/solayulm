@@ -220,7 +220,7 @@ function Shop() {
       <Row>
             <Col md={12}>
             <div className="d-flex justify-content-center">
-          <Link to="/shop" style={{ textDecoration: "none" }}>
+          <Link to="/Rooms" style={{ textDecoration: "none" }}>
             <Button className={styles["journal-exit-button"]}>Exit</Button>
           </Link>
         </div>
