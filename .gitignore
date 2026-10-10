@@ -415,3 +415,4 @@ dist
 *.zip
 *.rar
 
+backend/.env
