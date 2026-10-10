@@ -1,74 +1,358 @@
 
+/* ================================
+   SOLAYULM — COMM CENTER
+================================ */
+
+.commCenterPage {
+  min-height: 100vh;
+  padding: 35px 0 60px;
+  color: #f4efff;
+  overflow: hidden;
+}
+
+.commCenterPage h1,
+.commCenterPage h2,
+.commCenterPage h3 {
+  color: #f4efff;
+  overflow-wrap: anywhere;
+}
+
+.commCenterPage h1 {
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  letter-spacing: 1px;
+  margin-bottom: 12px;
+}
+
+.commCenterPage h2 {
+  font-size: clamp(1.35rem, 3vw, 1.8rem);
+}
+
+.commCenterPage h3 {
+  font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+}
+
+.introText {
+  max-width: 760px;
+  margin: 0 auto;
+  color: #d9d1f0;
+  line-height: 1.8;
+}
+
+.disclaimer {
+  max-width: 900px;
+  margin: 0 auto 35px;
+  padding: 22px 25px;
+  border-left: 3px solid #c7a5f5;
+  border-radius: 0 16px 16px 0;
+  background: rgba(31, 25, 57, 0.55);
+  color: #e3dcf5;
+  line-height: 1.8;
+}
+
+.disclaimer h2 {
+  margin-bottom: 14px;
+  color: #e0c5ff;
+}
+
+.disclaimer p:last-child {
+  margin-bottom: 0;
+}
+
+/* Main gradient border */
+
 .wrapper {
   display: flex;
-  justify-content: center; /* horizontal centering */
-  align-items: center;     /* vertical centering */
-       /* full viewport height */
-    
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 35px auto 0;
 }
 
 .borderWrapper {
-    width: 60%;
-    
-    display: inline-block; /* shrink to content width */
-    justify-self: center;
-    justify-content: center ;
-  border-radius: 30px; /* rounds the border */
-  padding: 5px;        /* thickness of the border */
-  background: linear-gradient(to right, rgb(173, 220, 244), rgb(223, 175, 237));
-  display: inline-block; /* shrink to content width */
+  width: min(100%, 1000px);
+  padding: 2px;
+  border-radius: 28px;
+  background: linear-gradient(
+    120deg,
+    #addcf4,
+    #c8a8f1,
+    #e3afed,
+    #9eafff
+  );
+  box-shadow:
+    0 0 22px rgba(173, 150, 255, 0.13),
+    0 0 45px rgba(137, 112, 217, 0.08);
 }
 
 .gradientBox {
-  border-radius: 25px; /* slightly smaller so it fits inside wrapper */
-   
+  min-width: 0;
+  padding: clamp(18px, 4vw, 38px);
+  border-radius: 26px;
   background: linear-gradient(
-      90deg,
-      rgba(26, 26, 46, 0.9),
-      rgba(46, 46, 77, 0.8),
-      rgba(123, 123, 194, 0.7)
-    );
-  padding: 20px;
+    135deg,
+    rgba(18, 17, 43, 0.98),
+    rgba(38, 34, 72, 0.97),
+    rgba(53, 48, 91, 0.96)
+  );
 }
 
+/* Track information */
 
-Button {
-    width: 30%;
+.trackInfo {
+  text-align: center;
+  overflow-wrap: anywhere;
 }
 
+.trackInfo p {
+  margin-bottom: 0;
+  color: #cfc5ed;
+}
 
-.CircleBorder {
+/* Player layout */
 
-  width: 90%; /* Equal width and height for a perfect circle */
+.playerRow {
+  align-items: center;
+  min-height: 300px;
+}
+
+.playerControls {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 22px;
+  padding: 20px 8px;
+}
+
+.controlGroup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* Buttons only inside the Comm Center player */
+
+.commCenterPage :global(.btn) {
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+
+.controlButton {
+  display: inline-flex !important;
+  justify-content: center;
+  align-items: center;
+  width: 48px;
+  min-width: 48px;
+  height: 46px;
+  padding: 8px !important;
+  border: 1px solid #a8dff6 !important;
+  border-radius: 13px !important;
+  color: #d9f3ff !important;
+  background: rgba(83, 123, 177, 0.12) !important;
+}
+
+.controlButton:hover,
+.controlButton:focus-visible {
+  color: #19152f !important;
+  background: #b9e9ff !important;
+  border-color: #b9e9ff !important;
+  box-shadow: 0 0 18px rgba(185, 233, 255, 0.25);
+  transform: translateY(-2px);
+}
+
+.controlButton:focus-visible,
+.channelButton:focus-visible,
+.exitButton:focus-visible {
+  outline: 2px solid #f0c7ff;
+  outline-offset: 3px;
+}
+
+/* Circular wave visual */
+
+.visualColumn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 0;
+  padding: 20px 10px;
+}
+
+.circleBorder {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: min(100%, 270px);
+  aspect-ratio: 1 / 1;
+  border: 2px solid rgba(177, 206, 255, 0.9);
+  border-radius: 50%;
+  overflow: hidden;
+  background: radial-gradient(
+    circle,
+    rgba(105, 93, 169, 0.4),
+    rgba(21, 21, 48, 0.9)
+  );
+  box-shadow:
+    0 0 20px rgba(153, 173, 255, 0.18),
+    inset 0 0 22px rgba(176, 155, 255, 0.12);
+}
+
+.circleBorder > * {
+  width: 100%;
   height: 100%;
-  border: 2px solid #007bff; /* Set your desired border style and color */
-  border-radius: 50%; /* Makes the corners round to form a circle */
-  overflow: hidden;   
-
+  border-radius: inherit;
 }
 
-@media (max-width: 768px) {
-  
-.CircleBorder {
+/* Channel selection */
 
-  width: 90%; /* Equal width and height for a perfect circle */
-  height: 90%;
-  
-
+.channelSection {
+  margin-top: 28px;
+  text-align: center;
 }
 
-
-
-.borderWrapper {
-    width: 90%;
+.channelHeading {
+  width: 100%;
+  margin-bottom: 16px;
+  color: #e0c5ff;
 }
 
-
-
-Button {
-    width: 50%;
-   
+.channelList {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  flex-wrap: wrap;
+  gap: 10px;
+  width: 100%;
 }
 
+.channelButton {
+  width: auto !important;
+  max-width: 100%;
+  padding: 10px 16px !important;
+  border: 1px solid #a8dff6 !important;
+  border-radius: 14px !important;
+  color: #dff5ff !important;
+  background: rgba(80, 115, 168, 0.12) !important;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
 
-} 
+.channelButton:hover {
+  color: #1c1936 !important;
+  background: #b9e9ff !important;
+  border-color: #b9e9ff !important;
+}
+
+.activeChannel {
+  color: #211735 !important;
+  background: linear-gradient(110deg, #b9e9ff, #e1c0ff) !important;
+  border-color: #e1c0ff !important;
+  box-shadow: 0 0 16px rgba(196, 173, 255, 0.17);
+}
+
+/* Exit button */
+
+.exitSection {
+  display: flex;
+  justify-content: center;
+  margin-top: 35px;
+}
+
+.exitButton {
+  min-width: 125px;
+  width: 25%;
+  transform: translate( 150%, 0);
+  padding: 10px 28px !important;
+  border: 1px solid #c9a8f6 !important;
+  border-radius: 14px !important;
+  color: #f5eaff !important;
+  background: rgba(114, 81, 161, 0.12) !important;
+}
+
+.exitButton:hover {
+  color: #211735 !important;
+  background: #d7b8ff !important;
+  border-color: #d7b8ff !important;
+}
+
+/* Audio error message */
+
+.audioError {
+  margin: 18px 0 0;
+  color: #ffd5e3;
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+
+/* Tablet and mobile */
+
+@media (max-width: 767.98px) {
+  .commCenterPage {
+    padding-top: 22px;
+  }
+
+  .disclaimer {
+    padding: 18px;
+    margin-bottom: 25px;
+  }
+
+  .wrapper {
+    margin-top: 25px;
+  }
+
+  .borderWrapper {
+    width: 100%;
+    border-radius: 22px;
+  }
+
+  .gradientBox {
+    padding: 20px 14px;
+    border-radius: 20px;
+  }
+
+  .playerRow {
+    min-height: auto;
+  }
+
+  .playerControls {
+    padding: 12px 4px 18px;
+    gap: 16px;
+  }
+
+  .controlGroup {
+    gap: 10px;
+  }
+
+  .circleBorder {
+    width: min(72vw, 245px);
+  }
+
+  .visualColumn {
+    padding: 15px 0 5px;
+  }
+
+  .channelSection {
+    margin-top: 24px;
+  }
+
+  .channelButton {
+    padding: 9px 12px !important;
+    font-size: 0.9rem !important;
+  }
+
+  .exitSection {
+    margin-top: 28px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .commCenterPage :global(.btn) {
+    transition: none;
+  }
+}
