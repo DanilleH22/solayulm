@@ -91,6 +91,10 @@ const [windowWidth, setWindowWidth] = useState(window.innerWidth);
             <Link to="/Rooms" style={{ textDecoration: 'none'}}>
                   <p>Rooms</p>
                   </Link>
+
+              <Link to="/Shop" style={{ textDecoration: 'none'}}>
+                  <p>Shop</p>
+                  </Link>
            
             <Link to="/HelpPage" style={{ textDecoration: 'none'}}>
                   <p>Help available</p>
