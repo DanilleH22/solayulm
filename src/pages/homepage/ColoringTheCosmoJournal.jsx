@@ -4,15 +4,43 @@ import { Container, Row, Col, Button } from "react-bootstrap";
 import styles from "../../styles/Shop.module.css";
 import hrImage from "../../assets/images/hr.png";
 import coloringCover from "../../assets/images/colouring-cosmos-cover.png";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router-dom";
 
 function ColoringTheCosmoJournal() {
   const [selectedEdition, setSelectedEdition] = useState("digital");
+  const navigate = useNavigate();
 
-  const handleContinue = () => {
-    // Replace this with your checkout or next-page navigation when ready.
-    console.log("Selected edition:", selectedEdition);
-  };
+
+const handleContinue = async () => {
+  try {
+    const response = await fetch(
+      "http://127.0.0.1:8000/api/create-checkout-session/",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          edition: selectedEdition,
+        }),
+      }
+    );
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(
+        data.error || "Unable to start checkout."
+      );
+    }
+
+    window.location.assign(data.url);
+  } catch (error) {
+    console.error("Checkout error:", error);
+    alert(error.message || "Something went wrong.");
+  }
+};
+
 
   return (
     <section >
