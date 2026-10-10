@@ -1,65 +1,504 @@
-.videoContainer {
-  position: relative;
-  width: 100%;
-  height: 100vh; /* Full viewport height */
-  overflow: hidden;
+/* =========================
+   OBSERVATION DECK THEME
+========================= */
+.galaxyPage {
+  min-height: 100vh;
+  padding-bottom: 40px;
+  color: #f5f0ff;
+  background:
+    radial-gradient(
+      ellipse at 50% 0%,
+      rgba(94, 61, 132, 0.22),
+      transparent 55%
+    ),
+    linear-gradient(180deg, #100b1b 0%, #171025 55%, #0d0915 100%);
+  font-family: "Orbitron", sans-serif;
 }
-
-.deckVideo {
+.deckHeader {
+  padding: 55px 20px 35px;
+  text-align: center;
+}
+.deckTitle {
+  margin-bottom: 15px;
+  color: #ddb0ff;
+  font-family: "Saira Stencil One", sans-serif;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  letter-spacing: 2px;
+  text-shadow: 0 0 22px rgba(221, 176, 255, 0.28);
+}
+.deckSubtitle {
+  max-width: 650px;
+  margin: 0 auto;
+  color: #c8bfd9;
+  font-family: "Orbitron", sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.8;
+}
+/* =========================
+   MAIN LAYOUT
+========================= */
+.deckContent {
+  width: min(1200px, 94%);
+  margin: 0 auto;
+}
+.shaderFrame {
+  position: relative;
+  height: 70vh;
+  min-height: 320px;
+  max-height: 720px;
+  margin-bottom: 35px;
+  overflow: hidden;
+  border: 1px solid rgba(221, 176, 255, 0.3);
+  border-radius: 18px;
+  background: #100b1b;
+  box-shadow:
+    0 0 30px rgba(125, 77, 165, 0.12),
+    inset 0 0 30px rgba(0, 0, 0, 0.2);
+}
+.shaderFrame > * {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Makes video cover container without stretching */
 }
-
-
-
+.controlPanel {
+  padding: 25px;
+  border: 1px solid rgba(221, 176, 255, 0.22);
+  border-radius: 18px;
+  background: rgba(29, 20, 43, 0.76);
+  box-shadow: 0 0 25px rgba(125, 77, 165, 0.08);
+  backdrop-filter: blur(12px);
+}
+.controlSection {
+  min-width: 0;
+  padding: 10px;
+}
+.sectionTitle {
+  margin: 0 0 18px;
+  color: #ddb0ff;
+  font-family: "Orbitron", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-align: center;
+  letter-spacing: 1px;
+}
+/* =========================
+   SHARED BUTTON STYLING
+========================= */
+.deckButton,
+.toolButton,
+.actionButton,
+.customExitBtn,
 .MinutesButton {
-    font-size: 18px;
-    color: white;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    width: 13%;
-    justify-self: center;
-    background-color: #6a626e ;
-    margin: 8px;
-   border: none;
-    
-   
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 11px 18px;
+  color: #f5f0ff !important;
+  font-family: "Orbitron", sans-serif;
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  line-height: 1.5;
+  text-align: center;
+  background: linear-gradient(135deg, #302044, #493365) !important;
+  border: 1px solid rgba(221, 176, 255, 0.6) !important;
+  border-radius: 9px !important;
+  box-shadow: 0 0 15px rgba(181, 140, 217, 0.1) !important;
+  cursor: pointer;
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    transform 0.25s ease;
 }
-
-
-
+.deckButton:hover,
+.toolButton:hover,
+.actionButton:hover,
+.customExitBtn:hover,
 .MinutesButton:hover {
-    background-color: #555151;
-  
+  color: #ffffff !important;
+  background: linear-gradient(135deg, #493365, #624582) !important;
+  border-color: #ddb0ff !important;
+  box-shadow: 0 0 22px rgba(221, 176, 255, 0.2) !important;
+  transform: translateY(-2px);
 }
-    
-
-/* Only when inside galaxyPage */
-.galaxyPage :global(.navbar) {
-  background-color: transparent !important;
-  backdrop-filter: none; /* remove blur if you had it */
+.deckButton:focus-visible,
+.toolButton:focus-visible,
+.actionButton:focus-visible,
+.customExitBtn:focus-visible,
+.MinutesButton:focus-visible {
+  outline: 2px solid #ddb0ff;
+  outline-offset: 3px;
 }
-
-.galaxyPage :global(.footer) {
-  background-color: transparent !important;
-  backdrop-filter: none;
+.selectedButton {
+  color: #ffffff !important;
+  background: linear-gradient(135deg, #79549c, #9b75bd) !important;
+  border-color: #e4c6ff !important;
+  box-shadow: 0 0 18px rgba(221, 176, 255, 0.22) !important;
 }
-
-
-
-
-.customAlert .btn-close {
-  filter: invert(1); /* turns it white */
-  opacity: 0.9;
+.deckButton:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
 }
-
-.customAlert .btn-close:hover {
-  opacity: 1;
+/* =========================
+   BUTTON GROUPS
+========================= */
+.buttonGroup {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.buttonGroup .deckButton {
+  min-width: 110px;
+}
+.toolButton {
+  min-width: 0;
+  flex: 1 1 auto;
+}
+.actionButton {
+  min-width: 145px;
+  margin: 10px;
+}
+/* =========================
+   SOUND CONTROLS
+========================= */
+.soundControls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+}
+.soundToggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  color: #ddb0ff !important;
+  background: rgba(221, 176, 255, 0.08) !important;
+  border: 1px solid rgba(221, 176, 255, 0.35) !important;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+.soundToggle:hover {
+  color: #ffffff !important;
+  background: rgba(221, 176, 255, 0.2) !important;
+  box-shadow: 0 0 16px rgba(221, 176, 255, 0.18);
+}
+.soundSelect {
+  width: min(230px, 75%);
+  padding: 11px 14px;
+  color: #f5f0ff;
+  background-color: #21172f;
+  border: 1px solid rgba(221, 176, 255, 0.4);
+  border-radius: 9px;
+  font-family: "Orbitron", sans-serif;
+  font-size: 0.75rem;
+}
+.soundSelect option {
+  color: #f5f0ff;
+  background: #21172f;
+}
+/* =========================
+   FEATURE CONTENT
+========================= */
+.featurePanel {
+  margin-top: 30px;
+  padding: 28px;
+  color: #eee6fa;
+  background: rgba(29, 20, 43, 0.72);
+  border: 1px solid rgba(221, 176, 255, 0.22);
+  border-radius: 18px;
+  box-shadow: 0 0 24px rgba(125, 77, 165, 0.08);
+}
+.featureTitle {
+  margin-bottom: 16px;
+  color: #ddb0ff;
+  font-family: "Saira Stencil One", sans-serif;
+  font-size: clamp(1.2rem, 3vw, 1.6rem);
+  text-align: center;
+}
+.featureText {
+  color: #cfc4df;
+  font-family: "Orbitron", sans-serif;
+  font-size: 0.85rem;
+  line-height: 1.8;
+  text-align: center;
+}
+/* =========================
+   INPUTS & TEXTAREA
+========================= */
+.gratitudeInput,
+.deckTextarea {
+  width: 100%;
+  min-width: 0;
+  padding: 13px 16px;
+  color: #f5f0ff !important;
+  background: rgba(12, 8, 22, 0.75) !important;
+  border: 1px solid rgba(221, 176, 255, 0.35) !important;
+  border-radius: 10px !important;
+  font-family: "Orbitron", sans-serif;
+  font-size: 0.8rem;
+  outline: none;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+.gratitudeInput::placeholder,
+.deckTextarea::placeholder {
+  color: #a99bbd;
+}
+.gratitudeInput:focus,
+.deckTextarea:focus {
+  border-color: #ddb0ff !important;
+  box-shadow: 0 0 14px rgba(221, 176, 255, 0.14) !important;
+}
+.deckTextarea {
+  min-height: 180px;
+  resize: vertical;
+  border-radius: 14px !important;
+  line-height: 1.8;
+}
+.gratitudeForm {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.gratitudeForm .gratitudeInput {
+  flex: 1;
+}
+.gratitudeForm .actionButton {
+  flex: 0 0 auto;
+  min-width: 85px;
+  margin: 0;
+}
+/* =========================
+   GRATITUDE LIST
+========================= */
+.gratitudeList {
+  margin: 20px 0;
+  padding: 20px;
+  color: #f5f0ff;
+  background: rgba(221, 176, 255, 0.09);
+  border: 1px solid rgba(221, 176, 255, 0.22);
+  border-radius: 14px;
+}
+.gratitudeListTitle {
+  margin-bottom: 14px;
+  color: #ddb0ff;
+  font-size: 0.9rem;
+}
+.gratitudeList ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.gratitudeList li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 8px 0;
+  color: #eee6fa;
+  overflow-wrap: anywhere;
+}
+.gratitudeHeart {
+  flex-shrink: 0;
+  color: #ddb0ff;
+}
+/* =========================
+   BREATHING CIRCLE
+========================= */
+.breathingCircle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 25px auto;
+  color: #24152f;
+  border: 2px solid rgba(245, 240, 255, 0.6);
+  border-radius: 50%;
+  box-shadow: 0 0 28px rgba(221, 176, 255, 0.18);
+  transition: width 0.1s ease, height 0.1s ease, background-color 0.1s ease;
+}
+.breathingCircle span {
+  font-family: "Orbitron", sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-align: center;
+}
+.progressTrack {
+  width: 100%;
+  height: 6px;
+  margin: 25px 0;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+}
+.progressFill {
+  height: 100%;
+  background: linear-gradient(90deg, #79549c, #ddb0ff);
+  border-radius: 20px;
+  transition: width 0.1s linear;
+}
+/* =========================
+   GROUNDING EXERCISE
+========================= */
+.groundingItem {
+  margin-bottom: 12px;
+  padding: 18px;
+  background: rgba(221, 176, 255, 0.045);
+  border: 1px solid rgba(221, 176, 255, 0.15);
+  border-radius: 12px;
+  text-align: left;
+}
+.groundingItem h4 {
+  margin-bottom: 8px;
+  color: #ddb0ff;
+  font-family: "Orbitron", sans-serif;
+  font-size: 0.9rem;
+}
+.groundingItem p {
+  margin: 0;
+  color: #cfc4df;
+  font-size: 0.8rem;
+  line-height: 1.7;
+}
+/* =========================
+   ALERT
+========================= */
+.customAlert {
+  width: min(100%, 480px);
+  margin: 15px auto;
+  padding: 14px 18px;
+  color: #f5f0ff !important;
+  background: rgba(67, 46, 88, 0.9) !important;
+  border: 1px solid rgba(221, 176, 255, 0.4) !important;
+  border-radius: 12px;
+  text-align: center;
+}
+.customAlert p {
+  margin: 0;
 }
 .customAlert :global(.btn-close) {
   filter: invert(1);
   opacity: 0.9;
 }
-
+.customAlert :global(.btn-close:hover) {
+  opacity: 1;
+}
+/* =========================
+   EXIT BUTTON
+========================= */
+.exitSection {
+  padding: 35px 15px 10px;
+  text-align: center;
+}
+.customExitBtn {
+  min-width: 145px;
+  padding: 11px 28px;
+}
+/* =========================
+   LEGACY CLASSES
+========================= */
+.videoContainer {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+.deckVideo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.MinutesButton {
+  width: auto;
+  min-width: 100px;
+  margin: 8px;
+}
+.galaxyPage :global(.navbar),
+.galaxyPage :global(.footer) {
+  background-color: transparent !important;
+  backdrop-filter: none;
+}
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 768px) {
+  .deckHeader {
+    padding: 38px 18px 25px;
+  }
+  .deckContent {
+    width: 94%;
+  }
+  .shaderFrame {
+    height: 48vh;
+    min-height: 280px;
+    border-radius: 13px;
+  }
+  .controlPanel {
+    padding: 14px;
+  }
+  .controlSection {
+    padding: 12px 4px;
+  }
+  .sectionTitle {
+    font-size: 0.82rem;
+  }
+  .featurePanel {
+    margin-top: 20px;
+    padding: 18px 14px;
+  }
+  .buttonGroup {
+    gap: 8px;
+  }
+  .buttonGroup .deckButton {
+    flex: 1 1 42%;
+    min-width: 0;
+    padding: 10px 8px;
+    font-size: 0.68rem;
+  }
+  .toolButton {
+    padding: 10px 8px;
+    font-size: 0.68rem;
+  }
+  .actionButton {
+    width: 100%;
+    max-width: 260px;
+    margin: 10px auto;
+    padding: 12px 14px;
+    font-size: 0.72rem;
+  }
+  .gratitudeForm {
+    flex-wrap: wrap;
+  }
+  .gratitudeForm .gratitudeInput {
+    flex-basis: 100%;
+  }
+  .gratitudeForm .actionButton {
+    width: auto;
+    min-width: 90px;
+  }
+  .deckTextarea {
+    min-height: 150px;
+  }
+  .soundControls {
+    gap: 10px;
+  }
+  .soundSelect {
+    width: 75%;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .deckButton,
+  .toolButton,
+  .actionButton,
+  .customExitBtn,
+  .MinutesButton,
+  .breathingCircle,
+  .progressFill {
+    transition: none;
+  }
+}
