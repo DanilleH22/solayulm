@@ -52,7 +52,7 @@ const App = () => {
           <Route path="/Shop/ColoringTheCosmoJournal" element={<ColoringTheCosmo />} />
           <Route path="/Shop/InnerSenseJournal" element={<InnerSense />} />
           <Route path="/Shop/StillBecomingBook" element={<StillBecomingBook />} />
-          <Route path="/PurchaseSuccess" element={<PurchaseSuccess />} />
+          <Route path="/purchase-success" element={<PurchaseSuccess />} />
           
             <Route path="*" element={<h1>Page not found!</h1>} />
           </Routes>
