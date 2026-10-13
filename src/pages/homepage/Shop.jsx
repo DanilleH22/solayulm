@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import styles from "../../styles/Shop.module.css";
 import coloringCover from "../../assets/images/colouring-cosmos-cover.png";
 import ioCover from "../../assets/images/inner-orbit-cover.png";
+import stillBecomingCover from "../../assets/images/still-becoming-cover.png";
 
 import sensingMyself from "../../assets/images/hr.png";
 
@@ -35,14 +36,14 @@ const books = [
   },
   {
     id: "emotional-first-aid",
-    title: "Emotional First Aid",
+    title: "Still Becoming",
     subtitle: "A Companion for the Harder Days",
     description:
       "Poetry, emotional education and guided exercises for navigating anxiety, sadness, burnout and life's difficult moments.",
-    image: "/images/shop/emotional-first-aid.jpg",
-    imageAlt: "Emotional First Aid book cover",
+    image: stillBecomingCover,
+    imageAlt: "Still Becoming book cover",
     type: "Wellbeing book",
-    link: "/shop/emotional-first-aid",
+    link: "/Shop/StillBecomingBook",
     buttonText: "Discover this book",
   },
 ];
