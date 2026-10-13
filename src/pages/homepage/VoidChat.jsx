@@ -478,7 +478,7 @@ const VoidChat = () => {
               className={styles.exitButton}
               onClick={() => setShowTransmission(true)}
             >
-              Exit Holo Room
+              Return to Rooms
             </button>
           </div>
           

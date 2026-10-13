@@ -423,6 +423,7 @@ const HoloRoom = () => {
 
   const [showTransmission, setShowTransmission] = useState(false);
 const navigate = useNavigate();
+
   const renderToolbar = () => (
     <>
       <div className={styles.toolbar}>
@@ -957,7 +958,7 @@ const navigate = useNavigate();
     className={styles.exitButton}
     onClick={() => setShowTransmission(true)}
   >
-    Exit Holo Room
+    Return to Rooms
   </button>
 </div>
 
