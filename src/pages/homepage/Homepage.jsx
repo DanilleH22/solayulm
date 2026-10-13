@@ -37,6 +37,7 @@ import Circlepencil from '../../assets/Animations/Circlepencil.json';
 import FreeConsultation from '../../assets/Animations/FreeConsultation.json';
 import spaceDeveloper from '../../assets/Animations/spaceDeveloper.json';
 import spaceX from '../../assets/Animations/spaceX.json';
+import MailOpen from '../../assets/Animations/MailOpen.json';
 import { Helmet } from 'react-helmet-async';
 
 import IncomingTransmission from "../../components/IncomingTransmission.jsx"
@@ -739,6 +740,93 @@ const onMove = useCallback(
                     <Col md={12}>
                     <div className={styles.linkButton} >
                     <Link to="/HoloRoom" style={{ textDecoration: 'none' }}>
+                      <Button  className={styles.enterButton}>Enter</Button>
+                      </Link>
+                    </div>
+                    </Col>
+                </Row>
+    </Tab>
+
+
+    <Tab eventKey="Time Capsule" title="Time Capsule" className={styles.tabContent}>
+      <Row>
+      <Col className={styles.tabTextLeft}>
+      
+      <h4>Time Capsule</h4>
+      <p>A message sent through time, waiting for the moment it is meant to be found.</p>
+
+      <p>A quiet place to leave something for the future — a thought, a feeling, a promise, or a piece of yourself 
+      you want to remember. Write to the person you are becoming, or send a message to someone you care about. 
+      Some things are easier to say when time gives them room to breathe. </p>
+
+      <p>Somewhere in the quiet expanse of the cosmos, a message waits between who you are today and who you will become. 
+      The Time Capsule holds a moment still, preserving your words or your voice until the day they are ready to be received. 
+      Perhaps you will leave behind a reminder of how far you have travelled. 
+      Perhaps someone you love will discover your message when they need it most. 
+      Whatever you choose to leave, let it be a small light travelling through time — a reminder that this moment mattered, and so do you. </p>
+      
+      </Col>
+      <Lottie
+    animationData={MailOpen}
+    loop={true}
+    autoplay={true}
+    style={{ 
+      height: '500px', 
+      width: '400px',
+      maxWidth: '100%' 
+    }}
+  />
+      
+      </Row>
+      <Row>
+        <Col className={styles.tabTextRight}>
+      <div className={styles.tabTextRightBackground}>
+        <div style={{ paddingTop: '25px', display: 'grid', justifyContent: 'center', alignItems: 'center', textAlign: 'center' }}>
+        <div className={styles.inlineText}>
+  <h3>Area:</h3>
+  <p>Temporal Archive (Time Capsules)</p>
+</div>
+<div className={styles.inlineText}>
+  <h3>Temp:</h3>
+  <p>Preserved – a moment held beyond the present</p>
+</div>
+<div className={styles.inlineText}>
+  <h3>Weight:</h3>
+  <p>1g (Variable)</p>
+</div>
+<div className={styles.inlineText}>
+  <h3>Light:</h3>
+  <p>A soft, waiting glow</p>
+</div>
+<div className={styles.inlineText}>
+  <h3>Sound:</h3>
+  <p>A distant signal travelling through time</p>
+</div>
+<div className={styles.inlineText}>
+  <h3>Purpose:</h3>
+  <p>Messages for the future</p>
+</div>
+<div className={styles.inlineText}>
+  <h3>Use:</h3>
+  <p>Write a free letter capsule or record a video message to be opened at a chosen future date</p>
+</div>
+<div className={styles.inlineText}>
+  <h3>Access:</h3>
+  <p>Open to Time Travelers</p>
+</div>
+
+
+
+
+      
+      </div>
+      </div>
+      </Col>
+      </Row>
+          <Row>
+                    <Col md={12}>
+                    <div className={styles.linkButton} >
+                    <Link to="/TimeCapsules" style={{ textDecoration: 'none' }}>
                       <Button  className={styles.enterButton}>Enter</Button>
                       </Link>
                     </div>

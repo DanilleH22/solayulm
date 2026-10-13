@@ -25,6 +25,7 @@ import ColoringTheCosmo from "./pages/homepage/ColoringTheCosmoJournal.jsx";
 import Shop from "./pages/homepage/Shop.jsx";
 import PurchaseSuccess from "./pages/homepage/PurchaseSuccess.jsx";
 import StillBecomingBook from "./pages/homepage/StillBecomingBook.jsx";
+import TimeCapsules from "./pages/homepage/TimeCapsule.jsx";
 
 const App = () => {
   return (
@@ -53,6 +54,7 @@ const App = () => {
           <Route path="/Shop/InnerSenseJournal" element={<InnerSense />} />
           <Route path="/Shop/StillBecomingBook" element={<StillBecomingBook />} />
           <Route path="/purchase-success" element={<PurchaseSuccess />} />
+          <Route path="/TimeCapsules" element={<TimeCapsules />} />
           
             <Route path="*" element={<h1>Page not found!</h1>} />
           </Routes>

@@ -31,6 +31,7 @@ import Circlepencil from '../../assets/Animations/Circlepencil.json';
 import FreeConsultation from '../../assets/Animations/FreeConsultation.json';
 import spaceDeveloper from '../../assets/Animations/spaceDeveloper.json';
 import spaceX from '../../assets/Animations/spaceX.json';
+import MailOpen from '../../assets/Animations/MailOpen.json';
 
 import { Helmet } from "react-helmet-async"
 
@@ -374,11 +375,89 @@ const onMove = useCallback(
 </Row>
 </ScrollAnimation>
 
+
 <ScrollAnimation animationVariants={{
     hidden: { opacity: 0, x: -100 },
     visible: { opacity: 1, x: 0, transition: { duration: 1 } }
   }}>
 <Row className={styles.servicesTextWrapper}>
+  <Col className={styles.servicesText} md={7} lg={8}>
+    <h3>Time Capsule</h3>
+    <h3>Description : </h3>
+    <p>Somewhere within the quiet expanse of the cosmos, a moment waits to be carried into the future. 
+      The Time Capsule allows you to preserve a piece of yourself — a thought, a memory, a hope, 
+      or a message for someone you hold close. 
+      Whether you choose to write a letter or record a video, your words become a small fragment of the present, 
+      held safely until the time comes for them to be received. 
+      Because sometimes, the things we need to hear most are the words we leave for ourselves along the way.
+        </p>
+
+   <h3>Planet Details:</h3>
+   <p>Memory preservation, future messages, personal reflection, and meaningful connections across time.</p>
+
+   <h3>Purpose</h3>
+   <p>To give today's moments a place in tomorrow, allowing memories, encouragement, 
+    and heartfelt messages to find their way back when they matter most.</p>
+
+   <h3>When to use it?</h3>
+   <p>When you want to remember how far you've come, leave a message for your future self, 
+    capture a moment you don't want to forget, or send someone a reminder that they're loved — 
+    even if they won't receive it until much later.
+   </p>
+   <div className={styles.exploringButton}>
+  <Link to="/TimeCapsules">
+    <Button 
+    disabled
+    style={{
+        outline: 'none',
+        boxShadow: 'none',
+        backgroundColor: 'transparent',
+        border: 'none',
+      }}>Explore</Button>
+  </Link>
+</div>
+  </Col>
+  <Col md={5} lg={4} className={styles.servicesImg}>
+    {/* <img src={s13} alt="space" /> */}
+    <div 
+    onMouseMove={onMove} 
+    style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+  >
+    <Lottie
+    animationData={MailOpen}
+    loop={true}
+    autoplay={true}
+    style={{ 
+      height: '500px', 
+      width: '400px',
+      maxWidth: '100%' 
+    }}
+  />
+  </div>
+  </Col>
+</Row>
+</ScrollAnimation>
+
+<ScrollAnimation >
+<Row className={styles.servicesTextWrapper}>
+  <Col md={5} lg={4} className={styles.servicesImg}>
+    {/* <img src={s13} alt="space" /> */}
+    <div 
+    onMouseMove={onMove} 
+    style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+  >
+    <Lottie
+    animationData={Astronaut}
+    loop={true}
+    autoplay={true}
+    style={{ 
+      height: '500px', 
+      width: '400px',
+      maxWidth: '100%' 
+    }}
+  />
+  </div>
+  </Col>
   <Col className={styles.servicesText} md={7} lg={8}>
     <h3>Cosmic Companion AI Bot ( Currently Unavailable)</h3>
     <h3>Description : </h3>
@@ -410,24 +489,7 @@ const onMove = useCallback(
   </Link>
 </div>
   </Col>
-  <Col md={5} lg={4} className={styles.servicesImg}>
-    {/* <img src={s13} alt="space" /> */}
-    <div 
-    onMouseMove={onMove} 
-    style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
-  >
-    <Lottie
-    animationData={Astronaut}
-    loop={true}
-    autoplay={true}
-    style={{ 
-      height: '500px', 
-      width: '400px',
-      maxWidth: '100%' 
-    }}
-  />
-  </div>
-  </Col>
+  
 </Row>
 </ScrollAnimation>
 
