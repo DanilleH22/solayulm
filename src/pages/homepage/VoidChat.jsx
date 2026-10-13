@@ -1,11 +1,15 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { Helmet } from "react-helmet-async";
 
 import ShootingStars from "../../components/ShootingStars.jsx";
 import { Aurora } from "../../components/Aurora.jsx";
 import styles from "../../styles/VoidChat.module.css";
+
+import IncomingTransmission from "../../components/IncomingTransmission.jsx";
+
+
 
 const journalPromptsArray = [
   "What is something you're grateful for today, no matter how small?",
@@ -49,6 +53,8 @@ const getRandomJournalPrompt = () =>
   ];
 
 const VoidChat = () => {
+  const [showTransmission, setShowTransmission] = useState(false);
+  const navigate = useNavigate();
   const [transcript, setTranscript] = useState("");
   const [messages, setMessages] = useState([]);
   const [isListening, setIsListening] = useState(false);
@@ -460,12 +466,29 @@ const VoidChat = () => {
           </section>
 
           {/* Exit */}
-          <div className={styles.exitSection}>
+          {/* <div className={styles.exitSection}>
             <Link to="/Rooms" className={styles.exitButton}>
               Exit Void Chat
             </Link>
+          </div> */}
+
+          <div className={styles.exitSection}>
+            <button
+              type="button"
+              className={styles.exitButton}
+              onClick={() => setShowTransmission(true)}
+            >
+              Exit Holo Room
+            </button>
           </div>
+          
+          <IncomingTransmission
+            isOpen={showTransmission}
+            onClose={() => setShowTransmission(false)}
+            onContinue={() => navigate("/Rooms")}
+          />
         </div>
+        
       </main>
     </>
   );

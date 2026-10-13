@@ -4,9 +4,11 @@ import ChatBox from "../../components/AiCompanion/ChatBox";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import { Link } from "react-router";
 import { Helmet } from 'react-helmet-async'
-
+import IncomingTransmission from "../../components/IncomingTransmission.jsx";
 
 const AiCompanion = () => {
+    const [showTransmission, setShowTransmission] = useState(false);
+  const navigate = useNavigate();
   return (
     <>
     <Helmet>

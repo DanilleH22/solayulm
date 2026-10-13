@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState }  from 'react';
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { Container, Row, Col, Button, Tab, Tabs, Carousel, Nav} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css'; 
 import SpaceCard from '../../components/SpaceCard.jsx';
@@ -37,12 +37,13 @@ import Circlepencil from '../../assets/Animations/Circlepencil.json';
 import FreeConsultation from '../../assets/Animations/FreeConsultation.json';
 import spaceDeveloper from '../../assets/Animations/spaceDeveloper.json';
 import spaceX from '../../assets/Animations/spaceX.json';
-import { Helmet } from 'react-helmet-async'
+import { Helmet } from 'react-helmet-async';
 
-
+import IncomingTransmission from "../../components/IncomingTransmission.jsx"
 
 const Homepage = () => {
-
+//   const [showTransmission, setShowTransmission] = useState(false);
+// const navigate = useNavigate();
   const [{ xy }, set] = useSpring(() => ({ xy: [0, 0] }));
 
 
@@ -231,7 +232,7 @@ const onMove = useCallback(
 </section>
 
 </Row>
-
+<IncomingTransmission />
 <Row>
 
        

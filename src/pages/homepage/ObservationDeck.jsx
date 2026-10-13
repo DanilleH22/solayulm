@@ -11,7 +11,7 @@ import {
   faLeaf,
 } from "@fortawesome/free-solid-svg-icons";
 import { Row, Col, Alert } from "react-bootstrap";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { Helmet } from "react-helmet-async";
 
 import GalaxyShader from "../../components/GalaxyShader.jsx";
@@ -19,10 +19,13 @@ import RedGalaxyShader from "../../components/RedGalaxyShader.jsx";
 import PurpleNebula from "../../components/PurpleNebula.jsx";
 import styles from "../../styles/ObservationDeck.module.css";
 
+import IncomingTransmission from "../../components/IncomingTransmission.jsx";
+
 // =========================
 // AMBIENT SOUNDS
 // =========================
 
+  
 const ambientSounds = [
   {
     name: "Space Ambience",
@@ -93,6 +96,8 @@ const ObservationDeck = () => {
   // =========================
   // STATE
   // =========================
+  const [showTransmission, setShowTransmission] = useState(false);
+const navigate = useNavigate();
 
   const [isSoundOn, setIsSoundOn] = useState(false);
   const [activeShader, setActiveShader] = useState("redGalaxy");
@@ -693,18 +698,25 @@ const ObservationDeck = () => {
 
         {/* EXIT */}
 
-        <Row className={styles.exitSection}>
-          <Col xs={12}>
-            <Link to="/Rooms" className="text-decoration-none">
-              <button
-                type="button"
-                className={styles.customExitBtn}
-              >
-                Return to rooms
-              </button>
-            </Link>
-          </Col>
-        </Row>
+        
+<Row className={styles.exitSection}>
+  <Col xs={12}>
+    <button
+      type="button"
+      className={styles.customExitBtn}
+      onClick={() => setShowTransmission(true)}
+    >
+      Return to rooms
+    </button>
+  </Col>
+</Row>
+
+<IncomingTransmission
+  isOpen={showTransmission}
+  onClose={() => setShowTransmission(false)}
+  onContinue={() => navigate("/Rooms")}
+/>
+
       </main>
     </>
   );

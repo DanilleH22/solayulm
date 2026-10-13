@@ -10,12 +10,12 @@ import {
   faForward,
   faBackward,
 } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { Helmet } from "react-helmet-async";
 
 import WavesBackground from "../../components/WavesBackground.jsx";
 import styles from "../../styles/CommCenter.module.css";
-
+import IncomingTransmission from "../../components/IncomingTransmission.jsx";
 // ==========================================
 // AUDIO CHANNELS
 // ==========================================
@@ -209,6 +209,8 @@ const CHANNELS = {
 // ==========================================
 
 const CommCenter = () => {
+  const [showTransmission, setShowTransmission] = useState(false);
+  const navigate = useNavigate();
   const [currentChannel, setCurrentChannel] = useState("Lofi Beats");
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -514,7 +516,7 @@ const CommCenter = () => {
           </section>
 
           {/* Exit */}
-          <div className={styles.exitSection}>
+          {/* <div className={styles.exitSection}>
             <Link to="/Rooms" aria-label="Return to the rooms">
               <Button
                 type="button"
@@ -523,7 +525,23 @@ const CommCenter = () => {
                 Exit 
               </Button>
             </Link>
+          </div> */}
+
+          <div className={styles.exitSection}>
+            <button
+              type="button"
+              className={styles.exitButton}
+              onClick={() => setShowTransmission(true)}
+            >
+              Return to rooms
+            </button>
           </div>
+          
+          <IncomingTransmission
+            isOpen={showTransmission}
+            onClose={() => setShowTransmission(false)}
+            onContinue={() => navigate("/Rooms")}
+          />
         </Container>
       </main>
     </>

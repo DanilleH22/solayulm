@@ -12,8 +12,10 @@ import   JumpingDots  from "../../components/JumpingDots.jsx";
 import { RotatingRings } from "../../components/RotatingRings.jsx";
 import  MoodBar  from "../../components/MoodBar.jsx";
 import  FocusDial  from "../../components/FocusDial.jsx";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { Helmet } from "react-helmet-async"
+
+import IncomingTransmission from "../../components/IncomingTransmission.jsx";
 
 
 // import React, { useState } from 'react';
@@ -25,6 +27,7 @@ import { Helmet } from "react-helmet-async"
 // import CustomCountdownTimer from '../../components/CustomCountdownTimer.jsx';
 // import MoodBar from '../../components/MoodBar.jsx';
 // import RotatingRings from '../../components/RotatingRings.jsx';
+ 
 
 const mediaOptions = [
   {
@@ -99,6 +102,8 @@ const sessionOptions = [
 ];
 
 const DecompressionBay = () => {
+   const [showTransmission, setShowTransmission] = useState(false);
+const navigate = useNavigate();
   const [duration, setDuration] = useState(300);
   const [selectedMood, setSelectedMood] = useState(null);
   const [showVisuals, setShowVisuals] = useState(false);
@@ -386,15 +391,38 @@ const DecompressionBay = () => {
         {/* Return to rooms */}
 
         <footer className={styles.exitArea}>
-          <Link to="/Rooms" style={{ textDecoration: 'none', display: 'flex', justifyContent: 'center' }}>
+          {/* <Link to="/Rooms" style={{ textDecoration: 'none', display: 'flex', justifyContent: 'center' }}>
             <Button
-              type="button"
-              className={styles.MinutesButton}
-              variant="outline-info"
-            >
-              Return to Rooms
-            </Button>
-          </Link>
+      type="button"
+      className={styles.MinutesButton}
+      onClick={() => setShowTransmission(true)}
+      variant="outline-info"
+    >
+      Exit Descompression Bay
+    </Button>
+          </Link> */}
+
+
+<Row className={styles.exitSection}>
+  <Col xs={12}>
+            <div  style={{ textDecoration: 'none', display: 'flex', justifyContent: 'center' }}>
+    <Button
+      type="button"
+      className={styles.MinutesButton}
+      onClick={() => setShowTransmission(true)}
+    >
+      Return to rooms
+    </Button>
+    </div>
+  </Col>
+</Row>
+
+<IncomingTransmission
+  isOpen={showTransmission}
+  onClose={() => setShowTransmission(false)}
+  onContinue={() => navigate("/Rooms")}
+/>
+
         </footer>
       </Container>
     </>

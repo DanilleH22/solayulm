@@ -11,7 +11,7 @@ import {
 import { ColorPicker, useColor } from 'react-color-palette';
 import 'react-color-palette/dist/css/rcp.css';
 import useImage from 'use-image';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import { Helmet } from 'react-helmet-async';
 import styles from '../../styles/HoloRoom.module.css';
 import colouring1 from '../../assets/images/colouring/colouring1.png';
@@ -29,6 +29,9 @@ import colouring12 from '../../assets/images/colouring/colouring12.png';
 import colouring13 from '../../assets/images/colouring/colouring13.png';
 import colouring14 from '../../assets/images/colouring/colouring14.png';
 import colouring15 from '../../assets/images/colouring/colouring15.png';
+
+import IncomingTransmission from "../../components/IncomingTransmission.jsx";
+
 const STAGE_WIDTH = 900;
 const STAGE_HEIGHT = 600;
 const constellations = {
@@ -417,6 +420,9 @@ const HoloRoom = () => {
       )
     );
   };
+
+  const [showTransmission, setShowTransmission] = useState(false);
+const navigate = useNavigate();
   const renderToolbar = () => (
     <>
       <div className={styles.toolbar}>
@@ -944,11 +950,23 @@ const HoloRoom = () => {
             </div>
             {renderActiveFeature()}
           </section>
-          <div className={styles.exitSection}>
-            <Link to='/Rooms' className={styles.exitButton}>
-              Exit Holo Room
-            </Link>
-          </div>
+          
+<div className={styles.exitSection}>
+  <button
+    type="button"
+    className={styles.exitButton}
+    onClick={() => setShowTransmission(true)}
+  >
+    Exit Holo Room
+  </button>
+</div>
+
+<IncomingTransmission
+  isOpen={showTransmission}
+  onClose={() => setShowTransmission(false)}
+  onContinue={() => navigate("/Rooms")}
+/>
+
         </div>
       </main>
     </>

@@ -1,15 +1,17 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Container, Row, Col, Button } from "react-bootstrap";
 import styles from "../../styles/AirlockJournal.module.css";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { motion } from "framer-motion";
 import Snowfall from 'react-snowfall';
 import { gsap } from "gsap";
 import OrbitingDots from "../../components/OrbitingDots.jsx";
 import { Helmet } from 'react-helmet-async'
-
+import IncomingTransmission from "../../components/IncomingTransmission.jsx";
 
 const AirlockJournal = () => {
+    const [showTransmission, setShowTransmission] = useState(false);
+const navigate = useNavigate();
   const [text, setText] = useState("");
   const [sending, setSending] = useState(false);
    const textRef = useRef();
@@ -116,16 +118,26 @@ const AirlockJournal = () => {
    
       <Row className='mt-5'>
         <Col xs={12} md={12}>
-          <Link to="/Rooms" className='d-flex justify-content-center' style={{ background: 'none', textDecoration: 'none'}}>
-            <Button onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          <div  className='d-flex justify-content-center' style={{ background: 'none', textDecoration: 'none'}}>
+            <Button  onClick={() => setShowTransmission(true)}
+            // onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
             className={styles.ExitBtn} 
+            type="button"
             style={{display: 'flex', 
               justifyContent: 'center', 
               
-            }}>Exit</Button>
-          </Link>
+            }}>Return to rooms</Button>
+          </div>
+          
         </Col>
       </Row>
+
+<IncomingTransmission
+  isOpen={showTransmission}
+  onClose={() => setShowTransmission(false)}
+  onContinue={() => navigate("/Rooms")}
+/>
+
     </Container>
     </>
   );
