@@ -157,6 +157,15 @@ gap: 10px;
 margin: 24px 0;
 }
 
+.toolTab{
+    width: 100% !important;
+}
+
+.toolButton,
+.actionButton {
+    width: 15% !important;
+}
+
 .promptCategoryButton,
 .toolTab,
 .toolButton,
@@ -167,7 +176,7 @@ align-items: center;
 justify-content: center;
 min-height: 42px;
 padding: 11px 17px;
-
+width: 25%;
 color: #e9e1f8;
 font-family: “Orbitron”, sans-serif;
 font-size: 0.72rem;

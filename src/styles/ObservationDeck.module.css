@@ -397,7 +397,7 @@
   text-align: center;
 }
 .customExitBtn {
-  min-width: 145px;
+  width: 20%;
   padding: 11px 28px;
 }
 /* =========================
