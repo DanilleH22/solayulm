@@ -15,21 +15,21 @@ const products = [
     description:
       "Take a pause, explore your creativity and give yourself a little space to breathe.",
     image: colouringBookImage,
-    link: "/shop",
+    link: "/Shop/ColoringTheCosmoJournal",
   },
   {
     name: "Inner Orbit Journal",
     description:
       "A gentle space to notice your thoughts, reflect on your experiences and reconnect with yourself.",
     image: journalImage,
-    link: "/shop",
+    link: "/Shop/InnerSenseJournal",
   },
   {
     name: "Still Becoming",
     description:
       "Explore what you're feeling, understand yourself a little more and find small ways forward.",
     image: workbookImage,
-    link: "/shop",
+    link: "/Shop/StillBecomingBook",
   },
 ];
 
