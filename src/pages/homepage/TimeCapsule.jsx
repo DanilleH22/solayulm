@@ -1,5 +1,6 @@
 
 import { useEffect, useRef, useState } from "react";
+import { Link, useNavigate } from "react-router";
 import styles from "../../styles/TimeCapsules.module.css";
 import IncomingTransmission from "../../components/IncomingTransmission.jsx";
 
@@ -41,6 +42,7 @@ function getOpeningDate(duration) {
 
 export default function TimeCapsules() {
      const [showTransmission, setShowTransmission] = useState(false);
+     const navigate = useNavigate();
   const [capsuleType, setCapsuleType] = useState("letter");
   const [title, setTitle] = useState("");
   const [message, setMessage] = useState("");
