@@ -50,7 +50,7 @@ const handleContinue = async () => {
           <Col xs={12} md={6}>
             <div className={styles["journal-product__image-wrapper"]}>
               <img
-                src={coloringCover}
+                src={StillBecoming}
                 alt="Solayulm journal cover"
                 className={styles["journal-product__image"]}
               />
@@ -65,18 +65,17 @@ const handleContinue = async () => {
               </p>
 
               <h1 className={styles["journal-product__title"]}>
-                Coloring the Cosmo Journal
+                Still Becoming
               </h1>
 
               <p className={styles["journal-product__subtitle"]}>
-                A Space Mindfulness Colouring Book for Calm and Relaxation
+                A Companion for the Harder Days
               </p>
 
               <p className={styles["journal-product__description"]}>
-                A space to slow down, explore your emotions and reconnect
-                with the parts of yourself that can get lost in everyday
-                life. Move at your own pace, with no pressure to have
-                everything figured out.
+                A gentle space to pause, explore your emotions and reconnect with yourself. 
+                Still Becoming invites you to slow down, reflect on what you're carrying and discover small ways to understand yourself more deeply. 
+                
               </p>
 
               <div className={styles["journal-product__divider"]} />
