@@ -71,6 +71,7 @@ export default function TimeCapsules() {
 
   const [showDurationPopup, setShowDurationPopup] = useState(false);
   const [showConfirmation, setShowConfirmation] = useState(false);
+  const [savedCapsuleId, setSavedCapsuleId] = useState(null);
   const [error, setError] = useState("");
   const [isSaving, setIsSaving] = useState(false);
 
@@ -417,12 +418,34 @@ export default function TimeCapsules() {
         );
 
         const response = await fetch(
-          `${API_BASE_URL}/upload-time-capsule-video/`,
-          {
-            method: "POST",
-            body: formData,
-          }
-        );
+  `${API_BASE_URL}/create-time-capsule/`,
+  {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      title: title.trim(),
+      message: message.trim(),
+      recipient_email: recipientEmail.trim(),
+      duration: selectedDuration?.apiValue || "30_days",
+    }),
+  }
+);
+
+const data = await response.json();
+
+if (!response.ok || data.success !== true || !data.capsule_id) {
+  throw new Error(
+    data.error ||
+      data.message ||
+      "Your letter could not be saved. Please try again."
+  );
+}
+
+setSavedCapsuleId(data.capsule_id);
+setShowDurationPopup(false);
+setShowConfirmation(true);
         
 
         const data = await response.json();
@@ -489,6 +512,7 @@ export default function TimeCapsules() {
   function startAgain() {
     if (recordingActiveRef.current) {
       stopRecording();
+      setSavedCapsuleId(null);
     }
 
     stopCamera();
@@ -782,10 +806,11 @@ export default function TimeCapsules() {
             <div className={styles.messagePreview}>{message}</div>
 
             <p className={styles.notice}>
-              Your letter has been submitted to the backend. Automatic
-              scheduled delivery and email notifications still need to be
-              configured.
-            </p>
+  Your letter has been saved to Solayulm.
+  Capsule reference: {savedCapsuleId}.
+  Automatic email delivery must be enabled on the backend
+  before your recipient will receive it on the opening date.
+</p>
 
             <button
               type="button"
