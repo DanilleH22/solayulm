@@ -366,14 +366,16 @@ user-select: none;
 -webkit-user-select: none;
 -webkit-tap-highlight-color: transparent;
 
-background:
+/* background:
 radial-gradient(ellipse at 50% 50%, rgba(70, 53, 109, 0.18), transparent 65%),
 #0b0d1b;
 
 border: 1px solid rgba(190, 157, 235, 0.27);
 border-radius: 14px;
-box-shadow: 0 0 24px rgba(103, 78, 154, 0.08);
+box-shadow: 0 0 24px rgba(103, 78, 154, 0.08); */
 }
+
+/* 
 
 .canvasContainer canvas {
 display: block;
@@ -384,6 +386,10 @@ user-select: none;
 -webkit-tap-highlight-color: transparent;
 }
 
+
+.canvasContainer div {
+    left: 5%;
+} */
 /* =========================
 CONNECT THE DOTS
 ========================= */
