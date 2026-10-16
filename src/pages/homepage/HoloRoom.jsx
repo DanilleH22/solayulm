@@ -527,6 +527,43 @@ function DraggableMoodImage({ src, x, y, onDragEnd }) {
     />
   );
 }
+function ScaledStage({ stageRef, children, maxWidth = 900, ...stageProps }) {
+  const [scale, setScale] = useState(1);
+
+  useEffect(() => {
+    const update = () => {
+      const available = Math.min(window.innerWidth - 32, maxWidth);
+      setScale(available / 900);
+    };
+    update();
+    window.addEventListener('resize', update);
+    return () => window.removeEventListener('resize', update);
+  }, [maxWidth]);
+
+  return (
+    <div
+      style={{
+        width: 900 * scale,
+        height: 600 * scale,
+        margin: '0 auto',
+        position: 'relative',
+      }}
+    >
+      <div
+        style={{
+          transform: `scale(${scale})`,
+          transformOrigin: 'top left',
+          width: 900,
+          height: 600,
+        }}
+      >
+        <Stage ref={stageRef} width={900} height={600} {...stageProps}>
+          {children}
+        </Stage>
+      </div>
+    </div>
+  );
+}
 const HoloRoom = () => {
   const [color, setColor] = useColor('hex', '#ddb0ff');
   const [tool, setTool] = useState('pen');
@@ -914,36 +951,34 @@ const navigate = useNavigate();
               </button>
             </div>
             <div className={styles.canvasContainer}>
-              <Stage
-                ref={stageRef}
-                width={STAGE_WIDTH}
-                height={STAGE_HEIGHT}
-                onMouseDown={handleDrawingStart}
-                onMouseMove={handleDrawingMove}
-                onMouseUp={handleDrawingEnd}
-                onMouseLeave={handleDrawingEnd}
-                onTouchStart={handleDrawingStart}
-                onTouchMove={handleDrawingMove}
-                onTouchEnd={handleDrawingEnd}
-                onTouchCancel={handleDrawingEnd}
-              >
-                <Layer>
-                  {colouringImage && (
-                    <KonvaImage
-                      image={colouringImage}
-                      x={0}
-                      y={0}
-                      width={STAGE_WIDTH}
-                      height={STAGE_HEIGHT}
-                      listening={false}
-                    />
-                  )}
-                </Layer>
-                <Layer ref={drawingLayerRef}>
-                  {renderDrawingLines()}
-                </Layer>
-              </Stage>
-            </div>
+  <ScaledStage
+    stageRef={stageRef}
+    onMouseDown={handleDrawingStart}
+    onMouseMove={handleDrawingMove}
+    onMouseUp={handleDrawingEnd}
+    onMouseLeave={handleDrawingEnd}
+    onTouchStart={handleDrawingStart}
+    onTouchMove={handleDrawingMove}
+    onTouchEnd={handleDrawingEnd}
+    onTouchCancel={handleDrawingEnd}
+  >
+    <Layer>
+      {colouringImage && (
+        <KonvaImage
+          image={colouringImage}
+          x={0}
+          y={0}
+          width={STAGE_WIDTH}
+          height={STAGE_HEIGHT}
+          listening={false}
+        />
+      )}
+    </Layer>
+    <Layer ref={drawingLayerRef}>
+      {renderDrawingLines()}
+    </Layer>
+  </ScaledStage>
+</div>
           </div>
         );
       case 'connect the dots': {
