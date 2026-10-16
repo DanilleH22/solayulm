@@ -7,7 +7,7 @@ import { faExpand } from '@fortawesome/free-solid-svg-icons';
 
 
 
-const Testing = () => {
+const RedGalaxyShader = () => {
 
   const mountRef = useRef(null);
 
@@ -169,20 +169,18 @@ const Testing = () => {
       <div style={{ position: "relative", width: "100%", height: "80vh" }}>
         <div ref={mountRef} style={{ width: "100%", height: "100%" }} />
         <button
-          onClick={goFullscreen}
-          style={{
-            position: "absolute",
-            top: "0%",
-
-    left: window.innerWidth < 768 ? '25%' : '0%',
-            zIndex: 999,
-            background: "transparent",
-            color: "#fff",
-            border: "none",
-            padding: "8px 12px",
-            borderRadius: "5px",
-            cursor: "pointer",
-          }}
+         style={{
+  position: "absolute",
+  top: "10px",
+  right: "10px",     // top-right corner
+  zIndex: 999,
+  background: "transparent",
+  color: "#fff",
+  border: "none",
+  padding: "8px 12px",
+  borderRadius: "5px",
+  cursor: "pointer",
+}}
         >
           <FontAwesomeIcon icon={faExpand} />
         </button>
@@ -194,4 +192,4 @@ const Testing = () => {
   );
 };
 
-export default Testing;
+export default RedGalaxyShader;

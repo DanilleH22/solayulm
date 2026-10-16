@@ -121,17 +121,17 @@ const PurpleNebula = () => {
         <button
           onClick={goFullscreen}
           style={{
-            position: "absolute",
-            top: "0%",
-            left: window.innerWidth < 768 ? '25%' : '0%',
-            zIndex: 999,
-            background: "transparent",
-            color: "#fff",
-            border: "none",
-            padding: "8px 12px",
-           
-            cursor: "pointer",
-          }}
+  position: "absolute",
+  top: "10px",
+  right: "10px",     // top-right corner
+  zIndex: 999,
+  background: "transparent",
+  color: "#fff",
+  border: "none",
+  padding: "8px 12px",
+  borderRadius: "5px",
+  cursor: "pointer",
+}}
         >
           <FontAwesomeIcon icon={faExpand} />
         </button>

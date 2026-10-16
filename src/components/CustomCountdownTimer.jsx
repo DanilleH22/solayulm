@@ -76,7 +76,7 @@ const EndSequence = () => {
 
   return (
   <Row className="d-flex justify-content-center align-items-center mt-5">
-    <Col md={5} xs={12} className="text-center" style={{ marginLeft: window.innerWidth < 768 ? '50px': '0',  }}>
+    <Col md={5} xs={12} className="text-center" style={{ marginLeft: window.innerWidth < 768 ? '25px': '25px',  }}>
     <CircularProgressbar
       value={percentage}
       text={formatTime(num)}
