@@ -29,6 +29,41 @@ import colouring12 from '../../assets/images/colouring/colouring12.png';
 import colouring13 from '../../assets/images/colouring/colouring13.png';
 import colouring14 from '../../assets/images/colouring/colouring14.png';
 import colouring15 from '../../assets/images/colouring/colouring15.png';
+import cp1 from '../../assets/images/colouring/1.png';
+import cp2 from '../../assets/images/colouring/2.png';
+import cp3 from '../../assets/images/colouring/3.png';
+import cp4 from '../../assets/images/colouring/4.png';
+import cp5 from '../../assets/images/colouring/5.png';
+import cp6 from '../../assets/images/colouring/6.png';
+import cp7 from '../../assets/images/colouring/7.png';
+import cp8 from '../../assets/images/colouring/8.png';
+import cp9 from '../../assets/images/colouring/9.png';
+import cp10 from '../../assets/images/colouring/10.png';
+import cp11 from '../../assets/images/colouring/11.png';
+import cp12 from '../../assets/images/colouring/12.png';
+import cp13 from '../../assets/images/colouring/13.png';
+import cp14 from '../../assets/images/colouring/14.png';
+import cp15 from '../../assets/images/colouring/15.png';
+import cp16 from '../../assets/images/colouring/16.png';
+import cp17 from '../../assets/images/colouring/17.png';
+import cp18 from '../../assets/images/colouring/18.png';
+import cp19 from '../../assets/images/colouring/19.png';
+import cp20 from '../../assets/images/colouring/20.png';
+import cp21 from '../../assets/images/colouring/21.png';
+import cp22 from '../../assets/images/colouring/22.png';
+import cp23 from '../../assets/images/colouring/23.png';
+import cp24 from '../../assets/images/colouring/24.png';
+import cp25 from '../../assets/images/colouring/25.png';
+import cp26 from '../../assets/images/colouring/26.png';
+import cp27 from '../../assets/images/colouring/27.png';
+import cp28 from '../../assets/images/colouring/28.png';
+import cp29 from '../../assets/images/colouring/29.png';
+import cp30 from '../../assets/images/colouring/30.png';
+import cp31 from '../../assets/images/colouring/31.png';
+import cp32 from '../../assets/images/colouring/32.png';
+import cp33 from '../../assets/images/colouring/33.png';
+import cp34 from '../../assets/images/colouring/34.png';
+import cp35 from '../../assets/images/colouring/35.png';
 
 import IncomingTransmission from "../../components/IncomingTransmission.jsx";
 
@@ -434,6 +469,41 @@ const colouringPages = [
   { id: 'colouring13', src: colouring13 },
   { id: 'colouring14', src: colouring14 },
   { id: 'colouring15', src: colouring15 },
+  { id: 'colouring16', src: cp1 },
+  { id: 'colouring17', src: cp2 },
+  { id: 'colouring18', src: cp3 },
+  { id: 'colouring19', src: cp4 },
+  { id: 'colouring20', src: cp5 },
+  { id: 'colouring21', src: cp6 },
+  { id: 'colouring22', src: cp7 },
+  { id: 'colouring23', src: cp8 },
+  { id: 'colouring24', src: cp9 },
+  { id: 'colouring25', src: cp10 },
+  { id: 'colouring26', src: cp11 },
+  { id: 'colouring27', src: cp12 },
+  { id: 'colouring28', src: cp13 },
+  { id: 'colouring29', src: cp14 },
+  { id: 'colouring30', src: cp15 },
+  { id: 'colouring31', src: cp16 },
+  { id: 'colouring32', src: cp17 },
+  { id: 'colouring33', src: cp18 },
+  { id: 'colouring34', src: cp19 },
+  { id: 'colouring35', src: cp20 },
+  { id: 'colouring36', src: cp21 },
+  { id: 'colouring37', src: cp22 },
+  { id: 'colouring38', src: cp23 },
+  { id: 'colouring39', src: cp24 },
+  { id: 'colouring40', src: cp25 },
+  { id: 'colouring41', src: cp26 },
+  { id: 'colouring42', src: cp27 },
+  { id: 'colouring43', src: cp28 },
+  { id: 'colouring44', src: cp29 },
+  { id: 'colouring45', src: cp30 },
+  { id: 'colouring46', src: cp31 },
+  { id: 'colouring47', src: cp32 },
+  { id: 'colouring48', src: cp33 },
+  { id: 'colouring49', src: cp34 },
+  { id: 'colouring50', src: cp35 },
 ];
 const toolTabs = [
   { id: 'canvas', label: 'Free Canvas' },
