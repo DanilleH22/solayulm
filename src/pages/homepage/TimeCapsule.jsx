@@ -1,22 +1,28 @@
 
 import { useEffect, useRef, useState } from "react";
-import { Link, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 import styles from "../../styles/TimeCapsules.module.css";
 import IncomingTransmission from "../../components/IncomingTransmission.jsx";
+
+const API_BASE_URL =
+  import.meta.env.VITE_API_BASE_URL || "http://127.0.0.1:8000";
 
 const durations = [
   {
     value: "30days",
+    apiValue: "30_days",
     label: "30 days",
     description: "A little message for the near future",
   },
   {
     value: "1year",
+    apiValue: "1_year",
     label: "1 year",
     description: "See how much can change",
   },
   {
     value: "3years",
+    apiValue: "3_years",
     label: "3 years",
     description: "A message from another chapter of life",
   },
@@ -40,9 +46,16 @@ function getOpeningDate(duration) {
   });
 }
 
+function getVideoExtension(mimeType) {
+  if (mimeType.includes("mp4")) return "mp4";
+  if (mimeType.includes("quicktime")) return "mov";
+  return "webm";
+}
+
 export default function TimeCapsules() {
-     const [showTransmission, setShowTransmission] = useState(false);
-     const navigate = useNavigate();
+  const navigate = useNavigate();
+
+  const [showTransmission, setShowTransmission] = useState(false);
   const [capsuleType, setCapsuleType] = useState("letter");
   const [title, setTitle] = useState("");
   const [message, setMessage] = useState("");
@@ -59,21 +72,45 @@ export default function TimeCapsules() {
   const [showDurationPopup, setShowDurationPopup] = useState(false);
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [error, setError] = useState("");
+  const [isSaving, setIsSaving] = useState(false);
 
   const cameraPreviewRef = useRef(null);
+  const recordedVideoRef = useRef(null);
   const mediaRecorderRef = useRef(null);
   const chunksRef = useRef([]);
+  const cameraStreamRef = useRef(null);
+  const videoUrlRef = useRef("");
+  const recordingActiveRef = useRef(false);
 
   const openingDate = getOpeningDate(duration);
 
-  useEffect(() => {
-    if (cameraPreviewRef.current && cameraStream) {
-      cameraPreviewRef.current.srcObject = cameraStream;
-    }
-  }, [cameraStream]);
+  const formattedRecordingTime = `${Math.floor(recordingSeconds / 60)
+    .toString()
+    .padStart(2, "0")}:${(recordingSeconds % 60)
+    .toString()
+    .padStart(2, "0")}`;
 
   useEffect(() => {
-    if (!isRecording) return;
+    if (!cameraPreviewRef.current || !cameraStream || !isRecording) {
+      return;
+    }
+
+    const preview = cameraPreviewRef.current;
+    preview.srcObject = cameraStream;
+
+    const playPreview = async () => {
+      try {
+        await preview.play();
+      } catch (playError) {
+        console.warn("The live camera preview could not autoplay:", playError);
+      }
+    };
+
+    playPreview();
+  }, [cameraStream, isRecording]);
+
+  useEffect(() => {
+    if (!isRecording) return undefined;
 
     const interval = window.setInterval(() => {
       setRecordingSeconds((seconds) => seconds + 1);
@@ -87,30 +124,55 @@ export default function TimeCapsules() {
       const recorder = mediaRecorderRef.current;
 
       if (recorder && recorder.state !== "inactive") {
+        recorder.ondataavailable = null;
         recorder.onstop = null;
-        recorder.stop();
+
+        try {
+          recorder.stop();
+        } catch (stopError) {
+          console.warn("Could not stop the recorder during cleanup:", stopError);
+        }
       }
 
-      if (cameraStream) {
-        cameraStream.getTracks().forEach((track) => track.stop());
+      const stream = cameraStreamRef.current;
+
+      if (stream) {
+        stream.getTracks().forEach((track) => track.stop());
       }
 
-      if (videoUrl) {
-        URL.revokeObjectURL(videoUrl);
+      if (videoUrlRef.current) {
+        URL.revokeObjectURL(videoUrlRef.current);
       }
     };
-  }, [cameraStream, videoUrl]);
-
-  const formattedRecordingTime = `${Math.floor(recordingSeconds / 60)
-    .toString()
-    .padStart(2, "0")}:${(recordingSeconds % 60)
-    .toString()
-    .padStart(2, "0")}`;
+  }, []);
 
   function stopCamera() {
-    if (cameraStream) {
-      cameraStream.getTracks().forEach((track) => track.stop());
+    const stream = cameraStreamRef.current;
+
+    if (stream) {
+      stream.getTracks().forEach((track) => track.stop());
+      cameraStreamRef.current = null;
       setCameraStream(null);
+    }
+
+    if (cameraPreviewRef.current) {
+      cameraPreviewRef.current.srcObject = null;
+    }
+  }
+
+  function clearRecordedVideo() {
+    if (videoUrlRef.current) {
+      URL.revokeObjectURL(videoUrlRef.current);
+      videoUrlRef.current = "";
+    }
+
+    setVideoBlob(null);
+    setVideoUrl("");
+
+    if (recordedVideoRef.current) {
+      recordedVideoRef.current.pause();
+      recordedVideoRef.current.removeAttribute("src");
+      recordedVideoRef.current.load();
     }
   }
 
@@ -120,7 +182,7 @@ export default function TimeCapsules() {
 
     if (
       !navigator.mediaDevices?.getUserMedia ||
-      !window.MediaRecorder
+      typeof window.MediaRecorder === "undefined"
     ) {
       setRecordingError(
         "Your browser does not support video recording here. Please try an up-to-date browser."
@@ -128,22 +190,23 @@ export default function TimeCapsules() {
       return;
     }
 
+    if (recordingActiveRef.current) {
+      return;
+    }
+
     try {
+      clearRecordedVideo();
+
+      setRecordingSeconds(0);
+      chunksRef.current = [];
+
       const stream = await navigator.mediaDevices.getUserMedia({
         video: true,
         audio: true,
       });
 
+      cameraStreamRef.current = stream;
       setCameraStream(stream);
-
-      if (videoUrl) {
-        URL.revokeObjectURL(videoUrl);
-        setVideoUrl("");
-      }
-
-      setVideoBlob(null);
-      setRecordingSeconds(0);
-      chunksRef.current = [];
 
       const supportedTypes = [
         "video/webm;codecs=vp9,opus",
@@ -153,185 +216,296 @@ export default function TimeCapsules() {
       ];
 
       const mimeType = supportedTypes.find((type) =>
-        MediaRecorder.isTypeSupported(type)
+        window.MediaRecorder.isTypeSupported(type)
       );
 
       const recorder = mimeType
-        ? new MediaRecorder(stream, { mimeType })
-        : new MediaRecorder(stream);
+        ? new window.MediaRecorder(stream, { mimeType })
+        : new window.MediaRecorder(stream);
 
       mediaRecorderRef.current = recorder;
 
       recorder.ondataavailable = (event) => {
-        if (event.data.size > 0) {
+        if (event.data && event.data.size > 0) {
           chunksRef.current.push(event.data);
         }
       };
 
-      recorder.onerror = () => {
+      recorder.onerror = (event) => {
+        console.error("Video recording error:", event.error);
+
+        recordingActiveRef.current = false;
+        setIsRecording(false);
         setRecordingError(
           "Something went wrong while recording. Please try again."
         );
-        setIsRecording(false);
-        stream.getTracks().forEach((track) => track.stop());
-        setCameraStream(null);
+
+        stopCamera();
       };
 
       recorder.onstop = () => {
-        const blob = new Blob(chunksRef.current, {
-          type: recorder.mimeType || "video/webm",
+        const recordedChunks = [...chunksRef.current];
+
+        const actualMimeType =
+          recorder.mimeType ||
+          recordedChunks.find((chunk) => chunk.type)?.type ||
+          "video/webm";
+
+        const recordedBlob = new Blob(recordedChunks, {
+          type: actualMimeType,
         });
 
-        if (blob.size > 0) {
-          const newVideoUrl = URL.createObjectURL(blob);
-          setVideoBlob(blob);
+        console.log("Video recording completed:", {
+          chunks: recordedChunks.length,
+          size: recordedBlob.size,
+          type: recordedBlob.type,
+        });
+
+        recordingActiveRef.current = false;
+        setIsRecording(false);
+
+        if (recordedBlob.size > 0) {
+          const newVideoUrl = URL.createObjectURL(recordedBlob);
+
+          videoUrlRef.current = newVideoUrl;
+          setVideoBlob(recordedBlob);
           setVideoUrl(newVideoUrl);
+          setRecordingError("");
         } else {
+          clearRecordedVideo();
+
           setRecordingError(
-            "No video was recorded. Please try again."
+            "No video data was captured. Please record again and speak or move for a few seconds before stopping."
           );
         }
 
-        stream.getTracks().forEach((track) => track.stop());
-        setCameraStream(null);
-        setIsRecording(false);
+        stopCamera();
       };
 
-      recorder.start();
+      recordingActiveRef.current = true;
+
+      // Collect chunks throughout the recording, rather than waiting
+      // until the Stop button is pressed.
+      recorder.start(1000);
+
       setIsRecording(true);
-    } catch {
+    } catch (recordingError) {
+      console.error("Could not start video recording:", recordingError);
+
+      recordingActiveRef.current = false;
+      setIsRecording(false);
+      stopCamera();
+
       setRecordingError(
-        "Camera or microphone access was denied or unavailable. Please check your browser permissions and try again."
+        "Camera or microphone access was denied or unavailable. Check your browser permissions and try again."
       );
     }
   }
 
-  
-function stopRecording() {
-  const recorder = mediaRecorderRef.current;
+  function stopRecording() {
+    const recorder = mediaRecorderRef.current;
 
-  if (!recorder || recorder.state === "inactive") {
-    setIsRecording(false);
-    return;
-  }
-
-  try {
-    if (recorder.state === "recording") {
-      recorder.requestData();
-      recorder.stop();
+    if (!recorder || recorder.state === "inactive") {
+      recordingActiveRef.current = false;
+      setIsRecording(false);
+      return;
     }
-  } catch (error) {
-    console.error("Could not stop recording:", error);
-    setRecordingError(
-      "The recording could not be stopped. Please try again."
-    );
-  }
-}
 
+    try {
+      if (recorder.state === "recording") {
+        recorder.stop();
+      }
+    } catch (stopError) {
+      console.error("Could not stop video recording:", stopError);
+
+      setRecordingError(
+        "The recording could not be stopped. Please try again."
+      );
+    }
+  }
 
   function retakeVideo() {
-    if (isRecording) {
+    if (recordingActiveRef.current) {
       stopRecording();
     }
 
     stopCamera();
+    clearRecordedVideo();
 
-    if (videoUrl) {
-      URL.revokeObjectURL(videoUrl);
-    }
-
-    setVideoBlob(null);
-    setVideoUrl("");
+    chunksRef.current = [];
     setRecordingSeconds(0);
     setRecordingError("");
+    setError("");
   }
 
   function chooseType(type) {
-    if (isRecording) {
+    if (recordingActiveRef.current) {
       stopRecording();
     }
 
     stopCamera();
+    clearRecordedVideo();
 
-    if (videoUrl) {
-      URL.revokeObjectURL(videoUrl);
-    }
-
+    chunksRef.current = [];
     setCapsuleType(type);
-    setVideoBlob(null);
-    setVideoUrl("");
     setRecordingSeconds(0);
     setRecordingError("");
     setError("");
     setShowConfirmation(false);
+    setShowDurationPopup(false);
   }
 
   function handleSubmit(event) {
     event.preventDefault();
     setError("");
 
-    if (isRecording) {
-      setError("Please stop recording before continuing.");
+    if (recordingActiveRef.current) {
+      setError("Please stop recording and wait for the video preview.");
       return;
     }
 
-    if (
-      !title.trim() ||
-      !recipientEmail.trim() ||
-      (capsuleType === "letter" && !message.trim())
-    ) {
-      setError(
-        "Please complete your title, recipient email and letter."
-      );
+    if (!title.trim() || !recipientEmail.trim()) {
+      setError("Please complete your capsule title and recipient email.");
+      return;
+    }
+
+    if (capsuleType === "letter" && !message.trim()) {
+      setError("Please write your letter before continuing.");
       return;
     }
 
     if (capsuleType === "video" && !videoBlob) {
-      setError(
-        "Please record and preview your video before continuing."
-      );
+      setError("Please record and preview your video before continuing.");
       return;
     }
 
     setShowDurationPopup(true);
   }
 
-  function handleConfirm() {
-    setShowDurationPopup(false);
+  async function handleConfirm() {
+    setError("");
+    setIsSaving(true);
 
-    if (capsuleType === "video") {
-      setError(
-        "Your video is ready for the next step, but payment and secure video storage are not connected yet. You have not been charged."
+    const selectedDuration = durations.find(
+      (option) => option.value === duration
+    );
+
+    try {
+      if (capsuleType === "video") {
+        if (!videoBlob || videoBlob.size === 0) {
+          setError("Your video is empty. Please record it again.");
+          setShowDurationPopup(false);
+          return;
+        }
+
+        const formData = new FormData();
+
+        formData.append("title", title.trim());
+        formData.append("message", message.trim());
+        formData.append("recipient_email", recipientEmail.trim());
+        formData.append(
+          "duration",
+          selectedDuration?.apiValue || "30_days"
+        );
+
+        const extension = getVideoExtension(videoBlob.type);
+
+        formData.append(
+          "video",
+          videoBlob,
+          `time-capsule-${Date.now()}.${extension}`
+        );
+
+        const response = await fetch(
+          `${API_BASE_URL}/upload-time-capsule-video/`,
+          {
+            method: "POST",
+            body: formData,
+          }
+        );
+        
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(
+            data.error ||
+              data.message ||
+              "The video could not be uploaded. Please try again."
+          );
+        }
+
+        setShowDurationPopup(false);
+
+        setError(
+          `Your video capsule has been uploaded. Capsule reference: ${
+            data.capsule_id ?? "created"
+          }. Payment has not been taken, and the £2.99 checkout still needs to be connected.`
+        );
+
+        return;
+      }
+
+      const response = await fetch(
+        `${API_BASE_URL}/create-time-capsule/`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            title: title.trim(),
+            message: message.trim(),
+            recipient_email: recipientEmail.trim(),
+            duration: selectedDuration?.apiValue || "30_days",
+          }),
+        }
       );
-      return;
-    }
 
-    setShowConfirmation(true);
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(
+          data.error ||
+            data.message ||
+            "Your letter could not be saved. Please try again."
+        );
+      }
+
+      setShowDurationPopup(false);
+      setShowConfirmation(true);
+    } catch (saveError) {
+      console.error("Could not save the time capsule:", saveError);
+
+      setError(
+        saveError.message ||
+          "Something went wrong. Check that the Django backend is running and try again."
+      );
+    } finally {
+      setIsSaving(false);
+    }
   }
 
   function startAgain() {
-    stopCamera();
-
-    if (isRecording) {
+    if (recordingActiveRef.current) {
       stopRecording();
     }
 
-    if (videoUrl) {
-      URL.revokeObjectURL(videoUrl);
-    }
+    stopCamera();
+    clearRecordedVideo();
 
+    chunksRef.current = [];
     setTitle("");
     setMessage("");
     setRecipientEmail("");
     setDuration("30days");
-    setVideoBlob(null);
-    setVideoUrl("");
     setRecordingSeconds(0);
     setRecordingError("");
     setError("");
     setShowConfirmation(false);
     setShowDurationPopup(false);
     setCapsuleType("letter");
+    setIsSaving(false);
   }
 
   return (
@@ -408,6 +582,7 @@ function stopRecording() {
               <label className={styles.label} htmlFor="capsule-title">
                 Capsule title
               </label>
+
               <input
                 id="capsule-title"
                 className={styles.input}
@@ -422,6 +597,7 @@ function stopRecording() {
               <label className={styles.label} htmlFor="recipient-email">
                 Recipient's email address
               </label>
+
               <input
                 id="recipient-email"
                 className={styles.input}
@@ -491,10 +667,12 @@ function stopRecording() {
                   {videoUrl && !isRecording && (
                     <>
                       <video
+                        ref={recordedVideoRef}
                         className={styles.cameraPreview}
                         src={videoUrl}
                         controls
                         playsInline
+                        preload="metadata"
                       />
 
                       <p className={styles.fieldHint}>
@@ -518,8 +696,8 @@ function stopRecording() {
                   )}
 
                   <p className={styles.fieldHint}>
-                    Your recording stays in this browser preview. It is not
-                    uploaded or permanently saved yet.
+                    Your video is kept in this browser until you continue.
+                    It is uploaded when you confirm the delivery duration.
                   </p>
                 </div>
               )}
@@ -529,6 +707,7 @@ function stopRecording() {
                   ? "Your letter"
                   : "Message to accompany your video (optional)"}
               </label>
+
               <textarea
                 id="capsule-message"
                 className={styles.textarea}
@@ -547,6 +726,7 @@ function stopRecording() {
                 <span className={styles.dateIcon} aria-hidden="true">
                   ✧
                 </span>
+
                 <div style={{ position: "relative", left: "-10%" }}>
                   <p className={styles.dateLabel}>Your capsule will open in</p>
                   <p className={styles.dateValue}>{openingDate}</p>
@@ -559,7 +739,11 @@ function stopRecording() {
                 </p>
               )}
 
-              <button className={styles.primaryButton} type="submit">
+              <button
+                className={styles.primaryButton}
+                type="submit"
+                disabled={isSaving || isRecording}
+              >
                 {capsuleType === "letter"
                   ? "Seal my free letter"
                   : "Choose delivery date · £2.99"}
@@ -567,8 +751,8 @@ function stopRecording() {
 
               {capsuleType === "video" && (
                 <p className={styles.paymentNote}>
-                  One-off price: £2.99. Payment is not connected yet, and you
-                  will not be charged in this preview.
+                  One-off price: £2.99. The video upload endpoint does not
+                  charge you. Stripe checkout must be connected separately.
                 </p>
               )}
             </form>
@@ -578,23 +762,31 @@ function stopRecording() {
             <div className={styles.confirmationIcon} aria-hidden="true">
               ✧
             </div>
-            <p className={styles.eyebrow}>CAPSULE PREVIEW</p>
+
+            <p className={styles.eyebrow}>CAPSULE CONFIRMATION</p>
+
             <h2>Your letter is ready for its journey.</h2>
+
             <p>
               <strong>{title}</strong>
             </p>
+
             <p className={styles.confirmationDate}>
               Intended opening date: {openingDate}
             </p>
+
             <p className={styles.confirmationEmail}>
               Intended recipient: {recipientEmail}
             </p>
+
             <div className={styles.messagePreview}>{message}</div>
+
             <p className={styles.notice}>
-              This is a preview only. Your letter has not been saved or
-              scheduled for delivery. Secure storage and scheduled emails
-              still need to be connected.
+              Your letter has been submitted to the backend. Automatic
+              scheduled delivery and email notifications still need to be
+              configured.
             </p>
+
             <button
               type="button"
               className={styles.primaryButton}
@@ -606,28 +798,27 @@ function stopRecording() {
         )}
 
         <div className={styles.exitSection}>
-                    <button
-                      type="button"
-                      className={styles.exitButton}
-                      onClick={() => setShowTransmission(true)}
-                    >
-                      Return to Rooms
-                    </button>
-                  </div>
-                  
-                  <IncomingTransmission
-                    isOpen={showTransmission}
-                    onClose={() => setShowTransmission(false)}
-                    onContinue={() => navigate("/Rooms")}
-                  />
-                
+          <button
+            type="button"
+            className={styles.exitButton}
+            onClick={() => setShowTransmission(true)}
+          >
+            Return to Rooms
+          </button>
+        </div>
+
+        <IncomingTransmission
+          isOpen={showTransmission}
+          onClose={() => setShowTransmission(false)}
+          onContinue={() => navigate("/Rooms")}
+        />
       </section>
 
       {showDurationPopup && (
         <div
           className={styles.overlay}
           onMouseDown={(event) => {
-            if (event.target === event.currentTarget) {
+            if (event.target === event.currentTarget && !isSaving) {
               setShowDurationPopup(false);
             }
           }}
@@ -642,13 +833,16 @@ function stopRecording() {
               type="button"
               className={styles.closeButton}
               aria-label="Close"
+              disabled={isSaving}
               onClick={() => setShowDurationPopup(false)}
             >
               ×
             </button>
 
             <p className={styles.eyebrow}>A MESSAGE THROUGH TIME</p>
+
             <h2 id="duration-heading">When should it open?</h2>
+
             <p className={styles.modalIntro}>
               Choose how long you would like your capsule to remain sealed.
             </p>
@@ -665,10 +859,12 @@ function stopRecording() {
                   }`}
                   onClick={() => setDuration(option.value)}
                   aria-pressed={duration === option.value}
+                  disabled={isSaving}
                 >
                   <span className={styles.durationLabel}>
                     {option.label}
                   </span>
+
                   <span className={styles.durationDescription}>
                     {option.description}
                   </span>
@@ -681,25 +877,34 @@ function stopRecording() {
               <strong>{openingDate}</strong>
             </div>
 
+            {error && (
+              <p className={styles.error} role="alert">
+                {error}
+              </p>
+            )}
+
             <button
               type="button"
               className={styles.primaryButton}
               onClick={handleConfirm}
+              disabled={isSaving}
             >
-              {capsuleType === "letter"
-                ? "Confirm free letter"
-                : "Continue to payment · £2.99"}
+              {isSaving
+                ? "Saving your capsule..."
+                : capsuleType === "letter"
+                  ? "Confirm free letter"
+                  : "Continue to payment · £2.99"}
             </button>
 
             {capsuleType === "video" && (
               <p className={styles.paymentNote}>
-                Checkout is not connected yet. No payment will be taken.
+                The video will be uploaded when you confirm. No payment is
+                taken by this upload step.
               </p>
             )}
           </section>
         </div>
       )}
-      
     </main>
   );
 }
