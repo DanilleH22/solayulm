@@ -116,23 +116,7 @@ const EndSequence = () => {
       Reset
     </Button>
     </Col>
-  <Col md={5} xs={12} className={styles.VisualsColumn}>
-    {showVisuals ? (
-      <>
-        <h5 className={styles.VisualsTitle}>Visuals are ON</h5>
-        {/* <FlowerOfLifeLoop /> 
-        <SpiralLoop />  */}
-        {/* <DecompressionLoop />  */}
-        <VisualSequence className={styles.VisualSequences} />
-        {/* <NebulaFlow />  */}
-      </>
-    ) : (
-      <>
-      <p className="pb-5 mb-5 text-center">Visuals are hidden. Press Start to activate the flow.</p> 
-      <JumpingDots /> 
-      </>
-    )}
-    </Col>
+  
   </Row>
 );
 

@@ -361,6 +361,16 @@
   min-width: 0;
 }
 
+/* .VisualsColumn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 0;
+  padding: 20px 10px;
+  height: 100%;
+  position: relative;
+} */
+
 /* ========================================
    ORIGINAL BUTTON CLASSES
    For buttons outside durationChoices
