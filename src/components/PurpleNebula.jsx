@@ -123,7 +123,7 @@ const PurpleNebula = () => {
           style={{
             position: "absolute",
             top: "0%",
-            left: window.innerWidth < 768 ? '25%' : '34%',
+            left: window.innerWidth < 768 ? '25%' : '0%',
             zIndex: 999,
             background: "transparent",
             color: "#fff",
