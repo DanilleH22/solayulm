@@ -389,10 +389,12 @@ CONNECT THE DOTS
 ========================= */
 
 .constellationChoices {
-display: grid;
-grid-template-columns: repeat(3, minmax(0, 1fr));
+display: flex;
+flex-wrap: wrap;
+flex-direction: row;
 gap: 10px;
 margin: 20px 0;
+padding-left: 40px;
 }
 
 .constellationTitle {
