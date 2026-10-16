@@ -417,8 +417,7 @@ export default function TimeCapsules() {
           `time-capsule-${Date.now()}.${extension}`
         );
 
-        const response = await fetch(
-  `${API_BASE_URL}/create-time-capsule/`,
+        const response = await fetch(`${API_BASE_URL}/api/create-time-capsule/`, 
   {
     method: "POST",
     headers: {
