@@ -437,16 +437,14 @@ const data = await response.json();
 
 if (!response.ok || data.success !== true || !data.capsule_id) {
   throw new Error(
-    data.error ||
-      data.message ||
-      "Your letter could not be saved. Please try again."
+    data.error || "Your letter could not be saved. Please try again."
   );
 }
 
 setSavedCapsuleId(data.capsule_id);
 setShowDurationPopup(false);
 setShowConfirmation(true);
-        
+
 
         const data = await response.json();
 
@@ -806,10 +804,9 @@ setShowConfirmation(true);
             <div className={styles.messagePreview}>{message}</div>
 
             <p className={styles.notice}>
-  Your letter has been saved to Solayulm.
-  Capsule reference: {savedCapsuleId}.
-  Automatic email delivery must be enabled on the backend
-  before your recipient will receive it on the opening date.
+  Your letter has been saved successfully.
+  Reference: {savedCapsuleId}.
+  Your recipient will receive it when scheduled email delivery is active.
 </p>
 
             <button
