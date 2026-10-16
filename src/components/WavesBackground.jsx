@@ -13,7 +13,7 @@ const WavesBackground = () => {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        transform: 'translate(-5%, 2%)',
+        
         
       }}
     >
