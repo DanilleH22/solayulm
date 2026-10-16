@@ -87,7 +87,7 @@ const onMove = useCallback(
         <meta property="og:title" content="Solayulm – Your Calm Digital Universe" />
       </Helmet>
     
-    <Container fluid>
+   <Container fluid className="p-0">
   <div className={styles.imgTextWrapper}>
    
     <div className={styles.overlayText}>
