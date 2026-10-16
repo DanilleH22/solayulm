@@ -430,30 +430,6 @@
   line-height: 1.7;
 }
 
-@media (max-width: 600px) {
-  .page {
-    padding: 45px 15px 65px;
-  }
-
-  .typeGrid {
-    grid-template-columns: 1fr;
-  }
-
-  .typeCard {
-    min-height: 190px;
-  }
-
-  .form,
-  .confirmation {
-    padding: 22px 17px;
-  }
-
-  .modal {
-    padding: 38px 18px 22px;
-  }
-}
-
-
 
 .cameraPreview {
   display: block;
@@ -525,4 +501,33 @@
   color: #211735 !important;
   background: #d7b8ff !important;
   border-color: #d7b8ff !important;
+}
+
+
+
+@media (max-width: 768px) {
+  .page {
+    padding: 45px 15px 65px;
+  }
+
+  .typeGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .typeCard {
+    min-height: 190px;
+  }
+
+  .form,
+  .confirmation {
+    padding: 22px 17px;
+  }
+
+  .modal {
+    padding: 38px 18px 22px;
+  }
+
+  .exitButton {
+    width: 50%;
+  }
 }

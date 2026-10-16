@@ -1,4 +1,3 @@
-
 /* =========================
    SOLAYULM HOMEPAGE
    Matching the Shop aesthetic
@@ -353,11 +352,17 @@
   padding: 45px 3% 35px;
   color: #f5f0ff;
   border: 0;
-  
 }
 
 .tabContent > .row {
   align-items: center;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.tabContent > .row > [class*="col"] {
+  padding-left: 12px;
+  padding-right: 12px;
 }
 
 /* Room descriptions */
@@ -372,7 +377,7 @@
   color: rgba(245, 240, 255, 0.78);
   border: 1px solid rgba(221, 176, 255, 0.18);
   border-radius: 14px;
-  background: rgba(255, 255, 255, 0.025); 
+  background: rgba(255, 255, 255, 0.025);
   text-align: left;
   height: 100%;
 }
@@ -394,7 +399,6 @@
 .tabTextLeft p:last-child {
   margin-bottom: 0;
 }
-
 
 /* =========================
    ROOM TECHNICAL INFORMATION
@@ -475,8 +479,6 @@
   overflow-wrap: anywhere;
 }
 
-
-
 /* =========================
    ENTER BUTTONS
 ========================= */
@@ -551,7 +553,6 @@
   padding: 20px;
 }
 
-
 /* =========================
    COSMIC QUOTE SECTION
 ========================= */
@@ -572,12 +573,7 @@
       rgba(112, 72, 153, 0.2),
       transparent 70%
     ),
-    linear-gradient(
-      180deg,
-      #100c20 0%,
-      #171027 50%,
-      #100c20 100%
-    );
+    linear-gradient(180deg, #100c20 0%, #171027 50%, #100c20 100%);
 
   border-top: 1px solid rgba(221, 176, 255, 0.1);
   border-bottom: 1px solid rgba(221, 176, 255, 0.1);
@@ -669,7 +665,6 @@
   }
 }
 
-
 /* =========================
    TABLET
 ========================= */
@@ -740,16 +735,28 @@
 }
 
 @media screen and (max-width: 767px) {
+  /* Global safety net — keeps horizontal padding symmetrical */
+  .servicesTextWrapper,
+  .tabContent,
+  .quoteSection {
+    padding-left: max(16px, 4%);
+    padding-right: max(16px, 4%);
+  }
+
   .imgTextWrapper {
     min-height: 780px;
     height: 100svh;
     max-height: 950px;
   }
 
-  /* Title stays above the space image */
+  /* Title stays centred above the space image */
   .TextTop {
     top: 5%;
-    padding: 10px;
+    left: 50%;
+    width: 100%;
+    padding: 10px 16px;
+    transform: translateX(-50%);
+    text-align: center;
   }
 
   .TextTop h1 {
@@ -757,15 +764,16 @@
     line-height: 1.2;
   }
 
-  /* Keep the intro readable without covering the title */
+  /* Overlay is centred horizontally, doesn't drift left */
   .overlayText {
     top: 25%;
-    left: 5%;
-    width: 90%;
+    left: 50%;
+    width: calc(100% - 32px);
+    max-width: 420px;
     padding: 17px;
     border-radius: 12px;
     text-align: center;
-    transform: none;
+    transform: translateX(-50%);
   }
 
   .overlayText h1 {
@@ -788,15 +796,16 @@
     transform: translate(-50%, -50%);
   }
 
-  /* Welcome text */
+  /* Welcome text — pinned left+right, width auto */
   .TextBottom {
     top: auto;
-    right: 5%;
+    right: 16px;
     bottom: 15%;
-    left: 5%;
-    width: 90%;
+    left: 16px;
+    width: auto;
     padding: 5px;
     transform: none;
+    text-align: center;
   }
 
   .TextBottom h3 {
@@ -833,12 +842,13 @@
   .servicesTextWrapper {
     flex-direction: column;
     gap: 20px;
-    padding: 45px 16px;
+    padding-top: 45px;
+    padding-bottom: 45px;
   }
 
   .servicesText {
     width: 100%;
-    margin: 0;
+    margin: 0 auto;
     padding: 24px 20px;
   }
 
@@ -869,7 +879,8 @@
   /* Room navigation */
   .tabs {
     gap: 6px;
-    padding: 14px 12px;
+    padding: 14px 16px;
+    scroll-padding-left: 16px;
   }
 
   .tabs :global(.nav-link) {
@@ -881,7 +892,8 @@
   /* Room panels */
   .tabContent {
     margin: 0;
-    padding: 24px 16px;
+    padding-top: 24px;
+    padding-bottom: 24px;
   }
 
   .tabTextLeft,

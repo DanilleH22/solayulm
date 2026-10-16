@@ -491,6 +491,19 @@
   .soundSelect {
     width: 75%;
   }
+
+  .customExitBtn {
+    width: 60%;
+    
+  }
+}
+
+
+@media (max-width: 480px) {
+  .customExitBtn {
+    width: 60%;
+    
+  }
 }
 @media (prefers-reduced-motion: reduce) {
   .deckButton,

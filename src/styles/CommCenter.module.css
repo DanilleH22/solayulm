@@ -292,7 +292,7 @@
 
 /* Tablet and mobile */
 
-@media (max-width: 767.98px) {
+@media (max-width: 768px) {
   .commCenterPage {
     padding-top: 22px;
   }
@@ -348,6 +348,12 @@
 
   .exitSection {
     margin-top: 28px;
+  }
+
+  .exitButton {
+    
+    width: 50%;
+   
   }
 }
 

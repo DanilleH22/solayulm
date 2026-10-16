@@ -538,6 +538,10 @@ flex-direction: column;
 .sendButton {
 width: 100%;
 }
+
+.exitButton {
+    width: 50%;
+}
 }
 
 @media (max-width: 420px) {
