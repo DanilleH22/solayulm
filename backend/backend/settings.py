@@ -15,7 +15,7 @@ if not SECRET_KEY:
         raise RuntimeError("SECRET_KEY must be configured in Render.")
     raise RuntimeError("SECRET_KEY must be configured in backend/.env.")
 
-DEBUG = FALSE
+DEBUG = False
 IS_RENDER = bool(os.environ.get("RENDER"))
 
 ALLOWED_HOSTS = [
