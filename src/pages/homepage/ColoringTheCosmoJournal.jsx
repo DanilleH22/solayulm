@@ -12,40 +12,29 @@ const [selectedEdition, setSelectedEdition] = useState("digital");
 const navigate = useNavigate();
 
 const handleContinue = async () => {
-  // Digital edition: redirect to Gumroad
-  if (selectedEdition === "digital") {
-    window.location.assign("https://solayulm.gumroad.com/l/Colouring_the_Cosmos");
-    return;
-  }
+  
+  
+// Digital edition: open Gumroad in a new tab
+if (selectedEdition === "digital") {
+  window.open(
+    "https://solayulm.gumroad.com/l/Colouring_the_Cosmos",
+    "_blank",
+    "noopener,noreferrer"
+  );
+  return;
+}
 
-  // Physical edition: Stripe checkout
-  try {
-    const response = await fetch(
-      `${import.meta.env.VITE_API_BASE_URL}/api/create-checkout-session/`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          edition: selectedEdition,
-        }),
-      }
-    );
+// Physical edition: open Lulu in a new tab
+if (selectedEdition === "physical") {
+  window.open(
+    "https://www.lulu.com/shop/solayulm/solayulm-colouring-the-cosmos/paperback/product-kv452dz.html?page=1&pageSize=4",
+    "_blank",
+    "noopener,noreferrer"
+  );
+  return;
+}
 
-    const data = await response.json();
-
-    if (!response.ok) {
-      throw new Error(
-        data.error || "Unable to start checkout."
-      );
-    }
-
-    window.location.assign(data.url);
-  } catch (error) {
-    console.error("Checkout error:", error);
-    alert(error.message || "Something went wrong.");
-  }
+  
 };
 
 
@@ -120,7 +109,7 @@ const handleContinue = async () => {
                 </span>
 
                 <span className={styles["journal-edition__price"]}>
-                  Digital
+                  £3.99
                 </span>
               </label>
 
@@ -152,7 +141,7 @@ const handleContinue = async () => {
                 </span>
 
                 <span className={styles["journal-edition__price"]}>
-                  Print
+                  £9.99
                 </span>
               </label>
 
