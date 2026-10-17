@@ -10,10 +10,29 @@ import { Link } from "react-router";
 function InnerSenseJournal() {
   const [selectedEdition, setSelectedEdition] = useState("digital");
 
-  const handleContinue = () => {
-    // Replace this with your checkout or next-page navigation when ready.
-    console.log("Selected edition:", selectedEdition);
-  };
+ const handleContinue = async () => {
+  
+  
+// Digital edition: open Gumroad in a new tab
+if (selectedEdition === "digital") {
+  window.open(
+    "https://solayulm.gumroad.com/l/inner-Orbit",
+    "_blank",
+    "noopener,noreferrer"
+  );
+  return;
+}
+
+// Physical edition: open Lulu in a new tab
+if (selectedEdition === "physical") {
+  window.open(
+    "https://www.lulu.com/shop/solayulm/inner-orbit/paperback/product-95vjmje.html?page=1&pageSize=4",
+    "_blank",
+    "noopener,noreferrer"
+  );
+  return;
+}
+ };
 
   return (
     <section >

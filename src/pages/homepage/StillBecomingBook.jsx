@@ -10,37 +10,29 @@ function StillBecomingBook() {
   const [selectedEdition, setSelectedEdition] = useState("digital");
   const navigate = useNavigate();
 
-
 const handleContinue = async () => {
-  try {
-    const response = await fetch(
-      "http://127.0.0.1:8000/api/create-checkout-session/",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          edition: selectedEdition,
-        }),
-      }
-    );
+  
+  
+// Digital edition: open Gumroad in a new tab
+if (selectedEdition === "digital") {
+  window.open(
+    "https://solayulm.gumroad.com/l/still-becoming",
+    "_blank",
+    "noopener,noreferrer"
+  );
+  return;
+}
 
-    const data = await response.json();
-
-    if (!response.ok) {
-      throw new Error(
-        data.error || "Unable to start checkout."
-      );
-    }
-
-    window.location.assign(data.url);
-  } catch (error) {
-    console.error("Checkout error:", error);
-    alert(error.message || "Something went wrong.");
-  }
+// Physical edition: open Lulu in a new tab
+if (selectedEdition === "physical") {
+  window.open(
+    "https://www.lulu.com/shop/solayulm/still-becoming/paperback/product-e72g96n.html?page=1&pageSize=4",
+    "_blank",
+    "noopener,noreferrer"
+  );
+  return;
+}
 };
-
 
   return (
     <section >
@@ -112,7 +104,7 @@ const handleContinue = async () => {
                 </span>
 
                 <span className={styles["journal-edition__price"]}>
-                  Digital
+                  £10.99
                 </span>
               </label>
 
