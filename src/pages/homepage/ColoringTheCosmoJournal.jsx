@@ -7,14 +7,21 @@ import coloringCover from "../../assets/images/colouring-cosmos-cover.png";
 import { Link, useNavigate } from "react-router-dom";
 
 function ColoringTheCosmoJournal() {
-  const [selectedEdition, setSelectedEdition] = useState("digital");
-  const navigate = useNavigate();
-
+  
+const [selectedEdition, setSelectedEdition] = useState("digital");
+const navigate = useNavigate();
 
 const handleContinue = async () => {
+  // Digital edition: redirect to Gumroad
+  if (selectedEdition === "digital") {
+    window.location.assign("https://solayulm.gumroad.com/l/Colouring_the_Cosmos");
+    return;
+  }
+
+  // Physical edition: Stripe checkout
   try {
     const response = await fetch(
-      "http://127.0.0.1:8000/api/create-checkout-session/",
+      `${import.meta.env.VITE_API_BASE_URL}/api/create-checkout-session/`,
       {
         method: "POST",
         headers: {
