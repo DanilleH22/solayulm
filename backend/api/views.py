@@ -17,6 +17,10 @@ from .r2_storage import get_r2_bucket_name, get_r2_client
 
 from .models import TimeCapsule
 
+import logging
+
+logger = logging.getLogger(__name__)
+
 @csrf_exempt
 @require_POST
 def create_checkout_session(request):
@@ -100,7 +104,9 @@ def create_checkout_session(request):
         return JsonResponse({"url": session.url})
 
     except stripe.StripeError:
+        logger.exception("Stripe checkout session creation failed")
         return JsonResponse(
+
             {
                 "error": (
                     "Unable to start checkout. "
@@ -153,8 +159,10 @@ def verify_checkout_session(request):
         })
 
     except stripe.StripeError:
+        logger.exception("Stripe checkout session creation failed")
+
         return JsonResponse(
-            {"error": "Unable to verify payment."},
+            {"error": "Unable to start checkout. Please try again."},
             status=502,
         )
 
@@ -170,6 +178,7 @@ def verify_checkout_session(request):
         })
 
     except stripe.StripeError:
+        logger.exception("Stripe checkout session verification failed")
         return JsonResponse(
             {"error": "Unable to verify payment."},
             status=502,
