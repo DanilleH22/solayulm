@@ -19,7 +19,7 @@ function PurchaseSuccess() {
     const verifyPayment = async () => {
       try {
         const response = await fetch(
-          `http://127.0.0.1:8000/api/verify-checkout-session/?session_id=${encodeURIComponent(sessionId)}`
+          `https://solayulm-backend.onrender.com/api/verify-checkout-session/?session_id=${encodeURIComponent(sessionId)}`
         );
 
         const data = await response.json();
