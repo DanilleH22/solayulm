@@ -619,7 +619,10 @@ def verify_video_capsule_checkout_session(request):
 
     if not session_id:
         return JsonResponse(
-            {"success": False, "error": "Missing checkout session ID."},
+            {
+                "success": False,
+                "error": "Missing checkout session ID.",
+            },
             status=400,
         )
 
@@ -627,17 +630,24 @@ def verify_video_capsule_checkout_session(request):
 
     if not stripe.api_key:
         return JsonResponse(
-            {"success": False, "error": "Payment service is not configured."},
+            {
+                "success": False,
+                "error": "Payment service is not configured.",
+            },
             status=503,
         )
 
     try:
         session = stripe.checkout.Session.retrieve(session_id)
 
+        # Convert Stripe's Session object to a regular dictionary.
+        session_data = session.to_dict()
+        metadata = session_data.get("metadata") or {}
+
+        # Confirm that the checkout is paid and is for a video capsule.
         if (
-            session.payment_status != "paid"
-            or (session.metadata or {}).get("product")
-            != "video-time-capsule"
+            session_data.get("payment_status") != "paid"
+            or metadata.get("product") != "video-time-capsule"
         ):
             return JsonResponse(
                 {
@@ -647,28 +657,35 @@ def verify_video_capsule_checkout_session(request):
                 status=400,
             )
 
-        capsule_id = (session.metadata or {}).get("capsule_id")
+        capsule_id = metadata.get("capsule_id")
 
         if not capsule_id:
             return JsonResponse(
-                {"success": False, "error": "Capsule reference is missing."},
+                {
+                    "success": False,
+                    "error": "Capsule reference is missing.",
+                },
                 status=400,
             )
 
+        # Match the paid Stripe session to the correct video capsule.
         capsule = TimeCapsule.objects.get(
             id=capsule_id,
             capsule_type="video",
             stripe_session_id=session.id,
         )
 
+        # Update the capsule payment status if it has not already been paid.
         if capsule.payment_status != "paid":
             capsule.payment_status = "paid"
             capsule.save(update_fields=["payment_status"])
 
-        return JsonResponse({
-            "success": True,
-            "capsule_id": capsule.id,
-        })
+        return JsonResponse(
+            {
+                "success": True,
+                "capsule_id": capsule.id,
+            }
+        )
 
     except TimeCapsule.DoesNotExist:
         logger.exception(
