@@ -5,6 +5,8 @@ from .views import (
     verify_checkout_session,
     create_time_capsule,
     upload_time_capsule_video,
+    create_video_capsule_checkout_session,
+stripe_video_capsule_webhook,
 )
 
 urlpatterns = [
@@ -27,6 +29,16 @@ urlpatterns = [
     "upload-time-capsule-video/",
     upload_time_capsule_video,
     name="upload_time_capsule_video",
+),
+path(
+    "create-video-capsule-checkout-session/",
+    create_video_capsule_checkout_session,
+    name="create_video_capsule_checkout_session",
+),
+path(
+    "stripe-video-capsule-webhook/",
+    stripe_video_capsule_webhook,
+    name="stripe_video_capsule_webhook",
 ),
 ]
 

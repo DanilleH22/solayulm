@@ -449,3 +449,151 @@ def upload_time_capsule_video(request):
             {"error": "The video could not be saved. Please try again."},
             status=500,
         )
+
+@csrf_exempt
+@require_POST
+def create_video_capsule_checkout_session(request):
+    """Create Stripe Checkout for an existing pending video capsule."""
+    stripe.api_key = os.environ.get("STRIPE_SECRET_KEY")
+
+    if not stripe.api_key:
+        return JsonResponse(
+            {"error": "Stripe is not configured."},
+            status=503,
+        )
+
+    try:
+        data = json.loads(request.body or "{}")
+        capsule_id = data.get("capsule_id")
+    except (json.JSONDecodeError, UnicodeDecodeError):
+        return JsonResponse({"error": "Invalid request."}, status=400)
+
+    if not capsule_id:
+        return JsonResponse(
+            {"error": "Missing video capsule ID."},
+            status=400,
+        )
+
+    try:
+        capsule = TimeCapsule.objects.get(
+            id=capsule_id,
+            capsule_type="video",
+            payment_status="pending",
+        )
+    except (TimeCapsule.DoesNotExist, ValueError, TypeError):
+        return JsonResponse(
+            {"error": "Pending video capsule not found."},
+            status=404,
+        )
+
+    if not capsule.video_storage_key:
+        return JsonResponse(
+            {"error": "This capsule has no saved video."},
+            status=400,
+        )
+
+    frontend_url = os.environ.get(
+        "FRONTEND_URL",
+        "https://www.solayulm.co.uk",
+    ).rstrip("/")
+
+    try:
+        prices = stripe.Price.list(
+            lookup_keys=["video_capsule"],
+            active=True,
+            limit=1,
+        )
+
+        if not prices.data:
+            return JsonResponse(
+                {"error": "Video capsule price not found in Stripe."},
+                status=503,
+            )
+
+        session = stripe.checkout.Session.create(
+            mode="payment",
+            line_items=[{
+                "price": prices.data[0].id,
+                "quantity": 1,
+            }],
+            success_url=(
+                f"{frontend_url}/Rooms"
+                "?video_payment=success"
+                "&session_id={CHECKOUT_SESSION_ID}"
+            ),
+            cancel_url=(
+                f"{frontend_url}/Rooms"
+                "?video_payment=cancelled"
+            ),
+            client_reference_id=str(capsule.id),
+            metadata={
+                "product": "video-time-capsule",
+                "capsule_id": str(capsule.id),
+            },
+        )
+
+        capsule.stripe_session_id = session.id
+        capsule.save(update_fields=["stripe_session_id"])
+
+        return JsonResponse({"url": session.url})
+
+    except stripe.StripeError:
+        logger.exception("Video capsule Stripe checkout failed")
+        return JsonResponse(
+            {"error": "Unable to start payment. Please try again."},
+            status=502,
+        )
+
+
+@csrf_exempt
+@require_POST
+def stripe_video_capsule_webhook(request):
+    """Mark a video capsule paid only after Stripe verifies the event."""
+    webhook_secret = os.environ.get("STRIPE_VIDEO_WEBHOOK_SECRET")
+
+    if not webhook_secret:
+        logger.error("Video capsule Stripe webhook secret is missing")
+        return JsonResponse({"error": "Webhook is not configured."}, status=503)
+
+    signature = request.headers.get("Stripe-Signature", "")
+
+    try:
+        event = stripe.Webhook.construct_event(
+            request.body,
+            signature,
+            webhook_secret,
+        )
+    except (ValueError, stripe.SignatureVerificationError):
+        return JsonResponse({"error": "Invalid webhook."}, status=400)
+
+    if event["type"] == "checkout.session.completed":
+        session = event["data"]["object"]
+        metadata = session.get("metadata") or {}
+
+        if (
+            metadata.get("product") == "video-time-capsule"
+            and session.get("payment_status") == "paid"
+        ):
+            capsule_id = metadata.get("capsule_id")
+
+            try:
+                capsule = TimeCapsule.objects.get(
+                    id=capsule_id,
+                    capsule_type="video",
+                    stripe_session_id=session["id"],
+                )
+
+                if capsule.payment_status != "paid":
+                    capsule.payment_status = "paid"
+                    capsule.save(update_fields=["payment_status"])
+
+            except (TimeCapsule.DoesNotExist, ValueError, TypeError):
+                logger.exception(
+                    "Could not match paid Stripe session to video capsule"
+                )
+                return JsonResponse(
+                    {"error": "Capsule payment record not found."},
+                    status=500,
+                )
+
+    return JsonResponse({"received": True})
