@@ -417,7 +417,7 @@ if (capsuleType === "video") {
   formData.append("recipient_email", recipientEmail.trim());
   formData.append(
     "duration",
-    selectedDuration?.apiValue || "30_days"
+    selectedDuration?.apiValue || "1_hour"
   );
 
   const extension = getVideoExtension(videoBlob.type);
