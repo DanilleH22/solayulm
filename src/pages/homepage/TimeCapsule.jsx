@@ -7,6 +7,8 @@ import IncomingTransmission from "../../components/IncomingTransmission.jsx";
 const API_BASE_URL =
   import.meta.env.VITE_API_BASE_URL || "http://127.0.0.1:8000";
 
+  
+
 const durations = [
   {
     value: "30days",
@@ -417,19 +419,21 @@ export default function TimeCapsules() {
           `time-capsule-${Date.now()}.${extension}`
         );
 
-        const response = await fetch(`${API_BASE_URL}/api/create-time-capsule/`, 
+        const response = await fetch(
+  `${API_BASE_URL}/api/create-time-capsule/`,
   {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      title: title.trim(),
-      message: message.trim(),
-      recipient_email: recipientEmail.trim(),
+      title,
+      message,
+      recipient_email: recipientEmail,
       duration: selectedDuration?.apiValue || "30_days",
     }),
   }
+
 );
 
 const data = await response.json();
