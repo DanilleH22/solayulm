@@ -8,21 +8,19 @@ const API_BASE_URL =
   import.meta.env.VITE_API_BASE_URL ||
   "https://solayulm-backend.onrender.com";
 
-  
-
 const durations = [
   {
-  label: "1 Hour (Test)",
-  value: "1hour",
-  apiValue: "1 hour",
-  description: "Ashort MEssage"
-},
- {
-  label: "1 Day (Test)",
-  value: "1 Day",
-  apiValue: "1_day",
-  description: "Ashort MEssage"
-},
+    label: "1 Hour (Test)",
+    value: "1hour",
+    apiValue: "1 hour",
+    description: "Ashort MEssage",
+  },
+  {
+    label: "1 Day (Test)",
+    value: "1 Day",
+    apiValue: "1_day",
+    description: "Ashort MEssage",
+  },
   {
     value: "30days",
     apiValue: "30_days",
@@ -118,7 +116,10 @@ export default function TimeCapsules() {
       try {
         await preview.play();
       } catch (playError) {
-        console.warn("The live camera preview could not autoplay:", playError);
+        console.warn(
+          "The live camera preview could not autoplay:",
+          playError
+        );
       }
     };
 
@@ -146,7 +147,10 @@ export default function TimeCapsules() {
         try {
           recorder.stop();
         } catch (stopError) {
-          console.warn("Could not stop the recorder during cleanup:", stopError);
+          console.warn(
+            "Could not stop the recorder during cleanup:",
+            stopError
+          );
         }
       }
 
@@ -300,8 +304,6 @@ export default function TimeCapsules() {
 
       recordingActiveRef.current = true;
 
-      // Collect chunks throughout the recording, rather than waiting
-      // until the Stop button is pressed.
       recorder.start(1000);
 
       setIsRecording(true);
@@ -399,91 +401,131 @@ export default function TimeCapsules() {
   }
 
   async function handleConfirm() {
-   
+    setError("");
+    setIsSaving(true);
 
+    try {
+      const selectedDuration = durations.find(
+        (option) => option.value === duration
+      );
 
-if (capsuleType === "video") {
-  if (!videoBlob || videoBlob.size === 0) {
-    setError("Your video is empty. Please record it again.");
-    setShowDurationPopup(false);
-    return;
-  }
+      if (capsuleType === "video") {
+        if (!videoBlob || videoBlob.size === 0) {
+          throw new Error(
+            "Your video is empty. Please record it again."
+          );
+        }
 
-  // Step 1: Upload and save the video capsule.
-  const formData = new FormData();
+        // Step 1: Upload and save the video capsule.
+        const formData = new FormData();
 
-  formData.append("title", title.trim());
-  formData.append("message", message.trim());
-  formData.append("recipient_email", recipientEmail.trim());
-  formData.append(
-    "duration",
-    selectedDuration?.apiValue || "1_hour"
-  );
+        formData.append("title", title.trim());
+        formData.append("message", message.trim());
+        formData.append("recipient_email", recipientEmail.trim());
+        formData.append(
+          "duration",
+          selectedDuration?.apiValue || "30_days"
+        );
 
-  const extension = getVideoExtension(videoBlob.type);
+        const extension = getVideoExtension(videoBlob.type);
 
-  formData.append(
-    "video",
-    videoBlob,
-    `time-capsule-${Date.now()}.${extension}`
-  );
+        formData.append(
+          "video",
+          videoBlob,
+          `time-capsule-${Date.now()}.${extension}`
+        );
 
-  const uploadResponse = await fetch(
-    `${API_BASE_URL}/api/upload-time-capsule-video/`,
-    {
-      method: "POST",
-      body: formData,
+        const uploadResponse = await fetch(
+          `${API_BASE_URL}/api/upload-time-capsule-video/`,
+          {
+            method: "POST",
+            body: formData,
+          }
+        );
+
+        const uploadData = await uploadResponse.json();
+
+        if (
+          !uploadResponse.ok ||
+          uploadData.success !== true ||
+          !uploadData.capsule_id
+        ) {
+          throw new Error(
+            uploadData.error ||
+              "The video could not be uploaded. Please try again."
+          );
+        }
+
+        // Step 2: Send the capsule ID to Django to create Stripe checkout.
+        const checkoutResponse = await fetch(
+          `${API_BASE_URL}/api/create-video-capsule-checkout-session/`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              capsule_id: uploadData.capsule_id,
+            }),
+          }
+        );
+
+        const checkoutData = await checkoutResponse.json();
+
+        if (!checkoutResponse.ok || !checkoutData.url) {
+          throw new Error(
+            checkoutData.error ||
+              "Your video was saved, but payment could not be started."
+          );
+        }
+
+        // Step 3: Redirect to Stripe Checkout.
+        window.location.assign(checkoutData.url);
+        return;
+      }
+
+      // Existing free-letter flow.
+      const response = await fetch(
+        `${API_BASE_URL}/api/create-time-capsule/`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            title: title.trim(),
+            message: message.trim(),
+            recipient_email: recipientEmail.trim(),
+            duration: selectedDuration?.apiValue || "30_days",
+          }),
+        }
+      );
+
+      const data = await response.json();
+
+      if (
+        !response.ok ||
+        data.success !== true ||
+        !data.capsule_id
+      ) {
+        throw new Error(
+          data.error ||
+            "Your letter could not be saved. Please try again."
+        );
+      }
+
+      setSavedCapsuleId(data.capsule_id);
+      setShowDurationPopup(false);
+      setShowConfirmation(true);
+    } catch (err) {
+      console.error("Could not save time capsule:", err);
+
+      setError(
+        err.message || "Something went wrong. Please try again."
+      );
+    } finally {
+      setIsSaving(false);
     }
-  );
-
-  const uploadData = await uploadResponse.json();
-
-  if (
-    !uploadResponse.ok ||
-    uploadData.success !== true ||
-    !uploadData.capsule_id
-  ) {
-    throw new Error(
-      uploadData.error ||
-        "The video could not be uploaded. Please try again."
-    );
-  }
-
-  
-
-  // Create Stripe checkout for this specific video capsule
-const checkoutResponse = await fetch(
-  `${API_BASE_URL}/api/create-video-capsule-checkout-session/`,
-  {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      capsule_id: uploadData.capsule_id,
-    }),
-  }
-);
-
-const checkoutData = await checkoutResponse.json();
-
-if (!checkoutResponse.ok || !checkoutData.url) {
-  throw new Error(
-    checkoutData.error ||
-      "Your video was saved, but payment could not be started."
-  );
-}
-
-// Send the user to Stripe
-window.location.assign(checkoutData.url);
-return;
-}
-
-     
-
-
-   
-
   }
 
   function startAgain() {
@@ -752,8 +794,8 @@ return;
 
               {capsuleType === "video" && (
                 <p className={styles.paymentNote}>
-                  One-off price: £2.99. The video upload endpoint does not
-                  charge you. Stripe checkout must be connected separately.
+                  One-off price: £2.99. You'll be redirected to secure Stripe
+                  checkout to complete your video capsule purchase.
                 </p>
               )}
             </form>
@@ -783,10 +825,10 @@ return;
             <div className={styles.messagePreview}>{message}</div>
 
             <p className={styles.notice}>
-  Your letter has been saved successfully.
-  Reference: {savedCapsuleId}.
-  Your recipient will receive it when scheduled email delivery is active.
-</p>
+              Your letter has been saved successfully.
+              Reference: {savedCapsuleId}.
+              Your recipient will receive it when scheduled email delivery is active.
+            </p>
 
             <button
               type="button"
@@ -819,7 +861,10 @@ return;
         <div
           className={styles.overlay}
           onMouseDown={(event) => {
-            if (event.target === event.currentTarget && !isSaving) {
+            if (
+              event.target === event.currentTarget &&
+              !isSaving
+            ) {
               setShowDurationPopup(false);
             }
           }}
@@ -899,8 +944,8 @@ return;
 
             {capsuleType === "video" && (
               <p className={styles.paymentNote}>
-                The video will be uploaded when you confirm. No payment is
-                taken by this upload step.
+                The video will be uploaded before checkout. Payment is
+                completed securely through Stripe.
               </p>
             )}
           </section>
