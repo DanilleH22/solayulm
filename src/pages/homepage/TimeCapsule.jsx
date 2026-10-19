@@ -419,21 +419,12 @@ export default function TimeCapsules() {
           `time-capsule-${Date.now()}.${extension}`
         );
 
-        const response = await fetch(
-  `${API_BASE_URL}/api/create-time-capsule/`,
+      const response = await fetch(
+  `${API_BASE_URL}/api/upload-time-capsule-video/`,
   {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      title,
-      message,
-      recipient_email: recipientEmail,
-      duration: selectedDuration?.apiValue || "30_days",
-    }),
+    body: formData,
   }
-
 );
 
 const data = await response.json();
@@ -471,7 +462,7 @@ setShowConfirmation(true);
       }
 
       const response = await fetch(
-        `${API_BASE_URL}/create-time-capsule/`,
+        `${API_BASE_URL}/api/create-time-capsule/`,
         {
           method: "POST",
           headers: {
