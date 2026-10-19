@@ -1,4 +1,3 @@
-
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router";
 import styles from "../../styles/TimeCapsules.module.css";
@@ -44,7 +43,11 @@ const durations = [
 function getOpeningDate(duration) {
   const date = new Date();
 
-  if (duration === "30days") {
+  if (duration === "1hour") {
+    date.setHours(date.getHours() + 1);
+  } else if (duration === "1 Day") {
+    date.setDate(date.getDate() + 1);
+  } else if (duration === "30days") {
     date.setDate(date.getDate() + 30);
   } else if (duration === "1year") {
     date.setFullYear(date.getFullYear() + 1);
@@ -166,6 +169,98 @@ export default function TimeCapsules() {
     };
   }, []);
 
+  // NEW: Restore the video capsule confirmation after Stripe returns.
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const paymentStatus = params.get("video_payment");
+
+    if (!paymentStatus) return;
+
+    const sessionId = params.get("session_id");
+
+    // Remove Stripe's query parameters from the visible URL.
+    window.history.replaceState(
+      {},
+      document.title,
+      window.location.pathname
+    );
+
+    if (paymentStatus === "cancelled") {
+      sessionStorage.removeItem("solayulmPendingVideoCapsule");
+      setCapsuleType("video");
+      setError(
+        "Payment was cancelled. Your video capsule has not been paid for."
+      );
+      return;
+    }
+
+    if (paymentStatus !== "success" || !sessionId) {
+      setError(
+        "We could not verify your video capsule payment. Please contact support before trying to pay again."
+      );
+      return;
+    }
+
+    async function verifyVideoPayment() {
+      setIsSaving(true);
+      setError("");
+
+      try {
+        const response = await fetch(
+          `${API_BASE_URL}/api/verify-video-capsule-checkout-session/?session_id=${encodeURIComponent(sessionId)}`
+        );
+
+        const data = await response.json();
+
+        if (
+          !response.ok ||
+          data.success !== true ||
+          !data.capsule_id
+        ) {
+          throw new Error(
+            data.error || "Your payment could not be verified."
+          );
+        }
+
+        let details = {};
+
+        try {
+          details = JSON.parse(
+            sessionStorage.getItem("solayulmPendingVideoCapsule") ||
+              "{}"
+          );
+        } catch {
+          details = {};
+        }
+
+        setCapsuleType("video");
+        setTitle(details.title || "Your video capsule");
+        setMessage(details.message || "");
+        setRecipientEmail(details.recipientEmail || "");
+        setDuration(details.duration || "30days");
+        setSavedCapsuleId(data.capsule_id);
+        setShowDurationPopup(false);
+        setShowConfirmation(true);
+
+        sessionStorage.removeItem("solayulmPendingVideoCapsule");
+      } catch (verificationError) {
+        console.error(
+          "Could not verify video capsule payment:",
+          verificationError
+        );
+
+        setError(
+          verificationError.message ||
+            "Your payment could not be verified. Please refresh the page or contact support."
+        );
+      } finally {
+        setIsSaving(false);
+      }
+    }
+
+    verifyVideoPayment();
+  }, []);
+
   function stopCamera() {
     const stream = cameraStreamRef.current;
 
@@ -256,6 +351,7 @@ export default function TimeCapsules() {
 
         recordingActiveRef.current = false;
         setIsRecording(false);
+
         setRecordingError(
           "Something went wrong while recording. Please try again."
         );
@@ -304,6 +400,7 @@ export default function TimeCapsules() {
 
       recordingActiveRef.current = true;
 
+      // Collect chunks throughout the recording.
       recorder.start(1000);
 
       setIsRecording(true);
@@ -383,7 +480,9 @@ export default function TimeCapsules() {
     }
 
     if (!title.trim() || !recipientEmail.trim()) {
-      setError("Please complete your capsule title and recipient email.");
+      setError(
+        "Please complete your capsule title and recipient email."
+      );
       return;
     }
 
@@ -393,7 +492,9 @@ export default function TimeCapsules() {
     }
 
     if (capsuleType === "video" && !videoBlob) {
-      setError("Please record and preview your video before continuing.");
+      setError(
+        "Please record and preview your video before continuing."
+      );
       return;
     }
 
@@ -404,19 +505,18 @@ export default function TimeCapsules() {
     setError("");
     setIsSaving(true);
 
-    try {
-      const selectedDuration = durations.find(
-        (option) => option.value === duration
-      );
+    const selectedDuration = durations.find(
+      (option) => option.value === duration
+    );
 
+    try {
       if (capsuleType === "video") {
         if (!videoBlob || videoBlob.size === 0) {
-          throw new Error(
-            "Your video is empty. Please record it again."
-          );
+          setError("Your video is empty. Please record it again.");
+          setShowDurationPopup(false);
+          return;
         }
 
-        // Step 1: Upload and save the video capsule.
         const formData = new FormData();
 
         formData.append("title", title.trim());
@@ -435,6 +535,7 @@ export default function TimeCapsules() {
           `time-capsule-${Date.now()}.${extension}`
         );
 
+        // First: upload the video and create its pending capsule record.
         const uploadResponse = await fetch(
           `${API_BASE_URL}/api/upload-time-capsule-video/`,
           {
@@ -456,7 +557,7 @@ export default function TimeCapsules() {
           );
         }
 
-        // Step 2: Send the capsule ID to Django to create Stripe checkout.
+        // Second: create a Stripe Checkout session for that capsule.
         const checkoutResponse = await fetch(
           `${API_BASE_URL}/api/create-video-capsule-checkout-session/`,
           {
@@ -475,11 +576,22 @@ export default function TimeCapsules() {
         if (!checkoutResponse.ok || !checkoutData.url) {
           throw new Error(
             checkoutData.error ||
-              "Your video was saved, but payment could not be started."
+              "Unable to start payment. Please try again."
           );
         }
 
-        // Step 3: Redirect to Stripe Checkout.
+        // Keep the details needed to restore the confirmation screen.
+        sessionStorage.setItem(
+          "solayulmPendingVideoCapsule",
+          JSON.stringify({
+            title: title.trim(),
+            message: message.trim(),
+            recipientEmail: recipientEmail.trim(),
+            duration,
+          })
+        );
+
+        // Third: send the customer to Stripe.
         window.location.assign(checkoutData.url);
         return;
       }
@@ -496,32 +608,30 @@ export default function TimeCapsules() {
             title: title.trim(),
             message: message.trim(),
             recipient_email: recipientEmail.trim(),
-            duration: selectedDuration?.apiValue || "30_days",
+            duration: selectedDuration?.apiValue || "1_hour",
           }),
         }
       );
 
       const data = await response.json();
 
-      if (
-        !response.ok ||
-        data.success !== true ||
-        !data.capsule_id
-      ) {
+      if (!response.ok) {
         throw new Error(
           data.error ||
+            data.message ||
             "Your letter could not be saved. Please try again."
         );
       }
 
-      setSavedCapsuleId(data.capsule_id);
+      setSavedCapsuleId(data.capsule_id ?? null);
       setShowDurationPopup(false);
       setShowConfirmation(true);
-    } catch (err) {
-      console.error("Could not save time capsule:", err);
+    } catch (saveError) {
+      console.error("Could not save the time capsule:", saveError);
 
       setError(
-        err.message || "Something went wrong. Please try again."
+        saveError.message ||
+          "Something went wrong. Check that the Django backend is running and try again."
       );
     } finally {
       setIsSaving(false);
@@ -531,7 +641,6 @@ export default function TimeCapsules() {
   function startAgain() {
     if (recordingActiveRef.current) {
       stopRecording();
-      setSavedCapsuleId(null);
     }
 
     stopCamera();
@@ -545,6 +654,7 @@ export default function TimeCapsules() {
     setRecordingSeconds(0);
     setRecordingError("");
     setError("");
+    setSavedCapsuleId(null);
     setShowConfirmation(false);
     setShowDurationPopup(false);
     setCapsuleType("letter");
@@ -582,8 +692,10 @@ export default function TimeCapsules() {
                 <span className={styles.typeIcon} aria-hidden="true">
                   ✉
                 </span>
+
                 <span className={styles.typeName}>Letter Capsule</span>
                 <span className={styles.typePrice}>FREE</span>
+
                 <span className={styles.typeDescription}>
                   Write a message to be opened in the future.
                 </span>
@@ -600,8 +712,10 @@ export default function TimeCapsules() {
                 <span className={styles.typeIcon} aria-hidden="true">
                   ▶
                 </span>
+
                 <span className={styles.typeName}>Video Capsule</span>
                 <span className={styles.typePrice}>£2.99</span>
+
                 <span className={styles.typeDescription}>
                   Record a personal video message for the future.
                 </span>
@@ -615,6 +729,7 @@ export default function TimeCapsules() {
                     ? "Write your letter"
                     : "Record your video capsule"}
                 </h2>
+
                 <p>
                   {capsuleType === "letter"
                     ? "Take your time. These words are yours."
@@ -771,7 +886,9 @@ export default function TimeCapsules() {
                 </span>
 
                 <div style={{ position: "relative", left: "-10%" }}>
-                  <p className={styles.dateLabel}>Your capsule will open in</p>
+                  <p className={styles.dateLabel}>
+                    Your capsule will open in
+                  </p>
                   <p className={styles.dateValue}>{openingDate}</p>
                 </div>
               </div>
@@ -794,8 +911,8 @@ export default function TimeCapsules() {
 
               {capsuleType === "video" && (
                 <p className={styles.paymentNote}>
-                  One-off price: £2.99. You'll be redirected to secure Stripe
-                  checkout to complete your video capsule purchase.
+                  One-off price: £2.99. You will continue to secure Stripe
+                  checkout after choosing your delivery date.
                 </p>
               )}
             </form>
@@ -808,7 +925,11 @@ export default function TimeCapsules() {
 
             <p className={styles.eyebrow}>CAPSULE CONFIRMATION</p>
 
-            <h2>Your letter is ready for its journey.</h2>
+            <h2>
+              {capsuleType === "video"
+                ? "Your video capsule is ready for its journey."
+                : "Your letter is ready for its journey."}
+            </h2>
 
             <p>
               <strong>{title}</strong>
@@ -825,9 +946,11 @@ export default function TimeCapsules() {
             <div className={styles.messagePreview}>{message}</div>
 
             <p className={styles.notice}>
-              Your letter has been saved successfully.
-              Reference: {savedCapsuleId}.
-              Your recipient will receive it when scheduled email delivery is active.
+              {capsuleType === "video"
+                ? "Your video capsule has been saved and your payment confirmed."
+                : "Your letter has been saved successfully."}{" "}
+              Reference: {savedCapsuleId}. Your recipient will receive it when
+              scheduled email delivery is active.
             </p>
 
             <button
@@ -861,10 +984,7 @@ export default function TimeCapsules() {
         <div
           className={styles.overlay}
           onMouseDown={(event) => {
-            if (
-              event.target === event.currentTarget &&
-              !isSaving
-            ) {
+            if (event.target === event.currentTarget && !isSaving) {
               setShowDurationPopup(false);
             }
           }}
@@ -944,8 +1064,9 @@ export default function TimeCapsules() {
 
             {capsuleType === "video" && (
               <p className={styles.paymentNote}>
-                The video will be uploaded before checkout. Payment is
-                completed securely through Stripe.
+                Your video will be uploaded securely before you continue to
+                Stripe checkout. The capsule confirmation appears after
+                payment is verified.
               </p>
             )}
           </section>

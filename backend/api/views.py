@@ -1,25 +1,22 @@
-
 import json
 import os
+import uuid
+import logging
+from datetime import timedelta
 
 import stripe
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_GET, require_POST
-from datetime import timedelta
-
 from django.core.exceptions import ValidationError
 from django.core.validators import validate_email
 from django.utils import timezone
-import uuid 
 
 from .r2_storage import get_r2_bucket_name, get_r2_client
-
 from .models import TimeCapsule
 
-import logging
-
 logger = logging.getLogger(__name__)
+
 
 @csrf_exempt
 @require_POST
@@ -106,7 +103,6 @@ def create_checkout_session(request):
     except stripe.StripeError:
         logger.exception("Stripe checkout session creation failed")
         return JsonResponse(
-
             {
                 "error": (
                     "Unable to start checkout. "
@@ -115,7 +111,6 @@ def create_checkout_session(request):
             },
             status=502,
         )
-
 
 
 @require_GET
@@ -139,7 +134,6 @@ def verify_checkout_session(request):
     try:
         session = stripe.checkout.Session.retrieve(session_id)
 
-        # Convert Stripe's Session object to a regular Python dictionary.
         session_data = session.to_dict()
         metadata = session_data.get("metadata") or {}
 
@@ -152,30 +146,13 @@ def verify_checkout_session(request):
         if session_data.get("payment_status") != "paid":
             return JsonResponse({"paid": False})
 
-        return JsonResponse({
-            "paid": True,
-            "product": metadata.get("product"),
-            "edition": metadata.get("edition"),
-        })
-
-    except stripe.StripeError:
-        logger.exception("Stripe checkout session creation failed")
-
         return JsonResponse(
-            {"error": "Unable to start checkout. Please try again."},
-            status=502,
+            {
+                "paid": True,
+                "product": metadata.get("product"),
+                "edition": metadata.get("edition"),
+            }
         )
-
-        
-
-        # Do not confirm an unpaid or incomplete checkout.
-        if session.payment_status != "paid":
-            return JsonResponse({"paid": False})
-
-        return JsonResponse({
-            "paid": True,
-            "edition": session.metadata.get("edition"),
-        })
 
     except stripe.StripeError:
         logger.exception("Stripe checkout session verification failed")
@@ -232,14 +209,13 @@ def create_time_capsule(request):
         data.get("capsule_type", "letter"),
     )
 
-    # Video capsules will be connected after payment and storage
-    # have been implemented.
+    # Video capsules use the separate video upload and payment endpoints.
     if capsule_type != "letter":
         return JsonResponse(
             {
                 "error": (
                     "Video capsules are not available through "
-                    "this endpoint yet."
+                    "this endpoint."
                 )
             },
             status=400,
@@ -255,11 +231,10 @@ def create_time_capsule(request):
         data.get("duration", data.get("delivery_option", ""))
     ).strip().lower()
 
-    # Accept common formats sent by the frontend.
     delivery_options = {
         "1 hour": "1_hour",
-"1-hour": "1_hour",
-"1_hour": "1_hour",
+        "1-hour": "1_hour",
+        "1_hour": "1_hour",
         "1 day": "1_day",
         "1-day": "1_day",
         "1_day": "1_day",
@@ -336,11 +311,10 @@ def upload_time_capsule_video(request):
     duration = request.POST.get("duration", "").strip()
     video_file = request.FILES.get("video")
 
-    # Accept the duration values used by the frontend.
     duration_options = {
         "1 hour": "1_hour",
-"1-hour": "1_hour",
-"1_hour": "1_hour",
+        "1-hour": "1_hour",
+        "1_hour": "1_hour",
         "1day": "1_day",
         "1_day": "1_day",
         "30days": "30_days",
@@ -350,10 +324,14 @@ def upload_time_capsule_video(request):
         "3years": "3_years",
         "3_years": "3_years",
     }
+
     delivery_option = duration_options.get(duration)
 
     if not title:
-        return JsonResponse({"error": "Please enter a title."}, status=400)
+        return JsonResponse(
+            {"error": "Please enter a title."},
+            status=400,
+        )
 
     if len(title) > 150:
         return JsonResponse(
@@ -376,18 +354,21 @@ def upload_time_capsule_video(request):
         )
 
     if not video_file:
-        return JsonResponse({"error": "Please attach a video."}, status=400)
+        return JsonResponse(
+            {"error": "Please attach a video."},
+            status=400,
+        )
 
-    # Limit uploads to 100 MB.
     max_video_size = 100 * 1024 * 1024
+
     if video_file.size > max_video_size:
         return JsonResponse(
             {"error": "The video must be 100 MB or smaller."},
             status=400,
         )
 
-    # MediaRecorder commonly produces WebM; also allow MP4 and QuickTime.
     content_type = (video_file.content_type or "").split(";")[0].lower()
+
     allowed_types = {
         "video/webm": "webm",
         "video/mp4": "mp4",
@@ -400,7 +381,11 @@ def upload_time_capsule_video(request):
             status=400,
         )
 
-    storage_key = f"time-capsules/{uuid.uuid4().hex}.{allowed_types[content_type]}"
+    storage_key = (
+        f"time-capsules/{uuid.uuid4().hex}."
+        f"{allowed_types[content_type]}"
+    )
+
     client = None
     bucket = None
     uploaded = False
@@ -415,6 +400,7 @@ def upload_time_capsule_video(request):
             storage_key,
             ExtraArgs={"ContentType": content_type},
         )
+
         uploaded = True
 
         capsule = TimeCapsule.objects.create(
@@ -432,28 +418,39 @@ def upload_time_capsule_video(request):
             {
                 "success": True,
                 "capsule_id": capsule.id,
-                "message": "Video uploaded and capsule saved. Payment is still pending.",
+                "message": (
+                    "Video uploaded and capsule saved. "
+                    "Payment is still pending."
+                ),
             },
             status=201,
         )
 
     except Exception:
-        # Avoid leaving an orphaned R2 file if saving the record fails.
+        logger.exception(
+            "Could not upload video capsule to R2 or save its record"
+        )
+
         if uploaded and client and bucket:
             try:
-                client.delete_object(Bucket=bucket, Key=storage_key)
+                client.delete_object(
+                    Bucket=bucket,
+                    Key=storage_key,
+                )
             except Exception:
-                pass
+                logger.exception("Could not remove orphaned R2 video")
 
         return JsonResponse(
             {"error": "The video could not be saved. Please try again."},
             status=500,
         )
 
+
 @csrf_exempt
 @require_POST
 def create_video_capsule_checkout_session(request):
     """Create Stripe Checkout for an existing pending video capsule."""
+
     stripe.api_key = os.environ.get("STRIPE_SECRET_KEY")
 
     if not stripe.api_key:
@@ -466,7 +463,10 @@ def create_video_capsule_checkout_session(request):
         data = json.loads(request.body or "{}")
         capsule_id = data.get("capsule_id")
     except (json.JSONDecodeError, UnicodeDecodeError):
-        return JsonResponse({"error": "Invalid request."}, status=400)
+        return JsonResponse(
+            {"error": "Invalid request."},
+            status=400,
+        )
 
     if not capsule_id:
         return JsonResponse(
@@ -512,18 +512,19 @@ def create_video_capsule_checkout_session(request):
 
         session = stripe.checkout.Session.create(
             mode="payment",
-            line_items=[{
-                "price": prices.data[0].id,
-                "quantity": 1,
-            }],
+            line_items=[
+                {
+                    "price": prices.data[0].id,
+                    "quantity": 1,
+                }
+            ],
             success_url=(
-                f"{frontend_url}/Rooms"
-                "?video_payment=success"
-                "&session_id={CHECKOUT_SESSION_ID}"
+                f"{frontend_url}/TimeCapsules"
+                "?video_payment=success&session_id={CHECKOUT_SESSION_ID}"
             ),
+            # This must be a string, not a tuple.
             cancel_url=(
-                f"{frontend_url}/Rooms"
-                "?video_payment=cancelled"
+                f"{frontend_url}/TimeCapsules?video_payment=cancelled"
             ),
             client_reference_id=str(capsule.id),
             metadata={
@@ -549,11 +550,15 @@ def create_video_capsule_checkout_session(request):
 @require_POST
 def stripe_video_capsule_webhook(request):
     """Mark a video capsule paid only after Stripe verifies the event."""
+
     webhook_secret = os.environ.get("STRIPE_VIDEO_WEBHOOK_SECRET")
 
     if not webhook_secret:
         logger.error("Video capsule Stripe webhook secret is missing")
-        return JsonResponse({"error": "Webhook is not configured."}, status=503)
+        return JsonResponse(
+            {"error": "Webhook is not configured."},
+            status=503,
+        )
 
     signature = request.headers.get("Stripe-Signature", "")
 
@@ -564,7 +569,10 @@ def stripe_video_capsule_webhook(request):
             webhook_secret,
         )
     except (ValueError, stripe.SignatureVerificationError):
-        return JsonResponse({"error": "Invalid webhook."}, status=400)
+        return JsonResponse(
+            {"error": "Invalid webhook."},
+            status=400,
+        )
 
     if event["type"] == "checkout.session.completed":
         session = event["data"]["object"]
@@ -597,3 +605,98 @@ def stripe_video_capsule_webhook(request):
                 )
 
     return JsonResponse({"received": True})
+
+
+@csrf_exempt
+@require_GET
+def verify_video_capsule_checkout_session(request):
+    """Verify a completed video capsule payment and update its record."""
+
+    session_id = request.GET.get("session_id", "").strip()
+
+    if not session_id:
+        return JsonResponse(
+            {
+                "success": False,
+                "error": "Missing checkout session ID.",
+            },
+            status=400,
+        )
+
+    stripe.api_key = os.environ.get("STRIPE_SECRET_KEY")
+
+    if not stripe.api_key:
+        return JsonResponse(
+            {
+                "success": False,
+                "error": "Payment service is not configured.",
+            },
+            status=503,
+        )
+
+    try:
+        session = stripe.checkout.Session.retrieve(session_id)
+        session_data = session.to_dict()
+        metadata = session_data.get("metadata") or {}
+
+        if (
+            session_data.get("mode") != "payment"
+            or session_data.get("payment_status") != "paid"
+            or metadata.get("product") != "video-time-capsule"
+        ):
+            return JsonResponse(
+                {
+                    "success": False,
+                    "error": "Payment has not been confirmed.",
+                },
+                status=400,
+            )
+
+        capsule_id = metadata.get("capsule_id")
+
+        if not capsule_id:
+            return JsonResponse(
+                {
+                    "success": False,
+                    "error": "Capsule reference is missing.",
+                },
+                status=400,
+            )
+
+        capsule = TimeCapsule.objects.get(
+            id=capsule_id,
+            capsule_type="video",
+            stripe_session_id=session_data.get("id"),
+        )
+
+        if capsule.payment_status != "paid":
+            capsule.payment_status = "paid"
+            capsule.save(update_fields=["payment_status"])
+
+        return JsonResponse(
+            {
+                "success": True,
+                "capsule_id": capsule.id,
+            }
+        )
+
+    except TimeCapsule.DoesNotExist:
+        return JsonResponse(
+            {
+                "success": False,
+                "error": "Video capsule not found.",
+            },
+            status=404,
+        )
+
+    except stripe.StripeError:
+        logger.exception(
+            "Could not verify video capsule Stripe payment"
+        )
+        return JsonResponse(
+            {
+                "success": False,
+                "error": "Could not verify the Stripe payment.",
+            },
+            status=502,
+        )
