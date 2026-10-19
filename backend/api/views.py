@@ -610,10 +610,12 @@ def stripe_video_capsule_webhook(request):
                 )
 
     return JsonResponse({"received": True})
+
+
 @csrf_exempt
 @require_GET
 def verify_video_capsule_checkout_session(request):
-    session_id = request.GET.get("session_id")
+    session_id = request.GET.get("session_id", "").strip()
 
     if not session_id:
         return JsonResponse(
@@ -626,7 +628,7 @@ def verify_video_capsule_checkout_session(request):
     if not stripe.api_key:
         return JsonResponse(
             {"success": False, "error": "Payment service is not configured."},
-            status=500,
+            status=503,
         )
 
     try:
@@ -634,14 +636,18 @@ def verify_video_capsule_checkout_session(request):
 
         if (
             session.payment_status != "paid"
-            or session.metadata.get("product") != "video-time-capsule"
+            or (session.metadata or {}).get("product")
+            != "video-time-capsule"
         ):
             return JsonResponse(
-                {"success": False, "error": "Payment has not been confirmed."},
+                {
+                    "success": False,
+                    "error": "Payment has not been confirmed.",
+                },
                 status=400,
             )
 
-        capsule_id = session.metadata.get("capsule_id")
+        capsule_id = (session.metadata or {}).get("capsule_id")
 
         if not capsule_id:
             return JsonResponse(
@@ -655,7 +661,6 @@ def verify_video_capsule_checkout_session(request):
             stripe_session_id=session.id,
         )
 
-        # Confirm the payment in the database as well.
         if capsule.payment_status != "paid":
             capsule.payment_status = "paid"
             capsule.save(update_fields=["payment_status"])
@@ -666,12 +671,41 @@ def verify_video_capsule_checkout_session(request):
         })
 
     except TimeCapsule.DoesNotExist:
+        logger.exception(
+            "Paid video capsule could not be found during verification"
+        )
         return JsonResponse(
-            {"success": False, "error": "Video capsule not found."},
+            {
+                "success": False,
+                "error": (
+                    "Payment was received, but the capsule record "
+                    "could not be found. Please contact support."
+                ),
+            },
             status=404,
         )
+
     except stripe.error.StripeError:
+        logger.exception("Stripe video payment verification failed")
         return JsonResponse(
-            {"success": False, "error": "Could not verify the Stripe payment."},
+            {
+                "success": False,
+                "error": "Could not verify the Stripe payment.",
+            },
             status=502,
+        )
+
+    except Exception:
+        logger.exception(
+            "Unexpected error verifying video capsule payment"
+        )
+        return JsonResponse(
+            {
+                "success": False,
+                "error": (
+                    "Payment may have succeeded, but confirmation "
+                    "failed. Please contact support before paying again."
+                ),
+            },
+            status=500,
         )
