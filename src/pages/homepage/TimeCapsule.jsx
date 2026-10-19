@@ -399,119 +399,91 @@ export default function TimeCapsules() {
   }
 
   async function handleConfirm() {
-    setError("");
-    setIsSaving(true);
+   
 
-    const selectedDuration = durations.find(
-      (option) => option.value === duration
+
+if (capsuleType === "video") {
+  if (!videoBlob || videoBlob.size === 0) {
+    setError("Your video is empty. Please record it again.");
+    setShowDurationPopup(false);
+    return;
+  }
+
+  // Step 1: Upload and save the video capsule.
+  const formData = new FormData();
+
+  formData.append("title", title.trim());
+  formData.append("message", message.trim());
+  formData.append("recipient_email", recipientEmail.trim());
+  formData.append(
+    "duration",
+    selectedDuration?.apiValue || "30_days"
+  );
+
+  const extension = getVideoExtension(videoBlob.type);
+
+  formData.append(
+    "video",
+    videoBlob,
+    `time-capsule-${Date.now()}.${extension}`
+  );
+
+  const uploadResponse = await fetch(
+    `${API_BASE_URL}/api/upload-time-capsule-video/`,
+    {
+      method: "POST",
+      body: formData,
+    }
+  );
+
+  const uploadData = await uploadResponse.json();
+
+  if (
+    !uploadResponse.ok ||
+    uploadData.success !== true ||
+    !uploadData.capsule_id
+  ) {
+    throw new Error(
+      uploadData.error ||
+        "The video could not be uploaded. Please try again."
     );
+  }
 
-    try {
-      if (capsuleType === "video") {
-        if (!videoBlob || videoBlob.size === 0) {
-          setError("Your video is empty. Please record it again.");
-          setShowDurationPopup(false);
-          return;
-        }
+  
 
-        const formData = new FormData();
-
-        formData.append("title", title.trim());
-        formData.append("message", message.trim());
-        formData.append("recipient_email", recipientEmail.trim());
-        formData.append(
-          "duration",
-          selectedDuration?.apiValue || "30_days"
-        );
-
-        const extension = getVideoExtension(videoBlob.type);
-
-        formData.append(
-          "video",
-          videoBlob,
-          `time-capsule-${Date.now()}.${extension}`
-        );
-
-      const response = await fetch(
-  `${API_BASE_URL}/api/upload-time-capsule-video/`,
+  // Create Stripe checkout for this specific video capsule
+const checkoutResponse = await fetch(
+  `${API_BASE_URL}/api/create-video-capsule-checkout-session/`,
   {
     method: "POST",
-    body: formData,
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      capsule_id: uploadData.capsule_id,
+    }),
   }
 );
 
-const data = await response.json();
+const checkoutData = await checkoutResponse.json();
 
-if (!response.ok || data.success !== true || !data.capsule_id) {
+if (!checkoutResponse.ok || !checkoutData.url) {
   throw new Error(
-    data.error || "Your letter could not be saved. Please try again."
+    checkoutData.error ||
+      "Your video was saved, but payment could not be started."
   );
 }
 
-setSavedCapsuleId(data.capsule_id);
-setShowDurationPopup(false);
-setShowConfirmation(true);
+// Send the user to Stripe
+window.location.assign(checkoutData.url);
+return;
+}
+
+     
 
 
    
 
-        if (!response.ok) {
-          throw new Error(
-            data.error ||
-              data.message ||
-              "The video could not be uploaded. Please try again."
-          );
-        }
-
-        setShowDurationPopup(false);
-
-        setError(
-          `Your video capsule has been uploaded. Capsule reference: ${
-            data.capsule_id ?? "created"
-          }. Payment has not been taken, and the £2.99 checkout still needs to be connected.`
-        );
-
-        return;
-      }
-
-      const response = await fetch(
-        `${API_BASE_URL}/api/create-time-capsule/`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            title: title.trim(),
-            message: message.trim(),
-            recipient_email: recipientEmail.trim(),
-            duration: selectedDuration?.apiValue || "1_hour",
-          }),
-        }
-      );
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(
-          data.error ||
-            data.message ||
-            "Your letter could not be saved. Please try again."
-        );
-      }
-
-      setShowDurationPopup(false);
-      setShowConfirmation(true);
-    } catch (saveError) {
-      console.error("Could not save the time capsule:", saveError);
-
-      setError(
-        saveError.message ||
-          "Something went wrong. Check that the Django backend is running and try again."
-      );
-    } finally {
-      setIsSaving(false);
-    }
   }
 
   function startAgain() {
