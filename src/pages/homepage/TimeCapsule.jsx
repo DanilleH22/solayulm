@@ -5,11 +5,24 @@ import styles from "../../styles/TimeCapsules.module.css";
 import IncomingTransmission from "../../components/IncomingTransmission.jsx";
 
 const API_BASE_URL =
-  import.meta.env.VITE_API_BASE_URL || "http://127.0.0.1:8000";
+  import.meta.env.VITE_API_BASE_URL ||
+  "https://solayulm-backend.onrender.com";
 
   
 
 const durations = [
+  {
+  label: "1 Hour (Test)",
+  value: "1hour",
+  apiValue: "1 hour",
+  description: "Ashort MEssage"
+},
+ {
+  label: "1 Day (Test)",
+  value: "1 Day",
+  apiValue: "1_day",
+  description: "Ashort MEssage"
+},
   {
     value: "30days",
     apiValue: "30_days",
@@ -472,7 +485,7 @@ setShowConfirmation(true);
             title: title.trim(),
             message: message.trim(),
             recipient_email: recipientEmail.trim(),
-            duration: selectedDuration?.apiValue || "30_days",
+            duration: selectedDuration?.apiValue || "1_hour",
           }),
         }
       );

@@ -184,8 +184,15 @@ def verify_checkout_session(request):
             status=502,
         )
 
+
 def get_capsule_delivery_date(delivery_option):
     now = timezone.now()
+
+    if delivery_option == "1_hour":
+        return now + timedelta(hours=1)
+
+    if delivery_option == "1_day":
+        return now + timedelta(days=1)
 
     if delivery_option == "30_days":
         return now + timedelta(days=30)
@@ -203,7 +210,6 @@ def get_capsule_delivery_date(delivery_option):
     try:
         return now.replace(year=now.year + year_count)
     except ValueError:
-        # Handle 29 February when the target year is not a leap year.
         return now.replace(
             year=now.year + year_count,
             day=28,
@@ -251,6 +257,12 @@ def create_time_capsule(request):
 
     # Accept common formats sent by the frontend.
     delivery_options = {
+        "1 hour": "1_hour",
+"1-hour": "1_hour",
+"1_hour": "1_hour",
+        "1 day": "1_day",
+        "1-day": "1_day",
+        "1_day": "1_day",
         "30 days": "30_days",
         "30-days": "30_days",
         "30_days": "30_days",
@@ -326,6 +338,11 @@ def upload_time_capsule_video(request):
 
     # Accept the duration values used by the frontend.
     duration_options = {
+        "1 hour": "1_hour",
+"1-hour": "1_hour",
+"1_hour": "1_hour",
+        "1day": "1_day",
+        "1_day": "1_day",
         "30days": "30_days",
         "30_days": "30_days",
         "1year": "1_year",
