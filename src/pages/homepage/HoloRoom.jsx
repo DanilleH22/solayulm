@@ -1024,54 +1024,54 @@ const navigate = useNavigate();
               </button>
             </div>
             <div className={styles.constellationStage}>
-              <Stage width={STAGE_WIDTH} height={STAGE_HEIGHT}>
-                <Layer>
-                  {dots.slice(0, progress + 1).map((dot, index) => {
-                    if (index === 0) return null;
-                    const previousDot = dots[index - 1];
-                    return (
-                      <Line
-                        key={`line-${index}`}
-                        points={[
-                          previousDot.x * scaleX,
-                          previousDot.y * scaleY,
-                          dot.x * scaleX,
-                          dot.y * scaleY,
-                        ]}
-                        stroke='#ddb0ff'
-                        strokeWidth={2}
-                        lineCap='round'
-                        shadowColor='#a77de5'
-                        shadowBlur={5}
-                      />
-                    );
-                  })}
-                  {dots.map((dot, index) => (
-                    <React.Fragment key={`star-${index}`}>
-                      <Circle
-                        x={dot.x * scaleX}
-                        y={dot.y * scaleY}
-                        radius={windowWidth < 600 ? 10 : 9}
-                        fill={index < progress ? '#ddb0ff' : '#f5f0ff'}
-                        stroke='#8d71c1'
-                        strokeWidth={1.5}
-                        shadowColor='#c7a2ff'
-                        shadowBlur={index === progress ? 12 : 4}
-                        onClick={() => handleStarClick(index)}
-                        onTap={() => handleStarClick(index)}
-                      />
-                      <Text
-                        x={dot.x * scaleX + 13}
-                        y={dot.y * scaleY - 8}
-                        text={`${index + 1}`}
-                        fontSize={14}
-                        fill='#cfc2e9'
-                      />
-                    </React.Fragment>
-                  ))}
-                </Layer>
-              </Stage>
-            </div>
+  <ScaledStage>
+    <Layer>
+      {dots.slice(0, progress + 1).map((dot, index) => {
+        if (index === 0) return null;
+        const previousDot = dots[index - 1];
+        return (
+          <Line
+            key={`line-${index}`}
+            points={[
+              previousDot.x * scaleX,
+              previousDot.y * scaleY,
+              dot.x * scaleX,
+              dot.y * scaleY,
+            ]}
+            stroke='#ddb0ff'
+            strokeWidth={2}
+            lineCap='round'
+            shadowColor='#a77de5'
+            shadowBlur={5}
+          />
+        );
+      })}
+      {dots.map((dot, index) => (
+        <React.Fragment key={`star-${index}`}>
+          <Circle
+            x={dot.x * scaleX}
+            y={dot.y * scaleY}
+            radius={windowWidth < 600 ? 10 : 9}
+            fill={index < progress ? '#ddb0ff' : '#f5f0ff'}
+            stroke='#8d71c1'
+            strokeWidth={1.5}
+            shadowColor='#c7a2ff'
+            shadowBlur={index === progress ? 12 : 4}
+            onClick={() => handleStarClick(index)}
+            onTap={() => handleStarClick(index)}
+          />
+          <Text
+            x={dot.x * scaleX + 13}
+            y={dot.y * scaleY - 8}
+            text={`${index + 1}`}
+            fontSize={14}
+            fill='#cfc2e9'
+          />
+        </React.Fragment>
+      ))}
+    </Layer>
+  </ScaledStage>
+</div>
             {progress >= dots.length && (
               <p className={styles.promptQuote}>
                 Constellation complete. Take a moment to enjoy what you created.
