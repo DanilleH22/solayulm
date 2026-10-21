@@ -10,7 +10,7 @@
   overflow-y: auto;
   background: rgba(8, 5, 17, 0.82);
   backdrop-filter: blur(9px);
-  overflow-x: none;
+  overflow-x: hidden;
 }
 
 .popup {
