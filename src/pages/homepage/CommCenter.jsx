@@ -98,52 +98,52 @@ const CHANNELS = {
     {
       id: 1,
       name: "Abundance & Success",
-      src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/abu_suc.mp3",
+      src: "https://a6e7e7cac435a34da671c7d0b6e1c0c6.r2.cloudflarestorage.com/solayulm-media/affirmations/abu_suc.mp3",
     },
     {
       id: 2,
       name: "Adventure & Expansion",
-      src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/adv_exp.mp3",
+      src: "https://a6e7e7cac435a34da671c7d0b6e1c0c6.r2.cloudflarestorage.com/solayulm-media/affirmations/adv_exp.mp3",
     },
     {
       id: 3,
       name: "Calm & Stress Relief",
-      src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/calm_str.mp3",
+      src: "https://a6e7e7cac435a34da671c7d0b6e1c0c6.r2.cloudflarestorage.com/solayulm-media/affirmations/calm_str.mp3",
     },
     {
       id: 4,
       name: "Creativity & Inspiration",
-      src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/cre_insp.mp3",
+      src: "https://a6e7e7cac435a34da671c7d0b6e1c0c6.r2.cloudflarestorage.com/solayulm-media/affirmations/cre_insp.mp3",
     },
     {
       id: 5,
       name: "Focus & Productivity",
-      src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/foc_pro.mp3",
+      src: "https://a6e7e7cac435a34da671c7d0b6e1c0c6.r2.cloudflarestorage.com/solayulm-media/affirmations/foc_pro.mp3",
     },
     {
       id: 6,
       name: "Healing & Self-Love",
-      src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/hea_sel.mp3",
+      src: "https://a6e7e7cac435a34da671c7d0b6e1c0c6.r2.cloudflarestorage.com/solayulm-media/affirmations/hea_sel.mp3",
     },
     {
       id: 7,
       name: "Relationships & Connection",
-      src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/rel_con.mp3",
+      src: "https://a6e7e7cac435a34da671c7d0b6e1c0c6.r2.cloudflarestorage.com/solayulm-media/affirmations/rel_con.mp3",
     },
     {
       id: 8,
       name: "Self-Confidence & Empowerment",
-      src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/selfC_emp.mp3",
+      src: "https://a6e7e7cac435a34da671c7d0b6e1c0c6.r2.cloudflarestorage.com/solayulm-media/affirmations/selfC_emp.mp3",
     },
     {
       id: 9,
       name: "Sleep & Rest",
-      src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/sle_res.mp3",
+      src: "https://a6e7e7cac435a34da671c7d0b6e1c0c6.r2.cloudflarestorage.com/solayulm-media/affirmations/sle_res.mp3",
     },
     {
       id: 10,
       name: "Spiritual Growth & Intuition",
-      src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/spiG_int.mp3",
+      src: "https://a6e7e7cac435a34da671c7d0b6e1c0c6.r2.cloudflarestorage.com/solayulm-media/affirmations/spiG_int.mp3",
     },
   ],
 
