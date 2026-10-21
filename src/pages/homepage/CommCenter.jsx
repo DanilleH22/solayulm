@@ -111,52 +111,92 @@ const CHANNELS = {
     {
       id: 1,
       name: "The Lighthouse on the Edge of a Nebula",
-      src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/lighthouse.mp3",
+      src: "https://a6e7e7cac435a34da671c7d0b6e1c0c6.r2.cloudflarestorage.com/solayulm-media/soothing-stories/lighthouse.mp3",
     },
     {
       id: 2,
       name: "The Library of Stars",
-      src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/libraryS.mp3",
+      src: "https://a6e7e7cac435a34da671c7d0b6e1c0c6.r2.cloudflarestorage.com/solayulm-media/soothing-stories/libraryS.mp3",
     },
     {
       id: 3,
       name: "The Glass Planet",
-      src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/glassP.mp3",
+      src: "https://a6e7e7cac435a34da671c7d0b6e1c0c6.r2.cloudflarestorage.com/solayulm-media/soothing-stories/glassP.mp3",
     },
-    {
-      id: 4,
-      name: "The Sleeping Comet",
-      src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/sleepingC.mp3",
-    },
-    {
-      id: 5,
-      name: "The Garden on Io",
-      src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/gardenL.mp3",
-    },
+    // {
+    //   id: 4,
+    //   name: "The Sleeping Comet",
+    //   src: "https://a6e7e7cac435a34da671c7d0b6e1c0c6.r2.cloudflarestorage.com/solayulm-media/soothing-stories/sleepingC.mp3",
+    // },
+    // {
+    //   id: 5,
+    //   name: "The Garden on Io",
+    //   src: "https://a6e7e7cac435a34da671c7d0b6e1c0c6.r2.cloudflarestorage.com/solayulm-media/soothing-stories/gardenL.mp3",
+    // },
     {
       id: 6,
       name: "The Lighthouse of Andromeda",
-      src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/andromeda.mp3",
+      src: "https://a6e7e7cac435a34da671c7d0b6e1c0c6.r2.cloudflarestorage.com/solayulm-media/soothing-stories/andromeda.mp3",
     },
     {
       id: 7,
       name: "The Bridge of Auroras",
-      src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/bridgeAur.mp3",
+      src: "https://a6e7e7cac435a34da671c7d0b6e1c0c6.r2.cloudflarestorage.com/solayulm-media/soothing-stories/bridgeAur.mp3",
     },
-    {
-      id: 8,
-      name: "The Forgotten Moon",
-      src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/forgottenM.mp3",
-    },
-    {
-      id: 9,
-      name: "The Star Garden",
-      src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/starGard.mp3",
-    },
+    // {
+    //   id: 8,
+    //   name: "The Forgotten Moon",
+    //   src: "https://a6e7e7cac435a34da671c7d0b6e1c0c6.r2.cloudflarestorage.com/solayulm-media/soothing-stories/forgottenM.mp3",
+    // },
+    // {
+    //   id: 9,
+    //   name: "The Star Garden",
+    //   src: "https://a6e7e7cac435a34da671c7d0b6e1c0c6.r2.cloudflarestorage.com/solayulm-media/soothing-stories/starGard.mp3",
+    // },
     {
       id: 10,
       name: "The Celestial Caravan",
-      src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/celestialCara.mp3",
+      src: "https://a6e7e7cac435a34da671c7d0b6e1c0c6.r2.cloudflarestorage.com/solayulm-media/soothing-stories/celestialCara.mp3",
+    },
+    {
+      id: 11,
+      name: "The Planet That Felt Nothing",
+      src: "https://a6e7e7cac435a34da671c7d0b6e1c0c6.r2.cloudflarestorage.com/solayulm-media/soothing-stories/Planet_That_felt_nothing.MP3",
+    },
+    {
+      id: 12,
+      name: "The Signal That Never Came Back",
+      src: "https://a6e7e7cac435a34da671c7d0b6e1c0c6.r2.cloudflarestorage.com/solayulm-media/soothing-stories/signal_never_came_back.mp3",
+    },
+    {
+      id: 13,
+      name: "The Doorway at the Edge of Space",
+      src: "https://a6e7e7cac435a34da671c7d0b6e1c0c6.r2.cloudflarestorage.com/solayulm-media/soothing-stories/doorway_at_the_edge.mp3",
+    },
+    {
+      id: 14,
+      name: "The Star That Thought It Was Ordinary",
+      src: "https://a6e7e7cac435a34da671c7d0b6e1c0c6.r2.cloudflarestorage.com/solayulm-media/soothing-stories/star_not_ordinary.mp3",
+    },
+    {
+      id: 15,
+      name: "The Things We Leave in Orbit",
+      src: "https://a6e7e7cac435a34da671c7d0b6e1c0c6.r2.cloudflarestorage.com/solayulm-media/soothing-stories/things_in_the_orbit.mp3",
+    },
+    {
+      id: 16,
+      name: "The Morning That Arrived Slowly",
+      src: "https://a6e7e7cac435a34da671c7d0b6e1c0c6.r2.cloudflarestorage.com/solayulm-media/soothing-stories/morning_arrived_slowly.mp3",
+    },
+    {
+      id: 17,
+      name: "Permission to Come Home",
+      src: "https://a6e7e7cac435a34da671c7d0b6e1c0c6.r2.cloudflarestorage.com/solayulm-media/soothing-stories/permission_to_come.mp3",
+    },
+    {
+      id: 18,
+      name: "Enjoy The Journey",
+      src: "https://a6e7e7cac435a34da671c7d0b6e1c0c6.r2.cloudflarestorage.com/solayulm-media/soothing-stories/Enjoy_the_journey.mp3",
     },
   ],
 
