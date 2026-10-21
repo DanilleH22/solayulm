@@ -26,8 +26,8 @@ function Footer() {
 
   const [isPlaying, setIsPlaying] = useState(false);
   const [MusicIsPlaying, setMusicIsPlaying] = useState(false);
-  const [play, { stop }] = useSound('/music/Midnight_Bliss.mp3');
-  const [playing, { pause }] = useSound('/AmbientNoises/alien-planet-underwater.mp3');
+  const [play, { stop }] = useSound('https://pub-c0ab68ce633f4c6ca038f3d704dcb392.r2.dev/footer-music/Midnight_Bliss.mp3');
+  const [playing, { pause }] = useSound('https://pub-c0ab68ce633f4c6ca038f3d704dcb392.r2.dev/ambient-noise/alien-planet-underwater.mp3');
 
   const handleClick = () => {
     if (isPlaying) {
@@ -81,6 +81,10 @@ const [windowWidth, setWindowWidth] = useState(window.innerWidth);
             <p>
               More useful links:
             </p>
+             <Link to="/" style={{ textDecoration: 'none'}}>
+                  <p>Home</p>
+                  </Link>
+            
              
                 <Link to="/AboutPage" style={{ textDecoration: 'none'}}>
                   <p>About</p>
