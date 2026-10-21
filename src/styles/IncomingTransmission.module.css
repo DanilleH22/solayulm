@@ -1,15 +1,16 @@
-
 .overlay {
+  box-sizing: border-box;
   position: fixed;
   inset: 0;
   z-index: 9999;
   display: flex;
-  align-items: center;
+  align-items: safe center; /* 'safe' prevents clipping */
   justify-content: center;
   padding: 20px;
-  overflow-y: none;
+  overflow-y: auto;
   background: rgba(8, 5, 17, 0.82);
   backdrop-filter: blur(9px);
+  overflow-x: none;
 }
 
 .popup {
