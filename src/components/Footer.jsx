@@ -113,13 +113,13 @@ const [windowWidth, setWindowWidth] = useState(window.innerWidth);
           <Col className="d-flex justify-content-center">
           <Form>
             <h4 style={{paddingRight: "30px", paddingLeft: '10px'}}>Music </h4>
-      <Form.Check
-        type="switch"
-        id="music-switch"
-        onClick={handleClick}
-        checked={isPlaying}
-      />
-    </Form>
+          <Form.Check
+            type="switch"
+            id="music-switch"
+            onClick={handleClick}
+            checked={isPlaying}
+          />
+        </Form>
 
     {/* <span>
             <FontAwesomeIcon icon={isPlaying ? faVolumeUp : faVolumeMute} /> Music
