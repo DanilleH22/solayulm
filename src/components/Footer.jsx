@@ -71,9 +71,9 @@ const [windowWidth, setWindowWidth] = useState(window.innerWidth);
       <Container fluid>
         <Row className="justify-content-between align-items-center">
           {/* Left Image */}
-          <Col className="d-flex justify-content-center">
+          {/* <Col className="d-flex justify-content-center">
             <img src={s5} alt="space" />
-          </Col>
+          </Col> */}
 
           {/* Centered Text */}
           <Col className="d-flex flex-column justify-content-center align-items-center">
@@ -127,7 +127,7 @@ const [windowWidth, setWindowWidth] = useState(window.innerWidth);
             
     
             
-            <Form>
+            {/* <Form>
             <h4>Ambience </h4>
               <Form.Check
                 type="switch"
@@ -135,7 +135,7 @@ const [windowWidth, setWindowWidth] = useState(window.innerWidth);
         onClick={handlePlaying}
         checked={MusicIsPlaying}
               />
-            </Form>
+            </Form> */}
 
             
 
