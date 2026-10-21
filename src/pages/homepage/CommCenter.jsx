@@ -204,42 +204,82 @@ const CHANNELS = {
     {
       id: 1,
       name: "Ambiance 1",
-      src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/ambient1.mp3",
+      src: "https://a6e7e7cac435a34da671c7d0b6e1c0c6.r2.cloudflarestorage.com/solayulm-media/ambient-noise/ambient1.mp3",
     },
     {
       id: 2,
       name: "Ambiance 2",
-      src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/ambient2.mp3",
+      src: "https://a6e7e7cac435a34da671c7d0b6e1c0c6.r2.cloudflarestorage.com/solayulm-media/ambient-noise/ambient2.mp3",
     },
     {
       id: 3,
       name: "Ambiance 3",
-      src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/ambient3.mp3",
+      src: "https://a6e7e7cac435a34da671c7d0b6e1c0c6.r2.cloudflarestorage.com/solayulm-media/ambient-noise/ambient3.mp3",
     },
     {
       id: 4,
       name: "Ambiance 4",
-      src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/ambient4.mp3",
+      src: "https://a6e7e7cac435a34da671c7d0b6e1c0c6.r2.cloudflarestorage.com/solayulm-media/ambient-noise/ambient4.mp3",
     },
     {
       id: 5,
       name: "Ambiance 5",
-      src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/ambient5.mp3",
+      src: "https://a6e7e7cac435a34da671c7d0b6e1c0c6.r2.cloudflarestorage.com/solayulm-media/ambient-noise/ambient5.mp3",
     },
     {
       id: 6,
       name: "Ambiance 6",
-      src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/ambient6.mp3",
+      src: "https://a6e7e7cac435a34da671c7d0b6e1c0c6.r2.cloudflarestorage.com/solayulm-media/ambient-noise/ambient6.mp3",
     },
     {
       id: 7,
       name: "Ambiance 7",
-      src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/ambient7.mp3",
+      src: "https://a6e7e7cac435a34da671c7d0b6e1c0c6.r2.cloudflarestorage.com/solayulm-media/ambient-noise/ambient7.mp3",
     },
     {
       id: 8,
       name: "Ambiance 8",
-      src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/ambient8.mp3",
+      src: "https://a6e7e7cac435a34da671c7d0b6e1c0c6.r2.cloudflarestorage.com/solayulm-media/ambient-noise/ambient8.mp3",
+    },
+    {
+      id: 9,
+      name: "Ambiance 9",
+      src: "https://a6e7e7cac435a34da671c7d0b6e1c0c6.r2.cloudflarestorage.com/solayulm-media/ambient-noise/ambient9.mp3",
+    },
+    {
+      id: 10,
+      name: "Ambiance 10",
+      src: "https://a6e7e7cac435a34da671c7d0b6e1c0c6.r2.cloudflarestorage.com/solayulm-media/ambient-noise/ambient10.mp3",
+    },
+    {
+      id: 11,
+      name: "Ambiance 11",
+      src: "https://a6e7e7cac435a34da671c7d0b6e1c0c6.r2.cloudflarestorage.com/solayulm-media/ambient-noise/ambient11.mp3",
+    },
+    {
+      id: 12,
+      name: "Ambiance 12",
+      src: "https://a6e7e7cac435a34da671c7d0b6e1c0c6.r2.cloudflarestorage.com/solayulm-media/ambient-noise/ambient12.mp3",
+    },
+    {
+      id: 13,
+      name: "Ambiance 13",
+      src: "https://a6e7e7cac435a34da671c7d0b6e1c0c6.r2.cloudflarestorage.com/solayulm-media/ambient-noise/ambient13.mp3",
+    },
+    {
+      id: 14,
+      name: "Ambiance 14",
+      src: "https://a6e7e7cac435a34da671c7d0b6e1c0c6.r2.cloudflarestorage.com/solayulm-media/ambient-noise/ambient14.mp3",
+    },
+    {
+      id: 15,
+      name: "Ambiance 15",
+      src: "https://a6e7e7cac435a34da671c7d0b6e1c0c6.r2.cloudflarestorage.com/solayulm-media/ambient-noise/ambient15.mp3",
+    },
+    {
+      id: 16,
+      name: "Ambiance 16",
+      src: "https://a6e7e7cac435a34da671c7d0b6e1c0c6.r2.cloudflarestorage.com/solayulm-media/ambient-noise/ambient16.mp3",
     },
   ],
 };
