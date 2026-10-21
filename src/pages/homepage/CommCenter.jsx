@@ -30,27 +30,67 @@ const CHANNELS = {
     {
       id: 6,
       name: "Lofi 6",
-      src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/lofi6.mp3",
+      src: "https://a6e7e7cac435a34da671c7d0b6e1c0c6.r2.cloudflarestorage.com/solayulm-media/lofi-beats/lofi6.mp3",
     },
     {
       id: 7,
       name: "Lofi 7",
-      src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/lofi7.mp3",
+      src: "https://a6e7e7cac435a34da671c7d0b6e1c0c6.r2.cloudflarestorage.com/solayulm-media/lofi-beats/lofi7.mp3",
     },
     {
       id: 8,
       name: "Lofi 8",
-      src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/lofi8.mp3",
+      src: "https://a6e7e7cac435a34da671c7d0b6e1c0c6.r2.cloudflarestorage.com/solayulm-media/lofi-beats/lofi8.mp3",
     },
     {
       id: 9,
       name: "Lofi 9",
-      src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/lofi9.mp3",
+      src: "https://a6e7e7cac435a34da671c7d0b6e1c0c6.r2.cloudflarestorage.com/solayulm-media/lofi-beats/lofi9.mp3",
     },
     {
       id: 10,
       name: "Lofi 10",
-      src: "https://pub-530ef92d28424cfd8d38db7199081ada.r2.dev/lofi10.mp3",
+      src: "https://a6e7e7cac435a34da671c7d0b6e1c0c6.r2.cloudflarestorage.com/solayulm-media/lofi-beats/lofi10.mp3",
+    },
+     {
+      id: 11,
+      name: "Lofi 11",
+      src: "https://a6e7e7cac435a34da671c7d0b6e1c0c6.r2.cloudflarestorage.com/solayulm-media/lofi-beats/lofi11.mp3",
+    },
+     {
+      id: 12,
+      name: "Lofi 12",
+      src: "https://a6e7e7cac435a34da671c7d0b6e1c0c6.r2.cloudflarestorage.com/solayulm-media/lofi-beats/lofi12.mp3",
+    },
+     {
+      id: 13,
+      name: "Lofi 13",
+      src: "https://a6e7e7cac435a34da671c7d0b6e1c0c6.r2.cloudflarestorage.com/solayulm-media/lofi-beats/lofi13.mp3",
+    },
+     {
+      id: 14,
+      name: "Lofi 14",
+      src: "https://a6e7e7cac435a34da671c7d0b6e1c0c6.r2.cloudflarestorage.com/solayulm-media/lofi-beats/lofi14.mp3",
+    },
+     {
+      id: 15,
+      name: "Lofi 15",
+      src: "https://a6e7e7cac435a34da671c7d0b6e1c0c6.r2.cloudflarestorage.com/solayulm-media/lofi-beats/lofi15.mp3",
+    },
+     {
+      id: 16,
+      name: "Lofi 16",
+      src: "https://a6e7e7cac435a34da671c7d0b6e1c0c6.r2.cloudflarestorage.com/solayulm-media/lofi-beats/lofi16.mp3",
+    },
+     {
+      id: 17,
+      name: "Lofi 17",
+      src: "https://a6e7e7cac435a34da671c7d0b6e1c0c6.r2.cloudflarestorage.com/solayulm-media/lofi-beats/lofi17.mp3",
+    },
+     {
+      id: 18,
+      name: "Lofi 18",
+      src: "https://a6e7e7cac435a34da671c7d0b6e1c0c6.r2.cloudflarestorage.com/solayulm-media/lofi-beats/lofi18.mp3",
     },
   ],
 
