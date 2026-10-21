@@ -999,5 +999,6 @@
 
   .inlineText {
     gap: 8px;
+    padding: 10px;
   }
 }
