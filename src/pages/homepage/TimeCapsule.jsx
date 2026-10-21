@@ -922,7 +922,7 @@ return;
     ? "Your video capsule has been saved and your payment confirmed."
     : "Your letter has been saved successfully."}
   {" "}Reference: {savedCapsuleId}.
-  {" "}Your recipient will receive it when scheduled email delivery is active.
+  {/* {" "}Your recipient will receive it when scheduled email delivery is active. */}
 </p>
 
             <button
