@@ -326,9 +326,9 @@ transform: translateX(150%);
   box-shadow: 0 0 24px rgba(181, 172, 217, 0.28);
 }
 
-.journal-exit-button:active {
+/* .journal-exit-button:active {
   transform: scale(0.99);
-}
+} */
 
 /* Footnote */
 .journal-product__footnote {
@@ -347,7 +347,7 @@ transform: translateX(150%);
 }
 
 .journal-exit-button {
-  min-width: 120px;
+  width: 40%;
   padding: 10px 22px;
   color: #f5f3f8;
   background: rgba(255, 255, 255, 0.06);
@@ -395,6 +395,7 @@ transform: translateX(150%);
 ======================================== */
 
 @media (max-width: 576px) {
+
   .journal-page {
     padding-top: 24px !important;
     padding-bottom: 24px !important;
@@ -402,6 +403,8 @@ transform: translateX(150%);
 
   .journal-product {
     border-radius: 16px;
+    margin-left: 40px !important;
+    width: 80% !important;
   }
 
   .journal-product > .card-body {
@@ -411,10 +414,12 @@ transform: translateX(150%);
   .journal-product__intro {
     --bs-gutter-x: 16px;
     --bs-gutter-y: 16px;
+    margin: 20px 20px
   }
 
   .journal-product__image-wrapper {
     border-radius: 9px;
+    margin: 20px 20px
   }
 
   .journal-product__eyebrow {
@@ -452,7 +457,6 @@ transform: translateX(150%);
     min-height: 78px;
     padding: 13px 11px;
     border-radius: 12px;
-    display: none;
     flex-direction: column;
   }
 
@@ -479,6 +483,10 @@ transform: translateX(150%);
     min-height: 50px;
     padding: 12px;
     font-size: 14px;
+  }
+
+  .journal-exit-button{
+        transform: translateX(75%);
   }
 }
 
