@@ -288,7 +288,7 @@ body {
 /* Exit button */
 .journal-exit-button {
   display: block;
-  width: 25%;
+  /* width: 25%; */
   min-height: 52px;
   margin: 24px 0 10px;
   padding: 14px 20px;
@@ -347,7 +347,7 @@ transform: translateX(150%);
 }
 
 .journal-exit-button {
-  width: 40%;
+  width: 25%;
   padding: 10px 22px;
   color: #f5f3f8;
   background: rgba(255, 255, 255, 0.06);
@@ -485,9 +485,6 @@ transform: translateX(150%);
     font-size: 14px;
   }
 
-  .journal-exit-button{
-        transform: translateX(75%);
-  }
 }
 
 /* Extra-small phones */
