@@ -1,181 +1,126 @@
-import React, {useState, useEffect} from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
-import Form from 'react-bootstrap/Form';
-import s5 from '../assets/images/s5.PNG';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTwitter, faInstagram, faGithub, faLinkedin, faYoutube, faFacebook, faTiktok, faPinterest } from "@fortawesome/free-brands-svg-icons";
-import { faVolumeUp, faVolumeMute } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router";
-
-
-
+import React, { useState, useEffect } from 'react';
+import { Container, Row, Col, Form } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faTwitter,
+  faInstagram,
+  faPinterest,
+  faTiktok,
+} from '@fortawesome/free-brands-svg-icons';
+import { Link } from 'react-router';
 import '@fortawesome/fontawesome-free/css/all.min.css';
-
-
 import useSound from 'use-sound';
+import styles from '../styles/Footer.module.css';
 
+const MUSIC_URL =
+  'https://pub-c0ab68ce633f4c6ca038f3d704dcb392.r2.dev/footer-music/Midnight_Bliss.mp3';
 
+const usefulLinks = [
+  { to: '/', label: 'Home' },
+  { to: '/AboutPage', label: 'About' },
+  { to: '/Rooms', label: 'Rooms' },
+  { to: '/Shop', label: 'Shop' },
+  { to: '/HelpPage', label: 'Help available' },
+  { to: '/Toolkit', label: 'Toolkit' },
+];
 
-
-
-// import ambience from '../assets/sounds/ambience.mp3';
+const socialLinks = [
+  { href: 'https://twitter.com/yourprofile', icon: faTwitter, label: 'Twitter' },
+  { href: 'https://instagram.com/yourprofile', icon: faInstagram, label: 'Instagram' },
+  { href: 'https://pinterest.com/yourprofile', icon: faPinterest, label: 'Pinterest' },
+  { href: 'https://www.tiktok.com/en/', icon: faTiktok, label: 'TikTok' },
+];
 
 function Footer() {
-
-  
-
   const [isPlaying, setIsPlaying] = useState(false);
-  const [MusicIsPlaying, setMusicIsPlaying] = useState(false);
-  const [play, { stop }] = useSound('https://pub-c0ab68ce633f4c6ca038f3d704dcb392.r2.dev/footer-music/Midnight_Bliss.mp3');
-  const [playing, { pause }] = useSound('https://pub-c0ab68ce633f4c6ca038f3d704dcb392.r2.dev/ambient-noise/alien-planet-underwater.mp3');
+  const [play, { stop }] = useSound(MUSIC_URL, { volume: 0.5 });
 
-  const handleClick = () => {
+  useEffect(() => {
+    return () => stop();
+  }, [stop]);
+
+  const handleMusicToggle = () => {
     if (isPlaying) {
       stop();
-      setIsPlaying(false);
     } else {
       play();
-      setIsPlaying(true);
     }
+    setIsPlaying((prev) => !prev);
   };
-
-  const handlePlaying = () => {
-    if (MusicIsPlaying) {
-      pause();
-      setMusicIsPlaying(false);
-    } else {
-      playing();
-      setMusicIsPlaying(true);
-    }
-  };
-  
-
-const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-    
-      useEffect(() => {
-        const handleResize = () => setWindowWidth(window.innerWidth);
-        window.addEventListener("resize", handleResize);
-    
-        // cleanup on unmount
-        return () => window.removeEventListener("resize", handleResize);
-      }, []);
-    
-      
-    
-    
-    const stageWidth = Math.min(windowWidth * 0.9, 600); // 90% of screen, max 600px
-    const stageHeight = stageWidth; // keep square
 
   return (
-    <footer className="pt-4 text-center">
-      <Container fluid>
-        <Row className="justify-content-between align-items-center">
-          {/* Left Image */}
-          {/* <Col className="d-flex justify-content-center">
-            <img src={s5} alt="space" />
-          </Col> */}
-
-          {/* Centered Text */}
-          <Col className="d-flex flex-column justify-content-center align-items-center">
-            <h3 className="text-uppercase">Solayulm</h3>
-            <p>
-              More useful links:
+    <footer className={styles.footer}>
+      <Container fluid="lg">
+        <Row className={styles.footerRow}>
+          {/* Brand + links */}
+          <Col xs={12} md={4} className={styles.brandCol}>
+            <h3 className={styles.brandName}>SOLAYULM</h3>
+            <p className={styles.brandTagline}>
+              Your quiet corner of the galaxy.
             </p>
-             <Link to="/" style={{ textDecoration: 'none'}}>
-                  <p>Home</p>
-                  </Link>
-            
-             
-                <Link to="/AboutPage" style={{ textDecoration: 'none'}}>
-                  <p>About</p>
-                  </Link>
-            
-            {/* <p>Gallery</p> */}
-            
-            <Link to="/Rooms" style={{ textDecoration: 'none'}}>
-                  <p>Rooms</p>
-                  </Link>
-
-              <Link to="/Shop" style={{ textDecoration: 'none'}}>
-                  <p>Shop</p>
-                  </Link>
-           
-            <Link to="/HelpPage" style={{ textDecoration: 'none'}}>
-                  <p>Help available</p>
-                  </Link>
-
-            <Link to="/Toolkit" style={{ textDecoration: 'none'}}>
-                  <p>Toolkit</p>
-                  </Link>
           </Col>
 
-          {/* Music Switch */}
-          <Col className="d-flex justify-content-center">
-          <Form>
-            <h4 style={{paddingRight: "30px", paddingLeft: '10px'}}>Music </h4>
-          <Form.Check
-            type="switch"
-            id="music-switch"
-            onClick={handleClick}
-            checked={isPlaying}
-          />
-        </Form>
-
-    {/* <span>
-            <FontAwesomeIcon icon={isPlaying ? faVolumeUp : faVolumeMute} /> Music
-          </span> */}
-            
-    
-            
-            {/* <Form>
-            <h4>Ambience </h4>
-              <Form.Check
-                type="switch"
-                id="music-switch"
-        onClick={handlePlaying}
-        checked={MusicIsPlaying}
-              />
-            </Form> */}
-
-            
-
-    
+          <Col xs={6} md={3}>
+            <h4 className={styles.colHeading}>Explore</h4>
+            <ul className={styles.linkList}>
+              {usefulLinks.map((link) => (
+                <li key={link.to}>
+                  <Link to={link.to} className={styles.link}>
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </Col>
 
-          {/* Links Switch */}
-          <Col className="d-flex flex-column justify-content-center align-items-center">
-    
-           
-            <div className="social-icons p-1">
-  <a href="https://twitter.com/yourprofile" target="_blank" rel="noopener noreferrer">
-    <FontAwesomeIcon icon={faTwitter} size="2x" />
-  </a>
-  <a href="https://instagram.com/yourprofile" target="_blank" rel="noopener noreferrer">
-    <FontAwesomeIcon icon={faInstagram} size="2x" />
-  </a>
-   <a href="https://pinterest.com/yourprofile" target="_blank" rel="noopener noreferrer">
-    <FontAwesomeIcon icon={faPinterest} size="2x" />
-  </a>
-  {/* <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener noreferrer">
-    <FontAwesomeIcon icon={faLinkedin} size="2x" />
-  </a> */}
-  <a href="https://www.tiktok.com/en/" target="_blank" rel="noopener noreferrer">
-    <FontAwesomeIcon icon={faTiktok} size="2x" />
-  </a>
-</div>
-<div className='pb-3'>
-  <Link to='https://ko-fi.com/solayulm' target="_blank" style={{ textDecoration: 'none'}}>
-  
-  {/* this will open a modal about donating/showing support to keep the page going not mandatory though */}
-  <button  style={{backgroundColor: '#6a626e', marginTop: '20px', width: window.innerWidth < 768 ? '60%': '30%' , borderRadius: '5px'}} >Donate</button>
-</Link>
-</div>
+          {/* Music */}
+          <Col xs={6} md={2} className={styles.musicCol}>
+            <h4 className={styles.colHeading}>Sound</h4>
+            <Form.Check
+              type="switch"
+              id="music-switch"
+              label={isPlaying ? 'On' : 'Off'}
+              onChange={handleMusicToggle}
+              checked={isPlaying}
+              className={styles.musicSwitch}
+            />
+          </Col>
 
-            
+          {/* Social + donate */}
+          <Col xs={12} md={3} className={styles.socialCol}>
+            <h4 className={styles.colHeading}>Connect</h4>
+            <div className={styles.socialIcons}>
+              {socialLinks.map((social) => (
+                <a
+                  key={social.label}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={social.label}
+                  className={styles.socialLink}
+                >
+                  <FontAwesomeIcon icon={social.icon} size="lg" />
+                </a>
+              ))}
+            </div>
+            <Link
+              to="https://ko-fi.com/solayulm"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.donateLink}
+            >
+              <button type="button" className={styles.donateButton}>
+                Support the project
+              </button>
+            </Link>
           </Col>
         </Row>
 
-      
+        <div className={styles.bottomBar}>
+          <p className={styles.copyright}>
+            © {new Date().getFullYear()} Solayulm. Made with care.
+          </p>
+        </div>
       </Container>
     </footer>
   );
