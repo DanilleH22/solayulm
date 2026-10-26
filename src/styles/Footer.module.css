@@ -1,0 +1,170 @@
+.footer {
+  margin-top: 4rem;
+  padding: 3rem 0 1.5rem;
+  background: rgba(16, 12, 32, 0.6);
+  border-top: 1px solid rgba(221, 176, 255, 0.15);
+  color: #f5f0ff;
+}
+
+.footerRow {
+  row-gap: 2.5rem;
+}
+
+/* Brand column */
+.brandCol {
+  text-align: left;
+}
+
+.brandName {
+  margin: 0 0 0.5rem;
+  font-family: 'Saira Stencil One', sans-serif;
+  font-size: 1.5rem;
+  letter-spacing: 0.15em;
+  color: #f8f2ff;
+}
+
+.brandTagline {
+  margin: 0;
+  color: #ddb0ff;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+/* Column headings */
+.colHeading {
+  margin: 0 0 1rem;
+  color: #ddb0ff;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+/* Links list */
+.linkList {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.linkList li {
+  margin-bottom: 0.5rem;
+}
+
+.link {
+  color: beige;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.link:hover {
+  color: #ddb0ff;
+}
+
+/* Music switch */
+.musicCol {
+  text-align: left;
+}
+
+.musicSwitch {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.musicSwitch :global(.form-check-input) {
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: rgba(221, 176, 255, 0.4);
+}
+
+.musicSwitch :global(.form-check-input:checked) {
+  background-color: #ddb0ff;
+  border-color: #ddb0ff;
+}
+
+.musicSwitch :global(.form-check-label) {
+  color: rgba(245, 240, 255, 0.8);
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+/* Social */
+.socialCol {
+  text-align: left;
+}
+
+.socialIcons {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.socialLink {
+  color: rgba(245, 240, 255, 0.7);
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.socialLink:hover {
+  color: #ddb0ff;
+  transform: translateY(-2px);
+}
+
+/* Donate */
+.donateLink {
+  display: inline-block;
+  text-decoration: none;
+}
+
+.donateButton {
+  padding: 0.6rem 1.25rem;
+  background: transparent;
+  color: #ddb0ff;
+  border: 1px solid rgba(221, 176, 255, 0.5);
+  border-radius: 8px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.donateButton:hover {
+  background: #ddb0ff;
+  color: #171020;
+}
+
+/* Bottom bar */
+.bottomBar {
+  margin-top: 2.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(221, 176, 255, 0.1);
+  text-align: center;
+}
+
+.copyright {
+  margin: 0;
+  color: rgba(245, 240, 255, 0.4);
+  font-size: 0.8rem;
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  .footer {
+    padding: 2.5rem 0 1.25rem;
+  }
+
+  .footerRow > [class*='col'] {
+    text-align: center;
+  }
+
+  .socialIcons {
+    justify-content: center;
+  }
+
+  .colHeading {
+    margin-top: 0.5rem;
+  }
+}
