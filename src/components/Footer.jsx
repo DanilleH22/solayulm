@@ -24,6 +24,14 @@ const usefulLinks = [
   { to: '/Toolkit', label: 'Toolkit' },
 ];
 
+const policiesLinks = [
+  { to: '/Privacy-Policy', label: 'Privacy Policy' },
+  { to: '/terms-of-service', label: 'Terms of Service' },
+  { to: '/cookies', label: 'Cookies' },
+  { to: '/wellbeing-disclaimer', label: 'Wellbeing Disclaimer' },
+
+];
+
 const socialLinks = [
   { href: 'https://twitter.com/yourprofile', icon: faTwitter, label: 'Twitter' },
   { href: 'https://instagram.com/yourprofile', icon: faInstagram, label: 'Instagram' },
@@ -53,7 +61,7 @@ function Footer() {
       <Container fluid="lg">
         <Row className={styles.footerRow}>
           {/* Brand + links */}
-          <Col xs={12} md={4} className={styles.brandCol}>
+          <Col xs={12} md={3} className={styles.brandCol}>
             <h3 className={styles.brandName}>SOLAYULM</h3>
             <p className={styles.brandTagline}>
               Your quiet corner of the galaxy.
@@ -73,9 +81,24 @@ function Footer() {
             </ul>
           </Col>
 
-          {/* Music */}
-          <Col xs={6} md={2} className={styles.musicCol}>
-            <h4 className={styles.colHeading}>Sound</h4>
+          <Col xs={6} md={3} c>
+            <h4 className={styles.colHeading}>Policies</h4>
+            <ul className={styles.linkList}>
+              {policiesLinks.map((link) => (
+                <li key={link.to}>
+                  <Link to={link.to} className={styles.link}>
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </Col>
+
+          
+
+          {/* Social + donate */}
+          <Col xs={12} md={3} className={styles.socialCol}>
+          <h4 className={styles.colHeading}>Sound</h4>
             <Form.Check
               type="switch"
               id="music-switch"
@@ -84,10 +107,7 @@ function Footer() {
               checked={isPlaying}
               className={styles.musicSwitch}
             />
-          </Col>
-
-          {/* Social + donate */}
-          <Col xs={12} md={3} className={styles.socialCol}>
+            <br/>
             <h4 className={styles.colHeading}>Connect</h4>
             <div className={styles.socialIcons}>
               {socialLinks.map((social) => (
