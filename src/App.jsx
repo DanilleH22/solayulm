@@ -26,6 +26,11 @@ import Shop from "./pages/homepage/Shop.jsx";
 import PurchaseSuccess from "./pages/homepage/PurchaseSuccess.jsx";
 import StillBecomingBook from "./pages/homepage/StillBecomingBook.jsx";
 import TimeCapsules from "./pages/homepage/TimeCapsule.jsx";
+import PrivacyPolicy from "./pages/homepage/PrivacyPolicy.jsx";
+import TermsOfService from "./pages/homepage/TermsOfService";
+import CookiePolicy from "./pages/homepage/CookiePolicy";
+
+import WellbeingDisclaimer from "./pages/homepage/WellbeingDisclaimer";
 
 const App = () => {
   return (
@@ -55,6 +60,10 @@ const App = () => {
           <Route path="/Shop/StillBecomingBook" element={<StillBecomingBook />} />
           <Route path="/purchase-success" element={<PurchaseSuccess />} />
           <Route path="/TimeCapsules" element={<TimeCapsules />} />
+          <Route path="/Privacy-Policy" element={<PrivacyPolicy />} />
+          <Route path="/terms-of-service" element={<TermsOfService />} />
+          <Route path="/cookies" element={<CookiePolicy />} />
+          <Route path="/wellbeing-disclaimer" element={<WellbeingDisclaimer />} />
           
             <Route path="*" element={<h1>Page not found!</h1>} />
           </Routes>
