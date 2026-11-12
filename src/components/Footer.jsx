@@ -66,6 +66,16 @@ function Footer() {
             <p className={styles.brandTagline}>
               Your quiet corner of the galaxy.
             </p>
+            <br />
+            <h4 className={styles.colHeading}>Sound</h4>
+            <Form.Check
+              type="switch"
+              id="music-switch"
+              label={isPlaying ? 'On' : 'Off'}
+              onChange={handleMusicToggle}
+              checked={isPlaying}
+              className={styles.musicSwitch}
+            />
           </Col>
 
           <Col xs={6} md={3}>
@@ -98,16 +108,6 @@ function Footer() {
 
           {/* Social + donate */}
           <Col xs={12} md={3} className={styles.socialCol}>
-          <h4 className={styles.colHeading}>Sound</h4>
-            <Form.Check
-              type="switch"
-              id="music-switch"
-              label={isPlaying ? 'On' : 'Off'}
-              onChange={handleMusicToggle}
-              checked={isPlaying}
-              className={styles.musicSwitch}
-            />
-            <br/>
             <h4 className={styles.colHeading}>Connect</h4>
             <div className={styles.socialIcons}>
               {socialLinks.map((social) => (
