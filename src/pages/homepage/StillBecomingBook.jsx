@@ -26,7 +26,7 @@ if (selectedEdition === "digital") {
 // Physical edition: open Lulu in a new tab
 if (selectedEdition === "physical") {
   window.open(
-    "https://www.lulu.com/shop/solayulm/still-becoming/paperback/product-e72g96n.html?page=1&pageSize=4",
+    "https://www.amazon.co.uk/dp/B0HR5MPV3F",
     "_blank",
     "noopener,noreferrer"
   );
