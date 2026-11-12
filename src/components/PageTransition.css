@@ -1,0 +1,427 @@
+/* =========================================
+   SOLAYULM HYPERSPACE TRANSITION
+========================================= */
+
+.hyperspace-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    radial-gradient(
+      ellipse at center,
+      #21143f 0%,
+      #100b25 48%,
+      #070611 100%
+    );
+  isolation: isolate;
+  animation: hyperspaceBackground 3s ease-in-out forwards;
+}
+
+/* =========================================
+   WARP STARFIELD
+========================================= */
+
+.hyperspace-stars {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  perspective: 600px;
+  z-index: 1;
+}
+
+.hyperspace-star {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow:
+    0 0 5px #ffffff,
+    0 0 12px #a58aff;
+  opacity: 0;
+  animation: starWarp 1.25s linear infinite;
+  animation-delay: var(--delay);
+  will-change: transform, opacity;
+}
+
+.hyperspace-star::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: -35px;
+  width: 1.5px;
+  height: 38px;
+  background: linear-gradient(
+    to top,
+    rgba(255, 255, 255, 0),
+    rgba(174, 148, 255, 0.15),
+    rgba(218, 208, 255, 0.95)
+  );
+  transform: translateX(-50%) rotate(var(--angle));
+  transform-origin: bottom center;
+  box-shadow: 0 0 7px rgba(166, 135, 255, 0.7);
+}
+
+@keyframes starWarp {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 0, 0) scale(0.3);
+  }
+
+  12% {
+    opacity: 0.9;
+  }
+
+  100% {
+    opacity: 0;
+    transform:
+      translate3d(var(--dx), var(--dy), 0)
+      scale(5);
+  }
+}
+
+/* Make the warp accelerate visually */
+
+.hyperspace-overlay.engaging .hyperspace-star {
+  animation-duration: 0.9s;
+}
+
+.hyperspace-overlay.arriving .hyperspace-star {
+  animation-duration: 1.5s;
+}
+
+/* =========================================
+   CENTRAL HYPERSPACE RINGS
+========================================= */
+
+.hyperspace-rings {
+  position: absolute;
+  width: min(75vw, 650px);
+  aspect-ratio: 1;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.hyperspace-ring {
+  position: absolute;
+  inset: 15%;
+  border: 1px solid rgba(157, 123, 255, 0.22);
+  border-radius: 50%;
+  box-shadow:
+    0 0 25px rgba(124, 84, 255, 0.13),
+    inset 0 0 25px rgba(124, 84, 255, 0.08);
+  animation: ringPulse 3s ease-in-out infinite;
+}
+
+.ring-two {
+  inset: 25%;
+  animation-delay: 0.5s;
+}
+
+.ring-three {
+  inset: 35%;
+  animation-delay: 1s;
+}
+
+@keyframes ringPulse {
+  0%, 100% {
+    transform: scale(0.9);
+    opacity: 0.25;
+  }
+
+  50% {
+    transform: scale(1.12);
+    opacity: 0.75;
+  }
+}
+
+/* =========================================
+   NAVIGATION INTERFACE
+========================================= */
+
+.hyperspace-interface {
+  position: relative;
+  z-index: 5;
+  width: min(440px, 86%);
+  padding: 32px 28px;
+  text-align: center;
+  border: 1px solid rgba(157, 126, 255, 0.38);
+  border-radius: 5px;
+  background: rgba(12, 9, 30, 0.78);
+  box-shadow:
+    0 0 45px rgba(115, 77, 255, 0.2),
+    inset 0 0 30px rgba(115, 77, 255, 0.08);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  animation: interfaceAppear 0.65s ease forwards;
+}
+
+.hyperspace-system {
+  font-family: "Orbitron", sans-serif;
+  font-size: 9px;
+  letter-spacing: 3px;
+  color: #b7a5ff;
+  margin-bottom: 30px;
+}
+
+.hyperspace-system span {
+  color: #7664b8;
+  padding: 0 5px;
+}
+
+.hyperspace-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  font-family: "Orbitron", sans-serif;
+  font-size: 8px;
+  letter-spacing: 2px;
+  color: rgba(186, 171, 255, 0.65);
+  margin-bottom: 18px;
+}
+
+.hyperspace-divider span {
+  width: 35px;
+  height: 1px;
+  background: rgba(157, 126, 255, 0.45);
+}
+
+.hyperspace-heading {
+  font-family: "Orbitron", sans-serif;
+  font-size: 12px;
+  letter-spacing: 4px;
+  color: #b8adff;
+  margin-bottom: 12px;
+}
+
+.hyperspace-destination {
+  font-family: "Saira Stencil One", sans-serif;
+  font-size: clamp(25px, 5vw, 38px);
+  line-height: 1.25;
+  color: #ffffff;
+  text-shadow:
+    0 0 10px rgba(153, 123, 255, 0.8),
+    0 0 25px rgba(153, 123, 255, 0.45);
+  margin-bottom: 14px;
+}
+
+.hyperspace-status {
+  min-height: 28px;
+  font-family: "Orbitron", sans-serif;
+  font-size: 8px;
+  line-height: 1.8;
+  letter-spacing: 1px;
+  color: rgba(219, 214, 255, 0.72);
+  margin-bottom: 25px;
+}
+
+/* =========================================
+   LOADING BAR
+========================================= */
+
+.hyperspace-progress {
+  width: 100%;
+  height: 4px;
+  background: rgba(151, 126, 255, 0.18);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 12px rgba(124, 91, 255, 0.15);
+}
+
+.hyperspace-progress-fill {
+  height: 100%;
+  border-radius: 10px;
+  background: linear-gradient(
+    90deg,
+    #6752db,
+    #a99aff,
+    #e2d9ff
+  );
+  box-shadow:
+    0 0 8px #a18aff,
+    0 0 16px rgba(161, 138, 255, 0.8);
+  transition: width 0.08s linear;
+}
+
+.hyperspace-progress-label {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 12px;
+  font-family: "Orbitron", sans-serif;
+  font-size: 8px;
+  letter-spacing: 1.5px;
+  color: rgba(190, 179, 255, 0.75);
+}
+
+.hyperspace-percentage {
+  color: #d6caff;
+  font-variant-numeric: tabular-nums;
+}
+
+/* =========================================
+   SYSTEM STATUS FOOTER
+========================================= */
+
+.hyperspace-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-top: 28px;
+  font-family: "Orbitron", sans-serif;
+  font-size: 7px;
+  letter-spacing: 1.2px;
+  color: rgba(168, 157, 210, 0.65);
+}
+
+.hyperspace-status-light {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #8dffcf;
+  box-shadow: 0 0 9px #8dffcf;
+  animation: statusBlink 1.4s ease-in-out infinite;
+}
+
+.hyperspace-footer-separator {
+  color: rgba(168, 157, 210, 0.35);
+}
+
+@keyframes statusBlink {
+  0%, 100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.25;
+  }
+}
+
+/* =========================================
+   ARRIVAL FLASH
+========================================= */
+
+.hyperspace-flash {
+  position: absolute;
+  inset: 0;
+  z-index: 8;
+  background: #ffffff;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.hyperspace-overlay.arriving .hyperspace-flash {
+  animation: arrivalFlash 0.65s ease-out 0.25s forwards;
+}
+
+@keyframes arrivalFlash {
+  0% {
+    opacity: 0;
+  }
+
+  30% {
+    opacity: 0.75;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+/* =========================================
+   INTERFACE ANIMATIONS
+========================================= */
+
+@keyframes interfaceAppear {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes hyperspaceBackground {
+  0% {
+    filter: brightness(0.8);
+  }
+
+  35% {
+    filter: brightness(1.15);
+  }
+
+  75% {
+    filter: brightness(1.25);
+  }
+
+  100% {
+    filter: brightness(1);
+  }
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+  .hyperspace-interface {
+    width: 88%;
+    padding: 26px 18px;
+  }
+
+  .hyperspace-system {
+    font-size: 8px;
+    letter-spacing: 2px;
+    margin-bottom: 25px;
+  }
+
+  .hyperspace-heading {
+    font-size: 10px;
+    letter-spacing: 2px;
+  }
+
+  .hyperspace-destination {
+    font-size: clamp(23px, 7vw, 32px);
+  }
+
+  .hyperspace-status {
+    font-size: 7px;
+  }
+
+  .hyperspace-progress-label {
+    font-size: 7px;
+  }
+
+  .hyperspace-footer {
+    font-size: 6px;
+    letter-spacing: 0.7px;
+    gap: 6px;
+  }
+
+  .hyperspace-rings {
+    width: 110vw;
+  }
+}
+
+/* Respect reduced-motion preferences */
+
+@media (prefers-reduced-motion: reduce) {
+  .hyperspace-star,
+  .hyperspace-ring,
+  .hyperspace-status-light {
+    animation-duration: 3s;
+  }
+}
