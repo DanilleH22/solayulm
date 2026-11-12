@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useState }  from 'react';
 import { Link, useNavigate } from "react-router";
+import WarpLink from "../../components/WarpLink.jsx";
 import { Container, Row, Col, Button, Tab, Tabs, Carousel, Nav} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css'; 
 import SpaceCard from '../../components/SpaceCard.jsx';
@@ -75,7 +76,7 @@ const onMove = useCallback(
     
     
     const stageWidth = Math.min(windowWidth * 0.9, 600); // 90% of screen, max 600px
-    const stageHeight = stageWidth; // keep square
+    const stageHeight = stageWidth; 
 
 
   return (
@@ -138,46 +139,38 @@ const onMove = useCallback(
 </motion.div>
     </div>
    <div className={styles.exploreButton}>
-  <Link
+  <WarpLink
     to="/Rooms"
-    style={{
-      textDecoration: "none",
-      outline: "none",
-      color: "inherit",
-      WebkitTapHighlightColor: "transparent", 
-    }}
+    label="Docking Station"
   >
     <Button
-      style={{ 
+      style={{
         background: "linear-gradient(90deg, #3b3b6a 0%, #52528f 50%, #9f9ff9 100%)",
-        outline: 'none',
-        boxShadow: 'none',
-      border: 'none', }}
+        outline: "none",
+        boxShadow: "none",
+        border: "none",
+      }}
     >
-      Explore
+      Docking Station
     </Button>
-  </Link>
-  </div>
+  </WarpLink>
+</div>
   <div className={styles.shopButton}>
-  <Link
-    to="/shop"
-    style={{
-      textDecoration: "none",
-      outline: "none",
-      color: "inherit",
-      WebkitTapHighlightColor: "transparent", 
-    }}
+  <WarpLink
+    to="/Shop"
+    label="Supply Deck."
   >
     <Button
-      style={{ 
+      style={{
         background: "linear-gradient(90deg, #3b3b6a 0%, #52528f 50%, #9f9ff9 100%)",
-        outline: 'none',
-        boxShadow: 'none',
-      border: 'none', }}
+        outline: "none",
+        boxShadow: "none",
+        border: "none",
+      }}
     >
-      Shop
+      Supply Deck
     </Button>
-  </Link>
+  </WarpLink>
 </div>
 
   </div>
@@ -320,10 +313,11 @@ const onMove = useCallback(
       <Row>
                     <Col md={12}>
                     <div className={styles.linkButton} >
-                    <Link to="/DecompressionBay" style={{ textDecoration: 'none' }} >
-                      <Button  className={styles.enterButton}>Enter</Button>
-                      </Link>
+                      <WarpLink to="/DecompressionBay"  label="Decompression Bay" style={{ textDecoration: 'none' }} >
+                         <Button  className={styles.enterButton}>Enter</Button>
+                       </WarpLink>
                     </div>
+                     
                     </Col>
                 </Row>
                 
@@ -406,9 +400,9 @@ const onMove = useCallback(
       <Row>
                     <Col md={12}>
                     <div className={styles.linkButton} >
-                    <Link to="/AirlockJournal" style={{ textDecoration: 'none' }}>
-                      <Button  className={styles.enterButton}>Enter</Button>
-                      </Link>
+                    <WarpLink to="/AirlockJournal"  label="Airlock Journal" style={{ textDecoration: 'none' }} >
+                         <Button  className={styles.enterButton}>Enter</Button>
+                       </WarpLink>
                     </div>
                     </Col>
                 </Row>
@@ -491,9 +485,9 @@ const onMove = useCallback(
                 <Row>
                     <Col md={12}>
                     <div className={styles.linkButton} >
-                    <Link to="/ObservationDeck" style={{ textDecoration: 'none' }}>
-                      <Button  className={styles.enterButton}>Enter</Button>
-                      </Link>
+                    <WarpLink to="/ObservationDeck"  label="Observation Deck" style={{ textDecoration: 'none' }} >
+                         <Button  className={styles.enterButton}>Enter</Button>
+                       </WarpLink>
                     </div>
                     </Col>
                 </Row>
@@ -573,9 +567,9 @@ const onMove = useCallback(
               <Row>
                     <Col md={12}>
                     <div className={styles.linkButton} >
-                    <Link to="/CommCenter" style={{ textDecoration: 'none' }}>
-                      <Button  className={styles.enterButton}>Enter</Button>
-                      </Link>
+                      <WarpLink to="/CommCenter"  label="Comm Center" style={{ textDecoration: 'none' }} >
+                         <Button  className={styles.enterButton}>Enter</Button>
+                       </WarpLink>
                     </div>
                     </Col>
                 </Row>
@@ -655,9 +649,9 @@ const onMove = useCallback(
                 <Row>
                     <Col md={12}>
                     <div className={styles.linkButton} >
-                    <Link to="/VoidChat" style={{ textDecoration: 'none' }}>
-                      <Button  className={styles.enterButton}>Enter</Button>
-                      </Link>
+                      <WarpLink to="/VoidChat"  label="Void Chat" style={{ textDecoration: 'none' }} >
+                          <Button  className={styles.enterButton}>Enter</Button>
+                      </WarpLink>
                     </div>
                     </Col>
                 </Row>
@@ -739,9 +733,9 @@ const onMove = useCallback(
                 <Row>
                     <Col md={12}>
                     <div className={styles.linkButton} >
-                    <Link to="/HoloRoom" style={{ textDecoration: 'none' }}>
-                      <Button  className={styles.enterButton}>Enter</Button>
-                      </Link>
+                      <WarpLink to="/HoloRoom"  label="Holo Room" style={{ textDecoration: 'none' }} >
+                        <Button  className={styles.enterButton}>Enter</Button>
+                      </WarpLink>
                     </div>
                     </Col>
                 </Row>
@@ -826,9 +820,9 @@ const onMove = useCallback(
           <Row>
                     <Col md={12}>
                     <div className={styles.linkButton} >
-                    <Link to="/TimeCapsules" style={{ textDecoration: 'none' }}>
-                      <Button  className={styles.enterButton}>Enter</Button>
-                      </Link>
+                    <WarpLink to="/TimeCapsules"  label="Time Capsules" style={{ textDecoration: 'none' }} >
+                         <Button  className={styles.enterButton}>Enter</Button>
+                    </WarpLink>
                     </div>
                     </Col>
                 </Row>
@@ -898,11 +892,6 @@ const onMove = useCallback(
   <h3>Access:</h3>
   <p>In Development</p>
 </div>
-
-
-
-
-      
       </div>
       </div>
       </Col>
@@ -910,9 +899,9 @@ const onMove = useCallback(
           <Row>
                     <Col md={12}>
                     <div className={styles.linkButton} >
-                    <Link to="/cosmicCompanion" style={{ textDecoration: 'none' }}>
-                      <Button  className={styles.enterButton}>Enter</Button>
-                      </Link>
+                      <WarpLink disabled to="/cosmicCompanion"  label="Cosmic Companion" style={{ textDecoration: 'none' }} >
+                         <Button  className={styles.enterButton}>Enter</Button>
+                    </WarpLink>
                     </div>
                     </Col>
                 </Row>

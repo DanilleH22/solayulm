@@ -195,6 +195,128 @@
   cursor: not-allowed;
 }
 
+
+/* DOCKING STATION INTRO */
+
+.dockingStation {
+  position: relative;
+  width: 100%;
+  min-height: 380px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 70px 20px;
+  margin-bottom: 60px;
+  overflow: hidden;
+  text-align: center;
+
+  background:
+    radial-gradient(
+      ellipse at center,
+      rgba(100, 75, 150, 0.2),
+      transparent 65%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(23, 16, 39, 0.4),
+      rgba(16, 12, 32, 0.85)
+    );
+
+  border-bottom: 1px solid rgba(170, 145, 220, 0.2);
+}
+
+.dockingStationContent {
+  position: relative;
+  z-index: 2;
+  max-width: 750px;
+}
+
+.dockingEyebrow {
+  display: block;
+  margin-bottom: 22px;
+  font-family: "Orbitron", sans-serif;
+  font-size: 11px;
+  letter-spacing: 4px;
+  color: #a99bd7;
+}
+
+.dockingStationContent h1 {
+  font-family: "Saira Stencil One", sans-serif;
+  font-size: clamp(34px, 6vw, 65px);
+  letter-spacing: 5px;
+  color: #fff;
+  text-shadow: 0 0 22px rgba(150, 120, 255, 0.45);
+  margin-bottom: 18px;
+}
+
+.dockingDivider {
+  width: 100px;
+  height: 2px;
+  margin: 0 auto 25px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #a99bd7,
+    transparent
+  );
+}
+
+.dockingStationContent h2 {
+  font-family: "Orbitron", sans-serif;
+  font-size: clamp(17px, 3vw, 24px);
+  color: #d9d0f5;
+  letter-spacing: 2px;
+  margin-bottom: 18px;
+}
+
+.dockingStationContent p {
+  max-width: 620px;
+  margin: 0 auto 28px;
+  color: rgba(255, 255, 255, 0.78);
+  line-height: 1.9;
+  font-size: 15px;
+}
+
+.dockingStatus {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: "Orbitron", sans-serif;
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: #b9b0d9;
+}
+
+.statusIndicator {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #8de6bd;
+  box-shadow: 0 0 10px #8de6bd;
+}
+
+@media (max-width: 768px) {
+  .dockingStation {
+    min-height: 340px;
+    padding: 55px 20px;
+    margin-bottom: 35px;
+  }
+
+  .dockingEyebrow {
+    font-size: 9px;
+    letter-spacing: 2px;
+  }
+
+  .dockingStationContent h1 {
+    letter-spacing: 2px;
+  }
+
+  .dockingStationContent p {
+    font-size: 14px;
+  }
+}
+
+
 /* =========================
    RESPONSIVE DESIGN
 ========================= */

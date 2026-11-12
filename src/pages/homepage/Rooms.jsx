@@ -1,5 +1,6 @@
 import React, { useCallback }  from 'react'
 import { Link } from "react-router-dom";
+import WarpLink from "../../components/WarpLink.jsx";
 import { Container, Row, Col, Button,  Tabs, Carousel, Nav} from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faRocket } from '@fortawesome/free-solid-svg-icons'
@@ -62,6 +63,39 @@ const onMove = useCallback(
 </Helmet>
 
     <Container fluid>
+      <div className={styles.dockingStation}>
+
+  <div className={styles.dockingStationContent}>
+
+    <span className={styles.dockingEyebrow}>
+      SOLAYULM STATION // ARRIVAL BAY
+    </span>
+
+    <h1>
+      DOCKING STATION
+    </h1>
+
+    <div className={styles.dockingDivider}></div>
+
+    <h2>
+      Select your destination
+    </h2>
+
+    <p>
+      Welcome aboard, traveller. Your journey begins here.
+      Each destination offers a different space to pause,
+      reflect, create and release. Choose where you would
+      like to travel.
+    </p>
+
+    <span className={styles.dockingStatus}>
+      <span className={styles.statusIndicator}></span>
+      ALL STATION SYSTEMS OPERATIONAL
+    </span>
+
+  </div>
+
+</div>
     <ScrollAnimation animationVariants={{
     hidden: { opacity: 0, x: -100 },
     visible: { opacity: 1, x: 0, transition: { duration: 1 } }
@@ -83,14 +117,21 @@ const onMove = useCallback(
    <h3>When to use it?</h3>
    <p>After a long day, during heightened anxiety, or when you need to center yourself before continuing your journey.</p>
    <div className={styles.exploringButton}>
-  <Link to="/DecompressionBay">
-    <Button style={{
-        outline: 'none',
-        boxShadow: 'none',
-        backgroundColor: 'transparent',
-        border: 'none',
-      }}>Explore</Button>
-  </Link>
+  <WarpLink
+    to="/DecompressionBay"
+    label="Decompression Bay"
+  >
+    <Button
+      style={{
+        outline: "none",
+        boxShadow: "none",
+        backgroundColor: "transparent",
+        border: "none",
+      }}
+    >
+      Explore
+    </Button>
+  </WarpLink>
 </div>
 
   </Col>
@@ -159,14 +200,21 @@ const onMove = useCallback(
    <h3>When to use it?</h3>
    <p>When you feel burdened, before transitions, or whenever you need to let go of thoughts that weigh you down.</p>
    <div className={styles.exploringButton}>
-  <Link to="/AirlockJournal">
-    <Button style={{
-        outline: 'none',
-        boxShadow: 'none',
-        backgroundColor: 'transparent',
-        border: 'none',
-      }}>Explore</Button>
-  </Link>
+  <WarpLink
+    to="/AirlockJournal"
+    label="Airlock Journal"
+  >
+    <Button
+      style={{
+        outline: "none",
+        boxShadow: "none",
+        backgroundColor: "transparent",
+        border: "none",
+      }}
+    >
+      Explore
+    </Button>
+  </WarpLink>
 </div>
   </Col>
 </Row>
@@ -193,14 +241,21 @@ const onMove = useCallback(
    <h3>When to use it?</h3>
    <p>When you need clarity, grounding, or simply to be reminded of the beauty beyond your worries.</p>
    <div className={styles.exploringButton}>
-  <Link to="/ObservationDeck">
-    <Button style={{
-        outline: 'none',
-        boxShadow: 'none',
-        backgroundColor: 'transparent',
-        border: 'none',
-      }}>Explore</Button>
-  </Link>
+  <WarpLink
+    to="/ObservationDeck"
+    label="Observation Deck"
+  >
+    <Button
+      style={{
+        outline: "none",
+        boxShadow: "none",
+        backgroundColor: "transparent",
+        border: "none",
+      }}
+    >
+      Explore
+    </Button>
+  </WarpLink>
 </div>
   </Col>
   <Col md={5} lg={4} className={styles.servicesImg}>
@@ -260,15 +315,23 @@ const onMove = useCallback(
 
    <h3>When to use it?</h3>
    <p>When you feel the need to speak openly, reach out, or preserve your words for someone—or something—beyond yourself.</p>
-   <div className={styles.exploringButton}>
-  <Link to="/CommCenter">
-    <Button style={{
-        outline: 'none',
-        boxShadow: 'none',
-        backgroundColor: 'transparent',
-        border: 'none',
-      }}>Explore</Button>
-  </Link>
+   
+<div className={styles.exploringButton}>
+  <WarpLink
+    to="/CommCenter"
+    label="Comm Center"
+  >
+    <Button
+      style={{
+        outline: "none",
+        boxShadow: "none",
+        backgroundColor: "transparent",
+        border: "none",
+      }}
+    >
+      Explore
+    </Button>
+  </WarpLink>
 </div>
   </Col>
 </Row>
@@ -294,15 +357,23 @@ const onMove = useCallback(
 
    <h3>When to use it?</h3>
    <p>When you crave connection without expectation, or when you want to share truths without leaving a trace.</p>
-   <div className={styles.exploringButton}>
-  <Link to="/VoidChat">
-    <Button style={{
-        outline: 'none',
-        boxShadow: 'none',
-        backgroundColor: 'transparent',
-        border: 'none',
-      }}>Explore</Button>
-  </Link>
+   
+<div className={styles.exploringButton}>
+  <WarpLink
+    to="/VoidChat"
+    label="Void Chat"
+  >
+    <Button
+      style={{
+        outline: "none",
+        boxShadow: "none",
+        backgroundColor: "transparent",
+        border: "none",
+      }}
+    >
+      Explore
+    </Button>
+  </WarpLink>
 </div>
   </Col>
   <Col md={5} lg={4} className={styles.servicesImg}>
@@ -362,14 +433,21 @@ const onMove = useCallback(
    <h3>When to use it?</h3>
    <p>When emotions overflow, when ideas spark, or when you long to make something uniquely yours.</p>
    <div className={styles.exploringButton}>
-  <Link to="/HoloRoom">
-    <Button style={{
-        outline: 'none',
-        boxShadow: 'none',
-        backgroundColor: 'transparent',
-        border: 'none',
-      }}>Explore</Button>
-  </Link>
+  <WarpLink
+    to="/HoloRoom"
+    label="Holo Room"
+  >
+    <Button
+      style={{
+        outline: "none",
+        boxShadow: "none",
+        backgroundColor: "transparent",
+        border: "none",
+      }}
+    >
+      Explore
+    </Button>
+  </WarpLink>
 </div>
   </Col>
 </Row>
@@ -405,16 +483,21 @@ const onMove = useCallback(
     even if they won't receive it until much later.
    </p>
    <div className={styles.exploringButton}>
-  <Link to="/TimeCapsules">
-    <Button 
-    disabled
-    style={{
-        outline: 'none',
-        boxShadow: 'none',
-        backgroundColor: 'transparent',
-        border: 'none',
-      }}>Explore</Button>
-  </Link>
+  <WarpLink
+    to="/TimeCapsules"
+    label="Time Capsules"
+  >
+    <Button
+      style={{
+        outline: "none",
+        boxShadow: "none",
+        backgroundColor: "transparent",
+        border: "none",
+      }}
+    >
+      Explore
+    </Button>
+  </WarpLink>
 </div>
   </Col>
   <Col md={5} lg={4} className={styles.servicesImg}>
@@ -475,18 +558,24 @@ const onMove = useCallback(
    <h3>When to use it?</h3>
    <p>When you feel lost, curious, or simply in need of a voice to remind you that you’re not drifting through the void alone.
    </p>
-   <div className={styles.exploringButton}>
-  <Link disabled to="">
-   {/* <Link disabled to="/cosmicCompanion"></Link> */}
-    <Button 
-    disabled
-    style={{
-        outline: 'none',
-        boxShadow: 'none',
-        backgroundColor: 'transparent',
-        border: 'none',
-      }}>Explore</Button>
-  </Link>
+   
+  
+<div className={styles.exploringButton}>
+  <WarpLink disabled to=""
+    // to="/cosmicCompanion"
+    label="cosmic Companion "
+  >
+    <Button
+      style={{
+        outline: "none",
+        boxShadow: "none",
+        backgroundColor: "transparent",
+        border: "none",
+      }}
+    >
+      Explore
+    </Button>
+  </WarpLink>
 </div>
   </Col>
   
