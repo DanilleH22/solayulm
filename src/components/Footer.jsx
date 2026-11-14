@@ -6,6 +6,7 @@ import {
   faInstagram,
   faPinterest,
   faTiktok,
+  faAmazon
 } from '@fortawesome/free-brands-svg-icons';
 import { Link } from 'react-router';
 import '@fortawesome/fontawesome-free/css/all.min.css';
@@ -33,7 +34,7 @@ const policiesLinks = [
 ];
 
 const socialLinks = [
-  { href: 'https://twitter.com/yourprofile', icon: faTwitter, label: 'Twitter' },
+  { href: 'https://www.amazon.co.uk/Still-Becoming-self-discovery-emotional-wellbeing/dp/B0HR5MPV3F/ref=sr_1_3?dib=eyJ2IjoiMSJ9.6daavi-Hn7ShNbLfumBf0YgajTY0yGnvPsvziPFe33o.M-Q218JVmZFaPooLQK4OTlAc15H-eHnsH8nXelxKQEk&dib_tag=se&qid=1794623243&refinements=p_27%3ASolayulm&s=books&sr=1-3&text=Solayulm', icon: faAmazon, label: 'Amazon' },
   { href: 'https://www.instagram.com/solayulm?cplk=OHB4ZGRoOG1zNjBl', icon: faInstagram, label: 'Instagram' },
   { href: 'https://www.pinterest.com/Solayulm', icon: faPinterest, label: 'Pinterest' },
   { href: 'https://www.tiktok.com/en/', icon: faTiktok, label: 'TikTok' },
@@ -141,6 +142,13 @@ function Footer() {
             © {new Date().getFullYear()} Solayulm. Made with care.
           </p>
         </div>
+
+        <button
+  type="button"
+  className={styles.termlyDisplayPreferences}
+>
+  Cookie Settings
+</button>
       </Container>
     </footer>
   );

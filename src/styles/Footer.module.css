@@ -168,3 +168,18 @@
     margin-top: 0.5rem;
   }
 }
+
+.termlyDisplayPreferences {
+  background: transparent;
+  border: 1px solid rgba(126, 82, 171, 0.6);
+  color: #d8c5ed;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.termlyDisplayPreferences{
+  background: rgba(126, 82, 171, 0.2);
+}
