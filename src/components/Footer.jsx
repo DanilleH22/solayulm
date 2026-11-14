@@ -34,8 +34,8 @@ const policiesLinks = [
 
 const socialLinks = [
   { href: 'https://twitter.com/yourprofile', icon: faTwitter, label: 'Twitter' },
-  { href: 'https://instagram.com/yourprofile', icon: faInstagram, label: 'Instagram' },
-  { href: 'https://pinterest.com/yourprofile', icon: faPinterest, label: 'Pinterest' },
+  { href: 'https://www.instagram.com/solayulm?cplk=OHB4ZGRoOG1zNjBl', icon: faInstagram, label: 'Instagram' },
+  { href: 'https://www.pinterest.com/Solayulm', icon: faPinterest, label: 'Pinterest' },
   { href: 'https://www.tiktok.com/en/', icon: faTiktok, label: 'TikTok' },
 ];
 
