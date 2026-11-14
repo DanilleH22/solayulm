@@ -1,222 +1,445 @@
 
 import React from "react";
-import { Container, Row, Col, Button } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import styles from "../../styles/LegalPage.module.css";
 
-
-
-
-function Shop() {
+function CookiePolicy() {
   return (
     <main className={styles["shop-page"]}>
-  <Container>
-    <div className={styles["shop-toolkit__inner"]}>
-      <div >
+      <Container>
+        <div className={styles["shop-toolkit__inner"]}>
+          <div>
+            <h2 className={styles["shop-toolkit__title"]}>
+              Cookie Policy
+            </h2>
 
-        <h2 className={styles["shop-toolkit__title"]}>
-          Privacy Policy
-        </h2>
+            <div className="legal-container">
+              <p className="legal-subtitle">
+                A little clarity about how this website works.
+              </p>
 
-   
-      <div className="legal-container">
-  
+              <p className="legal-updated">
+                Last updated: 14 November 2026
+              </p>
 
-        <p className="legal-subtitle">
-          Your privacy matters in every corner of the cosmos.
-        </p>
+              <article className="legal-content">
 
-        <p className="legal-updated">
-          Last updated: 28 October 2026
-        </p>
+                <p>
+                  This Cookie Policy explains how Solayulm ("we",
+                  "us" or "our") uses cookies and similar
+                  technologies when you visit our website at{" "}
+                  <a href="https://www.solayulm.co.uk">
+                    www.solayulm.co.uk
+                  </a>{" "}
+                  ("Website").
+                </p>
 
-        <article className="legal-content">
-          <h2>1. Who We Are</h2>
+                <p>
+                  It explains what these technologies are, why
+                  we use them and how you can manage your
+                  preferences.
+                </p>
 
-          <p>
-            Solayulm is an independent wellbeing and creative platform
-            operated by an individual in the United Kingdom.
-          </p>
+                <p>
+                  In some cases, cookies may collect personal
+                  information or information that becomes
+                  personal information when combined with
+                  other data.
+                </p>
 
-          <p>
-            Contact email: heelo@solayulm.co.uk
-            <br />
-            Postal address: [PO Box address to be added]
-          </p>
+                <h2>1. What Are Cookies?</h2>
 
-          <h2>2. Information We Collect</h2>
+                <p>
+                  Cookies are small data files placed on your
+                  computer, tablet or mobile device when you
+                  visit a website. They are widely used to help
+                  websites function correctly, improve
+                  performance and provide information about
+                  how visitors use online services.
+                </p>
 
-          <p>Depending on how you use Solayulm, we may collect:</p>
+                <p>
+                  Cookies set by the website owner are called
+                  "first-party cookies". Cookies set by other
+                  organisations are called "third-party cookies".
+                  Third-party cookies may support features such
+                  as analytics, advertising and interactive
+                  content.
+                </p>
 
-          <ul>
-            <li>Email addresses provided when creating a Time Capsule or contacting us.</li>
-            <li>Letters, messages and videos submitted through Time Capsules.</li>
-            <li>Purchase references and payment confirmation information.</li>
-            <li>Technical information about your device, browser and website usage.</li>
-            <li>Information you provide when requesting support.</li>
-          </ul>
+                <h2>2. Why Do We Use Cookies?</h2>
 
-          <h2>3. How We Use Your Information</h2>
+                <p>
+                  Solayulm uses first-party and third-party
+                  technologies for several purposes.
+                </p>
 
-          <p>We may use your information to:</p>
+                <p>
+                  Some technologies are necessary for the
+                  website to operate correctly and to remember
+                  your privacy choices. These are referred
+                  to as essential or strictly necessary
+                  technologies.
+                </p>
 
-          <ul>
-            <li>Provide and maintain our website and services.</li>
-            <li>Create and manage Time Capsules.</li>
-            <li>Send scheduled capsule notifications.</li>
-            <li>Process purchases and verify payments.</li>
-            <li>Respond to enquiries and resolve technical issues.</li>
-            <li>Maintain website security and improve our services.</li>
-            <li>Meet applicable legal obligations.</li>
-          </ul>
+                <p>
+                  Other technologies, such as analytics
+                  cookies, help us understand how visitors
+                  interact with Solayulm so that we can
+                  improve the website and the experience
+                  we provide.
+                </p>
 
-          <h2>4. Time Capsules</h2>
+                <h2>3. Essential Website Technologies</h2>
 
-          <p>
-            Time Capsules allow you to submit written or video content
-            intended to become available at a future date.
-          </p>
+                <p>
+                  These technologies are necessary to provide
+                  certain website functions and remember
+                  your cookie consent preferences.
+                </p>
 
-          <p>
-            Capsule content may be stored using Cloudflare R2. Resend is
-            used to deliver Time Capsule notification emails.
-          </p>
+                <p>
+                  Essential technologies may operate without
+                  consent where they meet the requirements
+                  of applicable legal exemptions.
+                </p>
 
-          <p>
-            Content may remain in storage after its scheduled opening date.
-            Automatic deletion after opening is not currently guaranteed.
-            We intend to establish and implement a defined retention and
-            deletion process.
-          </p>
+                <h3>Cookie and Storage Information</h3>
 
-          <p>
-            To enquire about your personal information or request deletion,
-            contact heelo@solayulm.co.uk. Requests will be considered in
-            accordance with applicable law.
-          </p>
+                <p><strong>Name:</strong></p>
+                <p>termly_gtm_template_default_consents</p>
 
-          <h2>5. Payments and External Services</h2>
+                <p><strong>Purpose:</strong></p>
+                <p>
+                  Stores your cookie consent preferences so
+                  that the consent notification does not need
+                  to be displayed on every visit.
+                </p>
 
-          <p>
-            Depending on the service, we may use Stripe, Gumroad and Lulu
-            to process or fulfil purchases. We may also use Netlify for
-            website hosting, Render for backend hosting and Google Analytics
-            for website analytics.
-          </p>
+                <p><strong>Provider:</strong></p>
+                <p>www.solayulm.co.uk</p>
 
-          <p>
-            These providers may process information as necessary to provide
-            their services. Please consult their respective privacy policies
-            for further information.
-          </p>
+                <p><strong>Service:</strong></p>
+                <p>
+                  Termly –{" "}
+                  <a
+                    href="https://termly.io/our-privacy-policy/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    View Termly's Privacy Policy
+                  </a>
+                </p>
 
-          <h2>6. Cookies and Analytics</h2>
+                <p><strong>Type:</strong></p>
+                <p>HTML Local Storage</p>
 
-          <p>
-            Our website may use cookies and similar technologies for
-            essential functionality, security and analytics. Where required,
-            we will request consent before activating non-essential tracking.
-          </p>
+                <p><strong>Expiry:</strong></p>
+                <p>Persistent</p>
 
-          <p>
-            Please see our <a href="/cookies">Cookie Policy</a> for further
-            information.
-          </p>
+                <h2>4. Analytics and Customisation Cookies</h2>
 
-          <h2>7. Legal Basis for Processing</h2>
+                <p>
+                  Analytics cookies help us understand how
+                  visitors use Solayulm. This information
+                  allows us to understand website traffic,
+                  identify popular pages and improve the
+                  overall website experience.
+                </p>
 
-          <p>
-            Depending on the circumstances, we may process personal
-            information to fulfil a contract, meet a legal obligation,
-            pursue legitimate interests or obtain consent where required.
-            Additional conditions may apply when processing sensitive
-            personal information.
-          </p>
+                <p>
+                  We use Google Analytics for website
+                  measurement when analytics consent has
+                  been provided where required.
+                </p>
 
-          <h2>8. International Transfers</h2>
+                <h3>Cookie Information</h3>
 
-          <p>
-            Some service providers may process information outside the
-            United Kingdom. Where required, we will use appropriate
-            safeguards for international transfers.
-          </p>
+                <p><strong>Name:</strong></p>
+                <p>_ga</p>
 
-          <h2>9. How Long We Keep Information</h2>
+                <p><strong>Purpose:</strong></p>
+                <p>
+                  Records an identifier used to generate
+                  information about website usage and
+                  distinguish visitors.
+                </p>
 
-          <p>
-            We retain personal information for as long as reasonably
-            necessary for the purposes described in this policy, taking
-            account of legal, operational and security requirements.
-          </p>
+                <p><strong>Provider:</strong></p>
+                <p>.solayulm.co.uk</p>
 
-          <p>
-            Time Capsule content may remain stored after its opening date.
-            We will establish and implement a documented retention and
-            deletion schedule.
-          </p>
+                <p><strong>Service:</strong></p>
+                <p>
+                  Google Analytics –{" "}
+                  <a
+                    href="https://business.safety.google/privacy/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    View Google's Privacy Information
+                  </a>
+                </p>
 
-          <h2>10. Your Rights</h2>
+                <p><strong>Type:</strong></p>
+                <p>HTTP Cookie</p>
 
-          <p>
-            Depending on the circumstances, you may have rights to access,
-            correct or request deletion of your personal information,
-            restrict or object to certain processing, request data
-            portability, or withdraw consent.
-          </p>
+                <p><strong>Expiry:</strong></p>
+                <p>1 year, 1 month and 4 days</p>
 
-          <p>
-            To exercise your rights, email heelo@solayulm.co.uk.
-            You may also complain to the UK Information Commissioner's
-            Office (ICO).
-          </p>
+                <div className="legal-divider" />
 
-          <h2>11. Security</h2>
+                <p><strong>Name:</strong></p>
+                <p>_ga_#</p>
 
-          <p>
-            We take reasonable steps to protect personal information.
-            However, no internet-based service can be guaranteed to be
-            completely secure.
-          </p>
+                <p><strong>Purpose:</strong></p>
+                <p>
+                  Used to distinguish visitors through a
+                  randomly generated identifier, allowing
+                  Google Analytics to calculate visits
+                  and sessions.
+                </p>
 
-          <h2>12. Children's Privacy</h2>
+                <p><strong>Provider:</strong></p>
+                <p>.solayulm.co.uk</p>
 
-          <p>
-            Solayulm is not specifically designed to collect personal
-            information from children. If you have concerns about
-            information submitted by a child, please contact us.
-          </p>
+                <p><strong>Service:</strong></p>
+                <p>
+                  Google Analytics –{" "}
+                  <a
+                    href="https://business.safety.google/privacy/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    View Google's Privacy Information
+                  </a>
+                </p>
 
-          <h2>13. Changes to This Policy</h2>
+                <p><strong>Type:</strong></p>
+                <p>HTTP Cookie</p>
 
-          <p>
-            We may update this policy as our services or legal obligations
-            change. The latest version will be published on this page.
-          </p>
+                <p><strong>Expiry:</strong></p>
+                <p>1 year, 1 month and 4 days</p>
 
-          <h2>14. Contact</h2>
+                <h2>5. How Can I Control Cookies?</h2>
 
-          <p>
-            For questions about privacy or your personal information,
-            contact heelo@solayulm.co.uk.
-          </p>
+                <p>
+                  You have the right to decide whether to
+                  accept or reject non-essential cookies.
+                </p>
 
-          <p>Postal address: [PO Box address to be added]</p>
-        </article>
+                <p>
+                  You can exercise your preferences through
+                  the Termly Cookie Preference Center,
+                  accessible through the cookie notification
+                  and website preference controls.
+                </p>
 
-        
-      </div>
-    
+                <p>
+                  The preference center allows you to select
+                  which categories of cookies you accept
+                  or reject. Essential technologies cannot
+                  be rejected where they are strictly
+                  necessary for the website to function.
+                </p>
 
+                <p>
+                  If you reject non-essential cookies,
+                  you can still use Solayulm, although
+                  certain website features may be affected.
+                </p>
 
-      </div>
+                <p>
+                  You can also manage or delete cookies
+                  through your browser settings.
+                </p>
 
-      
-    </div>
-  </Container>
+                <h2>6. Do My Choices Apply on All My Devices?</h2>
 
-     
+                <p>
+                  No. Your cookie preferences are stored
+                  in the browser you used when making
+                  your choices. They generally apply
+                  only to that browser on that device.
+                </p>
+
+                <p>
+                  We may ask for your preferences again
+                  if you visit using another device or
+                  browser, use a private or incognito
+                  window, or clear your cookies and
+                  browser data.
+                </p>
+
+                <p>
+                  You can change your preferences at
+                  any time through the Cookie Preference
+                  Center.
+                </p>
+
+                <h2>7. Managing Cookies Through Your Browser</h2>
+
+                <p>
+                  Most internet browsers allow you to
+                  view, manage, accept or delete cookies
+                  through their settings.
+                </p>
+
+                <p>
+                  You can find guidance for managing
+                  cookies in the following browsers:
+                </p>
+
+                <ul>
+                  <li>
+                    <a
+                      href="https://support.google.com/chrome/answer/95647"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Google Chrome
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="https://support.mozilla.org/en-US/kb/enhanced-tracking-protection-firefox-desktop"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Mozilla Firefox
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="https://support.apple.com/en-ie/guide/safari/sfri11471/mac"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Apple Safari
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="https://support.microsoft.com/en-us/microsoft-edge"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Microsoft Edge
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="https://help.opera.com/en/latest/web-preferences/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Opera
+                    </a>
+                  </li>
+                </ul>
+
+                <p>
+                  Please note that disabling certain cookies
+                  may affect how parts of the website function.
+                </p>
+
+                <h2>8. Other Tracking Technologies</h2>
+
+                <p>
+                  Cookies are not the only technologies
+                  that may be used to understand website
+                  activity. Similar technologies, such
+                  as tracking pixels or web beacons, can
+                  sometimes be used to measure interactions
+                  with websites or emails.
+                </p>
+
+                <p>
+                  If these technologies are introduced or
+                  used by services integrated into Solayulm,
+                  we will update this policy where
+                  appropriate and respect applicable
+                  consent requirements.
+                </p>
+
+                <h2>9. Do We Use Targeted Advertising Cookies?</h2>
+
+                <p>
+                  Solayulm does not currently list targeted
+                  advertising cookies in the cookie scan
+                  reflected in this policy.
+                </p>
+
+                <p>
+                  If our use of advertising or marketing
+                  technologies changes in the future,
+                  we will review our cookie practices,
+                  update this policy and provide
+                  appropriate choices where required.
+                </p>
+
+                <h2>10. How Often Will We Update This Policy?</h2>
+
+                <p>
+                  We may update this Cookie Policy from
+                  time to time to reflect changes to the
+                  technologies we use, our website features
+                  or applicable legal and regulatory
+                  requirements.
+                </p>
+
+                <p>
+                  The latest version will always be
+                  published on this page. The date at
+                  the top indicates when the policy
+                  was last updated.
+                </p>
+
+                <h2>11. Contact Us</h2>
+
+                <p>
+                  If you have any questions about our
+                  use of cookies or similar technologies,
+                  you can contact Solayulm at:
+                </p>
+
+                <p>
+                  Email:{" "}
+                  <a href="mailto:hello@solayulm.co.uk">
+                    hello@solayulm.co.uk
+                  </a>
+                </p>
+
+                <p>
+                  For further information, you can also
+                  explore our other policies:
+                </p>
+
+                <ul>
+                  <li>
+                    <Link to="/privacy-policy">
+                      Privacy Policy
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/terms">
+                      Terms &amp; Conditions
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/wellbeing-disclaimer">
+                      Wellbeing Disclaimer
+                    </Link>
+                  </li>
+                </ul>
+
+              </article>
+            </div>
+          </div>
+        </div>
+      </Container>
     </main>
   );
 }
 
-export default Shop;
+export default CookiePolicy;
