@@ -26,7 +26,7 @@ if (selectedEdition === "digital") {
 // Physical edition: open Lulu in a new tab
 if (selectedEdition === "physical") {
   window.open(
-    "https://www.lulu.com/shop/solayulm/inner-orbit/paperback/product-95vjmje.html?page=1&pageSize=4",
+    "https://www.amazon.co.uk/dp/B0HRKRG9ZR?spcref=PRINT_LISTING",
     "_blank",
     "noopener,noreferrer"
   );
