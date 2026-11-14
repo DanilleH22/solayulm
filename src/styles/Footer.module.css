@@ -156,9 +156,9 @@
     padding: 2.5rem 0 1.25rem;
   }
 
-  .footerRow > [class*='col'] {
+  /* .footerRow > [class*='col'] {
     text-align: center;
-  }
+  } */
 
   .socialIcons {
     justify-content: center;
@@ -183,3 +183,5 @@
 .termlyDisplayPreferences{
   background: rgba(126, 82, 171, 0.2);
 }
+
+
