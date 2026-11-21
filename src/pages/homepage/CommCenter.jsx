@@ -98,147 +98,153 @@ const CHANNELS = {
     {
       id: 1,
       name: "Abundance & Success",
-      src: "https://pub-c0ab68ce633f4c6ca038f3d704dcb392.r2.dev/affirmations/Abundance%26Success.mp3",
+      src: "https://pub-c0ab68ce633f4c6ca038f3d704dcb392.r2.dev/affirmations/ABUNDANCE_SUCCESS.mp4",
     },
     {
       id: 2,
       name: "Adventure & Expansion",
-      src: "https://pub-c0ab68ce633f4c6ca038f3d704dcb392.r2.dev/affirmations/Adventure%26Expansion.mp3",
+      src: "https://pub-c0ab68ce633f4c6ca038f3d704dcb392.r2.dev/affirmations/ADVENTURE_EXPANSION.mp4",
     },
     {
       id: 3,
       name: "Calm & Stress Relief",
-      src: "https://pub-c0ab68ce633f4c6ca038f3d704dcb392.r2.dev/affirmations/Calm%26StressRelief.mp3",
+      src: "https://pub-c0ab68ce633f4c6ca038f3d704dcb392.r2.dev/affirmations/CALM_STRESS_RELIEF.mp4",
     },
     {
       id: 4,
       name: "Creativity & Inspiration",
-      src: "https://pub-c0ab68ce633f4c6ca038f3d704dcb392.r2.dev/affirmations/Creativity%26Inspiration.mp3",
+      src: "https://pub-c0ab68ce633f4c6ca038f3d704dcb392.r2.dev/affirmations/CREATIVITY_INSPIRATION.mp4",
     },
     {
       id: 5,
       name: "Focus & Productivity",
-      src: "https://pub-c0ab68ce633f4c6ca038f3d704dcb392.r2.dev/affirmations/Focus%26Productivity.mp3",
+      src: "https://pub-c0ab68ce633f4c6ca038f3d704dcb392.r2.dev/affirmations/FOCUS_PRODUCTIVITY.mp4",
     },
     {
       id: 6,
       name: "Healing & Self-Love",
-      src: "https://pub-c0ab68ce633f4c6ca038f3d704dcb392.r2.dev/affirmations/Healing%26Self-Love.mp3",
+      src: "https://pub-c0ab68ce633f4c6ca038f3d704dcb392.r2.dev/affirmations/HEALING_SELF_LOVE.mp4",
     },
     {
       id: 7,
       name: "Relationships & Connection",
-      src: "https://pub-c0ab68ce633f4c6ca038f3d704dcb392.r2.dev/affirmations/Relationships%26Connection.mp3",
+      src: "https://pub-c0ab68ce633f4c6ca038f3d704dcb392.r2.dev/affirmations/RELATIONSHIPS_CONNECTION.mp4",
     },
     {
       id: 8,
       name: "Self-Confidence & Empowerment",
-      src: "https://pub-c0ab68ce633f4c6ca038f3d704dcb392.r2.dev/affirmations/Self-Confidence%26Empowerment.mp3",
+      src: "https://pub-c0ab68ce633f4c6ca038f3d704dcb392.r2.dev/affirmationsSELF_CONFIDENCE_EMPOWERMENT.mp4",
     },
     {
       id: 9,
       name: "Sleep & Rest",
-      src: "https://pub-c0ab68ce633f4c6ca038f3d704dcb392.r2.dev/affirmations/Sleep%26Rest.mp3",
+      src: "https://pub-c0ab68ce633f4c6ca038f3d704dcb392.r2.dev/affirmations/SLEEP_REST.mp4",
     },
     {
       id: 10,
       name: "Spiritual Growth & Intuition",
-      src: "https://pub-c0ab68ce633f4c6ca038f3d704dcb392.r2.dev/affirmations/SpiritualGrowth%26Intuition.mp3",
+      src: "https://pub-c0ab68ce633f4c6ca038f3d704dcb392.r2.dev/affirmations/SPIRITUAL_GROWTH_INTUITION.mp4",
     },
   ],
 
   "Soothing Stories": [
-    {
-      id: 1,
-      name: "The Lighthouse on the Edge of a Nebula",
-      src: "https://pub-c0ab68ce633f4c6ca038f3d704dcb392.r2.dev/soothing-stories/lighthouse.mp3",
-    },
-    {
-      id: 2,
-      name: "The Library of Stars",
-      src: "https://pub-c0ab68ce633f4c6ca038f3d704dcb392.r2.dev/soothing-stories/libraryS.mp3",
-    },
-    {
-      id: 3,
-      name: "The Glass Planet",
-      src: "https://pub-c0ab68ce633f4c6ca038f3d704dcb392.r2.dev/soothing-stories/glassP.mp3",
-    },
-    // {
-    //   id: 4,
-    //   name: "The Sleeping Comet",
-    //   src: "https://pub-c0ab68ce633f4c6ca038f3d704dcb392.r2.dev/soothing-stories/sleepingC.mp3",
-    // },
-    // {
-    //   id: 5,
-    //   name: "The Garden on Io",
-    //   src: "https://pub-c0ab68ce633f4c6ca038f3d704dcb392.r2.dev/soothing-stories/gardenL.mp3",
-    // },
-    {
-      id: 6,
-      name: "The Lighthouse of Andromeda",
-      src: "https://pub-c0ab68ce633f4c6ca038f3d704dcb392.r2.dev/soothing-stories/andromeda.mp3",
-    },
-    {
-      id: 7,
-      name: "The Bridge of Auroras",
-      src: "https://pub-c0ab68ce633f4c6ca038f3d704dcb392.r2.dev/soothing-stories/bridgeAur.mp3",
-    },
-    // {
-    //   id: 8,
-    //   name: "The Forgotten Moon",
-    //   src: "https://pub-c0ab68ce633f4c6ca038f3d704dcb392.r2.dev/soothing-stories/forgottenM.mp3",
-    // },
-    // {
-    //   id: 9,
-    //   name: "The Star Garden",
-    //   src: "https://pub-c0ab68ce633f4c6ca038f3d704dcb392.r2.dev/soothing-stories/starGard.mp3",
-    // },
-    {
-      id: 10,
-      name: "The Celestial Caravan",
-      src: "https://pub-c0ab68ce633f4c6ca038f3d704dcb392.r2.dev/soothing-stories/celestialCara.mp3",
-    },
-    {
-      id: 11,
-      name: "The Planet That Felt Nothing",
-      src: "https://pub-c0ab68ce633f4c6ca038f3d704dcb392.r2.dev/soothing-stories/Planet_That_felt_nothing.MP3",
-    },
-    {
-      id: 12,
-      name: "The Signal That Never Came Back",
-      src: "https://pub-c0ab68ce633f4c6ca038f3d704dcb392.r2.dev/soothing-stories/signal_never_came_back.mp3",
-    },
-    {
-      id: 13,
-      name: "The Doorway at the Edge of Space",
-      src: "https://pub-c0ab68ce633f4c6ca038f3d704dcb392.r2.dev/soothing-stories/doorway_at_the_edge.mp3",
-    },
-    {
-      id: 14,
-      name: "The Star That Thought It Was Ordinary",
-      src: "https://pub-c0ab68ce633f4c6ca038f3d704dcb392.r2.dev/soothing-stories/star_not_ordinary.mp3",
-    },
-    {
-      id: 15,
-      name: "The Things We Leave in Orbit",
-      src: "https://pub-c0ab68ce633f4c6ca038f3d704dcb392.r2.dev/soothing-stories/things_in_the_orbit.mp3",
-    },
-    {
-      id: 16,
-      name: "The Morning That Arrived Slowly",
-      src: "https://pub-c0ab68ce633f4c6ca038f3d704dcb392.r2.dev/soothing-stories/morning_arrived_slowly.mp3",
-    },
-    {
-      id: 17,
-      name: "Permission to Come Home",
-      src: "https://pub-c0ab68ce633f4c6ca038f3d704dcb392.r2.dev/soothing-stories/permission_to_come.mp3",
-    },
-    {
-      id: 18,
-      name: "Enjoy The Journey",
-      src: "https://pub-c0ab68ce633f4c6ca038f3d704dcb392.r2.dev/soothing-stories/Enjoy_the_journey.mp3",
-    },
-  ],
+  {
+    id: 1,
+    name: "THE_MUSEUM_OF_UNLIVED_LIVES",
+    src: "https://pub-c0ab68ce633f4c6ca038f3d704dcb392.r2.dev/soothing-stories/THE_MUSEUM_OF_UNLIVED_LIVES.mp4",
+  },
+  {
+    id: 2,
+    name: "THE_PLANET_THAT_NEVER_SAID_NO",
+    src: "https://pub-c0ab68ce633f4c6ca038f3d704dcb392.r2.dev/soothing-stories/THE_PLANET_THAT_NEVER_SAID_NO.mp4",
+  },
+  {
+    id: 3,
+    name: "THE_SHIP_THAT_WAS_ALWAYS_RUNNING_LATE",
+    src: "https://pub-c0ab68ce633f4c6ca038f3d704dcb392.r2.dev/soothing-stories/THE_SHIP_THAT_WAS_ALWAYS_RUNNING_LATE.mp4",
+  },
+  {
+    id: 4,
+    name: "THE_GARDEN_BEHIND_THE_LOCKED_DOOR",
+    src: "https://pub-c0ab68ce633f4c6ca038f3d704dcb392.r2.dev/soothing-stories/THE_GARDEN_BEHIND_THE_LOCKED_DOOR.mp4",
+  },
+  {
+    id: 5,
+    name: "THE_GIRL_WHO_COLLECTED_OTHER_PEOPLES_STARS",
+    src: "https://pub-c0ab68ce633f4c6ca038f3d704dcb392.r2.dev/soothing-stories/THE_GIRL_WHO_COLLECTED_OTHER_PEOPLES_STARS.mp4",
+  },
+  {
+    id: 6,
+    name: "THE_OCEAN_THAT_REMEMBERED_EVERYTHING",
+    src: "https://pub-c0ab68ce633f4c6ca038f3d704dcb392.r2.dev/soothing-stories/THE_OCEAN_THAT_REMEMBERED_EVERYTHING.mp4",
+  },
+  {
+    id: 7,
+    name: "THE_WEIGHT_OF_INVISIBLE_THINGS",
+    src: "https://pub-c0ab68ce633f4c6ca038f3d704dcb392.r2.dev/soothing-stories/THE_WEIGHT_OF_INVISIBLE_THINGS.mp4",
+  },
+  {
+    id: 8,
+    name: "THE_LAST_LIGHT_ON_PLANET_ELEVEN",
+    src: "https://pub-c0ab68ce633f4c6ca038f3d704dcb392.r2.dev/soothing-stories/THE_LAST_LIGHT_ON_PLANET_ELEVEN.mp4",
+  },
+  {
+    id: 9,
+    name: "THE_LANGUAGE_BETWEEN_TWO_STARS",
+    src: "https://pub-c0ab68ce633f4c6ca038f3d704dcb392.r2.dev/soothing-stories/THE_LANGUAGE_BETWEEN_TWO_STARS.mp4",
+  },
+  {
+    id: 10,
+    name: "THE_VERSION_OF_YOU_WAITING_AT_THE_END",
+    src: "https://pub-c0ab68ce633f4c6ca038f3d704dcb392.r2.dev/soothing-stories/THE_VERSION_OF_YOU_WAITING_AT_THE_END.mp4",
+  },
+  {
+    id: 11,
+    name: "THE_ASTRONAUT_WHO_FORGOT_TO_LOOK_UP",
+    src: "https://pub-c0ab68ce633f4c6ca038f3d704dcb392.r2.dev/soothing-stories/THE_ASTRONAUT_WHO_FORGOT_TO_LOOK_UP.mp4",
+  },
+  {
+    id: 12,
+    name: "THE_PLANET_THAT_FELT_NOTHING",
+    src: "https://pub-c0ab68ce633f4c6ca038f3d704dcb392.r2.dev/soothing-stories/THE_PLANET_THAT_FELT_NOTHING.mp4",
+  },
+  {
+    id: 13,
+    name: "THE_SIGNAL_THAT_NEVER_CAME_BACK",
+    src: "https://pub-c0ab68ce633f4c6ca038f3d704dcb392.r2.dev/soothing-stories/THE_SIGNAL_THAT_NEVER_CAME_BACK.mp4",
+  },
+  {
+    id: 14,
+    name: "THE_DOORWAY_AT_THE_EDGE_OF_SPACE",
+    src: "https://pub-c0ab68ce633f4c6ca038f3d704dcb392.r2.dev/soothing-stories/THE_DOORWAY_AT_THE_EDGE_OF_SPACE.mp4",
+  },
+  {
+    id: 15,
+    name: "PERMISSION_TO_COME_HOME",
+    src: "https://pub-c0ab68ce633f4c6ca038f3d704dcb392.r2.dev/soothing-stories/PERMISSION_TO_COME_HOME.mp4",
+  },
+  {
+    id: 16,
+    name: "THE_STAR_THAT_THOUGHT_IT_WAS_ORDINARY",
+    src: "https://pub-c0ab68ce633f4c6ca038f3d704dcb392.r2.dev/soothing-stories/THE_STAR_THAT_THOUGHT_IT_WAS_ORDINARY.mp4",
+  },
+  {
+    id: 17,
+    name: "THE_THINGS_WE_LEAVE_IN_ORBIT",
+    src: "https://pub-c0ab68ce633f4c6ca038f3d704dcb392.r2.dev/soothing-stories/THE_THINGS_WE_LEAVE_IN_ORBIT.mp4",
+  },
+  {
+    id: 18,
+    name: "A_QUIET_PLACE_BETWEEN_STARS",
+    src: "https://pub-c0ab68ce633f4c6ca038f3d704dcb392.r2.dev/soothing-stories/A_QUIET_PLACE_BETWEEN_STARS.mp4",
+  },
+  {
+    id: 19,
+    name: "THE_MORNING_THAT_ARRIVED_SLOWLY",
+    src: "https://pub-c0ab68ce633f4c6ca038f3d704dcb392.r2.dev/soothing-stories/THE_MORNING_THAT_ARRIVED_SLOWLY.mp4",
+  },
+],
+
 
   "Ambient Noise": [
     {
@@ -322,6 +328,38 @@ const CHANNELS = {
       src: "https://pub-c0ab68ce633f4c6ca038f3d704dcb392.r2.dev/ambient-noise/ambient16.mp3",
     },
   ],
+  "littleReminders" : [
+  {
+    id: 1,
+    name: "WHEN EVERYTHING FEELS OVERWHELMING",
+    src: "https://pub-c0ab68ce633f4c6ca038f3d704dcb392.r2.dev/little-reminders/WHEN_EVERYTHING_FEELS_OVERWHELMING.mp4"
+  },
+  {
+    id: 2,
+    name: "WHEN YOU FEEL LOST",
+    src: "https://pub-c0ab68ce633f4c6ca038f3d704dcb392.r2.dev/little-reminders/WHEN_YOU_FEEL_LOST.mp4"
+  },
+  {
+    id: 3,
+    name: "WHEN YOU FEEL ALONE",
+    src: "https://pub-c0ab68ce633f4c6ca038f3d704dcb392.r2.dev/little-reminders/WHEN_YOU_FEEL_ALONE.mp4"
+  },
+  {
+    id: 4,
+    name: "WHEN YOU ARE STRUGGLING WITH SELF-WORTH",
+    src: "https://pub-c0ab68ce633f4c6ca038f3d704dcb392.r2.dev/little-reminders/WHEN_YOU_ARE_STRUGGLING_WITH_SELF-WORTH.mp4"
+  },
+  {
+    id: 5,
+    name: "WHEN YOU NEED TO LET GO",
+    src: "https://pub-c0ab68ce633f4c6ca038f3d704dcb392.r2.dev/little-reminders/WHEN_YOU_NEED_TO_LET_GO.mp4"
+  },
+  {
+    id: 6,
+    name: "WHEN YOU NEED A LITTLE HOPE",
+    src: "https://pub-c0ab68ce633f4c6ca038f3d704dcb392.r2.dev/little-reminders/WHEN_YOU_NEED_A_LITTLE_HOPE.mp4"
+  }
+],
 };
 
 // ==========================================
